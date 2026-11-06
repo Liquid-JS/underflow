@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="288px" height="288px" viewBox="0 0 288 288" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon</title>
+    <defs>
+        <path d="M288,288 L0,288 L0,0 L288,0 Z" id="path-1"></path>
+        <radialGradient cx="8.77192982%" cy="13.1578947%" fx="8.77192982%" fy="13.1578947%" r="70.1754386%" id="radialGradient-2">
+            <stop stop-color="#FFFFFF" stop-opacity="0.9" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="87.7192982%" cy="17.5438596%" fx="87.7192982%" fy="17.5438596%" r="57.0175439%" id="radialGradient-3">
+            <stop stop-color="#A8BEF5" stop-opacity="0.4" offset="0%"></stop>
+            <stop stop-color="#A8BEF5" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <linearGradient x1="15.9574468%" y1="0%" x2="15.9574468%" y2="45.7627119%" id="linearGradient-4">
+            <stop stop-color="#C4D3F1" offset="0%"></stop>
+            <stop stop-color="#8FADE7" offset="100%"></stop>
+        </linearGradient>
+        <radialGradient cx="77.1276596%" cy="61.8644068%" fx="77.1276596%" fy="61.8644068%" r="101.694915%" gradientTransform="translate(0.7713, 0.6186), scale(0.6277, 1), translate(-0.7713, -0.6186)" id="radialGradient-5">
+            <stop stop-color="#527FD9" stop-opacity="0.6" offset="0%"></stop>
+            <stop stop-color="#527FD9" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="18.6170213%" cy="3.38983051%" fx="18.6170213%" fy="3.38983051%" r="55.0847458%" gradientTransform="translate(0.1862, 0.0339), scale(0.6277, 1), translate(-0.1862, -0.0339)" id="radialGradient-6">
+            <stop stop-color="#E4EBF8" stop-opacity="0.55" offset="0%"></stop>
+            <stop stop-color="#E4EBF8" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <linearGradient x1="0%" y1="33.9381765%" x2="100.12285%" y2="66.7756823%" id="linearGradient-7">
+            <stop stop-color="#4C78FD" offset="0%"></stop>
+            <stop stop-color="#3469D1" offset="50%"></stop>
+            <stop stop-color="#2248A8" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="icon-any-(288)" stroke="none" fill="none" xlink:href="#path-1" fill-rule="evenodd" stroke-width="1">
+        <g id="Group" transform="translate(-84, -84)">
+            <rect id="Rectangle" fill="#EEF2F9" x="0" y="0" width="456" height="456"></rect>
+            <rect id="Rectangle" fill="url(#radialGradient-2)" x="0" y="0" width="456" height="456"></rect>
+            <rect id="Rectangle" fill="url(#radialGradient-3)" x="0" y="0" width="456" height="456"></rect>
+            <path d="M40,264 C70,264 84,272 100,272 C150,272 180,314 228,314 C276,314 300,276 356,282 C372,284 386,288 416,290 L416,500 L40,500 L40,264 Z" id="Path" fill="url(#linearGradient-4)"></path>
+            <path d="M40,264 C70,264 84,272 100,272 C150,272 180,314 228,314 C276,314 300,276 356,282 C372,284 386,288 416,290 L416,500 L40,500 L40,264 Z" id="Path" fill="url(#radialGradient-5)"></path>
+            <path d="M40,264 C70,264 84,272 100,272 C150,272 180,314 228,314 C276,314 300,276 356,282 C372,284 386,288 416,290 L416,500 L40,500 L40,264 Z" id="Path" fill="url(#radialGradient-6)"></path>
+            <line x1="140" y1="161" x2="316" y2="161" id="Path" stroke="#B9C1D0" stroke-width="20" fill="#000000" stroke-linecap="round"></line>
+            <path d="M151,211.9 C159.8,220.7 177.4,260.3 201.6,260.3 C228,260.3 239,209.7 263.2,209.7 C278.6,209.7 291.8,222.9 291.8,238.3 L291.8,302 M269.8,282.3 L291.8,304.3 L313.8,282.3" id="Shape" stroke="url(#linearGradient-7)" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+    </g>
+</svg>

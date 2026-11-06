@@ -1,0 +1,15 @@
+/* UnderFlow palette for the API reference: the same greys and blues as the editor themes */
+:root {
+    --light-color-background: #f5f7fb;
+    --light-color-background-secondary: #e8ecf3;
+    --light-color-accent: #b9c1d0;
+    --light-color-text: #282d38;
+    --light-color-text-aside: #4f5869;
+    --light-color-link: #3060c7;
+    --dark-color-background: #282d38;
+    --dark-color-background-secondary: #1a1e27;
+    --dark-color-accent: #6b7589;
+    --dark-color-text: #e8ecf3;
+    --dark-color-text-aside: #b9c1d0;
+    --dark-color-link: #7a9cff;
+}

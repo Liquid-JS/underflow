@@ -1,5 +1,5 @@
-<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>HTMLMdNode | UnderFlow</title><meta name="description" content="Documentation for UnderFlow"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
-<div class="tsd-toolbar-contents container"><a href="../index.html" class="title">UnderFlow</a>
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>HTMLMdNode | @liquid-js/underflow</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"/><meta name="description" content="Documentation for @liquid-js/underflow"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><link rel="stylesheet" href="../assets/custom.css"/><script defer src="../assets/main.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="../index.html" class="title">@liquid-js/underflow</a>
 <div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
 <ul role="listbox" id="tsd-search-results"></ul>
 <div id="tsd-search-status" aria-live="polite" aria-atomic="true">
@@ -13,7 +13,7 @@
 <h1>Interface HTMLMdNode</h1></div>
 <div class="tsd-signature"><span class="tsd-signature-keyword">interface</span> <span class="tsd-kind-interface">HTMLMdNode</span> <span class="tsd-signature-symbol">{</span><br/>    <a class="tsd-kind-property" href="#type">type</a><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#id">id</a><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#parent">parent</a><span class="tsd-signature-symbol">:</span> <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#prev">prev</a><span class="tsd-signature-symbol">:</span> <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#next">next</a><span class="tsd-signature-symbol">:</span> <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#sourcepos">sourcepos</a><span class="tsd-signature-symbol">?:</span> <a href="../types/parser.Sourcepos.html" class="tsd-signature-type tsd-kind-type-alias">Sourcepos</a><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#firstchild">firstChild</a><span class="tsd-signature-symbol">:</span> <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#lastchild">lastChild</a><span class="tsd-signature-symbol">:</span> <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#literal">literal</a><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#attrs">attrs</a><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">string</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#childrenhtml">childrenHTML</a><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-call-signature" href="#iscontainer-1">isContainer</a><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-call-signature" href="#unlink-1">unlink</a><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-call-signature" href="#replacewith-1">replaceWith</a><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">node</span><span class="tsd-signature-symbol">:</span> <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-call-signature" href="#insertafter-1">insertAfter</a><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">node</span><span class="tsd-signature-symbol">:</span> <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-call-signature" href="#insertbefore-1">insertBefore</a><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">node</span><span class="tsd-signature-symbol">:</span> <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-call-signature" href="#appendchild-1">appendChild</a><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">child</span><span class="tsd-signature-symbol">:</span> <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-call-signature" href="#prependchild-1">prependChild</a><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">child</span><span class="tsd-signature-symbol">:</span> <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-call-signature" href="#walker-1">walker</a><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="parser.NodeWalker.html" class="tsd-signature-type tsd-kind-interface">NodeWalker</a><span class="tsd-signature-symbol">;</span><br/><span class="tsd-signature-symbol">}</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L38">src/editor/types/markdown.ts:38</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L38">src/editor/types/markdown.ts:38</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-accordion" open><summary class="tsd-accordion-summary tsd-index-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
@@ -51,57 +51,57 @@
 <h3 class="tsd-anchor-link" id="type"><span>type</span><a href="#type" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L39">src/editor/types/markdown.ts:39</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L39">src/editor/types/markdown.ts:39</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="id"><span>id</span><a href="#id" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">id</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L40">src/editor/types/markdown.ts:40</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L40">src/editor/types/markdown.ts:40</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="parent"><span>parent</span><a href="#parent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">parent</span><span class="tsd-signature-symbol">:</span> <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L41">src/editor/types/markdown.ts:41</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L41">src/editor/types/markdown.ts:41</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="prev"><span>prev</span><a href="#prev" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">prev</span><span class="tsd-signature-symbol">:</span> <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L42">src/editor/types/markdown.ts:42</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L42">src/editor/types/markdown.ts:42</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="next"><span>next</span><a href="#next" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">next</span><span class="tsd-signature-symbol">:</span> <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L43">src/editor/types/markdown.ts:43</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L43">src/editor/types/markdown.ts:43</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="sourcepos"><code class="tsd-tag">Optional</code><span>sourcepos</span><a href="#sourcepos" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">sourcepos</span><span class="tsd-signature-symbol">?:</span> <a href="../types/parser.Sourcepos.html" class="tsd-signature-type tsd-kind-type-alias">Sourcepos</a></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L44">src/editor/types/markdown.ts:44</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L44">src/editor/types/markdown.ts:44</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="firstchild"><span>first<wbr/>Child</span><a href="#firstchild" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">firstChild</span><span class="tsd-signature-symbol">:</span> <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L45">src/editor/types/markdown.ts:45</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L45">src/editor/types/markdown.ts:45</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="lastchild"><span>last<wbr/>Child</span><a href="#lastchild" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">lastChild</span><span class="tsd-signature-symbol">:</span> <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L46">src/editor/types/markdown.ts:46</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L46">src/editor/types/markdown.ts:46</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="literal"><span>literal</span><a href="#literal" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">literal</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L47">src/editor/types/markdown.ts:47</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L47">src/editor/types/markdown.ts:47</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="attrs"><code class="tsd-tag">Optional</code><span>attrs</span><a href="#attrs" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">attrs</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">string</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L58">src/editor/types/markdown.ts:58</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L58">src/editor/types/markdown.ts:58</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="childrenhtml"><code class="tsd-tag">Optional</code><span>children<wbr/>HTML</span><a href="#childrenhtml" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">childrenHTML</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L59">src/editor/types/markdown.ts:59</a></li></ul></aside></section></section></details>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L59">src/editor/types/markdown.ts:59</a></li></ul></aside></section></section></details>
 <details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
 <h2 class="tsd-anchor-link" id="methods-1">Methods<a href="#methods-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
 <section>
@@ -113,7 +113,7 @@
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L49">src/editor/types/markdown.ts:49</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L49">src/editor/types/markdown.ts:49</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="unlink"><span>unlink</span><a href="#unlink" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -122,7 +122,7 @@
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L50">src/editor/types/markdown.ts:50</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L50">src/editor/types/markdown.ts:50</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="replacewith"><span>replace<wbr/>With</span><a href="#replacewith" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -135,7 +135,7 @@
 <li><span><span class="tsd-kind-parameter">node</span>: <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L51">src/editor/types/markdown.ts:51</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L51">src/editor/types/markdown.ts:51</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="insertafter"><span>insert<wbr/>After</span><a href="#insertafter" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -148,7 +148,7 @@
 <li><span><span class="tsd-kind-parameter">node</span>: <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L52">src/editor/types/markdown.ts:52</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L52">src/editor/types/markdown.ts:52</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="insertbefore"><span>insert<wbr/>Before</span><a href="#insertbefore" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -161,7 +161,7 @@
 <li><span><span class="tsd-kind-parameter">node</span>: <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L53">src/editor/types/markdown.ts:53</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L53">src/editor/types/markdown.ts:53</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="appendchild"><span>append<wbr/>Child</span><a href="#appendchild" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -174,7 +174,7 @@
 <li><span><span class="tsd-kind-parameter">child</span>: <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L54">src/editor/types/markdown.ts:54</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L54">src/editor/types/markdown.ts:54</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="prependchild"><span>prepend<wbr/>Child</span><a href="#prependchild" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -187,7 +187,7 @@
 <li><span><span class="tsd-kind-parameter">child</span>: <a href="index.MdNode.html" class="tsd-signature-type tsd-kind-interface">MdNode</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L55">src/editor/types/markdown.ts:55</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L55">src/editor/types/markdown.ts:55</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="walker"><span>walker</span><a href="#walker" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -196,7 +196,7 @@
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <a href="parser.NodeWalker.html" class="tsd-signature-type tsd-kind-interface">NodeWalker</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/e2880fafa18356403b2de0049dda5a97ffb42993/src/editor/types/markdown.ts#L56">src/editor/types/markdown.ts:56</a></li></ul></aside></div></li></ul></section></section></details></div>
+<li>Defined in <a href="https://github.com/Liquid-JS/underflow/blob/ac028911e875eea86c08e34c0b43ea84bc365dd0/src/editor/types/markdown.ts#L56">src/editor/types/markdown.ts:56</a></li></ul></aside></div></li></ul></section></section></details></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -217,7 +217,7 @@
 <details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Methods</summary>
 <div><a href="#iscontainer"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Container</span></a><a href="#unlink"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>unlink</span></a><a href="#replacewith"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>replace<wbr/>With</span></a><a href="#insertafter"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>insert<wbr/>After</span></a><a href="#insertbefore"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>insert<wbr/>Before</span></a><a href="#appendchild"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>append<wbr/>Child</span></a><a href="#prependchild"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>prepend<wbr/>Child</span></a><a href="#walker"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>walker</span></a></div></details></div></details></div>
 <div class="site-menu">
-<nav class="tsd-navigation"><a href="../modules.html">UnderFlow</a>
+<nav class="tsd-navigation"><a href="../modules.html">@liquid-js/underflow</a>
 <ul class="tsd-small-nested-navigation" id="tsd-nav-container">
 <li>Loading...</li></ul></nav></div></div></div><footer>
 <p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer>
