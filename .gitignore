@@ -1,7 +1,8 @@
 # Build output
 /lib
-/demo/dist
+/pages
 /api
+/demo/dist
 
 # Dependencies
 /node_modules

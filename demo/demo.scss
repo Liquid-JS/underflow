@@ -18,6 +18,15 @@ body {
     border-bottom: 1px solid #ddd;
 }
 
+.demo-docs {
+    margin-left: auto;
+    color: #2563eb;
+
+    .dark & {
+        color: #8ab4f8;
+    }
+}
+
 main {
     padding: 24px;
     display: grid;

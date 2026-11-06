@@ -120,6 +120,7 @@
         "test:types": "tsc --noEmit",
         "docs": "typedoc --tsconfig ./tsconfig.lib.json",
         "start": "vite demo",
+        "build:demo": "vite build demo",
         "smoke": "yarn build && yarn pack -o underflow.tgz && clean-package restore && cd smoke && rimraf node_modules/@liquid-js/underflow package-lock.json && npm install --no-audit --no-fund --ignore-scripts && npm run build && npm run e2e",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
@@ -151,7 +152,7 @@
     "bugs": {
         "url": "https://github.com/Liquid-JS/underflow/issues"
     },
-    "homepage": "https://github.com/Liquid-JS/underflow#readme",
+    "homepage": "https://liquid-js.github.io/underflow/",
     "packageManager": "yarn@4.18.1",
     "clean-package": {
         "remove": [

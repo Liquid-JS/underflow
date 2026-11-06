@@ -11,7 +11,7 @@
     "projectDocuments": [
         "./docs/*.md"
     ],
-    "out": "api",
+    "out": "pages/docs",
     "sort": [
         "kind",
         "instance-first",

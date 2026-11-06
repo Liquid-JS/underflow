@@ -24,7 +24,7 @@ jobs:
           no_contributors: true
 
   docs:
-    name: Publish API docs
+    name: Publish the API docs and the demo
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -36,8 +36,11 @@ jobs:
           cache: yarn
       - run: yarn install --immutable
       - run: yarn docs
+      - run: yarn build:demo
+      # the site root sends visitors to the demo
+      - run: printf '<!doctype html>\n<meta http-equiv="refresh" content="0; url=demo/">\n<link rel="canonical" href="demo/">\n' > pages/index.html
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./api
+          publish_dir: ./pages
