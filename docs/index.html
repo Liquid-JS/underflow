@@ -18,6 +18,7 @@ GitHub Flavored Markdown, and its WYSIWYG mode is built on <a href="https://pros
 <p>The editor keeps its focus on content: the markdown it writes is standard CommonMark/GFM that other renderers (remark,
 GitHub, markdown-it) display the same way, and the preview uses plain element styles so you can apply your own site's
 stylesheet to it.</p>
+<p>Try it here <a href="https://liquid-js.github.io/underflow/demo/">https://liquid-js.github.io/underflow/demo/</a></p>
 <h2 id="installation" class="tsd-anchor-link">Installation<a href="#installation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <pre><code class="sh"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">install</span><span class="hl-1"> </span><span class="hl-2">@liquid-js/underflow</span><span class="hl-1"> </span><span class="hl-2">prosemirror-commands</span><span class="hl-1"> </span><span class="hl-2">prosemirror-history</span><span class="hl-1"> </span><span class="hl-2">prosemirror-inputrules</span><span class="hl-1"> </span><span class="hl-3">\</span><br/><span class="hl-1">    </span><span class="hl-2">prosemirror-keymap</span><span class="hl-1"> </span><span class="hl-2">prosemirror-model</span><span class="hl-1"> </span><span class="hl-2">prosemirror-state</span><span class="hl-1"> </span><span class="hl-2">prosemirror-transform</span><span class="hl-1"> </span><span class="hl-2">prosemirror-view</span><span class="hl-1"> </span><span class="hl-2">dompurify</span>
 </code><button type="button">Copy</button></pre>
@@ -25,22 +26,7 @@ stylesheet to it.</p>
 <p>ProseMirror and DOMPurify are peer dependencies, so your application controls their versions and
 loads a single copy of each.</p>
 <h2 id="documentation" class="tsd-anchor-link">Documentation<a href="#documentation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
-<ul>
-<li><a href="https://liquid-js.github.io/underflow/docs/documents/getting-started.html">Getting started</a></li>
-<li><a href="https://liquid-js.github.io/underflow/docs/documents/viewer.html">Viewer</a></li>
-<li><a href="https://liquid-js.github.io/underflow/docs/documents/editing.html">Editing</a></li>
-<li><a href="https://liquid-js.github.io/underflow/docs/documents/theming.html">Theming</a></li>
-<li><a href="https://liquid-js.github.io/underflow/docs/documents/plugin.html">Plugins</a></li>
-<li><a href="https://liquid-js.github.io/underflow/docs/documents/code-syntax-highlight-plugin.html">Code syntax highlight plugin</a></li>
-<li><a href="https://liquid-js.github.io/underflow/docs/documents/i18n.html">Internationalization</a></li>
-<li><a href="https://liquid-js.github.io/underflow/docs/documents/custom-html-renderer.html">Custom HTML renderer</a></li>
-<li><a href="https://liquid-js.github.io/underflow/docs/documents/custom-block.html">Custom block</a></li>
-<li><a href="https://liquid-js.github.io/underflow/docs/documents/extended-autolinks.html">Extended autolinks</a></li>
-<li><a href="https://liquid-js.github.io/underflow/docs/documents/toolbar.html">Toolbar</a></li>
-<li><a href="https://liquid-js.github.io/underflow/docs/documents/widget.html">Widget</a></li>
-</ul>
-<p>The API reference, with these guides, is at <a href="https://liquid-js.github.io/underflow/docs/">https://liquid-js.github.io/underflow/docs/</a>, and the demo at
-<a href="https://liquid-js.github.io/underflow/demo/">https://liquid-js.github.io/underflow/demo/</a>.</p>
+<p>The guides and the API reference are at <a href="https://liquid-js.github.io/underflow/docs/">https://liquid-js.github.io/underflow/docs/</a>.</p>
 <h2 id="usage" class="tsd-anchor-link">Usage<a href="#usage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <pre><code class="ts"><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-5">Editor</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow&#39;</span><br/><span class="hl-4">import</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow/styles/editor.css&#39;</span><br/><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">editor</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">Editor</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-5">el:</span><span class="hl-1"> </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">querySelector</span><span class="hl-1">(</span><span class="hl-2">&#39;#editor&#39;</span><span class="hl-1">)!,</span><br/><span class="hl-1">    </span><span class="hl-5">height:</span><span class="hl-1"> </span><span class="hl-2">&#39;500px&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-5">initialEditType:</span><span class="hl-1"> </span><span class="hl-2">&#39;markdown&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-5">previewStyle:</span><span class="hl-1"> </span><span class="hl-2">&#39;vertical&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-5">initialValue:</span><span class="hl-1"> </span><span class="hl-2">&#39;# Hello&#39;</span><br/><span class="hl-1">})</span><br/><br/><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">on</span><span class="hl-1">(</span><span class="hl-2">&#39;change&#39;</span><span class="hl-1">, () </span><span class="hl-6">=&gt;</span><span class="hl-1"> </span><span class="hl-5">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">getMarkdown</span><span class="hl-1">()))</span>
 </code><button type="button">Copy</button></pre>
@@ -103,7 +89,7 @@ with Autoprefixer or Lightning CSS.</p>
 </tr>
 <tr>
 <td><code>@liquid-js/underflow/scss/&lt;file&gt;.scss</code></td>
-<td>The Sass sources of the stylesheets above, to compile in your own build (see <a href="https://liquid-js.github.io/underflow/docs/documents/theming.html#sass">Theming</a>)</td>
+<td>The Sass sources of the stylesheets above, to compile in your own build (see <a href="https://liquid-js.github.io/underflow/docs/documents/Theming.html#sass">Theming</a>)</td>
 </tr>
 </tbody>
 </table>
