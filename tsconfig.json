@@ -1,16 +1,53 @@
 {
-  "compilerOptions": {
-    "skipLibCheck": true,
-    "target": "es5",
-    "module": "es6",
-    "allowJs": true,
-    "strict": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "importHelpers": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
-    "baseUrl": ".",
-    "noEmit": true,
-  }
+    "compilerOptions": {
+        "strictPropertyInitialization": true,
+        "noUnusedParameters": true,
+        "skipLibCheck": true,
+        "importHelpers": false,
+        "outDir": "./lib/",
+        "sourceMap": true,
+        "module": "esnext",
+        "target": "es2024",
+        "allowJs": true,
+        "moduleResolution": "bundler",
+        "declaration": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        "strictNullChecks": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "rewriteRelativeImportExtensions": true,
+        "useDefineForClassFields": false,
+        "types": [
+            "vitest/globals",
+            "@testing-library/jest-dom/vitest"
+        ],
+        "paths": {
+            "@liquid-js/underflow": [
+                "./src/index.ts"
+            ],
+            "@liquid-js/underflow/viewer": [
+                "./src/viewer.ts"
+            ],
+            "@liquid-js/underflow/parser": [
+                "./src/parser.ts"
+            ],
+            "@liquid-js/underflow/plugins/code-syntax-highlight": [
+                "./src/plugins/code-syntax-highlight.ts"
+            ]
+        }
+    },
+    "include": [
+        "src/**/*",
+        "test/**/*",
+        "demo/**/*",
+        "*.config.ts",
+        "scripts/**/*"
+    ]
 }
