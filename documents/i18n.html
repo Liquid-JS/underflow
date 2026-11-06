@@ -1,0 +1,284 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>i18n | UnderFlow</title><meta name="description" content="Documentation for UnderFlow"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="../index.html" class="title">UnderFlow</a>
+<div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<ul class="tsd-breadcrumb" aria-label="Breadcrumb">
+<li><a href="" aria-current="page">i18n</a></li></ul></div>
+<div class="tsd-panel tsd-typography"><h1 id="internationalization-i18n" class="tsd-anchor-link">Internationalization (i18n)<a href="#internationalization-i18n" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<p>UnderFlow can show its UI text in various languages. Import the texts for each language you want to use, register them
+under their language codes, then set the language code when you create an instance.</p>
+<h2 id="locale-files" class="tsd-anchor-link">Locale Files<a href="#locale-files" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Each locale is a separate entry point, <code>@liquid-js/underflow/i18n/&lt;locale&gt;</code>, that exports the locale's texts and does
+nothing else, so importing it has no side effects. The source files are in <a href="https://github.com/Liquid-JS/underflow/tree/master/src/editor/i18n"><code>src/editor/i18n/</code></a>; see
+<a href="#contributing">Contributing</a> if you want to add a language.</p>
+<h2 id="supported-languages" class="tsd-anchor-link">Supported Languages<a href="#supported-languages" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Below is a table of the locale files included in UnderFlow, the name of the texts each one exports and the language
+codes to register them under. The codes are <a href="https://en.wikipedia.org/wiki/IETF_language_tag">IETF language tags</a>.</p>
+<blockquote>
+<p>Note: The default language is English. It's always available, so you don't need to import <code>i18n/en-us</code>.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Language Name</th>
+<th>Import Path</th>
+<th>Export</th>
+<th>Language Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arabic</td>
+<td><code>ar</code></td>
+<td><code>ar</code></td>
+<td><code>ar</code></td>
+</tr>
+<tr>
+<td>Chinese (S)</td>
+<td><code>zh-cn</code></td>
+<td><code>zhCN</code></td>
+<td><code>zh-CN</code></td>
+</tr>
+<tr>
+<td>Chinese (T)</td>
+<td><code>zh-tw</code></td>
+<td><code>zhTW</code></td>
+<td><code>zh-TW</code></td>
+</tr>
+<tr>
+<td>Croatian (Croatia)</td>
+<td><code>hr-hr</code></td>
+<td><code>hrHR</code></td>
+<td><code>hr</code> | <code>hr-HR</code></td>
+</tr>
+<tr>
+<td>Czech (Czech Republic)</td>
+<td><code>cs-cz</code></td>
+<td><code>csCZ</code></td>
+<td><code>cs</code> | <code>cs-CZ</code></td>
+</tr>
+<tr>
+<td>Dutch (Netherlands)</td>
+<td><code>nl-nl</code></td>
+<td><code>nlNL</code></td>
+<td><code>nl</code> | <code>nl-NL</code></td>
+</tr>
+<tr>
+<td>English (United States)</td>
+<td><code>en-us</code></td>
+<td><code>enUS</code></td>
+<td><code>en</code> | <code>en-US</code></td>
+</tr>
+<tr>
+<td>Finnish (Finland)</td>
+<td><code>fi-fi</code></td>
+<td><code>fiFI</code></td>
+<td><code>fi</code> | <code>fi-FI</code></td>
+</tr>
+<tr>
+<td>French (France)</td>
+<td><code>fr-fr</code></td>
+<td><code>frFR</code></td>
+<td><code>fr</code> | <code>fr-FR</code></td>
+</tr>
+<tr>
+<td>Galician (Spain)</td>
+<td><code>gl-es</code></td>
+<td><code>glES</code></td>
+<td><code>gl</code> | <code>gl-ES</code></td>
+</tr>
+<tr>
+<td>German (Germany)</td>
+<td><code>de-de</code></td>
+<td><code>deDE</code></td>
+<td><code>de</code> | <code>de-DE</code></td>
+</tr>
+<tr>
+<td>Indonesian (Indonesia)</td>
+<td><code>id-id</code></td>
+<td><code>idID</code></td>
+<td><code>id</code> | <code>id-ID</code></td>
+</tr>
+<tr>
+<td>Italian (Italy)</td>
+<td><code>it-it</code></td>
+<td><code>itIT</code></td>
+<td><code>it</code> | <code>it-IT</code></td>
+</tr>
+<tr>
+<td>Japanese (Japan)</td>
+<td><code>ja-jp</code></td>
+<td><code>jaJP</code></td>
+<td><code>ja</code> | <code>ja-JP</code></td>
+</tr>
+<tr>
+<td>Korean (Korea)</td>
+<td><code>ko-kr</code></td>
+<td><code>koKR</code></td>
+<td><code>ko</code> | <code>ko-KR</code></td>
+</tr>
+<tr>
+<td>Norwegian Bokmål (Norway)</td>
+<td><code>nb-no</code></td>
+<td><code>nbNO</code></td>
+<td><code>nb</code> | <code>nb-NO</code></td>
+</tr>
+<tr>
+<td>Norwegian Nynorsk (Norway)</td>
+<td><code>nn-no</code></td>
+<td><code>nnNO</code></td>
+<td><code>nn</code> | <code>nn-NO</code></td>
+</tr>
+<tr>
+<td>Persian (Iran)</td>
+<td><code>fa-ir</code></td>
+<td><code>faIR</code></td>
+<td><code>fa</code> | <code>fa-IR</code></td>
+</tr>
+<tr>
+<td>Polish (Poland)</td>
+<td><code>pl-pl</code></td>
+<td><code>plPL</code></td>
+<td><code>pl</code> | <code>pl-PL</code></td>
+</tr>
+<tr>
+<td>Portuguese (Brazil)</td>
+<td><code>pt-br</code></td>
+<td><code>ptBR</code></td>
+<td><code>pt</code> | <code>pt-BR</code></td>
+</tr>
+<tr>
+<td>Russian (Russia)</td>
+<td><code>ru-ru</code></td>
+<td><code>ruRU</code></td>
+<td><code>ru</code> | <code>ru-RU</code></td>
+</tr>
+<tr>
+<td>Spanish (Castilian, Spain)</td>
+<td><code>es-es</code></td>
+<td><code>esES</code></td>
+<td><code>es</code> | <code>es-ES</code></td>
+</tr>
+<tr>
+<td>Swedish (Sweden)</td>
+<td><code>sv-se</code></td>
+<td><code>svSE</code></td>
+<td><code>sv</code> | <code>sv-SE</code></td>
+</tr>
+<tr>
+<td>Turkish (Turkey)</td>
+<td><code>tr-tr</code></td>
+<td><code>trTR</code></td>
+<td><code>tr</code> | <code>tr-TR</code></td>
+</tr>
+<tr>
+<td>Ukrainian (Ukraine)</td>
+<td><code>uk-ua</code></td>
+<td><code>ukUA</code></td>
+<td><code>uk</code> | <code>uk-UA</code></td>
+</tr>
+<tr>
+<td>Vietnamese (Vietnam)</td>
+<td><code>vi-vn</code></td>
+<td><code>viVN</code></td>
+<td><code>vi</code> | <code>vi-VN</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="registering-languages" class="tsd-anchor-link">Registering Languages<a href="#registering-languages" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Import a locale's texts and register them with the <code>setLanguage</code> static method, under the codes from the 'Language
+Code' column in <a href="#supported-languages">Supported Languages</a>:</p>
+<pre><code class="js"><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-5">Editor</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow&#39;</span><br/><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-5">deDE</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow/i18n/de-de&#39;</span><br/><br/><span class="hl-5">Editor</span><span class="hl-1">.</span><span class="hl-0">setLanguage</span><span class="hl-1">([</span><span class="hl-2">&#39;de&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;de-DE&#39;</span><span class="hl-1">], </span><span class="hl-5">deDE</span><span class="hl-1">)</span>
+</code><button type="button">Copy</button></pre>
+
+<p>As the locales are plain data, they can also be loaded only when they're needed:</p>
+<pre><code class="js"><span class="hl-6">const</span><span class="hl-1"> { </span><span class="hl-7">deDE</span><span class="hl-1"> } = </span><span class="hl-4">await</span><span class="hl-1"> </span><span class="hl-6">import</span><span class="hl-1">(</span><span class="hl-2">&#39;@liquid-js/underflow/i18n/de-de&#39;</span><span class="hl-1">)</span><br/><br/><span class="hl-5">Editor</span><span class="hl-1">.</span><span class="hl-0">setLanguage</span><span class="hl-1">([</span><span class="hl-2">&#39;de&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;de-DE&#39;</span><span class="hl-1">], </span><span class="hl-5">deDE</span><span class="hl-1">)</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="how-to-use" class="tsd-anchor-link">How to Use<a href="#how-to-use" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<h3 id="use-case-1-basic-usage" class="tsd-anchor-link">Use Case 1 : Basic Usage<a href="#use-case-1-basic-usage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>If you want to set a specific language, you can use the <code>language</code> option to create an instance. The value of this option is one of the codes the language is registered under. The default value is <code>en-US</code>.</p>
+<pre><code class="js"><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-5">Editor</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow&#39;</span><br/><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-5">deDE</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow/i18n/de-de&#39;</span><br/><br/><span class="hl-8">// Step 1 : Register the language</span><br/><span class="hl-5">Editor</span><span class="hl-1">.</span><span class="hl-0">setLanguage</span><span class="hl-1">([</span><span class="hl-2">&#39;de&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;de-DE&#39;</span><span class="hl-1">], </span><span class="hl-5">deDE</span><span class="hl-1">)</span><br/><br/><span class="hl-8">// Step 2 : Set language each editor</span><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">englishEditor</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">Editor</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-8">// Use default language in English</span><br/><span class="hl-1">    </span><span class="hl-8">// ...</span><br/><span class="hl-1">})</span><br/><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">germanEditor</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">Editor</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-8">// Use other language</span><br/><span class="hl-1">    </span><span class="hl-8">// ...</span><br/><span class="hl-1">    </span><span class="hl-5">language:</span><span class="hl-1"> </span><span class="hl-2">&#39;de-DE&#39;</span><br/><span class="hl-1">})</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="use-case-2-some-value-overrides" class="tsd-anchor-link">Use Case 2 : Some Value Overrides<a href="#use-case-2-some-value-overrides" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p><code>setLanguage</code> merges the texts into those already registered for a language code, so it can also override single values. See <a href="https://github.com/Liquid-JS/underflow/blob/master/src/editor/i18n/texts/en-us.ts"><code>texts/en-us.ts</code></a> for the default values.</p>
+<pre><code class="js"><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-5">Editor</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow&#39;</span><br/><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-5">deDE</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow/i18n/de-de&#39;</span><br/><br/><span class="hl-8">// Step 1 : Register the language</span><br/><span class="hl-5">Editor</span><span class="hl-1">.</span><span class="hl-0">setLanguage</span><span class="hl-1">([</span><span class="hl-2">&#39;de&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;de-DE&#39;</span><span class="hl-1">], </span><span class="hl-5">deDE</span><span class="hl-1">)</span><br/><br/><span class="hl-8">// Step 2 : Override values of the languages</span><br/><span class="hl-5">Editor</span><span class="hl-1">.</span><span class="hl-0">setLanguage</span><span class="hl-1">(</span><span class="hl-2">&#39;en-US&#39;</span><span class="hl-1">, {</span><br/><span class="hl-1">    </span><span class="hl-2">&#39;Add row to up&#39;</span><span class="hl-5">:</span><span class="hl-1"> </span><span class="hl-2">&#39;Insert row above&#39;</span><span class="hl-1"> </span><span class="hl-8">// Default value is &#39;Add row above&#39;</span><br/><span class="hl-1">})</span><br/><br/><span class="hl-5">Editor</span><span class="hl-1">.</span><span class="hl-0">setLanguage</span><span class="hl-1">(</span><span class="hl-2">&#39;de-DE&#39;</span><span class="hl-1">, {</span><br/><span class="hl-1">    </span><span class="hl-2">&#39;Add row to up&#39;</span><span class="hl-5">:</span><span class="hl-1"> </span><span class="hl-2">&#39;Zeile oberhalb einfügen&#39;</span><span class="hl-1"> </span><span class="hl-8">// Default value is &#39;Zeile nach oben hinzufügen&#39;</span><br/><span class="hl-1">})</span><br/><br/><span class="hl-8">// Step 3 : Set language each editor</span><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">englishEditor</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">Editor</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-8">// Use default language in English</span><br/><span class="hl-1">    </span><span class="hl-8">// ...</span><br/><span class="hl-1">})</span><br/><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">germanEditor</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">Editor</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-8">// Use other language</span><br/><span class="hl-1">    </span><span class="hl-8">// ...</span><br/><span class="hl-1">    </span><span class="hl-5">language:</span><span class="hl-1"> </span><span class="hl-2">&#39;de-DE&#39;</span><br/><span class="hl-1">})</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="use-case-3-new-language-registration" class="tsd-anchor-link">Use Case 3 : New Language Registration<a href="#use-case-3-new-language-registration" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>If the language you want to use is not provided by default, you can register it with the <code>setLanguage</code> static method.</p>
+<pre><code class="js"><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-5">Editor</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow&#39;</span><br/><br/><span class="hl-8">// Step 1 : Register new language</span><br/><span class="hl-5">Editor</span><span class="hl-1">.</span><span class="hl-0">setLanguage</span><span class="hl-1">(</span><span class="hl-2">&#39;en-GB&#39;</span><span class="hl-1">, {</span><br/><span class="hl-1">    </span><span class="hl-5">Markdown:</span><span class="hl-1"> </span><span class="hl-2">&#39;...&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-5">WYSIWYG:</span><span class="hl-1"> </span><span class="hl-2">&#39;...&#39;</span><br/><span class="hl-1">    </span><span class="hl-8">// ...</span><br/><span class="hl-1">})</span><br/><br/><span class="hl-8">// Step 2 : Set language with new registration code</span><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">britishEditor</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">Editor</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-8">// ...</span><br/><span class="hl-1">    </span><span class="hl-5">language:</span><span class="hl-1"> </span><span class="hl-2">&#39;en-GB&#39;</span><br/><span class="hl-1">})</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="contributing" class="tsd-anchor-link">Contributing<a href="#contributing" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>If you want to contribute to providing a different language file, follow this process:</p>
+<h3 id="step-1" class="tsd-anchor-link">Step 1<a href="#step-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Fork the repository and add the language file to the path below. The name of the language file follows the <code>${languageCode}-${countryCode}.ts</code> convention. <code>languageCode</code> and <code>countryCode</code> must be written in lowercase. (e.g. <code>en-gb.ts</code>)</p>
+<blockquote>
+<p>Reference : <a href="https://wiki.openstreetmap.org/wiki/Nominatim/Country_Codes">Nominatim/Country Codes</a></p>
+</blockquote>
+<pre><code>- src/editor/
+  - i18n/
+    - en-us.ts
+    - de-de.ts
+    - ...
+</code></pre>
+<h3 id="step-2" class="tsd-anchor-link">Step 2<a href="#step-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Refer to <a href="https://github.com/Liquid-JS/underflow/blob/master/src/editor/i18n/texts/en-us.ts"><code>texts/en-us.ts</code></a> and translate every text. The file exports only the
+texts, named after the file in camel case (<code>th-th.ts</code> exports <code>thTH</code>):</p>
+<pre><code class="ts"><span class="hl-8">// th-th.ts</span><br/><span class="hl-4">export</span><span class="hl-1"> </span><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">thTH</span><span class="hl-1">: </span><span class="hl-19">Record</span><span class="hl-1">&lt;</span><span class="hl-19">string</span><span class="hl-1">, </span><span class="hl-19">string</span><span class="hl-1">&gt; = {</span><br/><span class="hl-1">    </span><span class="hl-5">Markdown:</span><span class="hl-1"> </span><span class="hl-2">&#39;...&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-5">WYSIWYG:</span><span class="hl-1"> </span><span class="hl-2">&#39;...&#39;</span><br/><span class="hl-1">    </span><span class="hl-8">// ...</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="step-3" class="tsd-anchor-link">Step 3<a href="#step-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Add the language to <a href="#supported-languages">Supported Languages</a> with the codes to register it under. Codes follow the
+<a href="https://en.wikipedia.org/wiki/IETF_language_tag"><code>${languageCode}-${countryCode}</code> convention</a>: <code>languageCode</code> in
+lowercase and <code>countryCode</code> in uppercase, e.g. <code>th-TH</code>.</p>
+<p>If the following conditions are satisfied, the language code without the country code can be added as well, e.g. <code>th</code>.</p>
+<blockquote>
+<p>IETF Language Tag's Reference : Optional script and region subtags are preferred to be omitted when they add no distinguishing information to a language tag. For example, es is preferred over es-Latn, as Spanish is fully expected to be written in the Latin script; ja is preferred over ja-JP, as Japanese as used in Japan does not differ markedly from Japanese as used elsewhere.</p>
+<p>Not all linguistic regions can be represented with a valid region subtag: the subnational regional dialects of a primary language are registered as variant subtags. For example, the valencia variant subtag for the Valencian dialect of Catalan is registered in the Language Subtag Registry with the prefix ca. As this dialect is spoken almost exclusively in Spain, the region subtag ES can normally be omitted.</p>
+</blockquote>
+</div></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details"><a href="#internationalization-i18n"><span>Internationalization (i18n)</span></a>
+<ul>
+<li><a href="#locale-files"><span>Locale <wbr/>Files</span></a></li>
+<li><a href="#supported-languages"><span>Supported <wbr/>Languages</span></a></li>
+<li><a href="#registering-languages"><span>Registering <wbr/>Languages</span></a></li>
+<li><a href="#how-to-use"><span>How to <wbr/>Use</span></a></li>
+<li>
+<ul>
+<li><a href="#use-case-1-basic-usage"><span>Use <wbr/>Case 1 : <wbr/>Basic <wbr/>Usage</span></a></li>
+<li><a href="#use-case-2-some-value-overrides"><span>Use <wbr/>Case 2 : <wbr/>Some <wbr/>Value <wbr/>Overrides</span></a></li>
+<li><a href="#use-case-3-new-language-registration"><span>Use <wbr/>Case 3 : <wbr/>New <wbr/>Language <wbr/>Registration</span></a></li></ul></li>
+<li><a href="#contributing"><span>Contributing</span></a></li>
+<li>
+<ul>
+<li><a href="#step-1"><span>Step 1</span></a></li>
+<li><a href="#step-2"><span>Step 2</span></a></li>
+<li><a href="#step-3"><span>Step 3</span></a></li></ul></li></ul></div></details></div>
+<div class="site-menu">
+<nav class="tsd-navigation"><a href="../modules.html">UnderFlow</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer>
+<div class="overlay"></div></body></html>

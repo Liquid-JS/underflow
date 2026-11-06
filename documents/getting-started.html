@@ -1,0 +1,145 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>getting-started | UnderFlow</title><meta name="description" content="Documentation for UnderFlow"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="../index.html" class="title">UnderFlow</a>
+<div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<ul class="tsd-breadcrumb" aria-label="Breadcrumb">
+<li><a href="" aria-current="page">getting-started</a></li></ul></div>
+<div class="tsd-panel tsd-typography"><h1 id="getting-started" class="tsd-anchor-link">Getting Started<a href="#getting-started" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<h2 id="installation" class="tsd-anchor-link">Installation<a href="#installation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>UnderFlow is published as a single ESM-only package, <code>@liquid-js/underflow</code>. ProseMirror and DOMPurify are peer
+dependencies, so install them alongside it:</p>
+<pre><code class="sh"><span class="hl-0">yarn</span><span class="hl-1"> </span><span class="hl-2">add</span><span class="hl-1"> </span><span class="hl-2">@liquid-js/underflow</span><span class="hl-1"> </span><span class="hl-2">prosemirror-commands</span><span class="hl-1"> </span><span class="hl-2">prosemirror-history</span><span class="hl-1"> </span><span class="hl-2">prosemirror-inputrules</span><span class="hl-1"> </span><span class="hl-3">\</span><br/><span class="hl-1">  </span><span class="hl-2">prosemirror-keymap</span><span class="hl-1"> </span><span class="hl-2">prosemirror-model</span><span class="hl-1"> </span><span class="hl-2">prosemirror-state</span><span class="hl-1"> </span><span class="hl-2">prosemirror-transform</span><span class="hl-1"> </span><span class="hl-2">prosemirror-view</span><span class="hl-1"> </span><span class="hl-2">dompurify</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The package provides the following entry points:</p>
+<table>
+<thead>
+<tr>
+<th>Import</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@liquid-js/underflow</code></td>
+<td><code>Editor</code> and <code>EditorCore</code></td>
+</tr>
+<tr>
+<td><code>@liquid-js/underflow/viewer</code></td>
+<td><code>Viewer</code></td>
+</tr>
+<tr>
+<td><code>@liquid-js/underflow/parser</code></td>
+<td>The incremental markdown parser</td>
+</tr>
+<tr>
+<td><code>@liquid-js/underflow/i18n/&lt;locale&gt;</code></td>
+<td>UI translations, e.g. <code>i18n/de-de</code> (see <a href="i18n.html">i18n</a>)</td>
+</tr>
+<tr>
+<td><code>@liquid-js/underflow/plugins/code-syntax-highlight</code></td>
+<td>Syntax highlighting for code blocks</td>
+</tr>
+<tr>
+<td><code>@liquid-js/underflow/styles/editor.css</code></td>
+<td>Editor UI and contents styles</td>
+</tr>
+<tr>
+<td><code>@liquid-js/underflow/styles/editor-only.css</code></td>
+<td>Editor UI without the contents styles</td>
+</tr>
+<tr>
+<td><code>@liquid-js/underflow/styles/viewer.css</code></td>
+<td>Contents styles for the viewer</td>
+</tr>
+<tr>
+<td><code>@liquid-js/underflow/styles/theme/dark.css</code></td>
+<td>Dark theme, enabled with the <code>theme: 'dark'</code> option</td>
+</tr>
+<tr>
+<td><code>@liquid-js/underflow/styles/plugins/code-syntax-highlight.css</code></td>
+<td>Styles for the code syntax highlight plugin</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create-your-first-editor" class="tsd-anchor-link">Create Your First Editor<a href="#create-your-first-editor" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<h3 id="adding-the-container-element" class="tsd-anchor-link">Adding the Container Element<a href="#adding-the-container-element" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Add the element that the editor will be created in.</p>
+<pre><code class="html"><span class="hl-1">...</span><br/><br/><span class="hl-14">&lt;</span><span class="hl-12">body</span><span class="hl-14">&gt;</span><br/><span class="hl-1">    </span><span class="hl-14">&lt;</span><span class="hl-12">div</span><span class="hl-1"> </span><span class="hl-15">id</span><span class="hl-1">=</span><span class="hl-16">&quot;editor&quot;</span><span class="hl-14">&gt;&lt;/</span><span class="hl-12">div</span><span class="hl-14">&gt;</span><br/><span class="hl-14">&lt;/</span><span class="hl-12">body</span><span class="hl-14">&gt;</span><br/><span class="hl-1">...</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="importing-the-editor" class="tsd-anchor-link">Importing the Editor<a href="#importing-the-editor" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>The editor is the package's <code>Editor</code> export.</p>
+<pre><code class="js"><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-5">Editor</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow&#39;</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="adding-css-files" class="tsd-anchor-link">Adding CSS Files<a href="#adding-css-files" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Import the editor's stylesheet. Your bundler needs to support CSS imports; otherwise, add the file from
+<code>node_modules/@liquid-js/underflow/lib/styles/</code> to your page another way.</p>
+<pre><code class="js"><span class="hl-4">import</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow/styles/editor.css&#39;</span>
+</code><button type="button">Copy</button></pre>
+
+<p>If you want to style the contents yourself, import <code>@liquid-js/underflow/styles/editor-only.css</code> instead, which contains
+only the editor UI. For the dark theme, also import <code>@liquid-js/underflow/styles/theme/dark.css</code> and set the
+<code>theme: 'dark'</code> option.</p>
+<h3 id="creating-an-instance" class="tsd-anchor-link">Creating an Instance<a href="#creating-an-instance" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Create an instance with options, then call the editor's API on it.</p>
+<pre><code class="js"><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">editor</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">Editor</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-5">el:</span><span class="hl-1"> </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">querySelector</span><span class="hl-1">(</span><span class="hl-2">&#39;#editor&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">})</span>
+</code><button type="button">Copy</button></pre>
+
+<p><img src="../media/getting-started-01.png" alt="The editor with default options"></p>
+<pre><code class="js"><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">editor</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">Editor</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-5">el:</span><span class="hl-1"> </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">querySelector</span><span class="hl-1">(</span><span class="hl-2">&#39;#editor&#39;</span><span class="hl-1">),</span><br/><span class="hl-1">    </span><span class="hl-5">height:</span><span class="hl-1"> </span><span class="hl-2">&#39;600px&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-5">initialEditType:</span><span class="hl-1"> </span><span class="hl-2">&#39;markdown&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-5">previewStyle:</span><span class="hl-1"> </span><span class="hl-2">&#39;vertical&#39;</span><br/><span class="hl-1">})</span>
+</code><button type="button">Copy</button></pre>
+
+<p><img src="../media/getting-started-02.png" alt="The editor in markdown mode with a vertical preview"></p>
+<p>The basic options are:</p>
+<ul>
+<li><code>height</code>: Height as a string, or <code>auto</code>, e.g. <code>300px</code> | <code>auto</code></li>
+<li><code>initialEditType</code>: Initial editing mode, <code>markdown</code> | <code>wysiwyg</code></li>
+<li><code>initialValue</code>: Initial markdown content</li>
+<li><code>previewStyle</code>: Preview style of the markdown mode, <code>tab</code> | <code>vertical</code></li>
+<li><code>placeholder</code>: Text shown while the editor is empty, e.g. <code>Write something...</code>; <code>setPlaceholder()</code> changes it later</li>
+<li><code>toolbarStyle</code>: <code>wrap</code> lets the toolbar wrap onto several lines instead of collapsing items into the &quot;More&quot; button, which keeps every button reachable for keyboard and screen reader users. <code>default</code> | <code>wrap</code></li>
+</ul>
+<p>All options are documented in the type definitions (<code>EditorOptions</code> in <code>@liquid-js/underflow</code>).</p>
+<h2 id="example" class="tsd-anchor-link">Example<a href="#example" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<pre><code class="js"><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-5">Editor</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow&#39;</span><br/><span class="hl-4">import</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow/styles/editor.css&#39;</span><br/><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">editor</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">Editor</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-5">el:</span><span class="hl-1"> </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">querySelector</span><span class="hl-1">(</span><span class="hl-2">&#39;#editor&#39;</span><span class="hl-1">),</span><br/><span class="hl-1">    </span><span class="hl-5">height:</span><span class="hl-1"> </span><span class="hl-2">&#39;500px&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-5">initialEditType:</span><span class="hl-1"> </span><span class="hl-2">&#39;markdown&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-5">previewStyle:</span><span class="hl-1"> </span><span class="hl-2">&#39;vertical&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-5">initialValue:</span><span class="hl-1"> </span><span class="hl-2">&#39;# Hello&#39;</span><br/><span class="hl-1">})</span><br/><br/><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">on</span><span class="hl-1">(</span><span class="hl-2">&#39;change&#39;</span><span class="hl-1">, () </span><span class="hl-6">=&gt;</span><span class="hl-1"> </span><span class="hl-5">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">getMarkdown</span><span class="hl-1">()))</span>
+</code><button type="button">Copy</button></pre>
+
+</div></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details"><a href="#getting-started"><span>Getting <wbr/>Started</span></a>
+<ul>
+<li><a href="#installation"><span>Installation</span></a></li>
+<li><a href="#create-your-first-editor"><span>Create <wbr/>Your <wbr/>First <wbr/>Editor</span></a></li>
+<li>
+<ul>
+<li><a href="#adding-the-container-element"><span>Adding the <wbr/>Container <wbr/>Element</span></a></li>
+<li><a href="#importing-the-editor"><span>Importing the <wbr/>Editor</span></a></li>
+<li><a href="#adding-css-files"><span>Adding <wbr/>CSS <wbr/>Files</span></a></li>
+<li><a href="#creating-an-instance"><span>Creating an <wbr/>Instance</span></a></li></ul></li>
+<li><a href="#example"><span>Example</span></a></li></ul></div></details></div>
+<div class="site-menu">
+<nav class="tsd-navigation"><a href="../modules.html">UnderFlow</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer>
+<div class="overlay"></div></body></html>

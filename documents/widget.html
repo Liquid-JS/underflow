@@ -1,0 +1,148 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>widget | UnderFlow</title><meta name="description" content="Documentation for UnderFlow"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="../index.html" class="title">UnderFlow</a>
+<div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<ul class="tsd-breadcrumb" aria-label="Breadcrumb">
+<li><a href="" aria-current="page">widget</a></li></ul></div>
+<div class="tsd-panel tsd-typography"><h1 id="widgets" class="tsd-anchor-link">Widgets<a href="#widgets" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<p>Widgets help with editing content: a popup widget floats a temporary element next to the cursor, such as suggestions
+after typing <code>@</code>, and an inline widget shows a piece of markdown as a richer element, such as a mention chip for a
+profile link.</p>
+<h2 id="popup-widget" class="tsd-anchor-link">Popup Widget<a href="#popup-widget" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>When editing content in the editor, you may want to show the suggestion popup at the current cursor position. At this time, the <code>addWidget</code> API can be used to float the DOM node that is desired on the editor. This node does not affect other contents being edited, and is <strong>temporarily added</strong>. In other words, if you enter text or change focus, it disappears. The API signature is as follows.</p>
+<pre><code class="ts"><span class="hl-0">addWidget</span><span class="hl-1">(</span><span class="hl-5">node</span><span class="hl-1">: </span><span class="hl-5">Node</span><span class="hl-1">, </span><span class="hl-5">style</span><span class="hl-1">: </span><span class="hl-5">WidgetStyle</span><span class="hl-1">, </span><span class="hl-5">pos</span><span class="hl-1">?: </span><span class="hl-5">EditorPos</span><span class="hl-1">)</span>
+</code><button type="button">Copy</button></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>node</code></td>
+<td>Node</td>
+<td>DOM node to be added as widget</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>'top' | 'bottom'</td>
+<td>Determines whether to add widget above or below the specified position.</td>
+</tr>
+<tr>
+<td><code>pos</code></td>
+<td>EditorPos</td>
+<td>Set where the widget will be added. This is optional value, if not set, adds widget to the current cursor position.</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="js"><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">popup</span><span class="hl-1"> = </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">createElement</span><span class="hl-1">(</span><span class="hl-2">&#39;ul&#39;</span><span class="hl-1">)</span><br/><span class="hl-8">// ...</span><br/><br/><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">addWidget</span><span class="hl-1">(</span><span class="hl-5">popup</span><span class="hl-1">, </span><span class="hl-2">&#39;top&#39;</span><span class="hl-1">)</span>
+</code><button type="button">Copy</button></pre>
+
+<p>When the above code is executed, a <code>popup</code> node is added as shown below.</p>
+<p><img src="../media/widget.png" alt="A mention popup above the cursor"></p>
+<p>If you want to show the widget when typing the specific key, <code>keyup</code> event is useful.</p>
+<pre><code class="js"><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">on</span><span class="hl-1">(</span><span class="hl-2">&#39;keyup&#39;</span><span class="hl-1">, (</span><span class="hl-5">editorType</span><span class="hl-1">, </span><span class="hl-5">ev</span><span class="hl-1">) </span><span class="hl-6">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-4">if</span><span class="hl-1"> (</span><span class="hl-5">ev</span><span class="hl-1">.</span><span class="hl-5">key</span><span class="hl-1"> === </span><span class="hl-2">&#39;@&#39;</span><span class="hl-1">) {</span><br/><span class="hl-1">        </span><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">popup</span><span class="hl-1"> = </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">createElement</span><span class="hl-1">(</span><span class="hl-2">&#39;ul&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">        </span><span class="hl-8">// ...</span><br/><br/><span class="hl-1">        </span><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">addWidget</span><span class="hl-1">(</span><span class="hl-5">popup</span><span class="hl-1">, </span><span class="hl-2">&#39;top&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">})</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="inline-widgets" class="tsd-anchor-link">Inline widgets<a href="#inline-widgets" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Popup widgets are temporary. An inline widget is content: text in the markdown that matches one of the <code>widgetRules</code>
+is shown as a widget, such as a mention chip for a profile link. The markdown keeps the text itself, so other
+renderers (remark, GitHub) show it as ordinary markdown, and <code>getMarkdown()</code> returns it unchanged.</p>
+<pre><code class="js"><span class="hl-8">// a profile link: [@joe](https://example.com/users/joe)</span><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">reProfile</span><span class="hl-1"> =</span><span class="hl-17"> /</span><span class="hl-3">\[</span><span class="hl-17">@</span><span class="hl-22">(</span><span class="hl-17">\w</span><span class="hl-18">+</span><span class="hl-22">)</span><span class="hl-3">\]\(</span><span class="hl-17">https:</span><span class="hl-3">\/\/</span><span class="hl-17">example</span><span class="hl-3">\.</span><span class="hl-17">com</span><span class="hl-3">\/</span><span class="hl-17">users</span><span class="hl-3">\/</span><span class="hl-17">\w</span><span class="hl-18">+</span><span class="hl-3">\)</span><span class="hl-17">/</span><br/><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">editor</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">Editor</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-5">el:</span><span class="hl-1"> </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">querySelector</span><span class="hl-1">(</span><span class="hl-2">&#39;#editor&#39;</span><span class="hl-1">),</span><br/><span class="hl-1">    </span><span class="hl-5">widgetRules:</span><span class="hl-1"> [</span><br/><span class="hl-1">        {</span><br/><span class="hl-1">            </span><span class="hl-5">rule:</span><span class="hl-1"> </span><span class="hl-5">reProfile</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">toDOM</span><span class="hl-1">(</span><span class="hl-5">text</span><span class="hl-1">, { </span><span class="hl-5">interactive</span><span class="hl-1"> }) {</span><br/><span class="hl-1">                </span><span class="hl-6">const</span><span class="hl-1"> [, </span><span class="hl-7">name</span><span class="hl-1">] = </span><span class="hl-5">text</span><span class="hl-1">.</span><span class="hl-0">match</span><span class="hl-1">(</span><span class="hl-5">reProfile</span><span class="hl-1">)</span><br/><span class="hl-1">                </span><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">chip</span><span class="hl-1"> = </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">createElement</span><span class="hl-1">(</span><span class="hl-5">interactive</span><span class="hl-1"> ? </span><span class="hl-2">&#39;button&#39;</span><span class="hl-1"> : </span><span class="hl-2">&#39;span&#39;</span><span class="hl-1">)</span><br/><br/><span class="hl-1">                </span><span class="hl-5">chip</span><span class="hl-1">.</span><span class="hl-5">className</span><span class="hl-1"> = </span><span class="hl-2">&#39;mention&#39;</span><br/><span class="hl-1">                </span><span class="hl-5">chip</span><span class="hl-1">.</span><span class="hl-5">textContent</span><span class="hl-1"> = </span><span class="hl-2">`@</span><span class="hl-6">${</span><span class="hl-5">name</span><span class="hl-6">}</span><span class="hl-2">`</span><br/><br/><span class="hl-1">                </span><span class="hl-4">return</span><span class="hl-1"> </span><span class="hl-5">chip</span><br/><span class="hl-1">            },</span><br/><span class="hl-1">            </span><span class="hl-0">toSource</span><span class="hl-1">(</span><span class="hl-5">text</span><span class="hl-1">) {</span><br/><span class="hl-1">                </span><span class="hl-6">const</span><span class="hl-1"> [, </span><span class="hl-7">name</span><span class="hl-1">] = </span><span class="hl-5">text</span><span class="hl-1">.</span><span class="hl-0">match</span><span class="hl-1">(</span><span class="hl-5">reProfile</span><span class="hl-1">)</span><br/><br/><span class="hl-1">                </span><span class="hl-4">return</span><span class="hl-1"> [</span><br/><span class="hl-1">                    { </span><span class="hl-5">from:</span><span class="hl-1"> </span><span class="hl-10">1</span><span class="hl-1">, </span><span class="hl-5">to:</span><span class="hl-1"> </span><span class="hl-10">2</span><span class="hl-1"> + </span><span class="hl-5">name</span><span class="hl-1">.</span><span class="hl-5">length</span><span class="hl-1">, </span><span class="hl-5">className:</span><span class="hl-1"> </span><span class="hl-2">&#39;mention-name&#39;</span><span class="hl-1"> },</span><br/><span class="hl-1">                    { </span><span class="hl-5">from:</span><span class="hl-1"> </span><span class="hl-10">3</span><span class="hl-1"> + </span><span class="hl-5">name</span><span class="hl-1">.</span><span class="hl-5">length</span><span class="hl-1">, </span><span class="hl-5">to:</span><span class="hl-1"> </span><span class="hl-5">text</span><span class="hl-1">.</span><span class="hl-5">length</span><span class="hl-1">, </span><span class="hl-5">collapsed:</span><span class="hl-1"> </span><span class="hl-6">true</span><span class="hl-1"> }</span><br/><span class="hl-1">                ]</span><br/><span class="hl-1">            }</span><br/><span class="hl-1">        }</span><br/><span class="hl-1">    ]</span><br/><span class="hl-1">})</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Each rule has:</p>
+<ul>
+<li><code>rule</code>: the regular expression the widget's markdown text matches. Text in code spans, code blocks and escaped
+text (<code>\@joe</code>) doesn't become a widget. When several rules match, the one that matches earliest wins, and the
+first rule among those that match at the same place.</li>
+<li><code>toDOM(text, { interactive })</code>: the widget's DOM, given the matched text.</li>
+<li><code>toSource(text)</code> (optional): how the text looks in the markdown editor.</li>
+</ul>
+<h3 id="where-widgets-show" class="tsd-anchor-link">Where widgets show<a href="#where-widgets-show" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<table>
+<thead>
+<tr>
+<th>Where</th>
+<th>Widgets</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WYSIWYG editor</td>
+<td><code>toDOM(text, { interactive: true })</code>: the widget can react to clicks or show controls. It's a single unit that the cursor moves past.</td>
+</tr>
+<tr>
+<td>Markdown preview, <code>Viewer</code> and <code>getHTML()</code></td>
+<td><code>toDOM(text, { interactive: false })</code>: the widget as the content will look, without interactive features.</td>
+</tr>
+<tr>
+<td>Markdown editor</td>
+<td>The text itself, as plain, editable markdown, in an element with the <code>uf-md-widget</code> class.</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>Viewer</code> takes the same <code>widgetRules</code> option. Task checkboxes follow the same split: they can be checked in the
+WYSIWYG editor, while the preview and the viewer only show them.</p>
+<p><img src="../media/widget-rule.gif" alt="A profile link typed in the markdown editor, shown as a mention chip in the preview and in WYSIWYG"></p>
+<h3 id="in-the-markdown-editor" class="tsd-anchor-link">In the markdown editor<a href="#in-the-markdown-editor" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>The markdown editor always shows the real markdown, so the user keeps full control of it; widgets only help.
+<code>toSource(text)</code> returns parts of the matched text, by offsets within it, to style:</p>
+<ul>
+<li><code>className</code>: class names for the part, e.g. to highlight the user name.</li>
+<li><code>collapsed: true</code>: hide the part while the cursor is outside the widget, e.g. the URL of a profile link. It shows
+again as soon as the cursor enters the widget.</li>
+</ul>
+<p>A click on a widget's text emits <code>clickWidget</code> with the text, its position in the markdown (<code>start</code>, <code>end</code>) and the
+mouse event, for example to offer a picker that replaces the text:</p>
+<pre><code class="js"><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">on</span><span class="hl-1">(</span><span class="hl-2">&#39;clickWidget&#39;</span><span class="hl-1">, ({ </span><span class="hl-5">start</span><span class="hl-1">, </span><span class="hl-5">end</span><span class="hl-1"> }) </span><span class="hl-6">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">picker</span><span class="hl-1"> = </span><span class="hl-0">createProfilePicker</span><span class="hl-1">((</span><span class="hl-5">name</span><span class="hl-1">) </span><span class="hl-6">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">replaceSelection</span><span class="hl-1">(</span><span class="hl-2">`[@</span><span class="hl-6">${</span><span class="hl-5">name</span><span class="hl-6">}</span><span class="hl-2">](https://example.com/users/</span><span class="hl-6">${</span><span class="hl-5">name</span><span class="hl-6">}</span><span class="hl-2">)`</span><span class="hl-1">, </span><span class="hl-5">start</span><span class="hl-1">, </span><span class="hl-5">end</span><span class="hl-1">)</span><br/><span class="hl-1">    })</span><br/><br/><span class="hl-1">    </span><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">addWidget</span><span class="hl-1">(</span><span class="hl-5">picker</span><span class="hl-1">, </span><span class="hl-2">&#39;bottom&#39;</span><span class="hl-1">, </span><span class="hl-5">end</span><span class="hl-1">)</span><br/><span class="hl-1">})</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="inserting-widgets" class="tsd-anchor-link">Inserting widgets<a href="#inserting-widgets" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>In the WYSIWYG editor, typed text becomes a widget once it's complete: when the next character doesn't extend the
+match, such as a space after a name. Text inserted with <code>insertText()</code>, <code>replaceSelection()</code> or
+<code>replaceWithWidget()</code> becomes a widget right away, which suits inserting a mention picked from a popup widget. In the
+markdown editor, where positions are <code>[line, ch]</code>:</p>
+<pre><code class="js"><span class="hl-5">ul</span><span class="hl-1">.</span><span class="hl-0">addEventListener</span><span class="hl-1">(</span><span class="hl-2">&#39;mousedown&#39;</span><span class="hl-1">, (</span><span class="hl-5">ev</span><span class="hl-1">) </span><span class="hl-6">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">name</span><span class="hl-1"> = </span><span class="hl-5">ev</span><span class="hl-1">.</span><span class="hl-5">target</span><span class="hl-1">.</span><span class="hl-5">textContent</span><span class="hl-1">.</span><span class="hl-0">trim</span><span class="hl-1">()</span><br/><span class="hl-1">    </span><span class="hl-6">const</span><span class="hl-1"> [</span><span class="hl-7">start</span><span class="hl-1">, </span><span class="hl-7">end</span><span class="hl-1">] = </span><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">getSelection</span><span class="hl-1">()</span><br/><br/><span class="hl-1">    </span><span class="hl-8">// keep the focus in the editor</span><br/><span class="hl-1">    </span><span class="hl-5">ev</span><span class="hl-1">.</span><span class="hl-0">preventDefault</span><span class="hl-1">()</span><br/><br/><span class="hl-1">    </span><span class="hl-8">// replace the typed `@` with the profile link</span><br/><span class="hl-1">    </span><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">replaceSelection</span><span class="hl-1">(</span><span class="hl-2">`[@</span><span class="hl-6">${</span><span class="hl-5">name</span><span class="hl-6">}</span><span class="hl-2">](https://example.com/users/</span><span class="hl-6">${</span><span class="hl-5">name</span><span class="hl-6">}</span><span class="hl-2">)`</span><span class="hl-1">, [</span><span class="hl-5">start</span><span class="hl-1">[</span><span class="hl-10">0</span><span class="hl-1">], </span><span class="hl-5">start</span><span class="hl-1">[</span><span class="hl-10">1</span><span class="hl-1">] - </span><span class="hl-10">1</span><span class="hl-1">], </span><span class="hl-5">end</span><span class="hl-1">)</span><br/><span class="hl-1">})</span>
+</code><button type="button">Copy</button></pre>
+
+<p><img src="../media/widget-insert.gif" alt="Typing @ shows a popup; picking a name inserts the profile link as a widget"></p>
+</div></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details"><a href="#widgets"><span>Widgets</span></a>
+<ul>
+<li><a href="#popup-widget"><span>Popup <wbr/>Widget</span></a></li>
+<li><a href="#inline-widgets"><span>Inline widgets</span></a></li>
+<li>
+<ul>
+<li><a href="#where-widgets-show"><span>Where widgets show</span></a></li>
+<li><a href="#in-the-markdown-editor"><span>In the markdown editor</span></a></li>
+<li><a href="#inserting-widgets"><span>Inserting widgets</span></a></li></ul></li></ul></div></details></div>
+<div class="site-menu">
+<nav class="tsd-navigation"><a href="../modules.html">UnderFlow</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer>
+<div class="overlay"></div></body></html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>theming | UnderFlow</title><meta name="description" content="Documentation for UnderFlow"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="../index.html" class="title">UnderFlow</a>
+<div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<ul class="tsd-breadcrumb" aria-label="Breadcrumb">
+<li><a href="" aria-current="page">theming</a></li></ul></div>
+<div class="tsd-panel tsd-typography"><h1 id="theming" class="tsd-anchor-link">Theming<a href="#theming" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<p>UnderFlow separates the editor's own interface (toolbar, tabs, popups, menus) from the content you write. The
+interface is themed through CSS variables; the content keeps plain element styles, so you can make the preview look like
+the page the markdown ends up on.</p>
+<h2 id="light-and-dark" class="tsd-anchor-link">Light and dark<a href="#light-and-dark" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>The editor and the viewer start in the <code>light</code> theme. Pass <code>theme: 'dark'</code> and load the dark stylesheet to start in the
+dark theme, and switch at runtime with <code>setTheme()</code>:</p>
+<pre><code class="js"><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-5">Editor</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow&#39;</span><br/><span class="hl-4">import</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow/styles/editor.css&#39;</span><br/><span class="hl-4">import</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow/styles/theme/dark.css&#39;</span><br/><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">editor</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">Editor</span><span class="hl-1">({ </span><span class="hl-5">el</span><span class="hl-1">, </span><span class="hl-5">theme:</span><span class="hl-1"> </span><span class="hl-2">&#39;dark&#39;</span><span class="hl-1"> })</span><br/><br/><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">setTheme</span><span class="hl-1">(</span><span class="hl-2">&#39;light&#39;</span><span class="hl-1">)</span><br/><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">on</span><span class="hl-1">(</span><span class="hl-2">&#39;changeTheme&#39;</span><span class="hl-1">, (</span><span class="hl-5">theme</span><span class="hl-1">) </span><span class="hl-6">=&gt;</span><span class="hl-1"> </span><span class="hl-5">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-2">`now using </span><span class="hl-6">${</span><span class="hl-5">theme</span><span class="hl-6">}</span><span class="hl-2">`</span><span class="hl-1">))</span>
+</code><button type="button">Copy</button></pre>
+
+<p><code>Viewer</code> has the same <code>theme</code> option and <code>setTheme()</code> method.</p>
+<h2 id="custom-themes" class="tsd-anchor-link">Custom themes<a href="#custom-themes" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>A theme is a class on the editor's root element: <code>setTheme('ocean')</code> adds <code>uf-ocean</code>. Define the colour
+variables on that class to create a theme of your own; anything you leave out falls back to the light values.</p>
+<pre><code class="css"><span class="hl-20">.uf-ocean</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-15">--uf-bg-color</span><span class="hl-1">: </span><span class="hl-21">#f3f8fb</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-15">--uf-toolbar-bg-color</span><span class="hl-1">: </span><span class="hl-21">#e3eef5</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-15">--uf-primary-color</span><span class="hl-1">: </span><span class="hl-21">#0b5f8a</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-15">--uf-primary-hover-color</span><span class="hl-1">: </span><span class="hl-21">#0e74a8</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-15">--uf-icon-color</span><span class="hl-1">: </span><span class="hl-21">#33495a</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-15">--uf-icon-active-color</span><span class="hl-1">: </span><span class="hl-21">#0b5f8a</span><span class="hl-1">;</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The variables are listed below; their values are in <code>src/editor/styles/ui/_variables.scss</code> and <code>theme/dark.scss</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--uf-bg-color</code>, <code>--uf-text-color</code></td>
+<td>Editor background and text</td>
+</tr>
+<tr>
+<td><code>--uf-label-color</code>, <code>--uf-muted-text-color</code>, <code>--uf-disabled-text-color</code></td>
+<td>Labels, secondary and disabled text</td>
+</tr>
+<tr>
+<td><code>--uf-icon-color</code>, <code>--uf-icon-active-color</code></td>
+<td>Toolbar and menu icons, and the icon of an active toolbar button</td>
+</tr>
+<tr>
+<td><code>--uf-border-color</code>, <code>--uf-divider-color</code>, <code>--uf-input-border-color</code></td>
+<td>Borders, dividers and form fields</td>
+</tr>
+<tr>
+<td><code>--uf-toolbar-bg-color</code>, <code>--uf-toolbar-divider-color</code></td>
+<td>Toolbar</td>
+</tr>
+<tr>
+<td><code>--uf-toolbar-button-hover-bg-color</code>, <code>--uf-toolbar-button-hover-border-color</code>, <code>--uf-toolbar-button-active-border-color</code></td>
+<td>Toolbar buttons</td>
+</tr>
+<tr>
+<td><code>--uf-tab-bg-color</code>, <code>--uf-tab-border-color</code>, <code>--uf-active-tab-text-color</code></td>
+<td>Write/Preview and Markdown/WYSIWYG tabs</td>
+</tr>
+<tr>
+<td><code>--uf-button-border-color</code>, <code>--uf-button-hover-border-color</code></td>
+<td>Buttons in popups</td>
+</tr>
+<tr>
+<td><code>--uf-primary-color</code>, <code>--uf-primary-hover-color</code>, <code>--uf-primary-text-color</code></td>
+<td>Primary buttons, links in the interface, focus outlines</td>
+</tr>
+<tr>
+<td><code>--uf-hover-bg-color</code>, <code>--uf-selection-bg-color</code></td>
+<td>Hovered menu items, selected table cells</td>
+</tr>
+<tr>
+<td><code>--uf-tooltip-bg-color</code></td>
+<td>Tooltips</td>
+</tr>
+<tr>
+<td><code>--uf-scroll-sync-color</code>, <code>--uf-switch-bg-color</code>, <code>--uf-switch-checked-bg-color</code>, <code>--uf-switch-knob-color</code></td>
+<td>Scroll sync switch</td>
+</tr>
+<tr>
+<td><code>--uf-cursor-line-bg-color</code></td>
+<td>Highlight of the cursor line in the markdown editor</td>
+</tr>
+<tr>
+<td><code>--uf-md-widget-bg-color</code></td>
+<td>Background of widget text in the markdown editor</td>
+</tr>
+</tbody>
+</table>
+<p>The toolbar and table menu icons are inline SVG <a href="https://tabler.io/icons">Tabler Icons</a> drawn in <code>currentColor</code>, so
+they take their colour from these variables in every theme.</p>
+<h2 id="styling-the-content" class="tsd-anchor-link">Styling the content<a href="#styling-the-content" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>The preview, the WYSIWYG editor and the viewer render markdown inside an element with the
+<code>uf-contents</code> class, styled by <code>styles/editor.css</code> (or <code>styles/viewer.css</code> for the viewer). To use your own
+content styles instead, load <code>styles/editor-only.css</code>, which has the editor interface without any content styles, and
+style <code>.uf-contents</code> like the container your markdown is shown in:</p>
+<pre><code class="js"><span class="hl-4">import</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow/styles/editor-only.css&#39;</span><br/><span class="hl-4">import</span><span class="hl-1"> </span><span class="hl-2">&#39;./my-article-styles.css&#39;</span><span class="hl-1"> </span><span class="hl-8">// e.g. `.uf-contents h1 { ... }`</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="sass" class="tsd-anchor-link">Sass<a href="#sass" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>The stylesheets are also published as Sass sources under <code>@liquid-js/underflow/scss/</code>, with the same names as the CSS
+files (<code>editor.scss</code>, <code>editor-only.scss</code>, <code>viewer.scss</code>, <code>theme/dark.scss</code>, <code>plugins/code-syntax-highlight.scss</code>).
+Use them to compile the styles as part of your own stylesheets, together with your own processing:</p>
+<pre><code class="scss"><span class="hl-4">@use</span><span class="hl-1"> </span><span class="hl-2">&quot;@liquid-js/underflow/scss/editor&quot;</span><span class="hl-1">;</span><br/><span class="hl-4">@use</span><span class="hl-1"> </span><span class="hl-2">&quot;@liquid-js/underflow/scss/theme/dark&quot;</span><span class="hl-1">;</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The stylesheets use no images, so there are no files to resolve: the icons are inline SVG in the JavaScript.
+Bundlers such as Vite resolve these paths. With the Sass CLI, use <code>pkg:</code> URLs
+(<code>@use &quot;pkg:@liquid-js/underflow/scss/editor&quot;</code>) with <code>--pkg-importer=node</code>, and add <code>--load-path=node_modules</code> for the
+ProseMirror stylesheet that <code>editor.scss</code> loads.</p>
+<p>Syntax highlighting in code blocks comes from any <a href="https://highlightjs.org/demo">highlight.js theme</a> when you use the
+<a href="code-syntax-highlight-plugin.html">code syntax highlight plugin</a>.</p>
+</div></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details"><a href="#theming"><span>Theming</span></a>
+<ul>
+<li><a href="#light-and-dark"><span>Light and dark</span></a></li>
+<li><a href="#custom-themes"><span>Custom themes</span></a></li>
+<li><a href="#styling-the-content"><span>Styling the content</span></a></li>
+<li><a href="#sass"><span>Sass</span></a></li></ul></div></details></div>
+<div class="site-menu">
+<nav class="tsd-navigation"><a href="../modules.html">UnderFlow</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer>
+<div class="overlay"></div></body></html>

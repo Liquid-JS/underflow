@@ -1,0 +1,214 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>toolbar | UnderFlow</title><meta name="description" content="Documentation for UnderFlow"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="../index.html" class="title">UnderFlow</a>
+<div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<ul class="tsd-breadcrumb" aria-label="Breadcrumb">
+<li><a href="" aria-current="page">toolbar</a></li></ul></div>
+<div class="tsd-panel tsd-typography"><h1 id="toolbar" class="tsd-anchor-link">Toolbar<a href="#toolbar" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<p>Typically, the editor can use shortcuts or toolbar to enter specific text or nodes. In particular, in WYSIWYG editors, where no specific textual syntax exists, the role of the toolbar is important because most of the operation are done through the toolbar. UnderFlow also provides a toolbar as the default UI, as well as options and APIs for customization.</p>
+<h2 id="toolbar-option" class="tsd-anchor-link">Toolbar Option<a href="#toolbar-option" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>The editor provides a total of 17 toolbar items, including bold, italic, and strike. Unless otherwise specified, the default toolbar option is shown below.</p>
+<pre><code class="js"><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">options</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-8">// ...</span><br/><span class="hl-1">    </span><span class="hl-5">toolbarItems:</span><span class="hl-1"> [</span><br/><span class="hl-1">        [</span><span class="hl-2">&#39;heading&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;bold&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;italic&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;strike&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">        [</span><span class="hl-2">&#39;hr&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;quote&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">        [</span><span class="hl-2">&#39;ul&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;ol&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;task&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;indent&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;outdent&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">        [</span><span class="hl-2">&#39;table&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;image&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;link&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">        [</span><span class="hl-2">&#39;code&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;codeblock&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">        [</span><span class="hl-2">&#39;scrollSync&#39;</span><span class="hl-1">]</span><br/><span class="hl-1">    ]</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>As you can see in the example code, the toolbar option in the editor is defined in 2D array format. First, each toolbar group is defined as an array, and the toolbar items within the group are designated as items of the array. Each item is rendered in a group in the order in which it is defined, and the toolbar group is rendered separated by the <code>|</code> symbol.</p>
+<p><img src="../media/toolbar-default.png" alt="The default toolbar, with its group dividers outlined"></p>
+<p>If you want to change the configuration of the default toolbar, you can change it by setting the <code>toolbarItems</code> option.</p>
+<pre><code class="js"><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">editor</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">Editor</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-5">el:</span><span class="hl-1"> </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">querySelector</span><span class="hl-1">(</span><span class="hl-2">&#39;#editor&#39;</span><span class="hl-1">),</span><br/><span class="hl-1">    </span><span class="hl-5">toolbarItems:</span><span class="hl-1"> [</span><br/><span class="hl-1">        [</span><span class="hl-2">&#39;heading&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;bold&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">        [</span><span class="hl-2">&#39;ul&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;ol&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;task&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">        [</span><span class="hl-2">&#39;code&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;codeblock&#39;</span><span class="hl-1">]</span><br/><span class="hl-1">    ]</span><br/><span class="hl-1">})</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The above example code is executed as shown below.</p>
+<p><img src="../media/toolbar-custom.png" alt="A toolbar with custom groups"></p>
+<h3 id="adding-and-removing-items" class="tsd-anchor-link">Adding and Removing Items<a href="#adding-and-removing-items" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p><code>insertToolbarItem()</code> and <code>removeToolbarItem()</code> change the toolbar of an existing editor. An item is the name of a
+built-in item or an object like the ones described <a href="#toolbar-button-customizing">below</a>. It's inserted at <code>itemIndex</code>
+in the group at <code>groupIndex</code>; an index past the last group adds a new group at the end.</p>
+<pre><code class="js"><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">insertToolbarItem</span><span class="hl-1">({ </span><span class="hl-5">groupIndex:</span><span class="hl-1"> </span><span class="hl-10">0</span><span class="hl-1">, </span><span class="hl-5">itemIndex:</span><span class="hl-1"> </span><span class="hl-10">0</span><span class="hl-1"> }, {</span><br/><span class="hl-1">    </span><span class="hl-5">name:</span><span class="hl-1"> </span><span class="hl-2">&#39;myItem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-5">tooltip:</span><span class="hl-1"> </span><span class="hl-2">&#39;Custom button&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-5">command:</span><span class="hl-1"> </span><span class="hl-2">&#39;bold&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-5">text:</span><span class="hl-1"> </span><span class="hl-2">&#39;@&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-5">className:</span><span class="hl-1"> </span><span class="hl-2">&#39;uf-toolbar-icons&#39;</span><br/><span class="hl-1">})</span><br/><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">insertToolbarItem</span><span class="hl-1">({ </span><span class="hl-5">groupIndex:</span><span class="hl-1"> </span><span class="hl-10">1</span><span class="hl-1">, </span><span class="hl-5">itemIndex:</span><span class="hl-1"> </span><span class="hl-10">0</span><span class="hl-1"> }, </span><span class="hl-2">&#39;hr&#39;</span><span class="hl-1">)</span><br/><br/><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">removeToolbarItem</span><span class="hl-1">(</span><span class="hl-2">&#39;myItem&#39;</span><span class="hl-1">)</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Items are removed by their <code>name</code>; built-in items are named as in the <code>toolbarItems</code> option.</p>
+<h2 id="toolbar-button-customizing" class="tsd-anchor-link">Toolbar Button Customizing<a href="#toolbar-button-customizing" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>The example seen above is actually just a combination of the basic toolbar items. Then what should user do if they  want to create and add a toolbar button? In this case, two main types of options can be customized.</p>
+<h3 id="button-element-customizing" class="tsd-anchor-link">Button Element Customizing<a href="#button-element-customizing" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>First, there is a way to customize the toolbar button UI provided by the editor. This method is that overriding only the icon, tooltip, or popup operation of the button embedded in the editor. This option consists of the following interfaces:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>A unique name for the toolbar item and must be specified as required.</td>
+</tr>
+<tr>
+<td><code>tooltip</code></td>
+<td>string</td>
+<td>Optional value, which defines the tooltip text to show when mouse is over on the toolbar item.</td>
+</tr>
+<tr>
+<td><code>text</code></td>
+<td>string</td>
+<td>Optional value, define if the toolbar button element has text to show.</td>
+</tr>
+<tr>
+<td><code>className</code></td>
+<td>string</td>
+<td>Optional value, defines the class to be applied to the toolbar item.</td>
+</tr>
+<tr>
+<td><code>icon</code></td>
+<td>string</td>
+<td>Optional value, the button's icon as SVG markup. It's drawn 22px wide in the toolbar's icon colour when it uses <code>currentColor</code>, like the built-in <a href="https://tabler.io/icons">Tabler Icons</a>.</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>Object</td>
+<td>Optional value, defines the style to be applied to the toolbar item.</td>
+</tr>
+<tr>
+<td><code>command</code></td>
+<td>string</td>
+<td>Optional value, defines the command you want to execute when you click the toolbar button. It has an exclusive relationship with <code>popup</code> option.</td>
+</tr>
+<tr>
+<td><code>popup</code></td>
+<td>PopupOptions</td>
+<td>Optional value, defines if you want to show the popup when you click the toolbar button. This is an exclusive relationship with the <code>command</code> option.</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="js"><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">editor</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">Editor</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-5">el:</span><span class="hl-1"> </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">querySelector</span><span class="hl-1">(</span><span class="hl-2">&#39;#editor&#39;</span><span class="hl-1">),</span><br/><span class="hl-1">    </span><span class="hl-5">toolbarItems:</span><span class="hl-1"> [</span><br/><span class="hl-1">        [{</span><br/><span class="hl-1">            </span><span class="hl-5">name:</span><span class="hl-1"> </span><span class="hl-2">&#39;myItem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">tooltip:</span><span class="hl-1"> </span><span class="hl-2">&#39;myItem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">command:</span><span class="hl-1"> </span><span class="hl-2">&#39;bold&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">text:</span><span class="hl-1"> </span><span class="hl-2">&#39;@&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">className:</span><span class="hl-1"> </span><span class="hl-2">&#39;uf-toolbar-icons&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">style:</span><span class="hl-1"> { </span><span class="hl-5">color:</span><span class="hl-1"> </span><span class="hl-2">&#39;red&#39;</span><span class="hl-1"> }</span><br/><span class="hl-1">        }]</span><br/><span class="hl-1">    ]</span><br/><span class="hl-1">    </span><span class="hl-8">// ...</span><br/><span class="hl-1">})</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The toolbar item is rendered with <code>className</code> and <code>style</code> options. The item has <code>@</code> text node and executes <code>bold</code> commands when clicked.</p>
+<p>To show an icon instead, pass its SVG markup as <code>icon</code>, for example a file your bundler imports as text:</p>
+<pre><code class="js"><span class="hl-4">import</span><span class="hl-1"> </span><span class="hl-5">boldIcon</span><span class="hl-1"> </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;./my-bold.svg?raw&#39;</span><span class="hl-1"> </span><span class="hl-8">// Vite; or `with { type: &#39;text&#39; }` where supported</span><br/><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">editor</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">Editor</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-5">el:</span><span class="hl-1"> </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">querySelector</span><span class="hl-1">(</span><span class="hl-2">&#39;#editor&#39;</span><span class="hl-1">),</span><br/><span class="hl-1">    </span><span class="hl-5">toolbarItems:</span><span class="hl-1"> [</span><br/><span class="hl-1">        [{</span><br/><span class="hl-1">            </span><span class="hl-5">name:</span><span class="hl-1"> </span><span class="hl-2">&#39;myBold&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">tooltip:</span><span class="hl-1"> </span><span class="hl-2">&#39;Bold&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">command:</span><span class="hl-1"> </span><span class="hl-2">&#39;bold&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">icon:</span><span class="hl-1"> </span><span class="hl-5">boldIcon</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">className:</span><span class="hl-1"> </span><span class="hl-2">&#39;uf-toolbar-icons&#39;</span><br/><span class="hl-1">        }]</span><br/><span class="hl-1">    ]</span><br/><span class="hl-1">})</span>
+</code><button type="button">Copy</button></pre>
+
+<p><img src="../media/toolbar-button.gif" alt="A custom toolbar button that makes text bold"></p>
+<h3 id="popup-option" class="tsd-anchor-link">popup Option<a href="#popup-option" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>When you click the button, you might want to show the popup. In this case, you can use the <code>popup</code> option that you saw above. The interface of the <code>popup</code> option is shown below.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>body</code></td>
+<td>HTMLElement</td>
+<td>Defines the popup DOM node to be rendered.</td>
+</tr>
+<tr>
+<td><code>className</code></td>
+<td>string</td>
+<td>Optional value, defines the class to be applied to the popup.</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>Object</td>
+<td>Optional value, defines the style to be applied to the popup.</td>
+</tr>
+</tbody>
+</table>
+<p>The popup is displayed below the button when it's clicked, and disappears when you click elsewhere or emit the
+<code>closePopup</code> event.</p>
+<p>The following code adds a button that shows a popup of symbols; clicking one inserts it at the cursor and closes the
+popup.</p>
+<pre><code class="js"><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">symbols</span><span class="hl-1"> = </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">createElement</span><span class="hl-1">(</span><span class="hl-2">&#39;div&#39;</span><span class="hl-1">)</span><br/><br/><span class="hl-4">for</span><span class="hl-1"> (</span><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">symbol</span><span class="hl-1"> </span><span class="hl-6">of</span><span class="hl-1"> [</span><span class="hl-2">&#39;©&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;®&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;™&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;€&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;→&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;±&#39;</span><span class="hl-1">]) {</span><br/><span class="hl-1">    </span><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">button</span><span class="hl-1"> = </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">createElement</span><span class="hl-1">(</span><span class="hl-2">&#39;button&#39;</span><span class="hl-1">)</span><br/><br/><span class="hl-1">    </span><span class="hl-5">button</span><span class="hl-1">.</span><span class="hl-5">type</span><span class="hl-1"> = </span><span class="hl-2">&#39;button&#39;</span><br/><span class="hl-1">    </span><span class="hl-5">button</span><span class="hl-1">.</span><span class="hl-5">textContent</span><span class="hl-1"> = </span><span class="hl-5">symbol</span><br/><span class="hl-1">    </span><span class="hl-5">button</span><span class="hl-1">.</span><span class="hl-0">addEventListener</span><span class="hl-1">(</span><span class="hl-2">&#39;click&#39;</span><span class="hl-1">, () </span><span class="hl-6">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">insertText</span><span class="hl-1">(</span><span class="hl-5">symbol</span><span class="hl-1">)</span><br/><span class="hl-1">        </span><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-5">eventEmitter</span><span class="hl-1">.</span><span class="hl-0">emit</span><span class="hl-1">(</span><span class="hl-2">&#39;closePopup&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">    })</span><br/><span class="hl-1">    </span><span class="hl-5">symbols</span><span class="hl-1">.</span><span class="hl-0">appendChild</span><span class="hl-1">(</span><span class="hl-5">button</span><span class="hl-1">)</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">editor</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">Editor</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-5">el:</span><span class="hl-1"> </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">querySelector</span><span class="hl-1">(</span><span class="hl-2">&#39;#editor&#39;</span><span class="hl-1">),</span><br/><span class="hl-1">    </span><span class="hl-5">toolbarItems:</span><span class="hl-1"> [</span><br/><span class="hl-1">        [</span><span class="hl-2">&#39;bold&#39;</span><span class="hl-1">, </span><span class="hl-2">&#39;italic&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">        [{</span><br/><span class="hl-1">            </span><span class="hl-5">name:</span><span class="hl-1"> </span><span class="hl-2">&#39;symbol&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">tooltip:</span><span class="hl-1"> </span><span class="hl-2">&#39;Insert symbol&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">text:</span><span class="hl-1"> </span><span class="hl-2">&#39;Ω&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">className:</span><span class="hl-1"> </span><span class="hl-2">&#39;uf-toolbar-icons&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">popup:</span><span class="hl-1"> { </span><span class="hl-5">body:</span><span class="hl-1"> </span><span class="hl-5">symbols</span><span class="hl-1">, </span><span class="hl-5">style:</span><span class="hl-1"> { </span><span class="hl-5">width:</span><span class="hl-1"> </span><span class="hl-2">&#39;auto&#39;</span><span class="hl-1"> } }</span><br/><span class="hl-1">        }]</span><br/><span class="hl-1">    ]</span><br/><span class="hl-1">})</span>
+</code><button type="button">Copy</button></pre>
+
+<p><img src="../media/toolbar-popup.gif" alt="Clicking the Ω button shows a popup of symbols; picking © inserts it"></p>
+<p>The up and down arrow keys move the focus between the popup's buttons. In a <a href="plugin.html">plugin</a>, use the
+<code>eventEmitter</code> from the plugin's <code>context</code> instead of <code>editor.eventEmitter</code>, and emit the <code>command</code> event to run a
+command, e.g. <code>eventEmitter.emit('command', 'bold')</code>.</p>
+<h2 id="toolbar-item-customizing" class="tsd-anchor-link">Toolbar Item Customizing<a href="#toolbar-item-customizing" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>If you want to create a toolbar item without using the default button UI as described above, you need to configure the <code>el</code> option as shown below.</p>
+<pre><code class="js"><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">myCustomEl</span><span class="hl-1"> = </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">createElement</span><span class="hl-1">(</span><span class="hl-2">&#39;span&#39;</span><span class="hl-1">)</span><br/><br/><span class="hl-5">myCustomEl</span><span class="hl-1">.</span><span class="hl-5">textContent</span><span class="hl-1"> = </span><span class="hl-2">&#39;B&#39;</span><br/><span class="hl-5">myCustomEl</span><span class="hl-1">.</span><span class="hl-5">style</span><span class="hl-1"> = </span><span class="hl-2">&#39;cursor: pointer; background: red;&#39;</span><br/><span class="hl-5">myCustomEl</span><span class="hl-1">.</span><span class="hl-0">addEventListener</span><span class="hl-1">(</span><span class="hl-2">&#39;click&#39;</span><span class="hl-1">, () </span><span class="hl-6">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">exec</span><span class="hl-1">(</span><span class="hl-2">&#39;bold&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">})</span><br/><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">editor</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">Editor</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-5">el:</span><span class="hl-1"> </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">querySelector</span><span class="hl-1">(</span><span class="hl-2">&#39;#editor&#39;</span><span class="hl-1">),</span><br/><span class="hl-1">    </span><span class="hl-5">toolbarItems:</span><span class="hl-1"> [</span><br/><span class="hl-1">        [{</span><br/><span class="hl-1">            </span><span class="hl-5">name:</span><span class="hl-1"> </span><span class="hl-2">&#39;myItem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">tooltip:</span><span class="hl-1"> </span><span class="hl-2">&#39;myItem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">el:</span><span class="hl-1"> </span><span class="hl-5">myCustomEl</span><br/><span class="hl-1">        }]</span><br/><span class="hl-1">    ]</span><br/><span class="hl-1">    </span><span class="hl-8">// ...</span><br/><span class="hl-1">})</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The element to be rendered must be specified as an <code>el</code> option. In this case, style, event handler, and class must be set, as the option is to create a complete DOM element.</p>
+<p>If you run the example code above, it will work as follows.</p>
+<p><img src="../media/toolbar-element.gif" alt="A custom toolbar element that makes text bold"></p>
+<h2 id="change-toolbar-item-state" class="tsd-anchor-link">Change Toolbar Item State<a href="#change-toolbar-item-state" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>In the editor, you can activate which node is based on the current cursor's position by changing the style of the toolbar element. For example, if the cursor is located on a <code>strong</code> node that displays bold text, an element of the <code>bold</code> toolbar item is activated as follows.</p>
+<p><img src="../media/toolbar-state.gif" alt="The Bold button turning active when the cursor is in bold text"></p>
+<p>If you want to change the state of a customized toolbar element like the example above, you need to configure the <code>state</code> option.</p>
+<pre><code class="js"><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">editor</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">Editor</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-5">el:</span><span class="hl-1"> </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">querySelector</span><span class="hl-1">(</span><span class="hl-2">&#39;#editor&#39;</span><span class="hl-1">),</span><br/><span class="hl-1">    </span><span class="hl-5">toolbarItems:</span><span class="hl-1"> [</span><br/><span class="hl-1">        [{</span><br/><span class="hl-1">            </span><span class="hl-5">name:</span><span class="hl-1"> </span><span class="hl-2">&#39;myItem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">tooltip:</span><span class="hl-1"> </span><span class="hl-2">&#39;myItem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">command:</span><span class="hl-1"> </span><span class="hl-2">&#39;bold&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">text:</span><span class="hl-1"> </span><span class="hl-2">&#39;@&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">className:</span><span class="hl-1"> </span><span class="hl-2">&#39;uf-toolbar-icons&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">style:</span><span class="hl-1"> { </span><span class="hl-5">color:</span><span class="hl-1"> </span><span class="hl-2">&#39;red&#39;</span><span class="hl-1"> },</span><br/><span class="hl-1">            </span><span class="hl-8">// If it is located on the `strong` node, the `active` CSS class is added to this toolbar element.</span><br/><span class="hl-1">            </span><span class="hl-5">state:</span><span class="hl-1"> </span><span class="hl-2">&#39;strong&#39;</span><br/><span class="hl-1">        }]</span><br/><span class="hl-1">    ]</span><br/><span class="hl-1">    </span><span class="hl-8">// ...</span><br/><span class="hl-1">})</span>
+</code><button type="button">Copy</button></pre>
+
+<p>If the toolbar button is activated according to <code>state</code>, the <code>active</code> CSS class will be added and you can specify the style that you want using this class.</p>
+<h3 id="list" class="tsd-anchor-link"><code>state</code> list<a href="#list" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>The state of the toolbar element can only be changed by using the state value below.</p>
+<ul>
+<li><code>heading</code>: Heading</li>
+<li><code>strong</code>: Bold</li>
+<li><code>emph</code>: Italic</li>
+<li><code>strike</code>: Strike</li>
+<li><code>thematicBreak</code>: Horizontal Line</li>
+<li><code>blockQuote</code>: Quotes</li>
+<li><code>bulletList</code>: Bullet List</li>
+<li><code>orderedList</code>: Ordered List</li>
+<li><code>taskList</code>: Task List</li>
+<li><code>table</code>: Table</li>
+<li><code>code</code>: Inline Code</li>
+<li><code>codeBlock</code>: Code Block</li>
+<li><code>indent</code>, <code>outdent</code>: Indent and outdent (disabled outside lists)</li>
+</ul>
+<h3 id="option" class="tsd-anchor-link"><code>onUpdated()</code> option<a href="#option" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>If a toolbar element is created with the <code>el</code> option without using the default button UI, the state can be changed by configuring the <code>onUpdated</code> option. Because there is a limit to directly manipulating toolbar elements that are customized, it is going to provide the <code>onUpdated</code> callback options.</p>
+<pre><code class="js"><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">myCustomEl</span><span class="hl-1"> = </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">createElement</span><span class="hl-1">(</span><span class="hl-2">&#39;span&#39;</span><span class="hl-1">)</span><br/><br/><span class="hl-5">myCustomEl</span><span class="hl-1">.</span><span class="hl-5">textContent</span><span class="hl-1"> = </span><span class="hl-2">&#39;B&#39;</span><br/><span class="hl-5">myCustomEl</span><span class="hl-1">.</span><span class="hl-5">style</span><span class="hl-1"> = </span><span class="hl-2">&#39;cursor: pointer; background: red;&#39;</span><br/><span class="hl-5">myCustomEl</span><span class="hl-1">.</span><span class="hl-0">addEventListener</span><span class="hl-1">(</span><span class="hl-2">&#39;click&#39;</span><span class="hl-1">, () </span><span class="hl-6">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-5">editor</span><span class="hl-1">.</span><span class="hl-0">exec</span><span class="hl-1">(</span><span class="hl-2">&#39;bold&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">})</span><br/><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">editor</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">Editor</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-5">el:</span><span class="hl-1"> </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">querySelector</span><span class="hl-1">(</span><span class="hl-2">&#39;#editor&#39;</span><span class="hl-1">),</span><br/><span class="hl-1">    </span><span class="hl-5">toolbarItems:</span><span class="hl-1"> [</span><br/><span class="hl-1">        [{</span><br/><span class="hl-1">            </span><span class="hl-5">name:</span><span class="hl-1"> </span><span class="hl-2">&#39;myItem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">tooltip:</span><span class="hl-1"> </span><span class="hl-2">&#39;myItem&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">el:</span><span class="hl-1"> </span><span class="hl-5">myCustomEl</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-5">state:</span><span class="hl-1"> </span><span class="hl-2">&#39;strong&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-0">onUpdated</span><span class="hl-1">({ </span><span class="hl-5">active</span><span class="hl-1">, </span><span class="hl-5">disabled</span><span class="hl-1"> }) {</span><br/><span class="hl-1">                </span><span class="hl-4">if</span><span class="hl-1"> (</span><span class="hl-5">active</span><span class="hl-1">) {</span><br/><span class="hl-1">                    </span><span class="hl-5">myCustomEl</span><span class="hl-1">.</span><span class="hl-5">style</span><span class="hl-1">.</span><span class="hl-5">background</span><span class="hl-1"> = </span><span class="hl-2">&#39;green&#39;</span><br/><span class="hl-1">                } </span><span class="hl-4">else</span><span class="hl-1"> {</span><br/><span class="hl-1">                    </span><span class="hl-5">myCustomEl</span><span class="hl-1">.</span><span class="hl-5">style</span><span class="hl-1">.</span><span class="hl-5">background</span><span class="hl-1"> = </span><span class="hl-2">&#39;&#39;</span><br/><span class="hl-1">                }</span><br/><span class="hl-1">            }</span><br/><span class="hl-1">        }]</span><br/><span class="hl-1">    ]</span><br/><span class="hl-1">    </span><span class="hl-8">// ...</span><br/><span class="hl-1">})</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The <code>onUpdated()</code> function passes the object that represent <code>active</code> and <code>disabled</code> state as parameter. This parameter allows you to add styling to an element or define the desired operation.</p>
+</div></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details"><a href="#toolbar"><span>Toolbar</span></a>
+<ul>
+<li><a href="#toolbar-option"><span>Toolbar <wbr/>Option</span></a></li>
+<li>
+<ul>
+<li><a href="#adding-and-removing-items"><span>Adding and <wbr/>Removing <wbr/>Items</span></a></li></ul></li>
+<li><a href="#toolbar-button-customizing"><span>Toolbar <wbr/>Button <wbr/>Customizing</span></a></li>
+<li>
+<ul>
+<li><a href="#button-element-customizing"><span>Button <wbr/>Element <wbr/>Customizing</span></a></li>
+<li><a href="#popup-option"><span>popup <wbr/>Option</span></a></li></ul></li>
+<li><a href="#toolbar-item-customizing"><span>Toolbar <wbr/>Item <wbr/>Customizing</span></a></li>
+<li><a href="#change-toolbar-item-state"><span>Change <wbr/>Toolbar <wbr/>Item <wbr/>State</span></a></li>
+<li>
+<ul>
+<li><a href="#list"><span> list</span></a></li>
+<li><a href="#option"><span> option</span></a></li></ul></li></ul></div></details></div>
+<div class="site-menu">
+<nav class="tsd-navigation"><a href="../modules.html">UnderFlow</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer>
+<div class="overlay"></div></body></html>
