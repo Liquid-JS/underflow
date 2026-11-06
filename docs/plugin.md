@@ -1,3 +1,8 @@
+---
+title: Plugins
+group: Guides
+---
+
 # Plugins
 
 ## What Is a Plugin?

@@ -1,3 +1,8 @@
+---
+title: Getting started
+group: Guides
+---
+
 # Getting Started
 
 ## Installation

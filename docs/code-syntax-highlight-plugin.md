@@ -1,3 +1,8 @@
+---
+title: Code syntax highlight plugin
+group: Guides
+---
+
 # Code Syntax Highlight Plugin
 
 This plugin highlights the syntax of code blocks in the markdown preview, the WYSIWYG editor and the viewer. It uses

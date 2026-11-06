@@ -1,3 +1,8 @@
+---
+title: Extended autolinks
+group: Guides
+---
+
 # Extending Autolinks
 
 ## What Is Autolinks?

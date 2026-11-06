@@ -1,3 +1,8 @@
+---
+title: Editing
+group: Guides
+---
+
 # Editing
 
 Options and methods that shape editing in the markdown and WYSIWYG modes. Every option is also described in the

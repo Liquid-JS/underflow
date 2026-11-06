@@ -13,6 +13,8 @@ The editor keeps its focus on content: the markdown it writes is standard Common
 GitHub, markdown-it) display the same way, and the preview uses plain element styles so you can apply your own site's
 stylesheet to it.
 
+Try it here <https://liquid-js.github.io/underflow/demo/>
+
 ## Installation
 
 ```sh
@@ -25,21 +27,7 @@ loads a single copy of each.
 
 ## Documentation
 
--   [Getting started](https://liquid-js.github.io/underflow/docs/documents/getting-started.html)
--   [Viewer](https://liquid-js.github.io/underflow/docs/documents/viewer.html)
--   [Editing](https://liquid-js.github.io/underflow/docs/documents/editing.html)
--   [Theming](https://liquid-js.github.io/underflow/docs/documents/theming.html)
--   [Plugins](https://liquid-js.github.io/underflow/docs/documents/plugin.html)
--   [Code syntax highlight plugin](https://liquid-js.github.io/underflow/docs/documents/code-syntax-highlight-plugin.html)
--   [Internationalization](https://liquid-js.github.io/underflow/docs/documents/i18n.html)
--   [Custom HTML renderer](https://liquid-js.github.io/underflow/docs/documents/custom-html-renderer.html)
--   [Custom block](https://liquid-js.github.io/underflow/docs/documents/custom-block.html)
--   [Extended autolinks](https://liquid-js.github.io/underflow/docs/documents/extended-autolinks.html)
--   [Toolbar](https://liquid-js.github.io/underflow/docs/documents/toolbar.html)
--   [Widget](https://liquid-js.github.io/underflow/docs/documents/widget.html)
-
-The API reference, with these guides, is at <https://liquid-js.github.io/underflow/docs/>, and the demo at
-<https://liquid-js.github.io/underflow/demo/>.
+The guides and the API reference are at <https://liquid-js.github.io/underflow/docs/>.
 
 ## Usage
 
@@ -85,7 +73,7 @@ with Autoprefixer or Lightning CSS.
 | `@liquid-js/underflow/styles/viewer.css`                        | Contents styles for the viewer                                                                                |
 | `@liquid-js/underflow/styles/theme/dark.css`                    | Dark theme, enabled with the `theme: 'dark'` option                                                           |
 | `@liquid-js/underflow/styles/plugins/code-syntax-highlight.css` | Styles of the syntax highlighting plugin                                                                      |
-| `@liquid-js/underflow/scss/<file>.scss`                         | The Sass sources of the stylesheets above, to compile in your own build (see [Theming](https://liquid-js.github.io/underflow/docs/documents/theming.html#sass)) |
+| `@liquid-js/underflow/scss/<file>.scss`                         | The Sass sources of the stylesheets above, to compile in your own build (see [Theming](https://liquid-js.github.io/underflow/docs/documents/Theming.html#sass)) |
 
 ## Development
 

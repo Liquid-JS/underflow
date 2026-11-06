@@ -1,3 +1,8 @@
+---
+title: Custom blocks and HTML nodes
+group: Guides
+---
+
 # Custom Block Node And HTML Node
 
 The editor follows the [CommonMark](https://spec.commonmark.org/0.29/) specification, and also supports the [GFM](https://github.github.com/gfm/) specification. But what if you want to use a specific syntax that is not supported by CommonMark or GFM? For example, you might want to use [LaTeX](https://www.latex-project.org/) syntax or render elements such as charts in Markdown. The editor provides the option to define a **custom block node** for this usability.

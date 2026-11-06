@@ -1,3 +1,8 @@
+---
+title: Theming
+group: Guides
+---
+
 # Theming
 
 UnderFlow separates the editor's own interface (toolbar, tabs, popups, menus) from the content you write. The

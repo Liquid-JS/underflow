@@ -1,3 +1,8 @@
+---
+title: Custom HTML renderer
+group: Guides
+---
+
 # Custom HTML Renderer
 
 The editor provides a way to customize the final HTML contents.

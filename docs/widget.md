@@ -1,3 +1,8 @@
+---
+title: Widgets
+group: Guides
+---
+
 # Widgets
 
 Widgets help with editing content: a popup widget floats a temporary element next to the cursor, such as suggestions

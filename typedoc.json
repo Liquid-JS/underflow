@@ -10,7 +10,18 @@
     "favicon": "./docs/images/icon.svg",
     "customCss": "./docs/typedoc.css",
     "projectDocuments": [
-        "./docs/*.md"
+        "./docs/getting-started.md",
+        "./docs/editing.md",
+        "./docs/toolbar.md",
+        "./docs/viewer.md",
+        "./docs/theming.md",
+        "./docs/i18n.md",
+        "./docs/extended-autolinks.md",
+        "./docs/widget.md",
+        "./docs/custom-html-renderer.md",
+        "./docs/custom-block.md",
+        "./docs/plugin.md",
+        "./docs/code-syntax-highlight-plugin.md"
     ],
     "out": "pages/docs",
     "sort": [

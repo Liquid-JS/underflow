@@ -1,3 +1,8 @@
+---
+title: Toolbar
+group: Guides
+---
+
 # Toolbar
 
 Typically, the editor can use shortcuts or toolbar to enter specific text or nodes. In particular, in WYSIWYG editors, where no specific textual syntax exists, the role of the toolbar is important because most of the operation are done through the toolbar. UnderFlow also provides a toolbar as the default UI, as well as options and APIs for customization.
