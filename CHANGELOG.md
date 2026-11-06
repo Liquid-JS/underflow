@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.0.0-3](https://github.com/Liquid-JS/underflow/compare/v4.0.0-2...v4.0.0-3) (2026-11-06)
+
+### Features
+
+* icon, colours ([3020d94](https://github.com/Liquid-JS/underflow/commit/3020d943ddcf2af295f2969b88781f73725fcd04))
 ## [4.0.0-2](https://github.com/Liquid-JS/underflow/compare/v4.0.0-1...v4.0.0-2) (2026-11-06)
 ## [4.0.0-1](https://github.com/Liquid-JS/underflow/compare/v4.0.0-0...v4.0.0-1) (2026-11-06)
 
