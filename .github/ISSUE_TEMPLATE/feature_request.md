@@ -2,31 +2,34 @@
 name: Feature request
 about: Suggest an idea for this project
 title: ''
-labels: Enhancement, Need Discussion
+labels: enhancement
 assignees: ''
 ---
 
 <!--
-Thank you for your contribution.
+  Thank you for your contribution. Please fill in the template below.
 
-When it comes to write an issue, please, use the template below.
-To use the template is mandatory for submit new issue and we won't reply the issue that without the template.
-
-And you can write template's contents in Korean also.
+  Before proposing a new markdown syntax, check that other renderers understand it (CommonMark, GFM or an existing
+  remark extension). Syntax specific to your project belongs in a plugin, see
+  https://github.com/Liquid-JS/underflow/blob/master/docs/plugin.md
 -->
 
 ## Version
-Write the version that you are currently using.
+
+Write the version of `@liquid-js/underflow` that you are currently using.
 
 ## Development Environment
+
 Write the browser type, OS and so on.
 
 ## Current Behavior
-Write a description of the current operation. You can add sample code, 'CodePen' or 'jsfiddle' links.
+
+Write a description of the current behavior. You can add sample code, or 'CodePen' or 'jsfiddle' links.
 
 ```js
 // Write example code
 ```
 
 ## Expected Behavior
-Write a description of the future action.
+
+Write a description of the behavior you'd like.

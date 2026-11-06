@@ -1,0 +1,60 @@
+name: PR check
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+      - run: yarn install --immutable
+      - run: yarn build
+      - run: yarn pack --dry-run
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+      - run: yarn install --immutable
+      - run: yarn lint
+      - run: yarn test:types
+      - run: yarn lint:sass
+      - run: yarn lint:html && git diff --exit-code
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+      - run: yarn install --immutable
+      - run: yarn test
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+      - run: yarn install --immutable
+      - run: yarn build
+      - run: yarn pack -o underflow.tgz && yarn clean-package restore
+      - run: npm install --no-audit --no-fund
+        working-directory: smoke
+      - run: npx playwright install --with-deps chromium firefox webkit
+        working-directory: smoke
+      - run: npm run build
+        working-directory: smoke
+      - run: npm run e2e
+        working-directory: smoke
