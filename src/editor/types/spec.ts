@@ -1,0 +1,42 @@
+import { Schema } from 'prosemirror-model'
+import { Transaction, Plugin, Command } from 'prosemirror-state'
+import { EditorView } from 'prosemirror-view'
+import { Emitter } from './event'
+import { MarkdownDocument } from '@liquid-js/underflow/parser'
+
+export interface Context {
+    schema: Schema
+    eventEmitter: Emitter
+}
+
+export interface MdContext extends Context {
+    markdownDocument: MarkdownDocument
+}
+
+export interface SpecContext extends Context {
+    view: EditorView
+}
+
+export interface MdSpecContext extends SpecContext {
+    markdownDocument: MarkdownDocument
+}
+
+export type DefaultPayload = Record<string, any>
+export type Payload<T> = T extends infer P ? P : any
+
+export type Dispatch = (tr: Transaction) => void
+export type EditorCommand<T = DefaultPayload> = (payload?: Payload<T>) => Command
+export type EditorCommandMap<T = DefaultPayload> = Record<string, EditorCommand<T>>
+export type EditorCommandFn<T = DefaultPayload> = (payload?: Payload<T>) => boolean | void
+export type EditorAllCommandMap<T = DefaultPayload> = Record<string, EditorCommandFn<T>>
+
+export interface SpecManager {
+    commands(
+        view: EditorView,
+        addedCommands?: Record<string, EditorCommand>
+    ): EditorAllCommandMap<DefaultPayload>
+
+    keymaps(useCommandShortcut: boolean): Plugin[]
+
+    setContext(context: SpecContext): void
+}
