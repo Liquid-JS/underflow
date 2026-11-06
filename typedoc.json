@@ -1,6 +1,5 @@
 {
     "$schema": "https://typedoc.org/schema.json",
-    "name": "UnderFlow",
     "entryPoints": [
         "./src/index.ts",
         "./src/viewer.ts",
