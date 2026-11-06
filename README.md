@@ -1,6 +1,6 @@
 # UnderFlow
 
-<img align="right" src="docs/images/icon.svg" width="144" alt="UnderFlow">
+<img align="right" src="https://raw.githubusercontent.com/Liquid-JS/underflow/master/docs/images/icon.svg" width="144" alt="UnderFlow">
 
 [![GitHub license](https://img.shields.io/github/license/Liquid-JS/underflow.svg)](https://github.com/Liquid-JS/underflow/blob/master/LICENSE)
 [![npm](https://img.shields.io/npm/dm/@liquid-js/underflow.svg)](https://www.npmjs.com/package/@liquid-js/underflow)
@@ -25,18 +25,18 @@ loads a single copy of each.
 
 ## Documentation
 
--   [Getting started](docs/getting-started.md)
--   [Viewer](docs/viewer.md)
--   [Editing](docs/editing.md)
--   [Theming](docs/theming.md)
--   [Plugins](docs/plugin.md)
--   [Code syntax highlight plugin](docs/code-syntax-highlight-plugin.md)
--   [Internationalization](docs/i18n.md)
--   [Custom HTML renderer](docs/custom-html-renderer.md)
--   [Custom block](docs/custom-block.md)
--   [Extended autolinks](docs/extended-autolinks.md)
--   [Toolbar](docs/toolbar.md)
--   [Widget](docs/widget.md)
+-   [Getting started](https://liquid-js.github.io/underflow/docs/documents/getting-started.html)
+-   [Viewer](https://liquid-js.github.io/underflow/docs/documents/viewer.html)
+-   [Editing](https://liquid-js.github.io/underflow/docs/documents/editing.html)
+-   [Theming](https://liquid-js.github.io/underflow/docs/documents/theming.html)
+-   [Plugins](https://liquid-js.github.io/underflow/docs/documents/plugin.html)
+-   [Code syntax highlight plugin](https://liquid-js.github.io/underflow/docs/documents/code-syntax-highlight-plugin.html)
+-   [Internationalization](https://liquid-js.github.io/underflow/docs/documents/i18n.html)
+-   [Custom HTML renderer](https://liquid-js.github.io/underflow/docs/documents/custom-html-renderer.html)
+-   [Custom block](https://liquid-js.github.io/underflow/docs/documents/custom-block.html)
+-   [Extended autolinks](https://liquid-js.github.io/underflow/docs/documents/extended-autolinks.html)
+-   [Toolbar](https://liquid-js.github.io/underflow/docs/documents/toolbar.html)
+-   [Widget](https://liquid-js.github.io/underflow/docs/documents/widget.html)
 
 The API reference, with these guides, is at <https://liquid-js.github.io/underflow/docs/>, and the demo at
 <https://liquid-js.github.io/underflow/demo/>.
@@ -85,7 +85,7 @@ with Autoprefixer or Lightning CSS.
 | `@liquid-js/underflow/styles/viewer.css`                        | Contents styles for the viewer                                                                                |
 | `@liquid-js/underflow/styles/theme/dark.css`                    | Dark theme, enabled with the `theme: 'dark'` option                                                           |
 | `@liquid-js/underflow/styles/plugins/code-syntax-highlight.css` | Styles of the syntax highlighting plugin                                                                      |
-| `@liquid-js/underflow/scss/<file>.scss`                         | The Sass sources of the stylesheets above, to compile in your own build (see [Theming](docs/theming.md#sass)) |
+| `@liquid-js/underflow/scss/<file>.scss`                         | The Sass sources of the stylesheets above, to compile in your own build (see [Theming](https://liquid-js.github.io/underflow/docs/documents/theming.html#sass)) |
 
 ## Development
 
@@ -97,7 +97,7 @@ yarn test       # unit and integration tests
 yarn lint
 ```
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the commit conventions.
+See [CONTRIBUTING.md](https://github.com/Liquid-JS/underflow/blob/master/CONTRIBUTING.md) for the commit conventions.
 
 ## License
 
