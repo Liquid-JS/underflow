@@ -22,3 +22,22 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           no_contributors: true
+
+  docs:
+    name: Publish API docs
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "26.x"
+          cache: yarn
+      - run: yarn install --immutable
+      - run: yarn docs
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./api

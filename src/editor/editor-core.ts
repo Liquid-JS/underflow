@@ -96,6 +96,7 @@ class EditorCore {
 
     protected options: Required<EditorOptions>
 
+    /** @internal */
     protected pluginInfo: PluginInfoResult
 
     constructor(options: EditorOptions) {

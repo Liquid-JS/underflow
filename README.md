@@ -36,6 +36,8 @@ loads a single copy of each.
 -   [Toolbar](docs/toolbar.md)
 -   [Widget](docs/widget.md)
 
+The API reference, with these guides, is at <https://liquid-js.github.io/underflow/>.
+
 ## Usage
 
 ```ts

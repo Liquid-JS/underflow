@@ -1,6 +1,7 @@
 # Build output
 /lib
 /demo/dist
+/api
 
 # Dependencies
 /node_modules

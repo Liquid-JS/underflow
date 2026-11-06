@@ -1,0 +1,36 @@
+{
+    "$schema": "https://typedoc.org/schema.json",
+    "name": "UnderFlow",
+    "entryPoints": [
+        "./src/index.ts",
+        "./src/viewer.ts",
+        "./src/parser.ts",
+        "./src/plugins/code-syntax-highlight.ts"
+    ],
+    "readme": "./README.md",
+    "projectDocuments": [
+        "./docs/*.md"
+    ],
+    "out": "api",
+    "sort": [
+        "kind",
+        "instance-first",
+        "source-order"
+    ],
+    "highlightLanguages": [
+        "bash",
+        "css",
+        "html",
+        "javascript",
+        "json",
+        "markdown",
+        "md",
+        "scss",
+        "shellscript",
+        "typescript",
+        "ts",
+        "js",
+        "yaml"
+    ],
+    "treatWarningsAsErrors": true
+}

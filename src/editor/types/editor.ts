@@ -8,6 +8,7 @@ import type { EditorCore } from '../editor-core'
 import type { Viewer } from '../viewer'
 import { HTMLConvertor, Context as MdContext, HTMLToken, HTMLConvertorMap } from '../../parser/types/renderer'
 import { Pos as MdPos, Sourcepos } from '../../parser/types/node'
+import type { AutolinkParser } from '../../parser/types/parser'
 import { Emitter } from './event'
 import { Context, EditorAllCommandMap, EditorCommandFn, SpecManager } from './spec'
 import { ToMdConvertorMap } from './convertor'
@@ -75,13 +76,7 @@ export interface HookMap {
     addImageBlobHook?: (blob: Blob | File, callback: HookCallback) => void
 }
 
-export type AutolinkParser = (
-    content: string
-) => Array<{
-    url: string
-    text: string
-    range: [number, number]
-}>
+export type { AutolinkParser }
 
 export type ExtendedAutolinks = boolean | AutolinkParser
 

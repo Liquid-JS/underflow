@@ -1,4 +1,5 @@
-type CSSPropertyName = {
+/** The names of the string properties of `CSSStyleDeclaration`, e.g. `backgroundColor` */
+export type CSSPropertyName = {
     [K in keyof CSSStyleDeclaration]: CSSStyleDeclaration[K] extends string ? K : never
 }[keyof CSSStyleDeclaration] & string
 

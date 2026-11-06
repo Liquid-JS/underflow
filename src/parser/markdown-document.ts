@@ -74,7 +74,7 @@ export class MarkdownDocument {
 
         contents = contents || ''
         this.lineTexts = contents.split(reLineEnding)
-        this.root = this.parser.parse(contents)
+        this.root = this.parser.parse(contents) as BlockNode
     }
 
     private updateLineTexts(startPos: Pos, endPos: Pos, newText: string) {

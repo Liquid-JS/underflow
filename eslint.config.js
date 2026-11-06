@@ -9,7 +9,7 @@ import { parser, plugin as typescriptEslintPlugin } from 'typescript-eslint'
 
 export default defineConfig(
     {
-        ignores: ['lib', 'node_modules', 'coverage', 'docs', '.yarn', '.husky', 'tmp', 'demo/dist', 'smoke/node_modules', 'smoke/dist', 'smoke/test-results', 'smoke/playwright-report']
+        ignores: ['lib', 'api', 'node_modules', 'coverage', 'docs', '.yarn', '.husky', 'tmp', 'demo/dist', 'smoke/node_modules', 'smoke/dist', 'smoke/test-results', 'smoke/playwright-report']
     },
     {
         files: ['**/*.ts', '**/*.js', '**/*.cjs'],

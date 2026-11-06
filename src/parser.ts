@@ -21,7 +21,7 @@ export type {
     Pos as MdPos,
     Sourcepos
 } from './parser/types/node'
-export type { EditResult } from './parser/types/markdown-document'
+export type { EditResult, RemovedNodeRange } from './parser/types/markdown-document'
 export type {
     HTMLConvertor,
     HTMLConvertorMap,
@@ -33,7 +33,7 @@ export type {
     RawHTMLToken,
     HTMLToken
 } from './parser/types/renderer'
-export type { ParserOptions, CustomParserMap } from './parser/types/parser'
+export type { ParserOptions, CustomParserMap, CustomParser, AutolinkParser } from './parser/types/parser'
 export { MarkdownDocument } from './parser/markdown-document'
 export { Renderer } from './parser/html/renderer'
 export { Parser } from './parser/commonmark/blocks'

@@ -4,7 +4,7 @@ import {
     RefLinkCandidateMap,
     RefMap
 } from '../types/parser'
-import { BlockNodeType } from '../types/node'
+import { BlockMdNode, BlockNodeType } from '../types/node'
 import { clearObj } from '../helper'
 import { BaseNode, BlockNode, isHtmlBlock, createNode, TableCellNode } from './node'
 import { InlineParser, C_NEWLINE } from './inlines'
@@ -46,6 +46,7 @@ const defaultOptions = {
 
 export class Parser {
     private doc: BlockNode
+    /** @internal */
     /** @internal */
     public tip: BlockNode
     private oldtip: BlockNode
@@ -111,6 +112,7 @@ export class Parser {
         this.inlineParser = new InlineParser(this.options)
     }
 
+    /** @internal */
     advanceOffset(count: number, columns = false) {
         const currentLine = this.currentLine
         let charsToTab: number; let charsToAdvance: number
@@ -139,12 +141,14 @@ export class Parser {
         }
     }
 
+    /** @internal */
     advanceNextNonspace() {
         this.offset = this.nextNonspace
         this.column = this.nextNonspaceColumn
         this.partiallyConsumedTab = false
     }
 
+    /** @internal */
     findNextNonspace() {
         const currentLine = this.currentLine
         let i = this.offset
@@ -171,6 +175,7 @@ export class Parser {
 
     // Add a line to the block at the tip.  We assume the tip
     // can accept lines -- that check should be done before calling this.
+    /** @internal */
     addLine() {
         if (this.partiallyConsumedTab) {
             this.offset += 1 // skip over tab
@@ -189,6 +194,7 @@ export class Parser {
     // Add block of type tag as a child of the tip.  If the tip can't
     // accept children, close and finalize it and try its parent,
     // and so on til we find a block that can accept children.
+    /** @internal */
     addChild(tag: BlockNodeType, offset: number) {
         while (!blockHandlers[this.tip.type].canContain(tag)) {
             this.finalize(this.tip, this.lineNumber - 1)
@@ -206,6 +212,7 @@ export class Parser {
     }
 
     // Finalize and close any unmatched blocks.
+    /** @internal */
     closeUnmatchedBlocks() {
         if (!this.allClosed) {
             // finalize any blocks not matched
@@ -223,6 +230,7 @@ export class Parser {
     // or 'loose' status of a list, and parsing the beginnings
     // of paragraphs for reference definitions.  Reset the tip to the
     // parent of the closed block.
+    /** @internal */
     finalize(block: BlockNode, lineNumber: number) {
         const above = block.parent as BlockNode
         block.open = false
@@ -234,6 +242,7 @@ export class Parser {
 
     // Walk through a block & children recursively, parsing string content
     // into inline content where appropriate.
+    /** @internal */
     processInlines(block: BlockNode) {
         let event
         const { customParser } = this.options
@@ -265,6 +274,7 @@ export class Parser {
     // Analyze a line of text and update the document appropriately.
     // We parse markdown text by calling this on each line of input,
     // then finalizing the document.
+    /** @internal */
     incorporateLine(ln: string) {
         let container = this.doc
         this.oldtip = this.tip
@@ -391,7 +401,7 @@ export class Parser {
     }
 
     // The main parsing function.  Returns a parsed document AST.
-    parse(input: string) {
+    parse(input: string): BlockMdNode {
         this.doc = document()
         this.tip = this.doc
         this.lineNumber = 0
@@ -420,6 +430,7 @@ export class Parser {
         return this.doc
     }
 
+    /** @internal */
     partialParseStart(lineNumber: number, lines: string[]) {
         this.doc = document()
         this.tip = this.doc
@@ -438,12 +449,14 @@ export class Parser {
         return this.doc
     }
 
+    /** @internal */
     partialParseExtends(lines: string[]) {
         for (const line of lines) {
             this.incorporateLine(line)
         }
     }
 
+    /** @internal */
     partialParseFinish() {
         while (this.tip) {
             this.finalize(this.tip, this.lineNumber)
@@ -451,6 +464,7 @@ export class Parser {
         this.processInlines(this.doc)
     }
 
+    /** @internal */
     setRefMaps(
         refMap: RefMap,
         refLinkCandidateMap: RefLinkCandidateMap,
@@ -461,6 +475,7 @@ export class Parser {
         this.refDefCandidateMap = refDefCandidateMap
     }
 
+    /** @internal */
     clearRefMaps() {
         [this.refMap, this.refLinkCandidateMap, this.refDefCandidateMap].forEach((map) => {
             clearObj(map)

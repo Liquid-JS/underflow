@@ -330,5 +330,5 @@ const editor = new Editor({
 })
 ```
 
-The [code-syntax-highlight plugin source](../src/plugins/code-syntax-highlight/) is a complete example that also uses
+The [code-syntax-highlight plugin source](https://github.com/Liquid-JS/underflow/tree/master/src/plugins/code-syntax-highlight) is a complete example that also uses
 `wysiwygPlugins` and `wysiwygNodeViews`.

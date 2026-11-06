@@ -42,7 +42,11 @@ export type {
     NodeRangeInfo,
     EditPanelOptions,
     ToolbarStyle,
-    Slots
+    Slots,
+    AutolinkParser,
+    LinkAttributeNames,
+    PluginFn,
+    HookCallback
 } from './editor/types/editor'
 export type {
     ToolbarItemOptions,
@@ -51,12 +55,32 @@ export type {
     PopupOptions,
     StyleProps,
     IndexList,
-    ToolbarStateMap
+    ToolbarStateMap,
+    ToolbarItemState,
+    CSSPropertyName,
+    ExecCommand
 } from './editor/types/ui'
-export type { ToMdConvertorMap } from './editor/types/convertor'
-export type { Emitter, Handler } from './editor/types/event'
-export type { Dispatch } from './editor/types/spec'
-export type { PluginInfo, PluginNodeViews, CommandFn, PluginCommandMap } from './editor/types/plugin'
+export type {
+    ToMdConvertorMap,
+    ToMdConvertor,
+    ToMdConvertorContext,
+    ToMdConvertorReturnValues,
+    NodeInfo,
+    MarkInfo,
+    Attrs
+} from './editor/types/convertor'
+export type { WwNodeType, WwMarkType } from './editor/types/wysiwyg'
+export type { Emitter, Handler, EventName, EventTypes } from './editor/types/event'
+export type { Dispatch, Payload, DefaultPayload } from './editor/types/spec'
+export type {
+    PluginInfo,
+    PluginNodeViews,
+    CommandFn,
+    PluginCommandMap,
+    PluginProp,
+    NodeViewPropMap,
+    PluginToolbarItem
+} from './editor/types/plugin'
 export type { MdLikeNode, HTMLMdNode } from './editor/types/markdown'
 
 export { Editor, EditorCore, Viewer }
