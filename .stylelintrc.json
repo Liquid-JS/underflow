@@ -1,0 +1,54 @@
+{
+    "extends": [
+        "stylelint-config-standard-scss",
+        "@stylistic/stylelint-config"
+    ],
+    "rules": {
+        "@stylistic/indentation": 4,
+        "no-descending-specificity": null,
+        "selector-class-pattern": null,
+        "@stylistic/max-line-length": null,
+        "no-duplicate-selectors": null,
+        "at-rule-empty-line-before": null,
+        "alpha-value-notation": "number",
+        "color-function-notation": "legacy",
+        "declaration-block-no-redundant-longhand-properties": null,
+        "shorthand-property-no-redundant-values": null,
+        "selector-attribute-quotes": "never",
+        "selector-pseudo-element-colon-notation": "single",
+        "number-max-precision": null,
+        "color-hex-length": null,
+        "function-name-case": null,
+        "scss/no-global-function-names": null,
+        "hue-degree-notation": "number",
+        "scss/dollar-variable-pattern": null,
+        "scss/dollar-variable-empty-line-before": null,
+        "scss/at-extend-no-missing-placeholder": null,
+        "scss/double-slash-comment-whitespace-inside": null,
+        "no-invalid-position-at-import-rule": null,
+        "no-empty-source": null,
+        "keyframes-name-pattern": null,
+        "block-no-empty": null,
+        "scss/comment-no-empty": null,
+        "selector-id-pattern": null,
+        "@stylistic/value-list-max-empty-lines": 1,
+        "@stylistic/function-max-empty-lines": 1,
+        "selector-pseudo-element-no-unknown": [
+            true,
+            {
+                "ignorePseudoElements": [
+                    "ng-deep"
+                ]
+            }
+        ],
+        "@stylistic/block-closing-brace-newline-after": [
+            "always",
+            {
+                "ignoreAtRules": [
+                    "if",
+                    "else"
+                ]
+            }
+        ]
+    }
+}
