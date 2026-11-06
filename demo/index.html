@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1" />
+    <title>UnderFlow demo</title>
+</head>
+
+<body>
+    <header class="demo-bar">
+        <strong>UnderFlow</strong>
+        <label><input type="checkbox"
+                id="dark" /> Dark theme</label>
+        <label>
+            Mode
+            <select id="mode">
+                <option value="markdown">Markdown</option>
+                <option value="wysiwyg">WYSIWYG</option>
+            </select>
+        </label>
+    </header>
+    <main>
+        <div id="editor"></div>
+        <h2>Viewer</h2>
+        <div id="viewer"></div>
+    </main>
+    <script type="module"
+        src="./main.ts"></script>
+</body>
+
+</html>
