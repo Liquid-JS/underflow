@@ -1,0 +1,52 @@
+.uf-popup.uf-edit-panel {
+    width: 320px;
+    max-width: calc(100% - 10px);
+}
+
+.uf-edit-panel {
+    .uf-popup-body {
+        padding: 0 20px 20px;
+    }
+
+    .uf-remove-button {
+        float: left;
+    }
+}
+
+// buttons around the hovered table in wysiwyg
+.uf-table-edit-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 25;
+    pointer-events: none;
+
+    button {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        margin: -8px 0 0 -8px;
+        padding: 0;
+        border: 1px solid var(--uf-border-color);
+        border-radius: 50%;
+        background-color: var(--uf-bg-color);
+        color: var(--uf-label-color);
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+        cursor: pointer;
+        pointer-events: auto;
+    }
+
+    .uf-table-add-button:hover {
+        border-color: var(--uf-primary-color);
+        background-color: var(--uf-primary-color);
+        color: var(--uf-primary-text-color);
+    }
+
+    .uf-table-remove-button:hover {
+        border-color: #fa2828;
+        background-color: #fa2828;
+        color: #fff;
+    }
+}

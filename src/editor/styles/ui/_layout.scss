@@ -1,0 +1,57 @@
+.auto-height {
+    &,
+    .uf-default-ui {
+        height: auto;
+    }
+
+    .uf-md-container,
+    .uf-main-container {
+        position: relative;
+    }
+}
+
+// with a fixed height, the main area fills what the toolbar and the mode switch leave
+:not(.auto-height) > .uf-default-ui {
+    &,
+    > .uf-main {
+        display: flex;
+        flex-direction: column;
+    }
+
+    > .uf-main {
+        flex: 1;
+    }
+}
+
+// clearfix
+.uf-md-container:after,
+.uf-default-ui-toolbar:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.uf-main {
+    // stylelint-disable-next-line length-zero-no-unit -- kept as written so the compiled CSS stays the same
+    min-height: 0px;
+    position: relative;
+    height: inherit;
+    box-sizing: border-box;
+}
+
+// the editable area fills the editor, so a click below the text focuses it in auto height mode
+// too; border-box keeps its padding inside the editor's height
+.uf-editor > .ProseMirror {
+    height: inherit;
+    min-height: inherit;
+    box-sizing: border-box;
+}
+
+.uf-main-container {
+    position: absolute;
+    line-height: 1;
+    color: #222;
+    width: 100%;
+    height: inherit;
+}

@@ -1,0 +1,234 @@
+@use "../shared";
+
+.uf-popup {
+    width: 400px;
+    margin-right: auto;
+    background: var(--uf-bg-color);
+    z-index: 30;
+    position: absolute;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgb(0, 0, 0, 0.08);
+    border: 1px solid var(--uf-border-color);
+
+    &-body {
+        padding: 15px;
+        font-size: 12px;
+
+        label {
+            font-weight: 600;
+            color: var(--uf-label-color);
+            display: block;
+            margin: 20px 0 5px;
+        }
+
+        .uf-button-container {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        input[type=text] {
+            width: calc(100% - 26px);
+            height: 30px;
+            padding: 0 12px;
+            border-radius: 2px;
+            border: 1px solid var(--uf-input-border-color);
+            color: var(--uf-text-color);
+
+            &:focus {
+                outline: 1px solid var(--uf-primary-color);
+                border-color: transparent;
+            }
+
+            &.disabled {
+                background-color: var(--uf-toolbar-bg-color);
+                border-color: var(--uf-input-border-color);
+                color: var(--uf-disabled-text-color);
+            }
+        }
+
+        // the file input is hidden: the file name and the select button stand in for it
+        input[type=file] {
+            opacity: 0;
+            border: none;
+            width: 1px;
+            height: 1px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        input.wrong,
+        span.wrong {
+            border-color: #fa2828;
+        }
+
+        // the heading popup's list of headings
+        .uf-menu-headings button {
+            all: unset;
+            display: block;
+            box-sizing: border-box;
+            width: 100%;
+            padding: 4px 12px;
+            cursor: pointer;
+
+            &:focus {
+                outline: 1px solid var(--uf-primary-color);
+            }
+        }
+    }
+
+    &-add-link,
+    &-add-image {
+        .uf-popup-body {
+            padding: 0 20px 20px;
+        }
+    }
+
+    &-add-image {
+        .uf-tabs {
+            margin: 5px 0 10px;
+
+            .tab-item {
+                display: inline-block;
+                width: 60px;
+                height: 40px;
+                line-height: 40px;
+                border-bottom: 1px solid var(--uf-border-color);
+                color: var(--uf-text-color);
+                font-size: 13px;
+                font-weight: 600;
+                text-align: center;
+                cursor: pointer;
+                box-sizing: border-box;
+
+                &:hover {
+                    border-bottom: 1px solid var(--uf-button-hover-border-color);
+                }
+
+                &.active {
+                    color: var(--uf-primary-color);
+                    border-bottom: 2px solid var(--uf-primary-color);
+                }
+            }
+        }
+
+        .uf-file-name {
+            width: 58%;
+            display: inline-block;
+            border-radius: 2px;
+            border: 1px solid var(--uf-input-border-color);
+            color: var(--uf-muted-text-color);
+            height: 30px;
+            line-height: 30px;
+            padding: 0 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: pointer;
+
+            &.has-file {
+                color: var(--uf-text-color);
+            }
+        }
+
+        .uf-file-select-button {
+            width: 33%;
+            margin-left: 5px;
+            height: 32px;
+            border-radius: 2px;
+            border: 1px solid var(--uf-button-border-color);
+            background-color: var(--uf-toolbar-bg-color);
+            vertical-align: top;
+
+            &:hover {
+                border-color: var(--uf-button-hover-border-color);
+            }
+        }
+    }
+
+    // grid of cells to pick the size of the new table
+    &-add-table {
+        width: auto;
+
+        .uf-table-selection {
+            position: relative;
+        }
+
+        .uf-table-cell {
+            display: table-cell;
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--uf-input-border-color);
+            background: var(--uf-bg-color);
+            box-sizing: border-box;
+
+            &.header {
+                background: var(--uf-toolbar-bg-color);
+            }
+        }
+
+        .uf-table-row {
+            display: table-row;
+        }
+
+        .uf-table {
+            display: table;
+            border-collapse: collapse;
+        }
+
+        .uf-table-selection-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: 1px solid var(--uf-primary-color);
+            background: var(--uf-selection-bg-color);
+            z-index: 30;
+        }
+
+        .uf-table-description {
+            margin: 5px 0 0;
+            text-align: center;
+            color: var(--uf-text-color);
+        }
+    }
+
+    &-add-heading {
+        width: auto;
+
+        .uf-popup-body {
+            padding: 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        ul,
+        p {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul {
+            padding: 5px 0;
+            list-style: none;
+
+            li {
+                padding: 0;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: var(--uf-hover-bg-color);
+                }
+            }
+        }
+
+        @each $level, $size in shared.$heading-font-sizes {
+            h#{$level} {
+                font-size: $size;
+            }
+        }
+    }
+}

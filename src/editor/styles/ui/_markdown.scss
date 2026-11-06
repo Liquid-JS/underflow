@@ -1,0 +1,133 @@
+.uf-md-container {
+    display: none;
+    overflow: hidden;
+    height: 100%;
+
+    .uf-editor {
+        line-height: 1.5;
+        position: relative;
+
+        .uf-md-cursor-line {
+            background-color: var(--uf-cursor-line-bg-color);
+        }
+    }
+
+    .uf-editor,
+    .uf-md-preview {
+        box-sizing: border-box;
+        padding: 0;
+        height: inherit;
+    }
+
+    .uf-md-preview {
+        overflow: auto;
+        padding: 0 25px;
+        height: 100%;
+
+        > p:first-child {
+            margin-top: 0 !important;
+        }
+
+        .uf-contents {
+            padding-top: 8px;
+        }
+    }
+}
+
+.uf-main {
+    .uf-md-tab-style {
+        > .uf-editor,
+        > .uf-md-preview {
+            width: 100%;
+            display: none;
+        }
+
+        > .active {
+            display: block;
+        }
+    }
+
+    // the Write/Preview tabs only show in tab style
+    .uf-md-vertical-style > .uf-tabs {
+        display: none;
+    }
+
+    .uf-md-tab-style > .uf-tabs {
+        display: block;
+    }
+
+    .uf-md-splitter {
+        display: none;
+        height: 100%;
+        width: 1px;
+        background-color: var(--uf-divider-color);
+        position: absolute;
+        left: 50%;
+    }
+
+    .uf-md-vertical-style {
+        .uf-editor,
+        .uf-md-preview {
+            width: 50%;
+        }
+
+        .uf-md-splitter {
+            display: block;
+        }
+    }
+}
+
+.uf-md-mode {
+    .uf-md-container {
+        display: block;
+        z-index: 20;
+    }
+
+    .uf-md-vertical-style {
+        display: flex;
+    }
+}
+
+// tab bar of the tab style
+.uf-default-ui .uf-md-tab-container {
+    float: left;
+    height: 45px;
+    font-size: 13px;
+    background: var(--uf-toolbar-bg-color);
+    border-bottom: 1px solid var(--uf-divider-color);
+    border-top-left-radius: 3px;
+}
+
+.uf-md-tab-container {
+    .uf-tabs {
+        margin-left: 15px;
+        height: 100%;
+    }
+
+    .tab-item {
+        display: inline-block;
+        width: 70px;
+        height: 33px;
+        line-height: 33px;
+        font-size: 12px;
+        font-weight: 500;
+        text-align: center;
+        background: var(--uf-tab-bg-color);
+        color: var(--uf-muted-text-color);
+        cursor: pointer;
+        border: 1px solid var(--uf-tab-border-color);
+        border-radius: 4px 4px 0 0;
+        box-sizing: border-box;
+        margin-top: 13px;
+
+        &.active {
+            border-bottom: 1px solid var(--uf-bg-color);
+            background-color: var(--uf-bg-color);
+            color: var(--uf-active-tab-text-color);
+        }
+
+        &:last-child {
+            margin-left: -1px;
+        }
+    }
+}

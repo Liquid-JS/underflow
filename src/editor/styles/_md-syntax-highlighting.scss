@@ -1,0 +1,137 @@
+@use "shared";
+
+@each $level, $size in shared.$heading-font-sizes {
+    .uf-md-heading#{$level} {
+        font-size: $size;
+    }
+}
+
+.uf-md-heading.uf-md-delimiter.setext {
+    line-height: 15px;
+}
+
+.uf-md-strong,
+.uf-md-heading,
+.uf-md-list-item-style,
+.uf-md-list-item .uf-md-meta {
+    font-weight: bold;
+}
+
+.uf-md-emph {
+    font-style: italic;
+}
+
+.uf-md-strike {
+    text-decoration: line-through;
+
+    &.uf-md-delimiter {
+        text-decoration: none;
+    }
+}
+
+// several of the colour rules below apply to the same token: their order decides which colour wins
+.uf-md-delimiter,
+.uf-md-thematic-break,
+.uf-md-link,
+.uf-md-table,
+.uf-md-block-quote {
+    color: #ccc;
+}
+
+.uf-md-code.uf-md-delimiter {
+    color: #aaa;
+}
+
+.uf-md-meta,
+.uf-md-html,
+.uf-md-link.uf-md-link-url.uf-md-marked-text {
+    color: #999;
+}
+
+.uf-md-block-quote .uf-md-marked-text,
+.uf-md-list-item .uf-md-meta {
+    color: #555;
+}
+
+.uf-md-table .uf-md-table-cell {
+    color: #222;
+}
+
+.uf-md-link.uf-md-link-desc.uf-md-marked-text,
+.uf-md-list-item-style.uf-md-list-item-odd {
+    color: hsl(211, 76%, 40%);
+}
+
+.uf-md-list-item-style.uf-md-list-item-even {
+    color: hsl(0, 56%, 50%);
+}
+
+.uf-md-code.uf-md-marked-text {
+    color: hsl(345, 37%, 50%);
+}
+
+.uf-md-code {
+    background-color: #f9f2f4;
+    padding: 2px 0;
+    letter-spacing: -0.3px;
+
+    &.uf-md-start {
+        padding-left: 2px;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+    }
+
+    &.uf-md-end {
+        padding-right: 2px;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+    }
+}
+
+.uf-md-code-block-line-background {
+    background-color: #f5f7f8;
+}
+
+.uf-md-code-block-line-background.start,
+.uf-md-custom-block-line-background.start {
+    margin-top: 2px;
+}
+
+.uf-md-code,
+.uf-md-code-block {
+    font-family:
+        Consolas,
+        Courier,
+        "Lucida Grande",
+        "나눔바른고딕",
+        "Nanum Barun Gothic",
+        "맑은고딕",
+        "Malgun Gothic",
+        sans-serif;
+}
+
+.uf-md-custom-block {
+    color: #452d6b;
+
+    &-line-background {
+        background-color: #f9f7fd;
+    }
+
+    .uf-md-delimiter {
+        color: #b8b3c0;
+    }
+
+    .uf-md-meta {
+        color: #5200d0;
+    }
+}
+
+// the text of a widget, with the parts its toSource() collapses while the cursor is outside it
+.uf-md-widget {
+    border-radius: 2px;
+    background-color: var(--uf-md-widget-bg-color);
+}
+
+.uf-md-widget-collapsed {
+    display: none;
+}

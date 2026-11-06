@@ -1,0 +1,15 @@
+@media only screen and (width <= 480px) {
+    .uf-popup {
+        max-width: none;
+        width: 100%;
+        box-sizing: border-box;
+        left: 0 !important;
+        margin-left: 0;
+    }
+
+    .uf-dropdown-toolbar {
+        height: auto;
+        max-width: none;
+        flex-wrap: wrap;
+    }
+}

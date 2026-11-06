@@ -1,0 +1,148 @@
+.uf-default-ui-toolbar {
+    display: flex;
+    padding: 0 25px;
+    height: 45px;
+    background-color: var(--uf-toolbar-bg-color);
+    border-bottom: 1px solid var(--uf-divider-color);
+    border-radius: 3px 3px 0 0;
+
+    button {
+        box-sizing: border-box;
+        cursor: pointer;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border-radius: 3px;
+        margin: 7px 5px;
+        border: 1px solid var(--uf-toolbar-bg-color);
+
+        &:not(:disabled):hover {
+            border: 1px solid var(--uf-toolbar-button-hover-border-color);
+            background-color: var(--uf-toolbar-button-hover-bg-color);
+        }
+
+        &.active {
+            border: 1px solid var(--uf-toolbar-button-active-border-color);
+            background-color: var(--uf-toolbar-button-hover-bg-color);
+        }
+    }
+
+    // scroll sync switch: a "Scroll" label, a hidden checkbox and the switch drawn after it
+    .scroll-sync {
+        display: inline-block;
+        position: relative;
+        width: 70px;
+        height: 10px;
+        text-align: center;
+        line-height: 10px;
+        color: var(--uf-scroll-sync-color);
+        cursor: pointer;
+
+        &:before {
+            content: "Scroll";
+            position: absolute;
+            left: 0;
+            font-size: 14px;
+        }
+
+        &.active:before {
+            color: var(--uf-primary-color);
+        }
+
+        input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+    }
+
+    .switch {
+        position: absolute;
+        top: 0;
+        left: 45px;
+        right: 0;
+        bottom: 0;
+        background-color: var(--uf-switch-bg-color);
+        transition: 0.4s;
+        border-radius: 50px;
+
+        &:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            // stylelint-disable-next-line length-zero-no-unit -- kept as written so the compiled CSS stays the same
+            left: 0px;
+            bottom: -2px;
+            background-color: var(--uf-switch-knob-color);
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+    }
+
+    input:checked + .switch {
+        background-color: var(--uf-switch-checked-bg-color);
+
+        &:before {
+            background-color: var(--uf-primary-color);
+            transform: translateX(12px);
+        }
+    }
+}
+
+.uf-toolbar {
+    height: 46px;
+    box-sizing: border-box;
+
+    &.wrap {
+        height: unset;
+
+        .uf-default-ui-toolbar {
+            height: unset;
+            flex-wrap: wrap;
+        }
+
+        .uf-toolbar-group {
+            flex-wrap: wrap;
+        }
+    }
+
+    &-divider {
+        display: inline-block;
+        width: 1px;
+        height: 18px;
+        background-color: var(--uf-toolbar-divider-color);
+        margin: 14px 12px;
+    }
+
+    &-group {
+        display: flex;
+    }
+
+    &-item-wrapper {
+        margin: 7px 5px;
+        height: 32px;
+        line-height: 32px;
+    }
+}
+
+.uf-dropdown-toolbar {
+    position: absolute;
+    z-index: 30;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgb(0, 0, 0, 0.08);
+    border: 1px solid var(--uf-border-color);
+    background-color: var(--uf-toolbar-bg-color);
+    display: flex;
+    flex-wrap: wrap;
+
+    .scroll-sync {
+        margin: 0 5px;
+    }
+}
+
+// "Active Button" description that the active toolbar button points to with aria-describedby
+// stylelint-disable-next-line selector-max-id -- the element only has this id
+#uf-active-button-desc {
+    display: none;
+}

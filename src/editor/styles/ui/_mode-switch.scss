@@ -1,0 +1,32 @@
+.uf-mode-switch {
+    background-color: var(--uf-bg-color);
+    border-top: 1px solid var(--uf-border-color);
+    font-size: 12px;
+    text-align: right;
+    height: 28px;
+    padding-right: 10px;
+    border-radius: 0 0 3px 3px;
+
+    .tab-item {
+        display: inline-block;
+        width: 96px;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        background: var(--uf-toolbar-bg-color);
+        color: var(--uf-muted-text-color);
+        margin-top: -1px;
+        margin-right: -1px;
+        cursor: pointer;
+        border: 1px solid var(--uf-tab-border-color);
+        border-radius: 0 0 4px 4px;
+        font-weight: 500;
+        box-sizing: border-box;
+
+        &.active {
+            border-top: 1px solid var(--uf-bg-color);
+            background-color: var(--uf-bg-color);
+            color: var(--uf-active-tab-text-color);
+        }
+    }
+}

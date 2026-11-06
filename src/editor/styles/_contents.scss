@@ -1,0 +1,525 @@
+@use "shared";
+
+/*
+  z-index basis
+  -1: pseudo element
+  20 - preview, wysiwyg
+  30 - wysiwyg code block language editor, popup, context menu
+  40 - tooltip
+*/
+.ProseMirror {
+    font-family: shared.$font-family;
+    color: #222;
+    font-size: 13px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100% - 36px);
+
+    .placeholder {
+        color: #999;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &-selectednode {
+        outline: none;
+    }
+}
+
+table.ProseMirror-selectednode,
+.html-block.ProseMirror-selectednode {
+    border-radius: 2px;
+    outline: 2px solid #00a9ff;
+}
+
+.uf-contents {
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    font-family: shared.$font-family;
+    z-index: 20;
+
+    *:not(table) {
+        line-height: 160%;
+        box-sizing: content-box;
+    }
+
+    i,
+    cite,
+    em,
+    var,
+    address,
+    dfn {
+        font-style: italic;
+    }
+
+    strong {
+        font-weight: bold;
+    }
+
+    p {
+        margin: 10px 0;
+        color: #222;
+    }
+
+    > h1:first-of-type,
+    > div > div:first-of-type h1 {
+        margin-top: 14px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: bold;
+        color: #222;
+    }
+
+    h1 {
+        font-size: 24px;
+        line-height: 28px;
+        border-bottom: 3px double #999;
+        // stylelint-disable-next-line shorthand-property-no-redundant-values -- kept as written so the compiled CSS stays the same
+        margin: 52px 0 15px 0;
+        padding-bottom: 7px;
+    }
+
+    h2 {
+        font-size: 22px;
+        line-height: 23px;
+        border-bottom: 1px solid #dbdbdb;
+        // stylelint-disable-next-line shorthand-property-no-redundant-values -- as above
+        margin: 20px 0 13px 0;
+        padding-bottom: 7px;
+    }
+
+    h3 {
+        font-size: 20px;
+        margin: 18px 0 2px;
+    }
+
+    h4 {
+        font-size: 18px;
+        margin: 10px 0 2px;
+    }
+
+    h3,
+    h4 {
+        line-height: 18px;
+    }
+
+    h5 {
+        font-size: 16px;
+    }
+
+    h6 {
+        font-size: 14px;
+    }
+
+    h5,
+    h6 {
+        line-height: 17px;
+        margin: 9px 0 -4px;
+    }
+
+    del {
+        color: #999;
+    }
+
+    blockquote {
+        margin: 14px 0;
+        border-left: 4px solid #e5e5e5;
+        padding: 0 16px;
+        color: #999;
+
+        p,
+        ul,
+        ol {
+            color: #999;
+        }
+
+        > :first-child {
+            margin-top: 0;
+        }
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    pre,
+    code {
+        font-family:
+            Consolas,
+            Courier,
+            "Apple SD 산돌고딕 Neo",
+            -apple-system,
+            "Lucida Grande",
+            "Apple SD Gothic Neo",
+            "맑은 고딕",
+            "Malgun Gothic",
+            "Segoe UI",
+            "돋움",
+            dotum,
+            sans-serif;
+        border: 0;
+        border-radius: 0;
+    }
+
+    pre {
+        margin: 2px 0 8px;
+        padding: 18px;
+        background-color: #f4f7f8;
+
+        code {
+            padding: 0;
+            color: inherit;
+            white-space: pre-wrap;
+            background-color: transparent;
+        }
+    }
+
+    code {
+        color: #c1798b;
+        background-color: #f9f2f4;
+        padding: 2px 3px;
+        letter-spacing: -0.3px;
+        border-radius: 2px;
+    }
+
+    img {
+        margin: 4px 0 10px;
+        box-sizing: border-box;
+        vertical-align: top;
+        max-width: 100%;
+    }
+
+    table {
+        border: 1px solid rgb(0, 0, 0, 0.1);
+        margin: 12px 0 14px;
+        color: #222;
+        width: auto;
+        border-collapse: collapse;
+        box-sizing: border-box;
+
+        th,
+        td {
+            border: 1px solid rgb(0, 0, 0, 0.1);
+            padding: 5px 14px 5px 12px;
+            height: 32px;
+        }
+
+        th {
+            background-color: #555;
+            font-weight: 300;
+            color: #fff;
+            padding-top: 6px;
+        }
+    }
+
+    th {
+        p {
+            margin: 0;
+            color: #fff;
+        }
+
+        &.uf-cell-selected {
+            background-color: #908f8f;
+        }
+    }
+
+    td {
+        p {
+            margin: 0;
+            padding: 0 2px;
+        }
+
+        &.uf-cell-selected {
+            background-color: #d8dfec;
+        }
+    }
+
+    // lists draw their own bullets and numbers
+    ul,
+    menu,
+    ol,
+    dir {
+        display: block;
+        list-style-type: none;
+        padding-left: 24px;
+        margin: 6px 0 10px;
+        color: #222;
+    }
+
+    ol {
+        list-style-type: none;
+        counter-reset: li;
+
+        > li {
+            counter-increment: li;
+        }
+    }
+
+    ul > li:before,
+    ol > li:before {
+        display: inline-block;
+        position: absolute;
+    }
+
+    ul > li:before {
+        content: "";
+        margin-top: 6px;
+        margin-left: -17px;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: #ccc;
+    }
+
+    ol > li:before {
+        content: "." counter(li);
+        margin-left: -28px;
+        width: 24px;
+        text-align: right;
+        direction: rtl;
+        color: #aaa;
+    }
+
+    ul,
+    ol {
+        ul,
+        ol {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+        li {
+            position: relative;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+
+    hr {
+        border-top: 1px solid #eee;
+        margin: 16px 0;
+    }
+
+    a {
+        text-decoration: underline;
+        color: #4b96e6;
+
+        &:hover {
+            color: #1f70de;
+        }
+    }
+
+    // an image in a link in WYSIWYG, with a button to edit the link on hover
+    .image-link {
+        position: relative;
+
+        &:hover .uf-image-link-button {
+            display: flex;
+        }
+    }
+
+    .uf-image-link-button {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        border-radius: 50%;
+        border: 1px solid #c9ccd5;
+        background-color: #fff;
+        color: var(--uf-icon-color);
+        box-shadow: 0 2px 4px 0 rgb(0, 0, 0, 0.08);
+        cursor: pointer;
+
+        .uf-icon {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    .task-list-item {
+        border: 0;
+        list-style: none;
+        padding-left: 24px;
+        margin-left: -24px;
+
+        // the checkbox, drawn in CSS; the WYSIWYG editor toggles the task when it's clicked
+        &:before {
+            content: "";
+            box-sizing: border-box;
+            margin-left: 0;
+            margin-top: 0;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            background-color: #fff;
+            height: 18px;
+            width: 18px;
+            position: absolute;
+            left: 0;
+            top: 1px;
+        }
+
+        &.checked:before {
+            border: none;
+            background-color: #4b96e6;
+
+            // a rounded box with the check mark cut out
+            clip-path: path(evenodd, "M16 0c1.105 0 2 .895 2 2v14c0 1.105-.895 2-2 2H2c-1.105 0-2-.895-2-2V2C0 .895.895 0 2 0h14zm-1.793 5.293c-.39-.39-1.024-.39-1.414 0L7.5 10.585 5.207 8.293l-.094-.083c-.392-.305-.96-.278-1.32.083-.39.39-.39 1.024 0 1.414l3 3 .094.083c.392.305.96.278 1.32-.083l6-6 .083-.094c.305-.392.278-.96-.083-1.32z");
+        }
+    }
+
+    .uf-ww-code-block {
+        position: relative;
+    }
+
+    // language label of a WYSIWYG code block, clicked to edit the language
+    .uf-code-block-label {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        height: 27px;
+        margin: 0;
+        padding: 0 6px 0 10px;
+        border: none;
+        border-radius: 2px;
+        font-family: inherit;
+        font-weight: bold;
+        font-size: 13px;
+        color: #333;
+        background-color: #e5e9ea;
+        cursor: pointer;
+
+        .uf-icon {
+            width: 16px;
+            height: 16px;
+            color: var(--uf-icon-color);
+        }
+    }
+}
+
+// custom blocks in the WYSIWYG editor: the rendered view with an edit button, and the editor
+.uf-custom-block {
+    .uf-custom-block-editor {
+        background: #f9f7fd;
+        color: #452d6b;
+        border: solid 1px #dbd4ea;
+    }
+
+    .uf-custom-block-view {
+        position: relative;
+        padding: 9px 13px 8px 12px;
+
+        .tool {
+            position: absolute;
+            right: 10px;
+            top: 7px;
+            display: none;
+        }
+    }
+
+    &.ProseMirror-selectednode .uf-custom-block-view {
+        border: solid 1px #dbd4ea;
+        border-radius: 2px;
+
+        .tool {
+            display: block;
+        }
+    }
+
+    &-view {
+        button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+            width: 23px;
+            height: 23px;
+            margin-left: 8px;
+            padding: 0;
+            border: solid 1px #cccccc;
+            background-color: transparent;
+            color: var(--uf-icon-color);
+            cursor: pointer;
+
+            .uf-icon {
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        .info {
+            font-size: 13px;
+            font-weight: bold;
+            color: #5200d0;
+            vertical-align: middle;
+        }
+    }
+}
+
+// input to edit the language of a WYSIWYG code block
+.uf-ww-code-block-language {
+    position: fixed;
+    display: inline-block;
+    width: 100px;
+    height: 27px;
+    right: 35px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    background-color: #fff;
+    z-index: 30;
+
+    input {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0 10px;
+        height: 100%;
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        outline: none;
+    }
+}
+
+.uf-contents-placeholder:before {
+    content: attr(data-placeholder);
+    color: grey;
+    line-height: 160%;
+    position: absolute;
+}
+
+// minimum heights of blocks in the markdown preview
+.uf-md-preview .uf-contents {
+    h1 {
+        min-height: 28px;
+    }
+
+    h2 {
+        min-height: 23px;
+    }
+
+    blockquote {
+        min-height: 20px;
+    }
+
+    li {
+        min-height: 22px;
+    }
+}

@@ -1,0 +1,52 @@
+@use "../shared";
+
+.uf-default-ui {
+    position: relative;
+    border: 1px solid var(--uf-border-color);
+    height: 100%;
+    font-family: shared.$font-family;
+    border-radius: 4px;
+
+    &.hidden {
+        display: none;
+    }
+
+    .ProseMirror {
+        padding: 18px 25px;
+    }
+
+    // not the buttons widgets render in the content
+    button:not(.uf-widget *) {
+        color: var(--uf-text-color);
+        height: 28px;
+        font-size: 13px;
+        cursor: pointer;
+        border: none;
+        border-radius: 2px;
+    }
+
+    .uf-ok-button {
+        min-width: 63px;
+        height: 32px;
+        background-color: var(--uf-primary-color);
+        color: var(--uf-primary-text-color);
+        outline-color: var(--uf-primary-hover-color);
+
+        &:hover {
+            background-color: var(--uf-primary-hover-color);
+        }
+    }
+
+    .uf-close-button {
+        min-width: 63px;
+        height: 32px;
+        background-color: var(--uf-toolbar-bg-color);
+        border: 1px solid var(--uf-button-border-color);
+        margin-right: 5px;
+        outline-color: var(--uf-button-hover-border-color);
+
+        &:hover {
+            border-color: var(--uf-button-hover-border-color);
+        }
+    }
+}
