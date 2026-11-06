@@ -6,24 +6,14 @@ import { getWidgetText, isWidgetMdNode } from '../../widget/rules'
 import { getChildrenHTML, getHTMLAttrsByHTMLString } from '../../wysiwyg/nodes/html'
 import { reBR, reHTMLTag, reHTMLComment } from '../../utils/constants'
 import { sanitizeHTML } from '../../sanitizer/html-sanitizer'
+import { MdNode, HeadingMdNode, CodeBlockMdNode, ListItemMdNode, LinkMdNode, TableCellMdNode, CustomBlockMdNode, TableMdNode } from '../../../parser/types/node'
+import { HTMLConvertorMap, OpenTagToken } from '../../../parser/types/renderer'
+import { Renderer } from '../../../parser/html/renderer'
 import {
     htmlToWwConvertors,
     getTextWithoutTrailingNewline,
     isListNode
 } from './html-to-ww-convertors'
-import {
-    MdNode,
-    HeadingMdNode,
-    CodeBlockMdNode,
-    ListItemMdNode,
-    LinkMdNode,
-    TableCellMdNode,
-    CustomBlockMdNode,
-    TableMdNode,
-    HTMLConvertorMap,
-    OpenTagToken,
-    Renderer
-} from '@liquid-js/underflow/parser'
 
 function isBRTag(node: MdNode) {
     return node.type === 'htmlInline' && reBR.test(node.literal!)

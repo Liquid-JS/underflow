@@ -1,7 +1,7 @@
 import { EventEmitter } from '../event/event-emitter'
 import { getTextContent } from '../../../test/markdown'
+import { MarkdownDocument } from '../../parser/markdown-document'
 import { MdEditor } from './md-editor'
-import { MarkdownDocument } from '@liquid-js/underflow/parser'
 
 function getSelectedText() {
     return document.getSelection()!.toString()

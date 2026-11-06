@@ -6,8 +6,8 @@ import { WysiwygEditor } from '../wysiwyg/ww-editor'
 import { EventEmitter } from '../event/event-emitter'
 import { WwToDOMAdaptor } from '../wysiwyg/adaptor/ww-to-dom-adaptor'
 import { cls } from '../utils/dom'
+import type { HTMLConvertorMap } from '../../parser/types/renderer'
 import { CommandManager } from './command-manager'
-import type { HTMLConvertorMap } from '@liquid-js/underflow/parser'
 
 const CODE_BLOCK_CLS = cls('ww-code-block')
 

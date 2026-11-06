@@ -1,11 +1,11 @@
 import { cls } from '../utils/dom'
+import type { Emitter } from '../../../editor/types/event'
 import {
     LanguageSelectBox,
     WRAPPER_CLASS_NAME,
     INPUT_CLASS_NANE,
     LIST_CLASS_NAME
 } from './language-select-box'
-import type { Emitter } from '@liquid-js/underflow'
 
 Element.prototype.scrollIntoView = vi.fn()
 

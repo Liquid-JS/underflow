@@ -11,7 +11,7 @@ import {
 } from '@liquid-js/underflow'
 import './styles.scss'
 import { deDE } from '@liquid-js/underflow/i18n/de-de'
-import codeSyntaxHighlight, { type PluginOptions } from '@liquid-js/underflow/plugins/code-syntax-highlight'
+import { codeSyntaxHighlightPlugin, type PluginOptions } from '@liquid-js/underflow/plugins/code-syntax-highlight'
 import {
     MarkdownDocument,
     Parser,
@@ -48,7 +48,7 @@ function smokePlugin(context: PluginContext, options: { className: string }): Pl
 
 const highlightOptions: PluginOptions = { highlighter: hljs, lineNumbers: true }
 const plugins: EditorPlugin[] = [
-    [codeSyntaxHighlight, highlightOptions],
+    [codeSyntaxHighlightPlugin, highlightOptions],
     [smokePlugin, { className: 'smoke-strong' }]
 ]
 

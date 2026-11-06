@@ -2,12 +2,12 @@ import { Plugin, EditorState } from 'prosemirror-state'
 import { EditorView, NodeView } from 'prosemirror-view'
 import { Node } from 'prosemirror-model'
 
+import { CustomParserMap } from '../../parser/types/parser'
 import { CustomHTMLRenderer } from './editor'
 import { Emitter } from './event'
 import { ToMdConvertorMap } from './convertor'
 import { Dispatch, Payload, DefaultPayload } from './spec'
 import { ToolbarItemOptions } from './ui'
-import { CustomParserMap } from '@liquid-js/underflow/parser'
 
 export type PluginProp = (eventEmitter?: Emitter) => Plugin
 

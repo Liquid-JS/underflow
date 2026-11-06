@@ -3,7 +3,7 @@ import { ToDOMAdaptor } from '../../types/convertor'
 import { WwToDOMAdaptor } from '../adaptor/ww-to-dom-adaptor'
 import { WysiwygEditor } from '../ww-editor'
 import { EventEmitter } from '../../event/event-emitter'
-import { HTMLConvertorMap } from '@liquid-js/underflow/parser'
+import { HTMLConvertorMap } from '../../../parser/types/renderer'
 
 let wwe: WysiwygEditor; let em: EventEmitter; let toDOMAdaptor: ToDOMAdaptor
 

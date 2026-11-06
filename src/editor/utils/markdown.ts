@@ -1,13 +1,4 @@
-import {
-    CodeBlockMdNode,
-    CustomBlockMdNode,
-    LinkMdNode,
-    ListItemMdNode,
-    MdNode,
-    MdNodeType,
-    TableCellMdNode,
-    MdPos
-} from '@liquid-js/underflow/parser'
+import { CodeBlockMdNode, CustomBlockMdNode, LinkMdNode, ListItemMdNode, MdNode, MdNodeType, TableCellMdNode, Pos as MdPos } from '../../parser/types/node'
 
 export function hasSpecificTypeAncestor(mdNode: MdNode, ...types: MdNodeType[]) {
     while (mdNode && mdNode.parent && mdNode.parent.type !== 'document') {

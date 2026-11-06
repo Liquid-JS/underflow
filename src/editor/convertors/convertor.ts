@@ -3,12 +3,13 @@ import { Node as ProsemirrorNode, Schema } from 'prosemirror-model'
 import { ToWwConvertorMap, ToMdConvertors, ToMdConvertorMap } from '../types/convertor'
 import { Emitter } from '../types/event'
 
+import { HTMLConvertorMap } from '../../parser/types/renderer'
+import { MdNode, Pos as MdPos } from '../../parser/types/node'
 import { createWwConvertors } from './to-wysiwyg/to-ww-convertors'
 import { ToWwConvertorState } from './to-wysiwyg/to-ww-convertor-state'
 
 import { createMdConvertors } from './to-markdown/to-md-convertors'
 import { ToMdConvertorState } from './to-markdown/to-md-convertor-state'
-import { HTMLConvertorMap, MdNode, MdPos } from '@liquid-js/underflow/parser'
 
 export class Convertor {
     private readonly schema: Schema

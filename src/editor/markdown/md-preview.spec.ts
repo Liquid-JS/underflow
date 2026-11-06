@@ -1,9 +1,10 @@
 import { EventEmitter } from '../event/event-emitter'
 import * as sanitizer from '../sanitizer/html-sanitizer'
 import { createHTMLrenderer, removeDataAttr } from '../../../test/markdown'
+import { Pos as MdPos } from '../../parser/types/node'
+import { MarkdownDocument } from '../../parser/markdown-document'
 import { MdEditor } from './md-editor'
 import { MarkdownPreview, CLASS_HIGHLIGHT } from './md-preview'
-import { MdPos, MarkdownDocument } from '@liquid-js/underflow/parser'
 
 function getHTML(preview: MarkdownPreview) {
     return removeDataAttr(preview.getHTML())

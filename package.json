@@ -37,8 +37,7 @@
         "*.css"
     ],
     "files": [
-        "lib",
-        "LICENSE"
+        "lib"
     ],
     "dependencies": {
         "entities": "^9.0.0",

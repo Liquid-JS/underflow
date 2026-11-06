@@ -6,7 +6,7 @@ import { EventEmitter } from '../../event/event-emitter'
 import { sanitizeHTML } from '../../sanitizer/html-sanitizer'
 import { CommandManager } from '../../commands/command-manager'
 import { getTextContent, TestEditorWithNoneDelayHistory, removeDataAttr } from '../../../../test/markdown'
-import { MarkdownDocument } from '@liquid-js/underflow/parser'
+import { MarkdownDocument } from '../../../parser/markdown-document'
 
 let mde: MdEditor
 let em: EventEmitter

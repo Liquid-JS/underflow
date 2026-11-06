@@ -5,6 +5,7 @@ import { keymap } from 'prosemirror-keymap'
 import { baseKeymap } from 'prosemirror-commands'
 import { InputRule, inputRules } from 'prosemirror-inputrules'
 import { history } from 'prosemirror-history'
+import { Sourcepos } from '../parser/types/node'
 import { WidgetStyle, EditorType, EditorPos, Base, NodeRangeInfo } from './types/editor'
 import { Emitter } from './types/event'
 import { Context, EditorAllCommandMap } from './types/spec'
@@ -17,7 +18,6 @@ import { getDefaultCommands } from './commands/default-commands'
 import { placeholder } from './plugins/placeholder'
 import { addWidget } from './plugins/popup-widget'
 import { dropImage } from './plugins/drop-image'
-import { Sourcepos } from '@liquid-js/underflow/parser'
 
 export abstract class EditorBase implements Base {
     el: HTMLElement

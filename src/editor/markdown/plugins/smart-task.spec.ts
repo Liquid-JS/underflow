@@ -1,7 +1,7 @@
 import { MdEditor } from '../md-editor'
 import { EventEmitter } from '../../event/event-emitter'
 import { getTextContent } from '../../../../test/markdown'
-import { MarkdownDocument } from '@liquid-js/underflow/parser'
+import { MarkdownDocument } from '../../../parser/markdown-document'
 
 let mde: MdEditor; let em: EventEmitter
 

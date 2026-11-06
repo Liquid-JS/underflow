@@ -1,8 +1,8 @@
 import hljs from 'highlight.js/lib/common'
+import { codeSyntaxHighlightPlugin } from '../src/plugins/code-syntax-highlight.ts'
+import { Editor } from '../src/index.ts'
+import { Viewer } from '../src/viewer.ts'
 import content from './content.md?raw'
-import { Editor } from '@liquid-js/underflow'
-import codeSyntaxHighlight from '@liquid-js/underflow/plugins/code-syntax-highlight'
-import { Viewer } from '@liquid-js/underflow/viewer'
 import 'highlight.js/styles/github.css'
 import '../src/plugins/code-syntax-highlight/styles/plugin.scss'
 import '../src/editor/styles/editor.scss'
@@ -15,13 +15,13 @@ const editor = new Editor({
     initialEditType: 'markdown',
     previewStyle: 'vertical',
     initialValue: content,
-    plugins: [[codeSyntaxHighlight, { highlighter: hljs, lineNumbers: true }]]
+    plugins: [[codeSyntaxHighlightPlugin, { highlighter: hljs, lineNumbers: true }]]
 })
 
 const viewer = new Viewer({
     el: document.querySelector<HTMLElement>('#viewer')!,
     initialValue: content,
-    plugins: [[codeSyntaxHighlight, { highlighter: hljs, lineNumbers: true }]]
+    plugins: [[codeSyntaxHighlightPlugin, { highlighter: hljs, lineNumbers: true }]]
 })
 
 editor.on('change', () => viewer.setMarkdown(editor.getMarkdown()))

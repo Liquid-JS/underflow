@@ -1,8 +1,8 @@
 import hljs from 'highlight.js/lib/core'
 import xml from 'highlight.js/lib/languages/xml'
 import type { LineNumberOptions } from '../utils/highlight'
+import type { MdNode } from '../../../parser/types/node'
 import { getHTMLRenderers } from './to-html-renderers'
-import type { MdNode } from '@liquid-js/underflow'
 
 hljs.registerLanguage('xml', xml)
 

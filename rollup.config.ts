@@ -17,8 +17,7 @@ const root = dirname(fileURLToPath(import.meta.url))
 const pkg = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'))
 
 const peers = [...Object.keys(pkg.peerDependencies ?? {}), ...Object.keys(pkg.dependencies ?? {})]
-const external = (id: string) =>
-    id === pkg.name || id.startsWith(`${pkg.name}/`) || peers.some((p) => id === p || id.startsWith(`${p}/`))
+const external = (id: string) => peers.some((p) => id === p || id.startsWith(`${p}/`))
 
 const locales = (await readdir(join(root, 'src/editor/i18n'))).filter(
     (f) => f.endsWith('.ts') && f !== 'i18n.ts' && !f.endsWith('.spec.ts')

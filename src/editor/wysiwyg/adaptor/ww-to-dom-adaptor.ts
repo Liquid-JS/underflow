@@ -4,18 +4,10 @@ import { CustomHTMLRenderer, LinkAttributes } from '../../types/editor'
 import { getHTMLRenderConvertors } from '../../markdown/html-render-convertors'
 import { last } from '../../utils/common'
 import { setAttributes } from '../../utils/dom'
+import { Context, HTMLConvertorMap, HTMLToken, OpenTagToken, RawHTMLToken, TextToken } from '../../../parser/types/renderer'
+import { MdNode, MdNodeType } from '../../../parser/types/node'
+import { Renderer } from '../../../parser/html/renderer'
 import { createMdLikeNode, isContainer, isPmNode } from './md-like-node'
-import {
-    Context,
-    HTMLConvertorMap,
-    HTMLToken,
-    MdNode,
-    MdNodeType,
-    OpenTagToken,
-    RawHTMLToken,
-    Renderer,
-    TextToken
-} from '@liquid-js/underflow/parser'
 
 interface TokenToDOM<T> {
     openTag: (token: HTMLToken, stack: T[]) => void

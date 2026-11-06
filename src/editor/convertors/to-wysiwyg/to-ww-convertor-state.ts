@@ -3,7 +3,7 @@ import { Schema, Node, NodeType, Mark, MarkType, DOMParser } from 'prosemirror-m
 import { ToWwConvertorMap, StackItem, Attrs, InfoForPosSync } from '../../types/convertor'
 import { last } from '../../utils/common'
 import { isContainer, getChildrenText } from '../../utils/markdown'
-import { MdNode } from '@liquid-js/underflow/parser'
+import { MdNode } from '../../../parser/types/node'
 
 export function mergeMarkText(a: Node, b: Node) {
     if (a.isText && b.isText && Mark.sameSet(a.marks, b.marks)) {

@@ -1,3 +1,4 @@
+import { MarkdownDocument } from '../parser/markdown-document'
 import { CustomHTMLRenderer, ViewerOptions } from './types/editor'
 import { Emitter, EventName, Handler } from './types/event'
 import { forEachOwnProperties } from './utils/native'
@@ -8,7 +9,6 @@ import { EventEmitter } from './event/event-emitter'
 import { cls } from './utils/dom'
 import { registerTagWhitelistIfPossible, sanitizeHTML } from './sanitizer/html-sanitizer'
 import { WidgetRules } from './widget/rules'
-import { MarkdownDocument } from '@liquid-js/underflow/parser'
 
 function registerHTMLTagToWhitelist(convertorMap: CustomHTMLRenderer) {
     ['htmlBlock', 'htmlInline'].forEach((htmlType) => {

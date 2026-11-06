@@ -1,8 +1,8 @@
 import { Schema } from 'prosemirror-model'
 import { Transaction, Plugin, Command } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
+import { MarkdownDocument } from '../../parser/markdown-document'
 import { Emitter } from './event'
-import { MarkdownDocument } from '@liquid-js/underflow/parser'
 
 export interface Context {
     schema: Schema

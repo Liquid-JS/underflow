@@ -3,7 +3,7 @@ import { EditorView } from 'prosemirror-view'
 import { MdContext } from '../../types/spec'
 import { findClosestNode } from '../../utils/markdown'
 import { getRangeInfo, getNodeContentOffsetRange } from '../helper/pos'
-import { MdPos } from '@liquid-js/underflow/parser'
+import { Pos as MdPos } from '../../../parser/types/node'
 
 const reTaskMarkerKey = /x|backspace/i
 const reTaskMarker = /^\[(\s*)(x?)(\s*)\](?:\s+)/i

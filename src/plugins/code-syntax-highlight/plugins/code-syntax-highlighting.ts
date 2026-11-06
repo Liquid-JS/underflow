@@ -2,7 +2,7 @@ import type { HLJSApi } from 'highlight.js'
 import type { Node as ProsemirrorNode } from 'prosemirror-model'
 import type { Decoration } from 'prosemirror-view'
 import { getLineStarts, highlightToRanges, LineNumberOptions } from '../utils/highlight'
-import type { PluginContext } from '@liquid-js/underflow'
+import type { PluginContext } from '../../../editor/types/editor'
 
 const NODE_TYPE = 'codeBlock'
 

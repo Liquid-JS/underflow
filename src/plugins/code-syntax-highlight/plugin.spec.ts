@@ -2,8 +2,8 @@ import { source } from 'common-tags'
 
 import hljs from 'highlight.js/lib/core'
 import yaml from 'highlight.js/lib/languages/yaml'
-import codeSyntaxHighlightPlugin from '../code-syntax-highlight'
-import { Editor } from '@liquid-js/underflow'
+import { codeSyntaxHighlightPlugin } from '../code-syntax-highlight'
+import { Editor } from '../../editor/editor'
 
 hljs.registerLanguage('yaml', yaml)
 

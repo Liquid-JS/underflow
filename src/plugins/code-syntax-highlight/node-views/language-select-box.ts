@@ -1,7 +1,7 @@
 import { removeNode, cls } from '../utils/dom'
 import { css } from '../../../editor/utils/native'
 import { icons } from '../../../editor/ui/icons'
-import type { Emitter } from '@liquid-js/underflow'
+import type { Emitter } from '../../../editor/types/event'
 
 export const WRAPPER_CLASS_NAME = 'code-block-language'
 export const INPUT_CLASS_NANE = 'code-block-language-input'

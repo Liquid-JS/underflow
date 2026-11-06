@@ -7,17 +7,7 @@ import {
     setOffsetPos
 } from '../../../utils/markdown'
 import { isFunction } from '../../../utils/native'
-import {
-    MdNodeType,
-    MdPos,
-    HeadingMdNode,
-    LinkMdNode,
-    CodeMdNode,
-    MdNode,
-    CodeBlockMdNode,
-    CustomBlockMdNode,
-    ListItemMdNode
-} from '@liquid-js/underflow/parser'
+import { MdNodeType, Pos as MdPos, HeadingMdNode, LinkMdNode, CodeMdNode, MdNode, CodeBlockMdNode, CustomBlockMdNode, ListItemMdNode } from '../../../../parser/types/node'
 
 const HEADING = 'heading'
 const BLOCK_QUOTE = 'blockQuote'

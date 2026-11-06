@@ -2,7 +2,8 @@ import { EditorState, Plugin } from 'prosemirror-state'
 import { MdContext } from '../../types/spec'
 import { ToolbarStateMap, ToolbarStateKeys } from '../../types/ui'
 import { traverseParentNodes, isListNode } from '../../utils/markdown'
-import { MdNode, MdPos, MarkdownDocument } from '@liquid-js/underflow/parser'
+import { MdNode, Pos as MdPos } from '../../../parser/types/node'
+import { MarkdownDocument } from '../../../parser/markdown-document'
 
 const defaultToolbarStateKeys: ToolbarStateKeys[] = [
     'taskList',

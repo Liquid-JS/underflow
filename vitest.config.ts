@@ -1,20 +1,11 @@
-import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitest/config'
 import { minifyTemplateLiterals } from 'rollup-plugin-minify-template-literals'
 import { minifyHtm } from './scripts/minify-htm.ts'
 import { svgText } from './scripts/svg-text.ts'
 
-const r = (path: string) => fileURLToPath(new URL(path, import.meta.url))
-
 export default defineConfig({
     // the templates are minified as in the build, so the tests run them as they're published
     plugins: [svgText(), minifyTemplateLiterals({ minify: { html: minifyHtm, css: false } })],
-    resolve: {
-        alias: [
-            { find: /^@liquid-js\/underflow\/parser$/, replacement: r('./src/parser.ts') },
-            { find: /^@liquid-js\/underflow$/, replacement: r('./src/index.ts') }
-        ]
-    },
     test: {
         globals: true,
         restoreMocks: false,

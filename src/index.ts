@@ -13,9 +13,9 @@ export type {
     LinkMdNode,
     ListData,
     HeadingMdNode,
-    CodeMdNode,
-    HTMLConvertorMap
-} from '@liquid-js/underflow/parser'
+    CodeMdNode
+} from './parser/types/node'
+export type { HTMLConvertorMap } from './parser/types/renderer'
 export type {
     EditorOptions,
     ViewerOptions,

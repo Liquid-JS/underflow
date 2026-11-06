@@ -5,9 +5,10 @@ import { EventEmitter } from '../../event/event-emitter'
 import { WysiwygEditor } from '../ww-editor'
 import { createHTMLSchemaMap } from '../nodes/html'
 import { sanitizeHTML } from '../../sanitizer/html-sanitizer'
+import { HeadingMdNode, CodeBlockMdNode } from '../../../parser/types/node'
+import { HTMLConvertorMap } from '../../../parser/types/renderer'
 import { createMdLikeNode } from './md-like-node'
 import { WwToDOMAdaptor } from './ww-to-dom-adaptor'
-import { HeadingMdNode, CodeBlockMdNode, HTMLConvertorMap } from '@liquid-js/underflow/parser'
 
 let wwe: WysiwygEditor; let em: EventEmitter; let toDOMAdaptor: ToDOMAdaptor
 

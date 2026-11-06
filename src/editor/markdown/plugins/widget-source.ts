@@ -5,7 +5,8 @@ import { Emitter } from '../../types/event'
 import { WidgetRules, getWidgetText, isWidgetMdNode } from '../../widget/rules'
 import { getStartPosListPerLine } from '../helper/pos'
 import { cls } from '../../utils/dom'
-import { MarkdownDocument, MdPos } from '@liquid-js/underflow/parser'
+import { MarkdownDocument } from '../../../parser/markdown-document'
+import { Pos as MdPos } from '../../../parser/types/node'
 
 const WIDGET_CLASS_NAME = cls('md-widget')
 const COLLAPSED_CLASS_NAME = cls('md-widget-collapsed')

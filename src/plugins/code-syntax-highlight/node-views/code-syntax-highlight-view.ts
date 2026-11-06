@@ -4,8 +4,8 @@ import type { Node as ProsemirrorNode } from 'prosemirror-model'
 import { cls } from '../utils/dom'
 import { isFunction } from '../../../editor/utils/native'
 import { createLanguageLabel } from '../../../editor/wysiwyg/nodeview/language-label'
+import type { Emitter } from '../../../editor/types/event'
 import { LanguageSelectBox, WRAPPER_CLASS_NAME as PICKER_CLASS_NAME } from './language-select-box'
-import type { Emitter } from '@liquid-js/underflow'
 
 type GetPos = (() => number) | boolean
 

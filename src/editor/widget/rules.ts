@@ -1,6 +1,6 @@
 import { Schema, Node as ProsemirrorNode } from 'prosemirror-model'
 import { WidgetRule } from '../types/editor'
-import { CustomInlineMdNode, MdNode } from '@liquid-js/underflow/parser'
+import { CustomInlineMdNode, MdNode } from '../../parser/types/node'
 
 export const WIDGET_CLASS_NAME = 'uf-widget'
 

@@ -1,6 +1,7 @@
 import { NodeType, MarkType, Schema, Node as ProsemirrorNode, Mark } from 'prosemirror-model'
+import { MdNode, MdNodeType, Pos as MdPos } from '../../parser/types/node'
+import { RendererOptions, HTMLToken } from '../../parser/types/renderer'
 import { WwNodeType, WwMarkType } from './wysiwyg'
-import { MdNode, MdNodeType, RendererOptions, HTMLToken, MdPos } from '@liquid-js/underflow/parser'
 
 export type Attrs = { [name: string]: any } | null
 

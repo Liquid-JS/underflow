@@ -6,20 +6,14 @@ import { keymap } from 'prosemirror-keymap'
 
 import type { EditorCore } from '../editor-core'
 import type { Viewer } from '../viewer'
+import { HTMLConvertor, Context as MdContext, HTMLToken, HTMLConvertorMap } from '../../parser/types/renderer'
+import { Pos as MdPos, Sourcepos } from '../../parser/types/node'
 import { Emitter } from './event'
 import { Context, EditorAllCommandMap, EditorCommandFn, SpecManager } from './spec'
 import { ToMdConvertorMap } from './convertor'
 import { ToolbarItemOptions } from './ui'
 import { PluginInfo } from './plugin'
 import { HTMLMdNode } from './markdown'
-import {
-    HTMLConvertor,
-    MdPos,
-    Sourcepos,
-    Context as MdContext,
-    HTMLToken,
-    HTMLConvertorMap
-} from '@liquid-js/underflow/parser'
 
 export type PreviewStyle = 'tab' | 'vertical'
 export type EditorType = 'markdown' | 'wysiwyg'

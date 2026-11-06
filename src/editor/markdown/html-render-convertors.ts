@@ -4,16 +4,8 @@ import { WidgetRules, getWidgetText, isWidgetMdNode } from '../widget/rules'
 import { getChildrenHTML, getHTMLAttrsByHTMLString } from '../wysiwyg/nodes/html'
 import { reHTMLTag } from '../utils/constants'
 import { isFunction } from '../utils/native'
-import {
-    HTMLConvertorMap,
-    MdNode,
-    ListItemMdNode,
-    CodeMdNode,
-    CodeBlockMdNode,
-    OpenTagToken,
-    Context,
-    HTMLConvertor
-} from '@liquid-js/underflow/parser'
+import { HTMLConvertorMap, OpenTagToken, Context, HTMLConvertor } from '../../parser/types/renderer'
+import { MdNode, ListItemMdNode, CodeMdNode, CodeBlockMdNode } from '../../parser/types/node'
 
 type TokenAttrs = Record<string, any>
 

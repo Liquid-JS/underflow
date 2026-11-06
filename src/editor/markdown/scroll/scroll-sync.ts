@@ -4,6 +4,7 @@ import { Emitter } from '../../types/event'
 import { isHTMLNode, getMdStartLine } from '../../utils/markdown'
 import { MarkdownPreview } from '../md-preview'
 import { MdEditor } from '../md-editor'
+import { MarkdownDocument } from '../../../parser/markdown-document'
 import { animate } from './animation'
 import { getAndSaveOffsetInfo } from './offset'
 import {
@@ -13,7 +14,6 @@ import {
     getParentNodeObj,
     getTotalOffsetTop
 } from './dom'
-import { MarkdownDocument } from '@liquid-js/underflow/parser'
 
 const EDITOR_BOTTOM_PADDING = 18
 

@@ -12,6 +12,8 @@ import { SpecManager } from '../spec/spec-manager'
 import { emitImageBlobHook, pasteImageOnly } from '../helper/image'
 import { createParagraph, createTextSelection } from '../helper/manipulation'
 import { WidgetRules } from '../widget/rules'
+import { Pos as MdPos } from '../../parser/types/node'
+import { MarkdownDocument } from '../../parser/markdown-document'
 import { widgetSource } from './plugins/widget-source'
 import { syntaxHighlight } from './plugins/syntax-highlight'
 import { previewHighlight } from './plugins/preview-highlight'
@@ -35,7 +37,6 @@ import { Html } from './marks/html'
 import { CustomBlock } from './marks/custom-block'
 import { getEditorToMdPos, getMdToEditorPos } from './helper/pos'
 import { smartTask } from './plugins/smart-task'
-import { MdPos, MarkdownDocument } from '@liquid-js/underflow/parser'
 
 interface MarkdownOptions {
     markdownDocument: MarkdownDocument

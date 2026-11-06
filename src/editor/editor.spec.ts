@@ -1,5 +1,6 @@
 import { oneLineTrim, stripIndents, source } from 'common-tags'
 import { createHTMLrenderer } from '../../test/markdown'
+import type { OpenTagToken } from '../parser/types/renderer'
 import { Emitter } from './types/event'
 import { EditorOptions, EditorType } from './types/editor'
 import { i18n } from './i18n/i18n'
@@ -7,7 +8,6 @@ import { Editor } from './editor'
 import { Viewer } from './viewer'
 import { cls } from './utils/dom'
 import * as imageHelper from './helper/image'
-import type { OpenTagToken } from '@liquid-js/underflow/parser'
 
 const HEADING_CLS = `${cls('md-heading')} ${cls('md-heading1')}`
 const DELIM_CLS = cls('md-delimiter')

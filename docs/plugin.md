@@ -18,7 +18,7 @@ Plugins are part of the `@liquid-js/underflow` package, so there's nothing extra
 peer dependencies. Import the plugin function from its entry point:
 
 ```js
-import codeSyntaxHighlight from '@liquid-js/underflow/plugins/code-syntax-highlight'
+import { codeSyntaxHighlightPlugin } from '@liquid-js/underflow/plugins/code-syntax-highlight'
 ```
 
 ### Using the Plugin in the Editor
@@ -50,11 +50,11 @@ For example, the `code-syntax-highlight` plugin takes a highlight.js instance as
 ```js
 import hljs from 'highlight.js'
 import { Editor } from '@liquid-js/underflow'
-import codeSyntaxHighlight from '@liquid-js/underflow/plugins/code-syntax-highlight'
+import { codeSyntaxHighlightPlugin } from '@liquid-js/underflow/plugins/code-syntax-highlight'
 
 const editor = new Editor({
     // ...
-    plugins: [[codeSyntaxHighlight, { highlighter: hljs }]]
+    plugins: [[codeSyntaxHighlightPlugin, { highlighter: hljs }]]
 })
 ```
 
@@ -155,7 +155,7 @@ interface ToMdConvertorReturnValues {
 import type { MdNode, PluginInfo } from '@liquid-js/underflow'
 import type { OpenTagToken } from '@liquid-js/underflow/parser'
 
-export default function myPlugin(): PluginInfo {
+export function myPlugin(): PluginInfo {
     return {
         toHTMLRenderers: {
             // load the images in the preview lazily

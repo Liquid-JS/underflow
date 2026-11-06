@@ -1,4 +1,4 @@
-import { MdNode, TableMdNode, Sourcepos, NodeWalker } from '@liquid-js/underflow/parser'
+import { MdNode, TableMdNode, Sourcepos, NodeWalker } from '../../parser/types/node'
 
 export interface TableRowMdNode extends MdNode {
     parent: TableBodyMdNode | TableHeadMdNode

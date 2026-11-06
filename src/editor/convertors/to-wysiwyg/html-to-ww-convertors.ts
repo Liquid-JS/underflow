@@ -6,7 +6,7 @@ import {
 import { sanitizeHTML } from '../../sanitizer/html-sanitizer'
 
 import { reHTMLTag } from '../../utils/constants'
-import { MdNode } from '@liquid-js/underflow/parser'
+import { MdNode } from '../../../parser/types/node'
 
 export function getTextWithoutTrailingNewline(text: string) {
     return text[text.length - 1] === '\n' ? text.slice(0, text.length - 1) : text

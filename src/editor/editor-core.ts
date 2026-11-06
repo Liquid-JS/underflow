@@ -1,5 +1,7 @@
 import { DOMParser, DOMSerializer } from 'prosemirror-model'
 
+import { CodeMdNode, Pos as MdPos } from '../parser/types/node'
+import { MarkdownDocument } from '../parser/markdown-document'
 import { Emitter, EventName, Handler } from './types/event'
 import {
     Base,
@@ -41,7 +43,6 @@ import { getEditorToMdPos, getMdToEditorPos } from './markdown/helper/pos'
 import { getToolbarState } from './wysiwyg/plugins/toolbar-state'
 import { getCursorInfo } from './markdown/plugins/preview-highlight'
 import { splitTableCellSpans } from './wysiwyg/helper/table-spans'
-import { CodeMdNode, MarkdownDocument, MdPos } from '@liquid-js/underflow/parser'
 
 const reHTMLSource = /<(div|code) data-html-source="true">([\s\S]*?)<\/\1>/g
 

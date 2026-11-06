@@ -9,7 +9,7 @@ import { Sanitizer, HTMLSchemaMap, CustomHTMLRenderer } from '../../types/editor
 import { ToDOMAdaptor } from '../../types/convertor'
 import { registerTagWhitelistIfPossible } from '../../sanitizer/html-sanitizer'
 import { reHTMLTag, ATTRIBUTE } from '../../utils/constants'
-import { MdNode } from '@liquid-js/underflow/parser'
+import { MdNode } from '../../../parser/types/node'
 
 export function getChildrenHTML(node: MdNode, typeName: string) {
     return node

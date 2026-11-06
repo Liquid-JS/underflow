@@ -1,6 +1,6 @@
 import { Node as ProsemirrorNode } from 'prosemirror-model'
 import { isStyledInlineNode, getMdEndLine, getMdStartLine } from '../../utils/markdown'
-import { MdNode } from '@liquid-js/underflow/parser'
+import { MdNode } from '../../../parser/types/node'
 
 type El = HTMLElement | null
 

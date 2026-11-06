@@ -4,8 +4,10 @@ import { MdContext } from '../../types/spec'
 import { getMdStartLine, getMdEndLine, getMdStartCh, getMdEndCh } from '../../utils/markdown'
 import { last } from '../../utils/common'
 import { getStartPosListPerLine } from '../helper/pos'
+import { MdNode, Pos as MdPos } from '../../../parser/types/node'
+import { EditResult } from '../../../parser/types/markdown-document'
+import { MarkdownDocument } from '../../../parser/markdown-document'
 import { getMarkInfo, MarkInfo } from './helper/mark-info'
-import { MdNode, MdPos, EditResult, MarkdownDocument } from '@liquid-js/underflow/parser'
 
 interface CodeBlockPos {
     codeStart: number

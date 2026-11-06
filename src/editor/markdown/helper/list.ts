@@ -1,8 +1,9 @@
 import { Node as ProsemirrorNode, Schema } from 'prosemirror-model'
 import { findClosestNode, isListNode, isOrderedListNode } from '../../utils/markdown'
 import { createTextNode } from '../../helper/manipulation'
+import { ListItemMdNode, MdNode } from '../../../parser/types/node'
+import { MarkdownDocument } from '../../../parser/markdown-document'
 import { getTextByMdLine } from './query'
-import { ListItemMdNode, MdNode, MarkdownDocument } from '@liquid-js/underflow/parser'
 
 export interface ToListContext<T = ListItemMdNode> {
     mdNode: T

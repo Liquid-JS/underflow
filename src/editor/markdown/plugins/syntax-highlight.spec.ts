@@ -1,7 +1,7 @@
 import { source } from 'common-tags'
 import { MdEditor } from '../md-editor'
 import { EventEmitter } from '../../event/event-emitter'
-import { MarkdownDocument } from '@liquid-js/underflow/parser'
+import { MarkdownDocument } from '../../../parser/markdown-document'
 
 function getEditorHTML(editor: MdEditor) {
     return editor.view.dom.innerHTML

@@ -9,10 +9,12 @@ import {
 import { isInlineNode, findClosestNode, getMdStartCh } from '../utils/markdown'
 import { css } from '../utils/native'
 import { WidgetRules } from '../widget/rules'
+import { EditResult } from '../../parser/types/markdown-document'
+import { MdNode, Pos as MdPos } from '../../parser/types/node'
+import { Renderer } from '../../parser/html/renderer'
 import { getHTMLRenderConvertors } from './html-render-convertors'
 import { findAdjacentElementToScrollTop } from './scroll/dom'
 import { removeOffsetInfoByNode } from './scroll/offset'
-import { EditResult, MdNode, MdPos, Renderer } from '@liquid-js/underflow/parser'
 
 export const CLASS_HIGHLIGHT = cls('md-preview-highlight')
 

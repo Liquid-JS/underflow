@@ -1,6 +1,6 @@
 import { history } from 'prosemirror-history'
 import { MdEditor } from '../src/editor/markdown/md-editor'
-import { HTMLConvertorMap } from '@liquid-js/underflow/parser'
+import { HTMLConvertorMap } from '../src/parser/types/renderer'
 
 export function getTextContent(editor: MdEditor) {
     const { doc } = editor.view.state

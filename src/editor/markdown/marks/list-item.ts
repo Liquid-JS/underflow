@@ -19,7 +19,7 @@ import {
 } from '../helper/list'
 import { getRangeInfo, getNodeContentOffsetRange } from '../helper/pos'
 import { getTextContent } from '../helper/query'
-import { ListItemMdNode, MdNode } from '@liquid-js/underflow/parser'
+import { ListItemMdNode, MdNode } from '../../../parser/types/node'
 
 type CommandType = 'bullet' | 'ordered' | 'task'
 

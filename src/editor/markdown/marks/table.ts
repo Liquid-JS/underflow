@@ -8,7 +8,7 @@ import { Mark } from '../../spec/mark'
 import { createTextNode, createTextSelection } from '../../helper/manipulation'
 import { getRangeInfo } from '../helper/pos'
 import { getTextContent } from '../helper/query'
-import { TableCellMdNode, MdNode, MdPos } from '@liquid-js/underflow/parser'
+import { TableCellMdNode, MdNode, Pos as MdPos } from '../../../parser/types/node'
 
 interface Payload {
     columnCount: number

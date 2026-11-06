@@ -10,9 +10,10 @@ import * as keymaps from 'prosemirror-keymap'
 import { EventEmitter } from '../event/event-emitter'
 import { sanitizeHTML } from '../sanitizer/html-sanitizer'
 import { getTextContent, removeDataAttr, TestEditorWithNoneDelayHistory } from '../../../test/markdown'
+import { Sourcepos } from '../../parser/types/node'
+import { MarkdownDocument } from '../../parser/markdown-document'
 import { MarkdownPreview } from './md-preview'
 import { MdEditor } from './md-editor'
-import { Sourcepos, MarkdownDocument } from '@liquid-js/underflow/parser'
 
 // @TODO: all tests should move to e2e test
 

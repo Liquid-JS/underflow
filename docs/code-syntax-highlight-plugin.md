@@ -30,14 +30,14 @@ import 'highlight.js/styles/github.css'
 import '@liquid-js/underflow/styles/plugins/code-syntax-highlight.css'
 
 import { Editor } from '@liquid-js/underflow'
-import codeSyntaxHighlight from '@liquid-js/underflow/plugins/code-syntax-highlight'
+import { codeSyntaxHighlightPlugin } from '@liquid-js/underflow/plugins/code-syntax-highlight'
 
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('yaml', yaml)
 
 const editor = new Editor({
     // ...
-    plugins: [[codeSyntaxHighlight, { highlighter: hljs }]]
+    plugins: [[codeSyntaxHighlightPlugin, { highlighter: hljs }]]
 })
 ```
 
@@ -50,9 +50,9 @@ without a language, or with one that isn't registered, are rendered as plain tex
 Set `lineNumbers` to show line numbers next to code blocks in the preview, the viewer and the WYSIWYG editor:
 
 ```js
-plugins: [[codeSyntaxHighlight, { highlighter: hljs, lineNumbers: true }]],
+plugins: [[codeSyntaxHighlightPlugin, { highlighter: hljs, lineNumbers: true }]],
 // or
-plugins: [[codeSyntaxHighlight, { highlighter: hljs, lineNumbers: { startFrom: 0, singleLine: true } }]]
+plugins: [[codeSyntaxHighlightPlugin, { highlighter: hljs, lineNumbers: { startFrom: 0, singleLine: true } }]]
 ```
 
 -   `startFrom`: number of the first line (default `1`)
@@ -70,11 +70,11 @@ import 'highlight.js/styles/github.css'
 import '@liquid-js/underflow/styles/plugins/code-syntax-highlight.css'
 
 import { Viewer } from '@liquid-js/underflow/viewer'
-import codeSyntaxHighlight from '@liquid-js/underflow/plugins/code-syntax-highlight'
+import { codeSyntaxHighlightPlugin } from '@liquid-js/underflow/plugins/code-syntax-highlight'
 
 const viewer = new Viewer({
     // ...
-    plugins: [[codeSyntaxHighlight, { highlighter: hljs }]]
+    plugins: [[codeSyntaxHighlightPlugin, { highlighter: hljs }]]
 })
 ```
 

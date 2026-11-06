@@ -1,6 +1,6 @@
 import { AllSelection, Selection } from 'prosemirror-state'
 import { Node as ProsemirrorNode, ResolvedPos } from 'prosemirror-model'
-import { Sourcepos, MdPos } from '@liquid-js/underflow/parser'
+import { Sourcepos, Pos as MdPos } from '../../../parser/types/node'
 
 export function resolveSelectionPos(selection: Selection) {
     const { from, to } = selection

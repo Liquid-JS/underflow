@@ -1,6 +1,6 @@
 import { Mark, Node as ProsemirrorNode } from 'prosemirror-model'
 import { MdLikeNode } from '../../types/markdown'
-import { MdNodeType } from '@liquid-js/underflow/parser'
+import { MdNodeType } from '../../../parser/types/node'
 
 export function isPmNode(node: ProsemirrorNode | Mark): node is ProsemirrorNode {
     return node instanceof ProsemirrorNode

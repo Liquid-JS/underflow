@@ -280,6 +280,24 @@ export default defineConfig(
         }
     },
     {
+        files: ['src/**', 'test/**'],
+        ignores: ['**/*.d.ts'],
+        rules: {
+            '@import/no-default-export': 'error',
+            'no-restricted-imports': [
+                'error',
+                {
+                    patterns: [
+                        {
+                            regex: '^@liquid-js/underflow(/|$)',
+                            message: 'Import the module directly with a relative path.'
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
         files: ['**/*.spec.ts', 'test/**', 'demo/**', 'scripts/**', 'smoke/e2e/**', '**/*.config.js', '**/*.config.ts', '.versionrc.js'],
         rules: {
             '@import/no-extraneous-dependencies': [

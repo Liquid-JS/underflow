@@ -1,9 +1,10 @@
+import type { PluginContext } from '../../editor/types/editor'
+import type { PluginInfo } from '../../editor/types/plugin'
 import type { PluginOptions } from './types'
 import { createCodeSyntaxHighlightView } from './node-views/code-syntax-highlight-view'
 import { codeSyntaxHighlighting } from './plugins/code-syntax-highlighting'
 import { getHTMLRenderers } from './renderers/to-html-renderers'
 import { normalizeLineNumbers } from './utils/highlight'
-import type { PluginContext, PluginInfo } from '@liquid-js/underflow'
 
 export function codeSyntaxHighlightPlugin(
     context: PluginContext,

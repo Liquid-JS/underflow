@@ -1,7 +1,7 @@
 import type { HLJSApi } from 'highlight.js'
 import { getLanguage, highlightToHTML, LineNumberOptions } from '../utils/highlight'
-import type { MdNode, CodeBlockMdNode } from '@liquid-js/underflow'
-import type { HTMLToken } from '@liquid-js/underflow/parser'
+import type { MdNode, CodeBlockMdNode } from '../../../parser/types/node'
+import type { HTMLToken } from '../../../parser/types/renderer'
 
 const BACKTICK_COUNT = 3
 

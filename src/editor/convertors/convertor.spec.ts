@@ -11,8 +11,10 @@ import { EventEmitter } from '../event/event-emitter'
 import { createHTMLSchemaMap } from '../wysiwyg/nodes/html'
 import { sanitizeHTML } from '../sanitizer/html-sanitizer'
 import { createHTMLrenderer } from '../../../test/markdown'
+import { Context, HTMLConvertorMap } from '../../parser/types/renderer'
+import { MdNode } from '../../parser/types/node'
+import { Parser } from '../../parser/commonmark/blocks'
 import { Convertor } from './convertor'
-import { Context, MdNode, Parser, HTMLConvertorMap } from '@liquid-js/underflow/parser'
 
 function createSchema() {
     const specs = createSpecs({})
