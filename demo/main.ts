@@ -32,10 +32,10 @@ document.querySelector<HTMLSelectElement>('#mode')!.addEventListener('change', (
 
 document.querySelector<HTMLInputElement>('#dark')!.addEventListener('change', (ev) => {
     const dark = (ev.target as HTMLInputElement).checked
+    const theme = dark ? 'dark' : 'light'
 
-    document.querySelectorAll('.uf-default-ui').forEach((el) => {
-        el.classList.toggle('uf-dark', dark)
-    })
+    editor.setTheme(theme)
+    viewer.setTheme(theme)
     document.body.classList.toggle('dark', dark)
 })
 

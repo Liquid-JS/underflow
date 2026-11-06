@@ -7,6 +7,8 @@
         "./src/plugins/code-syntax-highlight.ts"
     ],
     "readme": "./README.md",
+    "favicon": "./docs/images/icon.svg",
+    "customCss": "./docs/typedoc.css",
     "projectDocuments": [
         "./docs/*.md"
     ],

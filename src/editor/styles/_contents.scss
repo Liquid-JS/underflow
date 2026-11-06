@@ -31,7 +31,7 @@
 table.ProseMirror-selectednode,
 .html-block.ProseMirror-selectednode {
     border-radius: 2px;
-    outline: 2px solid #00a9ff;
+    outline: 2px solid #3469d1;
 }
 
 .uf-contents {
@@ -239,7 +239,7 @@ table.ProseMirror-selectednode,
         }
 
         &.uf-cell-selected {
-            background-color: #d8dfec;
+            background-color: #c0cff0;
         }
     }
 
@@ -313,10 +313,10 @@ table.ProseMirror-selectednode,
 
     a {
         text-decoration: underline;
-        color: #4b96e6;
+        color: #3060c7;
 
         &:hover {
-            color: #1f70de;
+            color: #2852b5;
         }
     }
 
@@ -340,7 +340,7 @@ table.ProseMirror-selectednode,
         height: 30px;
         padding: 0;
         border-radius: 50%;
-        border: 1px solid #c9ccd5;
+        border: 1px solid #b9c1d0;
         background-color: #fff;
         color: var(--uf-icon-color);
         box-shadow: 0 2px 4px 0 rgb(0, 0, 0, 0.08);
@@ -376,7 +376,7 @@ table.ProseMirror-selectednode,
 
         &.checked:before {
             border: none;
-            background-color: #4b96e6;
+            background-color: #3060c7;
 
             // a rounded box with the check mark cut out
             clip-path: path(evenodd, "M16 0c1.105 0 2 .895 2 2v14c0 1.105-.895 2-2 2H2c-1.105 0-2-.895-2-2V2C0 .895.895 0 2 0h14zm-1.793 5.293c-.39-.39-1.024-.39-1.414 0L7.5 10.585 5.207 8.293l-.094-.083c-.392-.305-.96-.278-1.32.083-.39.39-.39 1.024 0 1.414l3 3 .094.083c.392.305.96.278 1.32-.083l6-6 .083-.094c.305-.392.278-.96-.083-1.32z");

@@ -5,41 +5,41 @@
 
 .uf-dark {
     /* the colours of the editor chrome, see the variables in editor.css */
-    --uf-bg-color: #121212;
-    --uf-text-color: #eee;
-    --uf-label-color: #9a9da3;
-    --uf-icon-color: #c3c6cd;
-    --uf-icon-active-color: #67ccff;
-    --uf-active-tab-text-color: #eee;
-    --uf-muted-text-color: #757a86;
-    --uf-disabled-text-color: #969aa5;
-    --uf-border-color: #494c56;
-    --uf-divider-color: #303238;
-    --uf-toolbar-divider-color: #303238;
-    --uf-input-border-color: #303238;
-    --uf-toolbar-bg-color: #232428;
-    --uf-toolbar-button-hover-bg-color: #36383f;
-    --uf-toolbar-button-hover-border-color: #36383f;
-    --uf-toolbar-button-active-border-color: #8f939f;
-    --uf-hover-bg-color: #36383f;
-    --uf-tab-bg-color: #2d2f34;
-    --uf-tab-border-color: #393b42;
-    --uf-button-border-color: #303238;
-    --uf-button-hover-border-color: #494c56;
-    --uf-primary-color: #67ccff;
-    --uf-primary-hover-color: #32baff;
-    --uf-primary-text-color: #121212;
-    --uf-selection-bg-color: rgb(103, 204, 255, 0.1);
-    --uf-tooltip-bg-color: #535662;
-    --uf-scroll-sync-color: #8f939f;
-    --uf-switch-bg-color: #2b4455;
-    --uf-switch-checked-bg-color: #2b4455;
-    --uf-switch-knob-color: #8f939f;
-    --uf-md-widget-bg-color: rgb(103, 204, 255, 0.12);
+    --uf-bg-color: #1a1e27;
+    --uf-text-color: #e8ecf3;
+    --uf-label-color: #8f99ac;
+    --uf-icon-color: #b9c1d0;
+    --uf-icon-active-color: #7a9cff;
+    --uf-active-tab-text-color: #e8ecf3;
+    --uf-muted-text-color: #6b7589;
+    --uf-disabled-text-color: #4f5869;
+    --uf-border-color: #3a4150;
+    --uf-divider-color: #282d38;
+    --uf-toolbar-divider-color: #282d38;
+    --uf-input-border-color: #282d38;
+    --uf-toolbar-bg-color: #282d38;
+    --uf-toolbar-button-hover-bg-color: #3a4150;
+    --uf-toolbar-button-hover-border-color: #3a4150;
+    --uf-toolbar-button-active-border-color: #8f99ac;
+    --uf-hover-bg-color: #3a4150;
+    --uf-tab-bg-color: #282d38;
+    --uf-tab-border-color: #3a4150;
+    --uf-button-border-color: #282d38;
+    --uf-button-hover-border-color: #3a4150;
+    --uf-primary-color: #7a9cff;
+    --uf-primary-hover-color: #4c78fd;
+    --uf-primary-text-color: #1a1e27;
+    --uf-selection-bg-color: rgb(122, 156, 255, 0.1);
+    --uf-tooltip-bg-color: #4f5869;
+    --uf-scroll-sync-color: #8f99ac;
+    --uf-switch-bg-color: #3a4150;
+    --uf-switch-checked-bg-color: #15338c;
+    --uf-switch-knob-color: #8f99ac;
+    --uf-md-widget-bg-color: rgb(122, 156, 255, 0.12);
     --uf-cursor-line-bg-color: rgb(255, 255, 255, 0.06);
 
     &.uf-default-ui {
-        color: #eee;
+        color: #e8ecf3;
     }
 
     .uf-md-container {
@@ -50,7 +50,7 @@
         background-color: transparent;
 
         &.disabled {
-            background-color: rgb(48, 50, 56, 0.4);
+            background-color: rgb(40, 45, 56, 0.4);
         }
     }
 
@@ -75,21 +75,21 @@
         }
 
         del {
-            color: #777980;
+            color: #6b7589;
         }
 
         blockquote {
-            border-color: #303135;
+            border-color: #282d38;
 
             p,
             ul,
             ol {
-                color: #777980;
+                color: #6b7589;
             }
         }
 
         pre {
-            background-color: #232428;
+            background-color: #282d38;
 
             code {
                 background-color: transparent;
@@ -107,9 +107,9 @@
         }
 
         .uf-code-block-label {
-            background-color: #232428;
-            border: 1px solid #393b42;
-            color: #eee;
+            background-color: #282d38;
+            border: 1px solid #3a4150;
+            color: #e8ecf3;
         }
 
         .uf-custom-block-editor {
@@ -119,15 +119,15 @@
         }
 
         table {
-            border-color: #303238;
+            border-color: #282d38;
 
             th,
             td {
-                border-color: #303238;
+                border-color: #282d38;
             }
 
             th {
-                background-color: #3a3c42;
+                background-color: #3a4150;
             }
 
             td,
@@ -137,49 +137,49 @@
         }
 
         td.uf-cell-selected {
-            background-color: rgb(103, 204, 255, 0.5);
+            background-color: rgb(122, 156, 255, 0.5);
         }
 
         th.uf-cell-selected {
-            background-color: rgb(103, 204, 255, 0.3);
+            background-color: rgb(122, 156, 255, 0.3);
         }
 
         ul,
         menu,
         ol,
         dir {
-            color: #55575f;
+            color: #6b7589;
         }
 
         ul > li:before {
-            background-color: #55575f;
+            background-color: #6b7589;
         }
 
         hr {
-            border-color: #55575f;
+            border-color: #6b7589;
         }
 
         a {
-            color: #4b96e6;
+            color: #7a9cff;
 
             &:hover {
-                color: #1f70de;
+                color: #4c78fd;
             }
         }
 
         .uf-image-link-button {
-            border-color: #393b42;
-            background-color: #232428;
+            border-color: #3a4150;
+            background-color: #282d38;
         }
 
         .task-list-item {
             &:before {
-                border-color: #55575f;
+                border-color: #6b7589;
                 background-color: transparent;
             }
 
             &.checked:before {
-                background-color: #4b96e6;
+                background-color: #7a9cff;
             }
         }
 
@@ -201,8 +201,8 @@
     }
 
     .uf-ww-code-block-language {
-        border-color: #303238;
-        background-color: #121212;
+        border-color: #282d38;
+        background-color: #1a1e27;
 
         input {
             color: #fff;
@@ -216,12 +216,12 @@
 
     .uf-custom-block-view {
         button {
-            background-color: #232428;
-            border-color: #393b42;
+            background-color: #282d38;
+            border-color: #3a4150;
 
             &:hover {
-                background-color: #232428;
-                border-color: #595c68;
+                background-color: #282d38;
+                border-color: #4f5869;
             }
         }
 
@@ -232,7 +232,7 @@
 
     table.ProseMirror-selectednode,
     .html-block.ProseMirror-selectednode {
-        outline-color: #67ccff;
+        outline-color: #7a9cff;
     }
 
     // markdown syntax highlighting
@@ -242,26 +242,26 @@
     .uf-md-link,
     .uf-md-table,
     .uf-md-block-quote {
-        color: hsl(228, 6%, 52%);
+        color: #8f99ac;
     }
 
     .uf-md-meta,
     .uf-md-html {
-        color: hsl(228, 6%, 52%);
+        color: #8f99ac;
     }
 
     .uf-md-link.uf-md-link-url.uf-md-marked-text {
-        color: #777980;
+        color: #6b7589;
     }
 
     .uf-md-block-quote .uf-md-marked-text,
     .uf-md-list-item .uf-md-meta {
-        color: #b3b5bc;
+        color: #b9c1d0;
     }
 
     .uf-md-link.uf-md-link-desc.uf-md-marked-text,
     .uf-md-list-item-style.uf-md-list-item-odd {
-        color: #4b96e6;
+        color: #7a9cff;
     }
 
     .uf-md-list-item-style.uf-md-list-item-even {
@@ -281,7 +281,7 @@
     }
 
     .uf-md-code-block-line-background {
-        background-color: #232428;
+        background-color: #282d38;
     }
 
     .uf-md-code-block .uf-md-meta {

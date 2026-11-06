@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="172px" viewBox="0 0 200 172" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>mark</title>
+    <defs>
+        <path d="M163.8,90.3 L163.8,134.3 L141.8,134.3 L157.412623,149.912623 L163.8,154 L163.8,134.3 L185.8,134.3 L163.8,156.3 L157.412623,149.912623 L88.9797783,106.121435 C105.42945,92.6256313 116.280947,61.7 135.2,61.7 C150.6,61.7 163.8,74.9 163.8,90.3 Z M88.9797783,106.121435 C84.3887122,109.890409 79.3610331,112.3 73.6,112.3 C49.4,112.3 31.8,72.7 23,63.9 Z" id="path-1"></path>
+        <linearGradient x1="0%" y1="33.9381765%" x2="100.12285%" y2="66.7756823%" id="linearGradient-2">
+            <stop stop-color="#4C78FD" offset="0%"></stop>
+            <stop stop-color="#3469D1" offset="50%"></stop>
+            <stop stop-color="#2248A8" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="mark-(no-background)" stroke="none" fill="none" xlink:href="#path-1" fill-rule="evenodd" stroke-linecap="round" stroke-width="1">
+        <g id="Group" transform="translate(12, 12.5)">
+            <line x1="0" y1="0.5" x2="176" y2="0.5" id="Path" stroke="#B9C1D0" stroke-width="20" fill="#000000"></line>
+            <path d="M11,51.4 C19.8,60.2 37.4,99.8 61.6,99.8 C88,99.8 99,49.2 123.2,49.2 C138.6,49.2 151.8,62.4 151.8,77.8 L151.8,141.5 M129.8,121.8 L151.8,143.8 L173.8,121.8" id="Shape" stroke="url(#linearGradient-2)" stroke-width="26" stroke-linejoin="round"></path>
+        </g>
+    </g>
+</svg>

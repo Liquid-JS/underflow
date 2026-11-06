@@ -1,5 +1,7 @@
 # UnderFlow
 
+<img align="right" src="docs/images/icon.svg" width="144" alt="UnderFlow">
+
 [![GitHub license](https://img.shields.io/github/license/Liquid-JS/underflow.svg)](https://github.com/Liquid-JS/underflow/blob/master/LICENSE)
 [![npm](https://img.shields.io/npm/dm/@liquid-js/underflow.svg)](https://www.npmjs.com/package/@liquid-js/underflow)
 [![scope](https://img.shields.io/npm/v/@liquid-js/underflow.svg)](https://www.npmjs.com/package/@liquid-js/underflow)
