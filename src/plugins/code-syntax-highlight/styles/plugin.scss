@@ -1,0 +1,168 @@
+.uf-ww-code-block-highlighting {
+    position: relative;
+}
+
+.uf-code-block-language {
+    position: fixed;
+    display: inline-block;
+    right: 35px;
+    z-index: 30;
+
+    &-input {
+        position: relative;
+        display: inline-block;
+        padding: 0 22px 0 10px;
+        width: 112px;
+        height: 26px;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        background-color: #fff;
+        cursor: pointer;
+
+        input {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            background-color: #fff;
+            color: #222;
+            border: none;
+            outline: none;
+
+            &::placeholder {
+                color: #ccc;
+            }
+        }
+    }
+
+    // toggles the list; the chevron points up while the list is open
+    &-toggle {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        padding: 0;
+        border: none;
+        background: none;
+        color: var(--uf-icon-color);
+        cursor: pointer;
+
+        .uf-icon {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    &.active .uf-code-block-language-toggle .uf-icon {
+        transform: rotate(180deg);
+    }
+
+    &-list {
+        position: fixed;
+        margin-top: -1px;
+        width: 144px;
+        border: solid 1px #ccc;
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
+
+        .buttons {
+            max-height: 169px;
+            overflow: auto;
+            padding: 0;
+        }
+
+        button {
+            width: 100%;
+            background-color: #fff;
+            border: none;
+            outline: 0;
+            padding: 0 10px;
+            font-size: 13px;
+            line-height: 24px;
+            text-align: left;
+            color: #222;
+            cursor: pointer;
+
+            &.active {
+                color: #4b96e6;
+                font-weight: bold;
+            }
+
+            &:hover {
+                background-color: #f4f7f8;
+            }
+        }
+    }
+}
+
+.uf-dark {
+    .uf-code-block-language-input input::placeholder {
+        color: #eee;
+    }
+
+    .uf-code-block-language {
+        .uf-code-block-language-input {
+            border: 1px solid #494c56;
+            background-color: #121212;
+        }
+
+        input {
+            background-color: #121212;
+            color: #eee;
+        }
+    }
+
+    .uf-code-block-language-list {
+        box-shadow: 0 2px 4px 0 rgb(0, 0, 0, 0.08);
+        border: 1px solid #494c56;
+        border-radius: 2px;
+
+        button {
+            color: #eee;
+            background-color: #121212;
+
+            &.active {
+                color: #4b96e6;
+            }
+
+            &:hover {
+                background-color: #36383f;
+            }
+        }
+    }
+}
+
+/* line numbers (lineNumbers option) */
+code.hljs-ln {
+    counter-reset: hljs-ln;
+}
+
+.hljs-ln-line {
+    counter-increment: hljs-ln;
+
+    &:before {
+        content: counter(hljs-ln);
+    }
+}
+
+.hljs-ln-n:before {
+    content: attr(data-line);
+}
+
+.hljs-ln-line:before,
+.hljs-ln-n:before {
+    display: inline-block;
+    box-sizing: border-box;
+    min-width: 2.5em;
+    margin-right: 1em;
+    padding-right: 0.75em;
+    border-right: 1px solid currentcolor;
+    opacity: 0.45;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    user-select: none;
+}

@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`codeSyntaxHighlightPlugin > should render codeblock element with no language info in markdown preview 1`] = `"<pre class="uf-md-preview-highlight"><code>  console.log(123);</code></pre>"`;
+
+exports[`codeSyntaxHighlightPlugin > should render highlighted codeblock element in markdown preview 1`] = `"<pre class="lang-yaml uf-md-preview-highlight"><code class="hljs language-yaml" data-language="yaml"><span class="hljs-attr">martin:</span>  <span class="hljs-attr">name:</span> <span class="hljs-string">Martin</span> <span class="hljs-string">D'vloper</span>  <span class="hljs-attr">job:</span> <span class="hljs-string">Developer</span>  <span class="hljs-attr">skill:</span> <span class="hljs-string">Elite</span></code></pre>"`;
+
+exports[`codeSyntaxHighlightPlugin > should render highlighted codeblock element in wysiwyg 1`] = `
+"<div data-language="yaml" class="uf-ww-code-block-highlighting"><pre class="language-yaml"><code data-language="yaml" class="language-yaml hljs"><span class="hljs-attr">martin:</span>
+  <span class="hljs-attr">name:</span> <span class="hljs-string">Martin</span> <span class="hljs-string">D'vloper</span>
+  <span class="hljs-attr">job:</span> <span class="hljs-string">Developer</span>
+  <span class="hljs-attr">skill:</span> <span class="hljs-string">Elite</span></code></pre><button type="button" class="uf-code-block-label" contenteditable="false"><span>yaml</span><span class="uf-icon" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16zm9.5-13.5 4 4"></path></svg></span></button></div>"
+`;
