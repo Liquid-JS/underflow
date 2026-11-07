@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.0.0-5](https://github.com/Liquid-JS/underflow/compare/v4.0.0-4...v4.0.0-5) (2026-11-07)
+
+### Features
+
+* improve a11y ([7bee9c9](https://github.com/Liquid-JS/underflow/commit/7bee9c9517bc63693aca2625682bf59ea6b976cb))
 ## [4.0.0-4](https://github.com/Liquid-JS/underflow/compare/v4.0.0-3...v4.0.0-4) (2026-11-06)
 ## [4.0.0-3](https://github.com/Liquid-JS/underflow/compare/v4.0.0-2...v4.0.0-3) (2026-11-06)
 
