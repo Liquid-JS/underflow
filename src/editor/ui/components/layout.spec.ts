@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/dom'
+import { fireEvent, screen } from '@testing-library/dom'
 import { Emitter } from '../../types/event'
 import { cls } from '../../utils/dom'
 import { Editor } from '../../../index'
@@ -119,6 +119,28 @@ describe('layout component', () => {
 
             clickMdSwitch()
             expect(spy).toHaveBeenCalledWith('markdown')
+        })
+
+        it('should switch the mode by keyboard', () => {
+            const mdSwitch = getMdSwitch()
+            const wwSwitch = getWwSwitch()
+
+            expect(mdSwitch).toHaveAttribute('role', 'tab')
+            expect(mdSwitch).toHaveAttribute('aria-selected', 'true')
+            expect(mdSwitch).toHaveAttribute('tabindex', '0')
+            expect(wwSwitch).toHaveAttribute('tabindex', '-1')
+
+            mdSwitch.focus()
+            fireEvent.keyDown(mdSwitch, { key: 'ArrowRight' })
+
+            expect(getEditorMain()).toHaveClass(cls('ww-mode'))
+            expect(wwSwitch).toHaveAttribute('aria-selected', 'true')
+            expect(document.activeElement).toBe(wwSwitch)
+
+            fireEvent.keyDown(wwSwitch, { key: 'ArrowLeft' })
+
+            expect(getEditorMain()).toHaveClass(cls('md-mode'))
+            expect(document.activeElement).toBe(mdSwitch)
         })
 
         it('should switch the editor in layout when changeMode is triggered', () => {

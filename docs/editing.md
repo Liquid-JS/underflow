@@ -39,10 +39,13 @@ markdown can't express them there. List items and block quotes take them, as in 
 <kbd>Shift</kbd>+<kbd>Ctrl</kbd>+<kbd>X</kbd> checks or unchecks the task items in the selection.
 <kbd>Shift</kbd>+<kbd>Ctrl/⌘</kbd>+<kbd>.</kbd> turns the selected lines into a block quote.
 <kbd>Shift</kbd>+<kbd>Enter</kbd> inserts a line break within a paragraph in WYSIWYG mode.
-<kbd>Tab</kbd> and <kbd>Shift</kbd>+<kbd>Tab</kbd> indent and outdent list items and move between table cells.
+<kbd>Tab</kbd> and <kbd>Shift</kbd>+<kbd>Tab</kbd> indent and outdent list items and move between table cells; to move
+the focus out of the text instead, press <kbd>Esc</kbd> first, as in code editors.
 Toolbar buttons show their shortcuts in their accessible names and tooltips. The toolbar follows the ARIA toolbar
 pattern: <kbd>Tab</kbd> moves to it, arrow keys move between its buttons, and <kbd>Esc</kbd> closes popups and the
-"More" menu.
+"More" menu. <kbd>Tab</kbd> moves between a popup's fields and buttons. The Markdown/WYSIWYG switch is a tab list:
+<kbd>Tab</kbd> moves to it and the arrow keys change the mode. Every button has an explicit `tabindex`, so
+<kbd>Tab</kbd> reaches them in Safari too.
 
 Set `toolbarStyle: 'wrap'` to let the toolbar wrap onto several lines instead of moving buttons into the "More" menu on
 narrow screens.

@@ -8,6 +8,7 @@ export function createLanguageLabel(language: string, onClick: () => void) {
     const icon = document.createElement('span')
 
     label.type = 'button'
+    label.tabIndex = 0
     label.className = cls('code-block-label')
     label.setAttribute('contenteditable', 'false')
     text.textContent = language

@@ -858,6 +858,33 @@ describe('editor', () => {
                     expect(editable).toHaveAttribute('aria-multiline', 'true')
                     expect(editable).toHaveAttribute('aria-label', label)
                 })
+            });
+
+            ['markdown', 'wysiwyg'].forEach((type) => {
+                it(`should leave the ${type} editor on Tab after Escape, and indent on Tab otherwise`, () => {
+                    createEditor({ el: container, initialValue: 'foo', initialEditType: type as EditorType })
+
+                    const editable = (type === 'markdown' ? mdEditor : wwEditor).querySelector<HTMLElement>(
+                        '[contenteditable=true]'
+                    )!
+                    const press = (key: string, shiftKey = false) =>
+                        editable.dispatchEvent(
+                            new KeyboardEvent('keydown', { key, shiftKey, bubbles: true, cancelable: true })
+                        )
+
+                    press('Escape')
+                    // the browser moves the focus when the editor leaves the key alone
+                    expect(press('Tab')).toBe(true)
+                    press('Escape')
+                    press('Shift', true)
+                    expect(press('Tab', true)).toBe(true)
+                    expect(editor.getMarkdown()).toBe('foo')
+
+                    expect(press('Tab')).toBe(false)
+                    press('Escape')
+                    press('a')
+                    expect(press('Tab')).toBe(false)
+                })
             })
         })
 

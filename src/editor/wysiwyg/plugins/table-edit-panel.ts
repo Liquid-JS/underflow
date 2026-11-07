@@ -222,6 +222,7 @@ export class TableEditPanel implements PluginView {
             const removing = action.indexOf('remove') === 0
 
             button.type = 'button'
+            button.tabIndex = 0
             button.className = `${cls(removing ? 'table-remove-button' : 'table-add-button')} ${cls(
                 `table-${action}`
             )}`

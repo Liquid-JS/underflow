@@ -45,7 +45,10 @@ export class Popup extends Component<Props, State> {
     }
 
     private getFocusableElements() {
-        return Array.from(this.refs.el.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR))
+        return Array.from(this.refs.el.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)).filter(
+            // skips hidden fields, like the image popup's other tab
+            (el) => !(el as HTMLButtonElement).disabled && el.checkVisibility?.() !== false
+        )
     }
 
     private isMenu() {
@@ -59,21 +62,19 @@ export class Popup extends Component<Props, State> {
             return
         }
 
+        // the focus moves here rather than by the browser, which skips buttons in Safari
         const focusables = this.getFocusableElements()
-        const [first] = focusables
-        const last = focusables[focusables.length - 1]
+        const { length } = focusables
 
-        if (!first) {
+        if (!length) {
             return
         }
 
-        if (ev.shiftKey && document.activeElement === first) {
-            last.focus()
-            ev.preventDefault()
-        } else if (!ev.shiftKey && document.activeElement === last) {
-            first.focus()
-            ev.preventDefault()
-        }
+        const index = focusables.indexOf(document.activeElement as HTMLElement)
+        const nextIndex = ev.shiftKey ? (index < 0 ? length : index) - 1 : index + 1
+
+        focusables[(nextIndex + length) % length].focus()
+        ev.preventDefault()
     }
 
     private handleArrowKey(ev: KeyboardEvent) {

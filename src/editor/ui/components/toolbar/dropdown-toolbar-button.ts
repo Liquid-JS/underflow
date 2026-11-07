@@ -115,6 +115,7 @@ class DropdownToolbarButtonComp extends Component<Props, State> {
                 <button
                     ref=${(el: HTMLElement) => (this.refs.el = el)}
                     type="button"
+                    tabindex="0"
                     class=${item.className}
                     onClick=${() => this.setState({ showDropdown: true })}
                     onMouseover=${this.showTooltip}

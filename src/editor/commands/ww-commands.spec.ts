@@ -904,7 +904,7 @@ describe('wysiwyg commands', () => {
             </div>
             <div class="tool">
               <span class="info">myCustom</span>
-              <button type="button" aria-label="Edit"></button>
+              <button type="button" tabindex="0" aria-label="Edit"></button>
             </div>
           </div>
         </div>
@@ -926,7 +926,7 @@ describe('wysiwyg commands', () => {
             </div>
             <div class="tool">
               <span class="info">myCustom</span>
-              <button type="button" aria-label="Edit"></button>
+              <button type="button" tabindex="0" aria-label="Edit"></button>
             </div>
           </div>
         </div>

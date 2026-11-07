@@ -47,6 +47,7 @@ export class ImageView implements NodeView {
 
             wrapper.className = IMAGE_LINK_CLASS_NAME
             button.type = 'button'
+            button.tabIndex = 0
             button.className = cls('image-link-button')
             button.setAttribute('contenteditable', 'false')
             button.setAttribute('aria-label', i18n.get('Edit link'))

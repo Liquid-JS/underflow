@@ -62,6 +62,7 @@ export class CustomBlockView implements NodeView {
         span.textContent = this.node.attrs.info
         span.className = 'info'
         button.type = 'button'
+        button.tabIndex = 0
         button.setAttribute('aria-label', i18n.get('Edit'))
         button.innerHTML = `<span class="${cls('icon')}" aria-hidden="true">${icons.pencil}</span>`
         button.addEventListener('click', () => this.openEditor())

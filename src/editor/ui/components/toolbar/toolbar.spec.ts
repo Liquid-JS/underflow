@@ -76,6 +76,13 @@ describe('Default toolbar', () => {
         expect(document.body).toContainElement(getElement('.scroll-sync'))
     })
 
+    it('should make the buttons focusable by Tab, which Safari only does with a tabindex', () => {
+        const buttons = el.querySelectorAll(`.${cls('toolbar')} button`)
+
+        expect(buttons.length).toBeGreaterThan(0)
+        buttons.forEach((button) => expect(button).toHaveAttribute('tabindex', '0'))
+    })
+
     it('should trigger command event when clicking toolbar button', () => {
         const spy = vi.fn()
 
@@ -285,6 +292,25 @@ describe('Default toolbar', () => {
 
             fireEvent.keyDown(urlText, { key: 'Tab', shiftKey: true })
             expect(document.activeElement).toBe(OkBtn)
+        })
+
+        it('should move the focus between all of the popup\'s fields and buttons on Tab', () => {
+            const urlText = getByText(linkPopup, 'URL').nextElementSibling as HTMLInputElement
+            const linkText = getByText(linkPopup, 'Link text').nextElementSibling as HTMLInputElement
+            const cancelBtn = getByText(linkPopup, 'Cancel')
+            const OkBtn = getByText(linkPopup, 'OK')
+
+            expect(fireEvent.keyDown(urlText, { key: 'Tab' })).toBe(false)
+            expect(document.activeElement).toBe(linkText)
+
+            fireEvent.keyDown(linkText, { key: 'Tab' })
+            expect(document.activeElement).toBe(cancelBtn)
+
+            fireEvent.keyDown(cancelBtn, { key: 'Tab' })
+            expect(document.activeElement).toBe(OkBtn)
+
+            fireEvent.keyDown(OkBtn, { key: 'Tab', shiftKey: true })
+            expect(document.activeElement).toBe(cancelBtn)
         })
 
         it('should hide popup when clicking Cancel button', () => {

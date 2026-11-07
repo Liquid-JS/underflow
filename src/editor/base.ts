@@ -18,6 +18,7 @@ import { getDefaultCommands } from './commands/default-commands'
 import { placeholder } from './plugins/placeholder'
 import { addWidget } from './plugins/popup-widget'
 import { dropImage } from './plugins/drop-image'
+import { tabOut } from './plugins/tab-out'
 
 export abstract class EditorBase implements Base {
     el: HTMLElement
@@ -83,6 +84,7 @@ export abstract class EditorBase implements Base {
     get defaultPlugins() {
         const rules = this.createInputRules()
         const plugins = [
+            tabOut(),
             ...this.keymaps,
             keymap({
                 'Shift-Enter': baseKeymap.Enter,

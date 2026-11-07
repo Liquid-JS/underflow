@@ -170,6 +170,7 @@ export abstract class EditPanel implements PluginView {
         const button = document.createElement('button')
 
         button.type = 'button'
+        button.tabIndex = 0
         button.className = className
         button.textContent = text
         button.addEventListener('click', onClick)

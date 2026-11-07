@@ -85,6 +85,7 @@ export class ToolbarButtonComp extends Component<Props> {
             <button
                 ref=${(el: HTMLElement) => (this.refs.el = el)}
                 type="button"
+                tabindex="0"
                 style=${style}
                 class=${classNames}
                 onClick=${this.execCommand}
