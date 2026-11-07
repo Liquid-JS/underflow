@@ -680,7 +680,6 @@ __metadata:
     husky: "npm:^9.1.7"
     js-beautify: "npm:^2.0.3"
     jsdom: "npm:^31.0.0"
-    mdurl: "npm:^2.1.0"
     npm-check-updates: "npm:^23.1.1"
     postcss: "npm:^8.5.32"
     prosemirror-commands: "npm:^1.7.2"
@@ -4228,7 +4227,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mdurl@npm:^2.0.0, mdurl@npm:^2.1.0":
+"mdurl@npm:^2.0.0":
   version: 2.1.0
   resolution: "mdurl@npm:2.1.0"
   checksum: 10/b7db2c0aa0479e11c5454b8a6ae055326bd9180b83e58696f89e862b84a0f5c7c80e497be650f205c0807b4567f6ee3e09238a76c8f1217f1fd750a1f6f2146d

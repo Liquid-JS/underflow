@@ -1,4 +1,3 @@
-import { encode } from 'mdurl'
 import { decodeHTMLStrict } from 'entities'
 
 export const ENTITY = '&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});'
@@ -24,12 +23,15 @@ export function unescapeString(s: string) {
     return s
 }
 
+const reEscapedChar = /(%[0-9a-f]{2})/i
+
+/** Percent-encodes the characters a URI can't contain, keeping its escape sequences; lone surrogates become U+FFFD. */
 export function normalizeURI(uri: string) {
-    try {
-        return encode(uri)
-    } catch {
-        return uri
-    }
+    return uri
+        .toWellFormed()
+        .split(reEscapedChar)
+        .map((part, index) => (index % 2 ? part : encodeURI(part)))
+        .join('')
 }
 
 function replaceUnsafeChar(s: string) {
