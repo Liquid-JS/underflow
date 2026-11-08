@@ -3,6 +3,7 @@ import { Emitter } from '../../types/event'
 import { closest, cls, getEventTarget } from '../../utils/dom'
 import { html } from '../vdom/template'
 import { Component } from '../vdom/component'
+import { TopLayer } from '../top-layer'
 
 interface State {
     pos: Pos | null
@@ -15,6 +16,9 @@ interface Props {
 }
 
 export class ContextMenu extends Component<Props, State> {
+    /** above the page, so an ancestor that clips the editor doesn't cut the menu off */
+    private topLayer = new TopLayer()
+
     constructor(props: Props) {
         super(props)
         this.state = {
@@ -41,12 +45,16 @@ export class ContextMenu extends Component<Props, State> {
     }
 
     beforeDestroy() {
+        this.topLayer.hide()
         document.removeEventListener('click', this.handleClickDocument)
     }
 
     updated() {
         if (this.state.pos && this.refs.el) {
+            this.topLayer.show(this.refs.el)
             this.adjustPosition()
+        } else {
+            this.topLayer.hide()
         }
     }
 
