@@ -17,11 +17,6 @@ import {
 
 const EDITOR_BOTTOM_PADDING = 18
 
-export interface SyncCallbacks {
-    syncScrollTop: (scrollTop: number) => void
-    releaseEventBlock: () => void
-}
-
 interface PosInfo {
     pos: number
     inside: number
@@ -44,7 +39,16 @@ export class ScrollSync {
 
     private latestPreviewScrollTop: number | null = null
 
-    private blockedScroll: ScrollFrom | null = null
+    /**
+     * The scroll position the sync last gave each pane: a scroll event that still finds it there is the echo of the
+     * sync, not the user's, and isn't synced back, which would move the panes in turn without end.
+     */
+    private syncedScrollTop: Record<ScrollFrom, number | null> = { editor: null, preview: null }
+
+    /** Stops the running animation, and the pane it scrolls. */
+    private stopAnimation: (() => void) | null = null
+
+    private animatedPane: ScrollFrom | null = null
 
     private active = true
 
@@ -74,11 +78,11 @@ export class ScrollSync {
                 this.syncPreviewScrollTop(true)
             }, 200)
         })
-        this.eventEmitter.listen('scroll', (type, data) => {
-            if (this.active) {
-                if (type === 'editor' && this.blockedScroll !== 'editor') {
+        this.eventEmitter.listen('scroll', (type: ScrollFrom, data) => {
+            if (this.active && !this.isSyncEcho(type)) {
+                if (type === 'editor') {
                     this.syncPreviewScrollTop()
-                } else if (type === 'preview' && this.blockedScroll !== 'preview') {
+                } else {
                     this.syncEditorScrollTop(data)
                 }
             }
@@ -86,6 +90,31 @@ export class ScrollSync {
         this.eventEmitter.listen('toggleScrollSync', (active: boolean) => {
             this.active = active
         })
+    }
+
+    private paneEl(pane: ScrollFrom) {
+        return pane === 'editor' ? this.editorView.dom : this.previewEl
+    }
+
+    /** Whether a pane's scroll event comes from the sync; if the user scrolled it, the sync stops scrolling it. */
+    private isSyncEcho(pane: ScrollFrom) {
+        const synced = this.syncedScrollTop[pane]
+
+        if (synced !== null && Math.abs(this.paneEl(pane).scrollTop - synced) < 1) {
+            return true
+        }
+        this.syncedScrollTop[pane] = null
+        if (this.animatedPane === pane) {
+            this.cancelAnimation()
+        }
+
+        return false
+    }
+
+    private cancelAnimation() {
+        this.stopAnimation?.()
+        this.stopAnimation = null
+        this.animatedPane = null
     }
 
     private getMdNodeAtPos(doc: ProsemirrorNode, posInfo: PosInfo) {
@@ -222,23 +251,18 @@ export class ScrollSync {
             : Math.min(targetScrollTop, curScrollTop)
     }
 
+    /** Scrolls the other pane than the one scrolled, `from`, to the position that matches it. */
     private run(from: ScrollFrom, targetScrollTop: number, curScrollTop: number) {
-        let scrollTarget: Element
+        const pane: ScrollFrom = from === 'editor' ? 'preview' : 'editor'
+        const el = this.paneEl(pane)
 
-        if (from === 'editor') {
-            scrollTarget = this.previewEl
-            this.blockedScroll = 'preview'
-        } else {
-            scrollTarget = this.editorView.dom
-            this.blockedScroll = 'editor'
-        }
-
-        const syncCallbacks: SyncCallbacks = {
-            syncScrollTop: (scrollTop) => (scrollTarget.scrollTop = scrollTop),
-            releaseEventBlock: () => (this.blockedScroll = null)
-        }
-
-        animate(curScrollTop, targetScrollTop, syncCallbacks)
+        this.cancelAnimation()
+        this.animatedPane = pane
+        this.stopAnimation = animate(curScrollTop, targetScrollTop, (scrollTop) => {
+            el.scrollTop = scrollTop
+            // where the pane is, which can be rounded or kept within its scroll range
+            this.syncedScrollTop[pane] = el.scrollTop
+        })
     }
 
     clearTimer() {
@@ -250,6 +274,7 @@ export class ScrollSync {
 
     destroy() {
         this.clearTimer()
+        this.cancelAnimation()
         this.eventEmitter.removeEventHandler('scroll')
         this.eventEmitter.removeEventHandler('afterPreviewRender')
     }
