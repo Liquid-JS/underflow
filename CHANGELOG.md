@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.0.0-8](https://github.com/Liquid-JS/underflow/compare/v4.0.0-7...v4.0.0-8) (2026-11-08)
+
+### Features
+
+* a language for each editor ([0d31e47](https://github.com/Liquid-JS/underflow/commit/0d31e4770c15aee1dc9c8ed0a50bde497247f60d))
+* blocks in the direction of their own text ([cf13b9e](https://github.com/Liquid-JS/underflow/commit/cf13b9ebc1dcb60441a3ad9bc0a710f192c2cc3e))
+* disabled state ([0f241db](https://github.com/Liquid-JS/underflow/commit/0f241db88171754c801e48be1c02a5d48c986237))
+* heading level text with a placeholder ([3ce196d](https://github.com/Liquid-JS/underflow/commit/3ce196dc1e0cae45e68fae1a44d2a722b43109d7))
+* renderMarkdown() in a render entry point ([6343aaa](https://github.com/Liquid-JS/underflow/commit/6343aaa80895c15ed595fb2442c1bbda8b539205))
+* the table context menu by keyboard ([9009c3e](https://github.com/Liquid-JS/underflow/commit/9009c3e7bbb3f1fcacd41c5625905dcc439c5f7b))
+
+### Bug Fixes
+
+* each toolbar's own description of active buttons ([3c2d3f0](https://github.com/Liquid-JS/underflow/commit/3c2d3f06227dca73400020a149c912ab7e8faf21))
+* no divider at the end or the start of a wrapped toolbar row ([297c68a](https://github.com/Liquid-JS/underflow/commit/297c68aba75305f783540e1b981739c675eac2d7))
+* popups outside an ancestor that clips the editor ([3ad4c7e](https://github.com/Liquid-JS/underflow/commit/3ad4c7e40f923e7f8f06b7e383eefdbe0d39b80c))
+* right-to-left text ([149f9aa](https://github.com/Liquid-JS/underflow/commit/149f9aaa6e951ff7ee44e3df0f0feb96f4cf8a94))
+* scroll sync feedback loop ([96e6d6f](https://github.com/Liquid-JS/underflow/commit/96e6d6f274971da36904a92da51f0d48686d55a8))
 ## [4.0.0-7](https://github.com/Liquid-JS/underflow/compare/v4.0.0-6...v4.0.0-7) (2026-11-08)
 
 ### Bug Fixes
