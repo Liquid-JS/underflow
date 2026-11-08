@@ -64,8 +64,13 @@ interface ItemWidthMap {
 
 const INLINE_PADDING = 50
 
+let toolbarCount = 0
+
 export class Toolbar extends Component<Props, State> {
     private tabs: TabInfo[]
+
+    /** each toolbar's own, so the active buttons of several editors are described in their own language */
+    private activeDescId = `${cls('active-button-desc')}-${(toolbarCount += 1)}`
 
     private itemWidthMap: ItemWidthMap
 
@@ -445,7 +450,8 @@ export class Toolbar extends Component<Props, State> {
             tooltipRef: this.tooltipRef,
             disabled: readonly || (editorType === 'markdown' && previewStyle === 'tab' && activeTab === 'preview'),
             execCommand: this.execCommand,
-            setPopupInfo: this.setPopupInfo
+            setPopupInfo: this.setPopupInfo,
+            activeDescId: this.activeDescId
         }
 
         // The Write and Preview tabs come after the toolbar, at the end of its last row, next to the text they switch.
@@ -495,7 +501,7 @@ export class Toolbar extends Component<Props, State> {
                     hidePopup=${this.hidePopup}
                     execCommand=${this.execCommand}
                 />
-                <div id=${cls('active-button-desc')}>${this.props.i18n.get('Active Button')}</div>
+                <div id=${this.activeDescId} class=${cls('active-button-desc')}>${this.props.i18n.get('Active Button')}</div>
             </div>
         `
     }

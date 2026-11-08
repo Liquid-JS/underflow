@@ -76,4 +76,17 @@ describe('languages of several editors', () => {
 
         expect(labels).toContain(deDE['Remove row'])
     })
+
+    it('should describe the active toolbar buttons in each editor\'s own words', () => {
+        const german = create({ language: 'de-DE', initialValue: '**fett**' })
+        const english = create({})
+        const description = (el: HTMLElement) => el.querySelector(`.${cls('active-button-desc')}`)!
+
+        expect(description(german).id).not.toBe(description(english).id)
+        expect(description(german).textContent).toBe(deDE['Active Button'])
+
+        // the cursor in bold text makes the bold button active
+        editors[0].editor.setSelection([1, 4], [1, 4])
+        expect(german.querySelector('.uf-toolbar-icons.bold')).toHaveAttribute('aria-describedby', description(german).id)
+    })
 })
