@@ -61,3 +61,54 @@ for (const dir of ['ltr', 'rtl']) {
         await expect(menu).not.toHaveAttribute('popover')
     })
 }
+
+test('the table menu works by keyboard, and opens below the cell or at the pointer', async ({ page }) => {
+    await page.goto('/')
+
+    const editor = page.locator('#editor')
+
+    await page.evaluate(() => (window as unknown as { smokeEditor: { setMarkdown(markdown: string): void } })
+        .smokeEditor.setMarkdown('| a | b |\n| - | - |\n| 1 | 2 |'))
+
+    const text = editor.locator('.uf-ww-container .ProseMirror')
+    const cell = text.locator('td').first()
+    const menu = editor.locator('.uf-context-menu')
+    const items = menu.locator('[role="menuitem"]')
+
+    // the cursor in the cell, once the editor has it, and the menu from the keyboard, below it
+    const selection = () => page.evaluate(() =>
+        (window as unknown as { smokeEditor: { getSelection(): unknown } }).smokeEditor.getSelection())
+    const before = await selection()
+
+    await cell.click()
+    await expect.poll(selection).not.toEqual(before)
+    await page.keyboard.press('Shift+F10')
+    await expect(menu).toBeVisible()
+    await expect(items.first()).toBeFocused()
+
+    const [menuBox, cellBox] = [(await menu.boundingBox())!, (await cell.boundingBox())!]
+
+    expect(Math.abs(menuBox.x - cellBox.x)).toBeLessThan(2)
+    expect(Math.abs(menuBox.y - (cellBox.y + cellBox.height))).toBeLessThan(2)
+
+    // "Add row below", and the focus back in the text
+    await page.keyboard.press('ArrowDown')
+    await page.keyboard.press('Enter')
+    await expect(menu).toBeHidden()
+    await expect(text.locator('tbody tr')).toHaveCount(2)
+    await expect(text).toBeFocused()
+
+    // with the mouse, just past the pointer; in the cell's middle, away from the table's edit buttons
+    const pointer = { x: Math.round(cellBox.width / 2), y: Math.round(cellBox.height / 2) }
+
+    await cell.click({ button: 'right', position: pointer })
+    await expect(menu).toBeVisible()
+
+    const pointerMenu = (await menu.boundingBox())!
+
+    expect(Math.abs(pointerMenu.x - (cellBox.x + pointer.x + 2))).toBeLessThan(2)
+    expect(Math.abs(pointerMenu.y - (cellBox.y + pointer.y + 2))).toBeLessThan(2)
+    await page.keyboard.press('Escape')
+    await expect(menu).toBeHidden()
+    await expect(text).toBeFocused()
+})

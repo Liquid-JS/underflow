@@ -37,7 +37,7 @@
         width: 20px;
         height: 20px;
         vertical-align: middle;
-        margin-right: 10px;
+        margin-inline-end: 10px;
     }
 
     .disabled .uf-icon {
@@ -45,8 +45,14 @@
     }
 
     li {
-        &:not(.disabled):hover {
+        &:not(.disabled):hover,
+        &:focus-visible {
             background-color: var(--uf-hover-bg-color);
+        }
+
+        // the item the keyboard is on, inside the menu, which would cut off an outline around it
+        &:focus-visible {
+            outline-offset: -2px;
         }
 
         &.disabled {
