@@ -7,7 +7,7 @@ import { createTextSelection } from '../../helper/manipulation'
 import { getCustomAttrs } from '../helper/node'
 
 import { isFunction } from '../../utils/native'
-import { i18n } from '../../i18n/i18n'
+import { i18n as defaultI18n, I18n } from '../../i18n/i18n'
 import { icons } from '../../ui/icons'
 
 type GetPos = (() => number) | boolean
@@ -27,7 +27,16 @@ export class ImageView implements NodeView {
 
     private imageLink: Mark | null
 
-    constructor(node: ProsemirrorNode, view: EditorView, getPos: GetPos, eventEmitter: Emitter) {
+    private i18n: I18n
+
+    constructor(
+        node: ProsemirrorNode,
+        view: EditorView,
+        getPos: GetPos,
+        eventEmitter: Emitter,
+        i18n: I18n = defaultI18n
+    ) {
+        this.i18n = i18n
         this.node = node
         this.view = view
         this.getPos = getPos
@@ -50,7 +59,7 @@ export class ImageView implements NodeView {
             button.tabIndex = 0
             button.className = cls('image-link-button')
             button.setAttribute('contenteditable', 'false')
-            button.setAttribute('aria-label', i18n.get('Edit link'))
+            button.setAttribute('aria-label', this.i18n.get('Edit link'))
             button.innerHTML = `<span class="${cls('icon')}" aria-hidden="true">${icons.link}</span>`
             wrapper.append(image, button)
 

@@ -8,7 +8,7 @@ import { keymap } from 'prosemirror-keymap'
 import { ToDOMAdaptor } from '../../types/convertor'
 import { createTextSelection } from '../../helper/manipulation'
 import { cls } from '../../utils/dom'
-import { i18n } from '../../i18n/i18n'
+import { i18n as defaultI18n, I18n } from '../../i18n/i18n'
 import { icons } from '../../ui/icons'
 import { isFunction } from '../../utils/native'
 
@@ -33,7 +33,16 @@ export class CustomBlockView implements NodeView {
 
     private canceled: boolean
 
-    constructor(node: ProsemirrorNode, view: EditorView, getPos: GetPos, toDOMAdaptor: ToDOMAdaptor) {
+    private i18n: I18n
+
+    constructor(
+        node: ProsemirrorNode,
+        view: EditorView,
+        getPos: GetPos,
+        toDOMAdaptor: ToDOMAdaptor,
+        i18n: I18n = defaultI18n
+    ) {
+        this.i18n = i18n
         this.node = node
         this.editorView = view
         this.getPos = getPos
@@ -63,7 +72,7 @@ export class CustomBlockView implements NodeView {
         span.className = 'info'
         button.type = 'button'
         button.tabIndex = 0
-        button.setAttribute('aria-label', i18n.get('Edit'))
+        button.setAttribute('aria-label', this.i18n.get('Edit'))
         button.innerHTML = `<span class="${cls('icon')}" aria-hidden="true">${icons.pencil}</span>`
         button.addEventListener('click', () => this.openEditor())
 

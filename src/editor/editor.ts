@@ -20,6 +20,7 @@ class Editor extends EditorCore {
                 <${Layout}
                     ref=${(layout: Layout) => (layoutComp = layout)}
                     eventEmitter=${this.eventEmitter}
+                    i18n=${this.i18n}
                     slots=${this.getEditorElements()}
                     hideModeSwitch=${this.options.hideModeSwitch}
                     toolbarItems=${this.options.toolbarItems}

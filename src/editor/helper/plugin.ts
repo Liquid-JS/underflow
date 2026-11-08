@@ -5,11 +5,11 @@ import { keymap } from 'prosemirror-keymap'
 import { Fragment } from 'prosemirror-model'
 import { EditorPluginInfo, EditorPluginsInfo } from '../types/editor'
 import { PluginInfoResult } from '../types/plugin'
-import { i18n } from '../i18n/i18n'
+import { i18n as defaultI18n } from '../i18n/i18n'
 import { deepMergedCopy } from '../utils/common'
 
 function execPlugin(pluginInfo: EditorPluginInfo) {
-    const { plugin, eventEmitter, instance } = pluginInfo
+    const { plugin, eventEmitter, instance, i18n = defaultI18n } = pluginInfo
 
     const pmState = { Plugin, PluginKey, Selection, TextSelection }
     const pmView = { Decoration, DecorationSet }
@@ -37,14 +37,15 @@ function execPlugin(pluginInfo: EditorPluginInfo) {
 }
 
 export function getPluginInfo(pluginsInfo: EditorPluginsInfo) {
-    const { plugins, eventEmitter, instance } = pluginsInfo
+    const { plugins, eventEmitter, instance, i18n } = pluginsInfo
 
     return (plugins ?? []).reduce<PluginInfoResult>(
         (acc, plugin) => {
             const pluginInfoResult = execPlugin({
                 plugin,
                 eventEmitter,
-                instance
+                instance,
+                i18n
             })
 
             if (!pluginInfoResult) {

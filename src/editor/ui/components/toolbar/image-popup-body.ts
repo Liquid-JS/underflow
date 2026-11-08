@@ -1,7 +1,7 @@
 import { HookCallback } from '../../../types/editor'
 import { Emitter } from '../../../types/event'
 import { ExecCommand, HidePopup, TabInfo } from '../../../types/ui'
-import { i18n } from '../../../i18n/i18n'
+import { I18n } from '../../../i18n/i18n'
 import { cls } from '../../../utils/dom'
 import { Component } from '../../vdom/component'
 import { html } from '../../vdom/template'
@@ -12,6 +12,8 @@ const TYPE_UI = 'ui'
 type TabType = 'url' | 'file'
 
 interface Props {
+    /** the editor's texts, in its language */
+    i18n: I18n
     show: boolean
     eventEmitter: Emitter
     execCommand: ExecCommand
@@ -122,10 +124,10 @@ export class ImagePopupBody extends Component<Props, State> {
         const { activeTab, file, fileNameElClassName } = this.state
 
         return html`
-            <div role="dialog" aria-modal="true" tabindex="-1" aria-label="${i18n.get('Insert image')}">
+            <div role="dialog" aria-modal="true" tabindex="-1" aria-label="${this.props.i18n.get('Insert image')}">
                 <${Tabs} tabs=${this.tabs} activeTab=${activeTab} onClick=${this.toggleTab} />
                 <div style="display:${activeTab === 'url' ? 'block' : 'none'}">
-                    <label for="uf-image-url-input">${i18n.get('Image URL')}</label>
+                    <label for="uf-image-url-input">${this.props.i18n.get('Image URL')}</label>
                     <input
                         id="uf-image-url-input"
                         type="text"
@@ -133,20 +135,20 @@ export class ImagePopupBody extends Component<Props, State> {
                     />
                 </div>
                 <div style="display:${activeTab === 'file' ? 'block' : 'none'};position: relative;">
-                    <label for="uf-image-file-input">${i18n.get('Select image file')}</label>
+                    <label for="uf-image-file-input">${this.props.i18n.get('Select image file')}</label>
                     <span
                         class="${cls('file-name')}${file ? ' has-file' : fileNameElClassName}"
                         onClick=${this.showFileSelectBox}
                         onSelectstart=${this.preventSelectStart}
                     >
-                        ${file ? file.name : i18n.get('No file')}
+                        ${file ? file.name : this.props.i18n.get('No file')}
                     </span>
                     <button
                         type="button"
                         class="${cls('file-select-button')}"
                         onClick=${this.showFileSelectBox}
                     >
-                        ${i18n.get('Choose a file')}
+                        ${this.props.i18n.get('Choose a file')}
                     </button>
                     <input
                         id="uf-image-file-input"
@@ -156,7 +158,7 @@ export class ImagePopupBody extends Component<Props, State> {
                         ref=${(el: HTMLInputElement) => (this.refs.file = el)}
                     />
                 </div>
-                <label for="uf-alt-text-input">${i18n.get('Description')}</label>
+                <label for="uf-alt-text-input">${this.props.i18n.get('Description')}</label>
                 <input
                     id="uf-alt-text-input"
                     type="text"
@@ -164,10 +166,10 @@ export class ImagePopupBody extends Component<Props, State> {
                 />
                 <div class="${cls('button-container')}">
                     <button type="button" class="${cls('close-button')}" onClick=${this.props.hidePopup}>
-                        ${i18n.get('Cancel')}
+                        ${this.props.i18n.get('Cancel')}
                     </button>
                     <button type="button" class="${cls('ok-button')}" onClick=${this.execCommand}>
-                        ${i18n.get('OK')}
+                        ${this.props.i18n.get('OK')}
                     </button>
                 </div>
             </div>

@@ -3,7 +3,7 @@ import { EditorView } from 'prosemirror-view'
 
 import { Emitter } from '../../types/event'
 import { findCellElement } from '../helper/table'
-import { i18n } from '../../i18n/i18n'
+import { i18n as defaultI18n, I18n } from '../../i18n/i18n'
 import { icons } from '../../ui/icons'
 
 interface ContextMenuInfo {
@@ -60,7 +60,7 @@ const contextMenuGroups: ContextMenuInfo[][] = [
     [{ action: 'Remove table', command: 'removeTable', className: 'remove-table' }]
 ]
 
-function getContextMenuGroups(eventEmitter: Emitter, inTableHead: boolean) {
+function getContextMenuGroups(eventEmitter: Emitter, inTableHead: boolean, i18n: I18n) {
     return contextMenuGroups
         .map((contextMenuGroup) =>
             contextMenuGroup.map(({ action, command, payload, disableInThead, className }) => ({
@@ -76,7 +76,7 @@ function getContextMenuGroups(eventEmitter: Emitter, inTableHead: boolean) {
         .concat()
 }
 
-export function tableContextMenu(eventEmitter: Emitter) {
+export function tableContextMenu(eventEmitter: Emitter, i18n: I18n = defaultI18n) {
     return new Plugin({
         props: {
             handleDOMEvents: {
@@ -93,7 +93,7 @@ export function tableContextMenu(eventEmitter: Emitter) {
 
                         eventEmitter.emit('contextmenu', {
                             pos: { left: `${clientX - left + 10}px`, top: `${clientY - top + 30}px` },
-                            menuGroups: getContextMenuGroups(eventEmitter, inTableHead),
+                            menuGroups: getContextMenuGroups(eventEmitter, inTableHead, i18n),
                             tableCell
                         })
 

@@ -3,7 +3,7 @@ import { ExecCommand, Pos } from '../../../types/ui'
 import { cls } from '../../../utils/dom'
 import { html } from '../../vdom/template'
 import { Component } from '../../vdom/component'
-import { i18n } from '../../../i18n/i18n'
+import { I18n } from '../../../i18n/i18n'
 
 interface Range {
     rowIdx: number
@@ -11,6 +11,8 @@ interface Range {
 }
 
 interface Props {
+    /** the editor's texts, in its language */
+    i18n: I18n
     eventEmitter: Emitter
     execCommand: ExecCommand
     show: boolean
@@ -142,7 +144,7 @@ export class TablePopupBody extends Component<Props, State> {
         const selectionAreaBound = this.getSelectionAreaBound()
 
         return html`
-            <div role="dialog" aria-modal="true" tabindex="-1" aria-label="${i18n.get('Insert table')}">
+            <div role="dialog" aria-modal="true" tabindex="-1" aria-label="${this.props.i18n.get('Insert table')}">
                 <div
                     class="${cls('table-selection')}"
                     ref=${(el: HTMLElement) => (this.refs.tableEl = el)}

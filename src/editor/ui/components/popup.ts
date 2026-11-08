@@ -4,10 +4,12 @@ import { closest, cls, getEventTarget } from '../../utils/dom'
 import { shallowEqual } from '../../utils/common'
 import { html } from '../vdom/template'
 import { Component } from '../vdom/component'
+import { I18n } from '../../i18n/i18n'
 import { TopLayer } from '../top-layer'
 
 interface Props {
     show: boolean
+    i18n: I18n
     info: PopupInfo
     eventEmitter: Emitter
     hidePopup: HidePopup
@@ -167,7 +169,7 @@ export class Popup extends Component<Props, State> {
     }
 
     render() {
-        const { info, show, hidePopup, eventEmitter, execCommand } = this.props
+        const { info, show, hidePopup, eventEmitter, execCommand, i18n } = this.props
         const { className = '', style, render, initialValues = {} } = info || {}
         const popupStyle: StyleProps = {
             display: 'block',
@@ -184,7 +186,7 @@ export class Popup extends Component<Props, State> {
                 ref=${(el: HTMLElement) => (this.refs.el = el)}
             >
                 <div class="${cls('popup-body')}">
-                    ${render && render({ eventEmitter, show, hidePopup, execCommand, initialValues })}
+                    ${render && render({ eventEmitter, show, hidePopup, execCommand, initialValues, i18n })}
                 </div>
             </div>
         `

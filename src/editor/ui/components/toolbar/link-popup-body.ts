@@ -1,12 +1,14 @@
 import { Emitter } from '../../../types/event'
 import { ExecCommand, HidePopup, PopupInitialValues } from '../../../types/ui'
-import { i18n } from '../../../i18n/i18n'
+import { I18n } from '../../../i18n/i18n'
 import { cls } from '../../../utils/dom'
 import { html } from '../../vdom/template'
 import { Component } from '../../vdom/component'
 import { isUndefined } from '../../../utils/native'
 
 interface Props {
+    /** the editor's texts, in its language */
+    i18n: I18n
     eventEmitter: Emitter
     execCommand: ExecCommand
     hidePopup: HidePopup
@@ -58,7 +60,7 @@ export class LinkPopupBody extends Component<Props> {
         linkTextEl.classList.remove('wrong')
 
         if (linkUrlEl.value.length < 1) {
-            linkUrlEl.setCustomValidity(i18n.get('URL required'))
+            linkUrlEl.setCustomValidity(this.props.i18n.get('URL required'))
             linkUrlEl.reportValidity()
             linkUrlEl.classList.add('wrong')
             return
@@ -67,7 +69,7 @@ export class LinkPopupBody extends Component<Props> {
         const checkLinkText = isUndefined(this.props.initialValues.linkUrl)
 
         if (checkLinkText && linkTextEl.value.length < 1) {
-            linkTextEl.setCustomValidity(i18n.get('Link text required'))
+            linkTextEl.setCustomValidity(this.props.i18n.get('Link text required'))
             linkTextEl.reportValidity()
             linkTextEl.classList.add('wrong')
             return
@@ -91,8 +93,8 @@ export class LinkPopupBody extends Component<Props> {
 
     render() {
         return html`
-            <div role="dialog" aria-modal="true" tabindex="-1" aria-label="${i18n.get('Insert link')}">
-                <label for="uf-link-url-input">${i18n.get('URL')}</label>
+            <div role="dialog" aria-modal="true" tabindex="-1" aria-label="${this.props.i18n.get('Insert link')}">
+                <label for="uf-link-url-input">${this.props.i18n.get('URL')}</label>
                 <input
                     id="uf-link-url-input"
                     type="text"
@@ -100,7 +102,7 @@ export class LinkPopupBody extends Component<Props> {
                     onKeyDown=${this.resetCustomValidity}
                     required
                 />
-                <label for="uf-link-text-input">${i18n.get('Link text')}</label>
+                <label for="uf-link-text-input">${this.props.i18n.get('Link text')}</label>
                 <input
                     id="uf-link-text-input"
                     type="text"
@@ -110,10 +112,10 @@ export class LinkPopupBody extends Component<Props> {
                 />
                 <div class="${cls('button-container')}">
                     <button type="button" class="${cls('close-button')}" onClick=${this.props.hidePopup}>
-                        ${i18n.get('Cancel')}
+                        ${this.props.i18n.get('Cancel')}
                     </button>
                     <button type="button" class="${cls('ok-button')}" onClick=${this.execCommand}>
-                        ${i18n.get('OK')}
+                        ${this.props.i18n.get('OK')}
                     </button>
                 </div>
             </div>

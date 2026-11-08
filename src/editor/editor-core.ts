@@ -86,7 +86,8 @@ class EditorCore {
 
     private mdPreviewStyle: PreviewStyle
 
-    private i18n: I18n
+    /** the texts in the editor's language */
+    protected i18n: I18n
 
     private scrollSync: ScrollSync
 
@@ -153,8 +154,8 @@ class EditorCore {
         this.mode = initialEditType || 'markdown'
         this.mdPreviewStyle = this.options.previewStyle
 
-        this.i18n = i18n
-        this.i18n.setCode(this.options.language)
+        // the editor's own language, which other editors don't change
+        this.i18n = i18n.withCode(this.options.language)
 
         this.eventEmitter = new EventEmitter()
 
@@ -165,7 +166,8 @@ class EditorCore {
         this.pluginInfo = getPluginInfo({
             plugins: this.options.plugins,
             eventEmitter: this.eventEmitter,
-            instance: this
+            instance: this,
+            i18n: this.i18n
         })
         const {
             toHTMLRenderers,
@@ -213,7 +215,8 @@ class EditorCore {
             ...rendererOptions,
             isViewer: false,
             highlight: this.options.previewHighlight,
-            widgetRules: rules
+            widgetRules: rules,
+            i18n: this.i18n
         })
 
         this.wwEditor = new WysiwygEditor(this.eventEmitter, {
@@ -225,11 +228,12 @@ class EditorCore {
             wwNodeViews,
             stripPastedStyles: this.options.stripPastedStyles,
             editPanel: this.options.editPanel,
-            widgetRules: rules
+            widgetRules: rules,
+            i18n: this.i18n
         })
 
-        this.mdEditor.view.dom.setAttribute('aria-label', i18n.get('Markdown'))
-        this.wwEditor.view.dom.setAttribute('aria-label', i18n.get('WYSIWYG'))
+        this.mdEditor.view.dom.setAttribute('aria-label', this.i18n.get('Markdown'))
+        this.wwEditor.view.dom.setAttribute('aria-label', this.i18n.get('WYSIWYG'))
 
         this.convertor = new Convertor(
             this.wwEditor.getSchema(),

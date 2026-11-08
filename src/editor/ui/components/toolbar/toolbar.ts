@@ -27,7 +27,7 @@ import {
     setGroupState,
     createPopupInfo
 } from '../../toolbar-item-factory'
-import { i18n } from '../../../i18n/i18n'
+import { I18n } from '../../../i18n/i18n'
 import { css, forEachArray, throttle } from '../../../utils/native'
 import { Popup } from '../popup'
 import { Tabs } from '../tabs'
@@ -38,6 +38,8 @@ type TabType = 'write' | 'preview'
 
 interface Props {
     eventEmitter: Emitter
+    /** the editor's texts, in its language */
+    i18n: I18n
     previewStyle: PreviewStyle
     toolbarItems: ToolbarItem[]
     editorType: EditorType
@@ -82,7 +84,7 @@ export class Toolbar extends Component<Props, State> {
             { name: 'preview', text: 'Preview' }
         ]
         this.itemWidthMap = {}
-        this.initialItems = groupToolbarItems(props.toolbarItems || [], this.hiddenScrollSync())
+        this.initialItems = groupToolbarItems(props.toolbarItems || [], this.hiddenScrollSync(), props.i18n)
 
         this.state = {
             items: this.initialItems,
@@ -102,7 +104,7 @@ export class Toolbar extends Component<Props, State> {
         const { groupIndex, itemIndex } = indexList
         const group = this.initialItems[groupIndex]
 
-        item = createToolbarItemInfo(item)
+        item = createToolbarItemInfo(item, this.props.i18n)
 
         if (!item) {
             return
@@ -453,7 +455,7 @@ export class Toolbar extends Component<Props, State> {
                     class="${cls('default-ui-toolbar')}"
                     ref=${(el: HTMLElement) => (this.refs.el = el)}
                     role="toolbar"
-                    aria-label="${i18n.get('Text Formatting')}"
+                    aria-label="${this.props.i18n.get('Text Formatting')}"
                 >
                     ${items.map(
                         (group, index) => html`
@@ -466,7 +468,7 @@ export class Toolbar extends Component<Props, State> {
                         `
                     )}
                     <${DropdownToolbarButton}
-                        item=${createToolbarItemInfo('more')}
+                        item=${createToolbarItemInfo('more', this.props.i18n)}
                         items=${dropdownItems}
                         ...${props}
                     />
@@ -478,7 +480,7 @@ export class Toolbar extends Component<Props, State> {
                         : 'block'}"
                 >
                     <${Tabs}
-                        tabs=${this.tabs}
+                        tabs=${this.tabs.map(({ name, text }) => ({ name, text: this.props.i18n.get(text) }))}
                         activeTab=${activeTab}
                         disabled=${disabled}
                         tabbable=${!disabled}
@@ -489,10 +491,11 @@ export class Toolbar extends Component<Props, State> {
                     info=${popupInfo}
                     show=${showPopup}
                     eventEmitter=${eventEmitter}
+                    i18n=${this.props.i18n}
                     hidePopup=${this.hidePopup}
                     execCommand=${this.execCommand}
                 />
-                <div id=${cls('active-button-desc')}>${i18n.get('Active Button')}</div>
+                <div id=${cls('active-button-desc')}>${this.props.i18n.get('Active Button')}</div>
             </div>
         `
     }

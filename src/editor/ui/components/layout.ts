@@ -4,11 +4,14 @@ import { IndexList, ToolbarItem, ToolbarItemOptions } from '../../types/ui'
 import { cls } from '../../utils/dom'
 import { html } from '../vdom/template'
 import { Component } from '../vdom/component'
+import { I18n } from '../../i18n/i18n'
 import { Switch } from './switch'
 import { Toolbar } from './toolbar/toolbar'
 import { ContextMenu } from './context-menu'
 
 interface Props {
+    /** the editor's texts, in its language */
+    i18n: I18n
     eventEmitter: Emitter
     hideModeSwitch: boolean
     slots: {
@@ -88,6 +91,7 @@ export class Layout extends Component<Props, State> {
                 <${Toolbar}
                     ref=${(toolbar: Toolbar) => (this.toolbar = toolbar)}
                     eventEmitter=${eventEmitter}
+                    i18n=${this.props.i18n}
                     previewStyle=${previewStyle}
                     toolbarItems=${toolbarItems}
                     editorType=${editorType}
@@ -115,6 +119,7 @@ export class Layout extends Component<Props, State> {
                 ${!hideModeSwitch &&
                 html`<${Switch}
                     eventEmitter=${eventEmitter}
+                    i18n=${this.props.i18n}
                     editorType=${editorType}
                     readonly=${readonly}
                     disabled=${disabled}

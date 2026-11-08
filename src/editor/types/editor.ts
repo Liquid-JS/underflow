@@ -154,6 +154,8 @@ export type EditorPlugin = PluginFn | [PluginFn, any]
 export interface ContextInfo {
     eventEmitter: Emitter
     instance: EditorCore | Viewer
+    /** the texts in the editor's language */
+    i18n?: I18n
 }
 
 export type EditorPluginInfo = ContextInfo & {

@@ -7,9 +7,17 @@ class I18n {
 
     private langs: Map<string, Record<string, string>>
 
-    constructor() {
-        this.code = DEFAULT_CODE
-        this.langs = new Map()
+    constructor(langs = new Map<string, Record<string, string>>(), code = DEFAULT_CODE) {
+        this.code = code
+        this.langs = langs
+    }
+
+    /**
+     * The same languages in the one with `code`, so each editor shows its own language, see `EditorOptions.language`.
+     * Languages registered on either are registered on both.
+     */
+    withCode(code?: string) {
+        return new I18n(this.langs, code || DEFAULT_CODE)
     }
 
     setCode(code?: string) {
@@ -39,6 +47,7 @@ class I18n {
     }
 }
 
+/** The languages of all editors, in English; each editor shows its own with `withCode()`. */
 const i18n = new I18n()
 
 // English is built in, so the editor works without importing a locale

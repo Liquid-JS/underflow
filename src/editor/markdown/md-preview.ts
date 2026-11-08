@@ -1,5 +1,5 @@
 import { Emitter } from '../types/event'
-import { i18n } from '../i18n/i18n'
+import { i18n as defaultI18n, I18n } from '../i18n/i18n'
 import { CustomHTMLRenderer, LinkAttributes } from '../types/editor'
 import {
     cls,
@@ -41,6 +41,8 @@ interface Options {
     isViewer: boolean
     highlight?: boolean
     sanitizer: Sanitizer
+    /** the editor's texts, in its language */
+    i18n?: I18n
 }
 
 /** The rendered markdown, in the editor's preview and in the viewer. */
@@ -71,7 +73,7 @@ class MarkdownPreview {
         if (!this.isViewer) {
             // a named region, which Tab reaches in every browser to scroll it by keyboard (WCAG 2.1.1)
             this.el.setAttribute('role', 'region')
-            this.el.setAttribute('aria-label', i18n.get('Preview'))
+            this.el.setAttribute('aria-label', (options.i18n ?? defaultI18n).get('Preview'))
             this.el.tabIndex = 0
         }
 

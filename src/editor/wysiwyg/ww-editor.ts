@@ -18,6 +18,7 @@ import { WidgetRules } from '../widget/rules'
 import { createWidgetNodeView } from '../widget/widget-node'
 import { cls, removeProseMirrorHackNodes } from '../utils/dom'
 import { isNumber } from '../utils/native'
+import { i18n as defaultI18n, I18n } from '../i18n/i18n'
 import { markdownShortcutRules } from './plugins/markdown-shortcuts'
 import { isInTableNode } from './helper/node'
 import { tableSelection } from './plugins/selection/table-selection'
@@ -48,6 +49,8 @@ interface WysiwygOptions {
     stripPastedStyles?: boolean
     editPanel?: EditPanelOptions
     widgetRules?: WidgetRules
+    /** the editor's texts, in its language */
+    i18n?: I18n
 }
 
 type PluginNodeVeiwFn = (node: ProsemirrorNode, view: EditorView, getPos: () => number) => NodeView
@@ -77,6 +80,8 @@ export class WysiwygEditor extends EditorBase {
 
     private editPanelOptions: EditPanelOptions
 
+    private i18n: I18n
+
     declare widgetRules: WidgetRules
 
     constructor(eventEmitter: Emitter, options: WysiwygOptions) {
@@ -91,8 +96,11 @@ export class WysiwygEditor extends EditorBase {
             wwNodeViews = {},
             stripPastedStyles = false,
             editPanel = {},
-            widgetRules = new WidgetRules()
+            widgetRules = new WidgetRules(),
+            i18n = defaultI18n
         } = options
+
+        this.i18n = i18n
 
         this.editorType = 'wysiwyg'
         this.el.classList.add('ww-mode')
@@ -142,12 +150,12 @@ export class WysiwygEditor extends EditorBase {
             // Backspace right after a markdown shortcut or a widget was applied undoes it
             keymap({ Backspace: undoInputRule }),
             tableSelection(),
-            tableContextMenu(this.eventEmitter),
+            tableContextMenu(this.eventEmitter, this.i18n),
             task(),
             toolbarStateHighlight(this.eventEmitter),
-            ...(useLinkEditPanel ? [linkEditPanel(this.eventEmitter)] : []),
-            ...(useImageEditPanel ? [imageEditPanel(this.eventEmitter)] : []),
-            ...(useTableEditPanel ? [tableEditPanel(this.eventEmitter)] : []),
+            ...(useLinkEditPanel ? [linkEditPanel(this.eventEmitter, this.i18n)] : []),
+            ...(useImageEditPanel ? [imageEditPanel(this.eventEmitter, this.i18n)] : []),
+            ...(useTableEditPanel ? [tableEditPanel(this.eventEmitter, this.i18n)] : []),
             ...this.createPluginProps()
         ].concat(this.defaultPlugins)
     }
@@ -171,7 +179,7 @@ export class WysiwygEditor extends EditorBase {
     }
 
     createView() {
-        const { toDOMAdaptor, eventEmitter } = this
+        const { toDOMAdaptor, eventEmitter, i18n } = this
 
         const editorView = new EditorView(this.el, {
             state: this.createState(),
@@ -179,8 +187,8 @@ export class WysiwygEditor extends EditorBase {
                 class: CONTENTS_CLASS_NAME
             },
             nodeViews: {
-                customBlock: (node, view, getPos) => new CustomBlockView(node, view, getPos as () => number, toDOMAdaptor),
-                image: (node, view, getPos) => new ImageView(node, view, getPos as () => number, eventEmitter),
+                customBlock: (node, view, getPos) => new CustomBlockView(node, view, getPos as () => number, toDOMAdaptor, i18n),
+                image: (node, view, getPos) => new ImageView(node, view, getPos as () => number, eventEmitter, i18n),
                 codeBlock: (node, view, getPos) => new CodeBlockView(node, view, getPos as () => number, eventEmitter),
                 widget: createWidgetNodeView(this.widgetRules),
                 ...this.createPluginNodeViews()

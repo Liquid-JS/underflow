@@ -1,7 +1,7 @@
 import { Plugin } from 'prosemirror-state'
 
 import { Emitter } from '../../types/event'
-import { i18n } from '../../i18n/i18n'
+import { I18n } from '../../i18n/i18n'
 import { cls } from '../../utils/dom'
 
 import { EditPanel } from './edit-panel'
@@ -14,11 +14,11 @@ export class ImageEditPanel extends EditPanel {
     }
 
     protected get ariaLabel() {
-        return i18n.get('Edit image')
+        return this.i18n.get('Edit image')
     }
 
     protected get removeLabel() {
-        return i18n.get('Remove image')
+        return this.i18n.get('Remove image')
     }
 
     protected isTarget(element: HTMLElement) {
@@ -58,8 +58,8 @@ export class ImageEditPanel extends EditPanel {
 
         this.pos = pos
         this.show([
-            { name: 'imageUrl', label: i18n.get('Image URL'), value: imageUrl || '' },
-            { name: 'altText', label: i18n.get('Description'), value: altText || '' }
+            { name: 'imageUrl', label: this.i18n.get('Image URL'), value: imageUrl || '' },
+            { name: 'altText', label: this.i18n.get('Description'), value: altText || '' }
         ])
 
         return true
@@ -100,8 +100,8 @@ export class ImageEditPanel extends EditPanel {
     }
 }
 
-export function imageEditPanel(eventEmitter: Emitter) {
+export function imageEditPanel(eventEmitter: Emitter, i18n?: I18n) {
     return new Plugin({
-        view: (view) => new ImageEditPanel(view, eventEmitter)
+        view: (view) => new ImageEditPanel(view, eventEmitter, i18n)
     })
 }

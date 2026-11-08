@@ -1,11 +1,13 @@
 import { Emitter } from '../../../types/event'
 import { ExecCommand } from '../../../types/ui'
-import { i18n } from '../../../i18n/i18n'
+import { I18n } from '../../../i18n/i18n'
 import { html } from '../../vdom/template'
 import { Component } from '../../vdom/component'
 import { cls } from '../../../utils/dom'
 
 interface Props {
+    /** the editor's texts, in its language */
+    i18n: I18n
     eventEmitter: Emitter
     execCommand: ExecCommand
 }
@@ -34,7 +36,7 @@ export class HeadingPopupBody extends Component<Props, State> {
         return html`
             <ul
                 role="menu"
-                aria-label="${i18n.get('Headings')}"
+                aria-label="${this.props.i18n.get('Headings')}"
                 class="${cls('menu-headings')}"
                 id="${id}"
             >
@@ -43,7 +45,7 @@ export class HeadingPopupBody extends Component<Props, State> {
                         <li data-type="Heading" role="none">
                             <${`h${level}`} role="presentation">
                                 <button type="button" role="menuitem" onClick=${() => this.execCommand(level)}>
-                                    ${i18n.get('Heading {level}').replace('{level}', String(level))}
+                                    ${this.props.i18n.get('Heading {level}').replace('{level}', String(level))}
                                 </button>
                             </$>
                         </li>
@@ -52,7 +54,7 @@ export class HeadingPopupBody extends Component<Props, State> {
                 <li data-type="Paragraph" role="none">
                     <div>
                         <button type="button" role="menuitem" onClick=${() => this.execCommand(null)}>
-                            ${i18n.get('Paragraph')}
+                            ${this.props.i18n.get('Paragraph')}
                         </button>
                     </div>
                 </li>
