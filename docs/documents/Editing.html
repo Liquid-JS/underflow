@@ -37,7 +37,8 @@ the focus out of the text instead, press <kbd>Esc</kbd> first, as in code editor
 Toolbar buttons show their shortcuts in their accessible names and tooltips. The toolbar follows the ARIA toolbar
 pattern: <kbd>Tab</kbd> moves to it, arrow keys move between its buttons, and <kbd>Esc</kbd> closes popups and the
 &quot;More&quot; menu. <kbd>Tab</kbd> moves between a popup's fields and buttons. The Markdown/WYSIWYG switch is a tab list:
-<kbd>Tab</kbd> moves to it and the arrow keys change the mode. Every button has an explicit <code>tabindex</code>, so
+<kbd>Tab</kbd> moves to it and the arrow keys change the mode. The markdown mode's preview is a region named
+&quot;Preview&quot; that <kbd>Tab</kbd> reaches, so it can be scrolled by keyboard. Every button has an explicit <code>tabindex</code>, so
 <kbd>Tab</kbd> reaches them in Safari too.</p>
 <p>Set <code>toolbarStyle: 'wrap'</code> to let the toolbar wrap onto several lines instead of moving buttons into the &quot;More&quot; menu on
 narrow screens.</p>
@@ -188,6 +189,16 @@ item, table row and code block line counts as one line.</li>
 <li><code>getCurrentToolbarState()</code> returns which toolbar items are active or disabled at the cursor, for building your own
 toolbar.</li>
 </ul>
+<h2 id="read-only" class="tsd-anchor-link">Read-only<a href="#read-only" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p><code>readonly: true</code>, or <code>setReadonly(true)</code> later, stops the user from changing the text; <code>isReadonly()</code> tells whether
+they can. The text stays focusable, so it can still be read, selected and copied, as in a read-only form field, and
+screen readers announce it as a read-only text box. The toolbar and the Markdown/WYSIWYG switch are disabled, as
+changing the mode converts the text, while the Write and Preview tabs still switch. Popups, menus and edit panels
+close, and the buttons in the text that edit it, like a code block's language, are hidden.</p>
+<p>The API still changes the text: <code>setMarkdown()</code>, <code>setHTML()</code>, <code>exec()</code>, <code>changeMode()</code> and the like work in a
+read-only editor too.</p>
+<p>The editor's root element and its text have the <code>uf-readonly</code> class, for styling. Plugins with handlers of their own
+that change the document should check ProseMirror's <code>view.editable</code>, which is <code>false</code> in a read-only editor.</p>
 </div></div>
 <div class="col-sidebar">
 <div class="page-menu">
@@ -212,7 +223,8 @@ toolbar.</li>
 <li><a href="#pasting-and-dropping"><span>Pasting and dropping</span></a></li>
 <li><a href="#the-markdown-editor"><span>The markdown editor</span></a></li>
 <li><a href="#commands"><span>Commands</span></a></li>
-<li><a href="#focus-and-cursor"><span>Focus and cursor</span></a></li></ul></div></details></div>
+<li><a href="#focus-and-cursor"><span>Focus and cursor</span></a></li>
+<li><a href="#read-only"><span>Read-<wbr/>only</span></a></li></ul></div></details></div>
 <div class="site-menu">
 <nav class="tsd-navigation"><a href="../modules.html">@liquid-js/underflow</a>
 <ul class="tsd-small-nested-navigation" id="tsd-nav-container">
