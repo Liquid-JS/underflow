@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.0.0-7](https://github.com/Liquid-JS/underflow/compare/v4.0.0-6...v4.0.0-7) (2026-11-08)
+
+### Bug Fixes
+
+* readonly state, toolbar layout ([8d02b64](https://github.com/Liquid-JS/underflow/commit/8d02b6484b839a78eb58fa36d0da5115e080305b))
 ## [4.0.0-6](https://github.com/Liquid-JS/underflow/compare/v4.0.0-5...v4.0.0-6) (2026-11-07)
 ## [4.0.0-5](https://github.com/Liquid-JS/underflow/compare/v4.0.0-4...v4.0.0-5) (2026-11-07)
 
