@@ -72,7 +72,7 @@ const customHTMLRenderer: CustomHTMLRenderer = {
 }
 
 // ?wrap shows the toolbar that wraps onto more rows, ?readonly a read-only editor, ?disabled a disabled one,
-// ?rtl right-to-left text
+// ?rtl right-to-left text, ?autodir blocks in the direction of their text
 const params = new URLSearchParams(location.search)
 
 if (params.has('rtl')) {
@@ -86,6 +86,7 @@ const editorOptions: EditorOptions = {
     toolbarStyle: params.has('wrap') ? 'wrap' : 'default',
     readonly: params.has('readonly'),
     disabled: params.has('disabled'),
+    autoDirection: params.has('autodir'),
     language: 'de-DE',
     plugins,
     customHTMLRenderer

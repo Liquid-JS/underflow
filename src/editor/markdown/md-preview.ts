@@ -1,4 +1,5 @@
 import { Emitter } from '../types/event'
+import { setAutoDirection } from '../plugins/auto-direction'
 import { i18n as defaultI18n, I18n } from '../i18n/i18n'
 import { CustomHTMLRenderer, LinkAttributes } from '../types/editor'
 import {
@@ -43,6 +44,7 @@ interface Options {
     sanitizer: Sanitizer
     /** the editor's texts, in its language */
     i18n?: I18n
+    autoDirection?: boolean
 }
 
 /** The rendered markdown, in the editor's preview and in the viewer. */
@@ -61,12 +63,15 @@ class MarkdownPreview {
 
     private sanitizer: Sanitizer
 
+    private autoDirection: boolean
+
     constructor(eventEmitter: Emitter, options: Options) {
         const el = document.createElement('div')
 
         this.el = el
         this.eventEmitter = eventEmitter
         this.isViewer = !!options.isViewer
+        this.autoDirection = !!options.autoDirection
 
         this.el.className = cls('md-preview')
 
@@ -194,6 +199,9 @@ class MarkdownPreview {
 
     update(changed: EditResult[]) {
         changed.forEach((editResult) => this.replaceRangeNodes(editResult))
+        if (this.autoDirection) {
+            setAutoDirection(this.previewContent)
+        }
         this.eventEmitter.emit('afterPreviewRender', this)
     }
 

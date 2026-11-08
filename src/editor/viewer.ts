@@ -96,7 +96,8 @@ class Viewer {
         this.preview = new MarkdownPreview(this.eventEmitter, {
             ...rendererOptions,
             isViewer: true,
-            widgetRules: rules
+            widgetRules: rules,
+            autoDirection: this.options.autoDirection
         })
 
         if (initialValue) {

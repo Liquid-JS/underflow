@@ -4,6 +4,7 @@ import { Selection } from 'prosemirror-state'
 
 import { keymap } from 'prosemirror-keymap'
 import { undoInputRule } from 'prosemirror-inputrules'
+import { autoDirection, isWysiwygAutoDirectionBlock } from '../plugins/auto-direction'
 import { Emitter } from '../types/event'
 import { ToDOMAdaptor } from '../types/convertor'
 import { EditPanelOptions, HTMLSchemaMap, LinkAttributes, WidgetStyle } from '../types/editor'
@@ -51,6 +52,7 @@ interface WysiwygOptions {
     widgetRules?: WidgetRules
     /** the editor's texts, in its language */
     i18n?: I18n
+    autoDirection?: boolean
 }
 
 type PluginNodeVeiwFn = (node: ProsemirrorNode, view: EditorView, getPos: () => number) => NodeView
@@ -82,6 +84,8 @@ export class WysiwygEditor extends EditorBase {
 
     private i18n: I18n
 
+    private autoDirection: boolean
+
     declare widgetRules: WidgetRules
 
     constructor(eventEmitter: Emitter, options: WysiwygOptions) {
@@ -97,10 +101,12 @@ export class WysiwygEditor extends EditorBase {
             stripPastedStyles = false,
             editPanel = {},
             widgetRules = new WidgetRules(),
-            i18n = defaultI18n
+            i18n = defaultI18n,
+            autoDirection: blockDirection = false
         } = options
 
         this.i18n = i18n
+        this.autoDirection = blockDirection
 
         this.editorType = 'wysiwyg'
         this.el.classList.add('ww-mode')
@@ -152,6 +158,7 @@ export class WysiwygEditor extends EditorBase {
             tableSelection(),
             tableContextMenu(this.eventEmitter, this.i18n),
             task(),
+            ...(this.autoDirection ? [autoDirection(isWysiwygAutoDirectionBlock)] : []),
             toolbarStateHighlight(this.eventEmitter),
             ...(useLinkEditPanel ? [linkEditPanel(this.eventEmitter, this.i18n)] : []),
             ...(useImageEditPanel ? [imageEditPanel(this.eventEmitter, this.i18n)] : []),

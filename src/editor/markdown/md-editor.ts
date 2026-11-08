@@ -2,6 +2,7 @@ import { Transaction } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
 import { Fragment, Slice } from 'prosemirror-model'
 import { ReplaceStep } from 'prosemirror-transform'
+import { autoDirection, isMarkdownAutoDirectionLine } from '../plugins/auto-direction'
 
 import { MdContext } from '../types/spec'
 import { Emitter } from '../types/event'
@@ -44,6 +45,7 @@ interface MarkdownOptions {
     mdPlugins?: PluginProp[]
     cursorLineHighlight?: boolean
     widgetRules?: WidgetRules
+    autoDirection?: boolean
 }
 
 const EVENT_TYPE = 'cut'
@@ -53,6 +55,8 @@ export class MdEditor extends EditorBase {
     private markdownDocument: MarkdownDocument
 
     private cursorLineHighlight: boolean
+
+    private autoDirection: boolean
 
     private sourceWidgetRules: WidgetRules
 
@@ -66,13 +70,15 @@ export class MdEditor extends EditorBase {
             useCommandShortcut = true,
             mdPlugins = [],
             cursorLineHighlight: highlightCursorLine = false,
-            widgetRules = new WidgetRules()
+            widgetRules = new WidgetRules(),
+            autoDirection: lineDirection = false
         } = options
 
         this.editorType = 'markdown'
         this.el.classList.add('md-mode')
         this.markdownDocument = markdownDocument
         this.cursorLineHighlight = highlightCursorLine
+        this.autoDirection = lineDirection
         this.sourceWidgetRules = widgetRules
         this.extraPlugins = mdPlugins
         this.specs = this.createSpecs()
@@ -167,6 +173,7 @@ export class MdEditor extends EditorBase {
             previewHighlight(this.context),
             ...(this.cursorLineHighlight ? [cursorLineHighlight()] : []),
             smartTask(this.context),
+            ...(this.autoDirection ? [autoDirection(isMarkdownAutoDirectionLine)] : []),
             ...(this.sourceWidgetRules.rules.length
                 ? [widgetSource(this.markdownDocument, this.sourceWidgetRules, this.eventEmitter)]
                 : []),

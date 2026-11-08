@@ -208,6 +208,7 @@ class EditorCore {
             useCommandShortcut,
             mdPlugins,
             cursorLineHighlight: this.options.cursorLineHighlight,
+            autoDirection: this.options.autoDirection,
             widgetRules: rules
         })
 
@@ -216,7 +217,8 @@ class EditorCore {
             isViewer: false,
             highlight: this.options.previewHighlight,
             widgetRules: rules,
-            i18n: this.i18n
+            i18n: this.i18n,
+            autoDirection: this.options.autoDirection
         })
 
         this.wwEditor = new WysiwygEditor(this.eventEmitter, {
@@ -229,7 +231,8 @@ class EditorCore {
             stripPastedStyles: this.options.stripPastedStyles,
             editPanel: this.options.editPanel,
             widgetRules: rules,
-            i18n: this.i18n
+            i18n: this.i18n,
+            autoDirection: this.options.autoDirection
         })
 
         this.mdEditor.view.dom.setAttribute('aria-label', this.i18n.get('Markdown'))
