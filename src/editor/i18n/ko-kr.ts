@@ -21,6 +21,7 @@ export const koKR: Record<string, string> = {
     'Insert table': '표 삽입',
     'Insert image': '이미지 삽입',
     'Heading': '제목',
+    'Heading {level}': '제목 {level}',
     'Image URL': '이미지 주소',
     'Select image file': '이미지 파일을 선택하세요.',
     'Choose a file': '파일 선택',

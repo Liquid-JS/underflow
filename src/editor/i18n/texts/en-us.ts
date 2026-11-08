@@ -21,6 +21,7 @@ const enUS: Record<string, string> = {
     'Insert table': 'Insert table',
     'Insert image': 'Insert image',
     'Heading': 'Heading',
+    'Heading {level}': 'Heading {level}',
     'Image URL': 'Image URL',
     'Select image file': 'Select image file',
     'Choose a file': 'Choose a file',

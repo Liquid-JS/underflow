@@ -21,6 +21,7 @@ export const deDE: Record<string, string> = {
     'Insert table': 'Tabelle einfügen',
     'Insert image': 'Grafik einfügen',
     'Heading': 'Überschrift',
+    'Heading {level}': 'Überschrift {level}',
     'Image URL': 'Grafik-URL',
     'Select image file': 'Grafik auswählen',
     'Choose a file': 'Datei auswählen',

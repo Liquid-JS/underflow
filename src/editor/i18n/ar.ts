@@ -21,6 +21,7 @@ export const ar: Record<string, string> = {
     'Insert table': 'إدراج جدول',
     'Insert image': 'إدراج صورة',
     'Heading': 'عنوان',
+    'Heading {level}': 'عنوان {level}',
     'Image URL': 'رابط الصورة',
     'Select image file': 'حدد ملف الصورة',
     'Choose a file': 'اختيار الملف',

@@ -21,6 +21,7 @@ export const fiFI: Record<string, string> = {
     'Insert table': 'Lisää taulukko',
     'Insert image': 'Lisää kuva',
     'Heading': 'Otsikko',
+    'Heading {level}': 'Otsikko {level}',
     'Image URL': 'Kuvan URL',
     'Select image file': 'Valitse kuvatiedosto',
     'Choose a file': 'Valitse tiedosto',

@@ -21,6 +21,7 @@ export const viVN: Record<string, string> = {
     'Insert table': 'Chèn bảng',
     'Insert image': 'Chèn ảnh',
     'Heading': 'Tiêu đề',
+    'Heading {level}': 'Tiêu đề {level}',
     'Image URL': 'URL hình ảnh',
     'Select image file': 'Hãy chọn file hình ảnh',
     'Choose a file': 'Chọn file',

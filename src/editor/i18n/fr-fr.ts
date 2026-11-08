@@ -21,6 +21,7 @@ export const frFR: Record<string, string> = {
     'Insert table': 'Insérer un tableau',
     'Insert image': 'Insérer une image',
     'Heading': 'Titre',
+    'Heading {level}': 'Titre {level}',
     'Image URL': "URL de l'image",
     'Select image file': 'Sélectionnez un fichier image',
     'Choose a file': 'Choisissez un fichier',

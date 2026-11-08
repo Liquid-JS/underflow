@@ -43,7 +43,7 @@ export class HeadingPopupBody extends Component<Props, State> {
                         <li data-type="Heading" role="none">
                             <${`h${level}`} role="presentation">
                                 <button type="button" role="menuitem" onClick=${() => this.execCommand(level)}>
-                                    ${i18n.get('Heading')} ${level}
+                                    ${i18n.get('Heading {level}').replace('{level}', String(level))}
                                 </button>
                             </$>
                         </li>

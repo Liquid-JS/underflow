@@ -21,6 +21,7 @@ export const hrHR: Record<string, string> = {
     'Insert table': 'Umetni tablicu',
     'Insert image': 'Umetni sliku',
     'Heading': 'Naslov',
+    'Heading {level}': 'Naslov {level}',
     'Image URL': 'URL slike',
     'Select image file': 'Odaberi slikovnu datoteku',
     'Choose a file': 'Odaberi datoteku',

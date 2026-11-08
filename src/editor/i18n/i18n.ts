@@ -28,13 +28,8 @@ class I18n {
             code = this.code
         }
 
-        let langSet = this.langs.get(code)
-
-        if (!langSet) {
-            langSet = this.langs.get(DEFAULT_CODE)!
-        }
-
-        const text = langSet[key]
+        // a text the language doesn't have, e.g. one added in a later version, is in English
+        const text = this.langs.get(code)?.[key] ?? this.langs.get(DEFAULT_CODE)?.[key]
 
         if (!text) {
             throw new Error(`There is no text key "${key}" in ${code}`)

@@ -21,6 +21,7 @@ export const csCZ: Record<string, string> = {
     'Insert table': 'Vložit tabulku',
     'Insert image': 'Vložit obrázek',
     'Heading': 'Nadpis',
+    'Heading {level}': 'Nadpis {level}',
     'Image URL': 'URL obrázku',
     'Select image file': 'Vybrat obrázek',
     'Choose a file': 'Vybrat soubor',

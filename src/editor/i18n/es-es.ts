@@ -21,6 +21,7 @@ export const esES: Record<string, string> = {
     'Insert table': 'Insertar tabla',
     'Insert image': 'Insertar imagen',
     'Heading': 'Encabezado',
+    'Heading {level}': 'Encabezado {level}',
     'Image URL': 'URL de la imagen',
     'Select image file': 'Seleccionar archivo de imagen',
     'Choose a file': 'Elegir un archivo',

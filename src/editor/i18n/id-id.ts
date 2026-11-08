@@ -21,6 +21,7 @@ export const idID: Record<string, string> = {
     'Insert table': 'Tambahkan tabel',
     'Insert image': 'Tambahkan gambar',
     'Heading': 'Judul',
+    'Heading {level}': 'Judul {level}',
     'Image URL': 'Tautan gambar',
     'Select image file': 'Pilih berkas gambar',
     'Choose a file': 'Pilih berkas',

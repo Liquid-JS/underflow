@@ -21,6 +21,7 @@ export const ruRU: Record<string, string> = {
     'Insert table': 'Вставить таблицу',
     'Insert image': 'Вставить изображение',
     'Heading': 'Заголовок',
+    'Heading {level}': 'Заголовок {level}',
     'Image URL': 'URL изображения',
     'Select image file': 'Выбрать файл изображения',
     'Choose a file': 'Выбрать',

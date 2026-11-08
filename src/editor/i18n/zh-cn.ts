@@ -21,6 +21,7 @@ export const zhCN: Record<string, string> = {
     'Insert table': '插入表格',
     'Insert image': '插入图片',
     'Heading': '标题',
+    'Heading {level}': '标题 {level}',
     'Image URL': '图片网址',
     'Select image file': '选择图片文件',
     'Choose a file': '选择一个文件',
