@@ -70,25 +70,31 @@
     color: hsl(345, 37%, 50%);
 }
 
+// inline code, its delimiters and its text, each in the direction of its own text, so the text around it doesn't
+// reorder it
 .uf-md-code {
+    unicode-bidi: plaintext;
     background-color: #f9f2f4;
     padding: 2px 0;
     letter-spacing: -0.3px;
 
     &.uf-md-start {
-        padding-left: 2px;
-        border-top-left-radius: 2px;
-        border-bottom-left-radius: 2px;
+        padding-inline-start: 2px;
+        border-start-start-radius: 2px;
+        border-end-start-radius: 2px;
     }
 
     &.uf-md-end {
-        padding-right: 2px;
-        border-top-right-radius: 2px;
-        border-bottom-right-radius: 2px;
+        padding-inline-end: 2px;
+        border-start-end-radius: 2px;
+        border-end-end-radius: 2px;
     }
 }
 
+// a code block's lines, with its fences, read left to right, in right-to-left text too
 .uf-md-code-block-line-background {
+    direction: ltr;
+    text-align: left;
     background-color: #f5f7f8;
 }
 

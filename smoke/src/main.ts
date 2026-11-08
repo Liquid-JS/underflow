@@ -105,6 +105,8 @@ const convertors: HTMLConvertorMap = {
 }
 
 Object.assign(window, {
+    // for the tests to set the text
+    smokeEditor: editor,
     smoke: {
         markdown: editor.getMarkdown(),
         isEditorCore: editor instanceof EditorCore,
