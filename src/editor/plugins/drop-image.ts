@@ -10,7 +10,11 @@ export function dropImage({ eventEmitter }: Context) {
     return new Plugin({
         props: {
             handleDOMEvents: {
-                drop: (_, ev) => {
+                drop: (view, ev) => {
+                    if (!view.editable) {
+                        return false
+                    }
+
                     const files = Array.from((ev as DragEvent).dataTransfer?.files ?? [])
                     const image = files.find(({ type }) => type.startsWith('image'))
 

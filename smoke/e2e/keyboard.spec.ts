@@ -29,7 +29,13 @@ test('the editor works by keyboard', async ({ page }) => {
     await expect(editor.locator('.uf-main')).toHaveClass(/uf-md-mode/)
     await expect(editor.locator('.uf-mode-switch [role="tab"][aria-selected="true"]')).toBeFocused()
 
+    // the preview, shown by its tab, is a named region that Tab reaches, to scroll it by keyboard
+    await editor.locator('.uf-md-tab-container [role="tab"]').nth(1).click()
+    await page.keyboard.press('Tab')
+    await expect(editor.locator('.uf-md-preview[role="region"]')).toBeFocused()
+
     // Tab moves through all of a popup's fields and buttons
+    await editor.locator('.uf-mode-switch [role="tab"][aria-selected="true"]').focus()
     await page.keyboard.press('ArrowRight')
     await editor.locator('.uf-toolbar-icons.link').focus()
     await page.keyboard.press('Enter')

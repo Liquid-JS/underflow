@@ -15,6 +15,10 @@ export function smartTask({ schema, markdownDocument }: MdContext) {
                 keyup: (view: EditorView, ev: KeyboardEvent) => {
                     const { doc, tr, selection } = view.state
 
+                    if (!view.editable) {
+                        return false
+                    }
+
                     if (selection.empty && reTaskMarkerKey.test(ev.key)) {
                         const { startIndex, startFromOffset, from } = getRangeInfo(selection)
                         // should add `1` to line for the markdown parser

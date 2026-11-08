@@ -108,7 +108,7 @@ export class MdEditor extends EditorBase {
     private handlePaste(ev: ClipboardEvent) {
         const { clipboardData } = ev
 
-        if (!clipboardData) {
+        if (!clipboardData || !this.view.editable) {
             return false
         }
 
@@ -194,7 +194,8 @@ export class MdEditor extends EditorBase {
             handleDOMEvents: {
                 paste: (_, ev) => this.handlePaste(ev),
                 copy: (_, ev) => this.captureCopy(ev),
-                cut: (_, ev) => this.captureCopy(ev, EVENT_TYPE),
+                // a read-only editor copies instead
+                cut: (view, ev) => this.captureCopy(ev, view.editable ? EVENT_TYPE : undefined),
                 scroll: () => {
                     this.eventEmitter.emit('scroll', 'editor')
                     return true

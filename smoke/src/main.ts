@@ -71,10 +71,19 @@ const customHTMLRenderer: CustomHTMLRenderer = {
     }
 }
 
+// ?wrap shows the toolbar that wraps onto more rows, ?readonly a read-only editor, ?rtl right-to-left text
+const params = new URLSearchParams(location.search)
+
+if (params.has('rtl')) {
+    document.documentElement.dir = 'rtl'
+}
+
 const editorOptions: EditorOptions = {
     el: document.querySelector<HTMLElement>('#editor')!,
     initialValue: '# Hallo\n\n```javascript\nconst a = 1;\nconst b = 2;\n```',
     initialEditType: 'wysiwyg',
+    toolbarStyle: params.has('wrap') ? 'wrap' : 'default',
+    readonly: params.has('readonly'),
     language: 'de-DE',
     plugins,
     customHTMLRenderer

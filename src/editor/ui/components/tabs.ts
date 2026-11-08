@@ -7,12 +7,16 @@ import { Component } from '../vdom/component'
 interface Props {
     tabs: TabInfo[]
     activeTab: string
+    /** the tabs stay focusable, but don't switch */
+    disabled?: boolean
     onClick: (ev: MouseEvent | KeyboardEvent, activeTab: string) => void
 }
 
 export class Tabs extends Component<Props> {
     private toggleTab(ev: MouseEvent | KeyboardEvent, activeTab: string) {
-        this.props.onClick(ev, activeTab)
+        if (!this.props.disabled) {
+            this.props.onClick(ev, activeTab)
+        }
     }
 
     private handleKeydown(ev: KeyboardEvent, index: number) {
@@ -26,6 +30,9 @@ export class Tabs extends Component<Props> {
         }
 
         ev.preventDefault()
+        if (this.props.disabled) {
+            return
+        }
         this.toggleTab(ev, tabs[nextIndex].name)
         this.refs.el.querySelectorAll<HTMLElement>('[role="tab"]')[nextIndex].focus()
     }
@@ -44,6 +51,7 @@ export class Tabs extends Component<Props> {
                             role="tab"
                             aria-label="${i18n.get(text)}"
                             aria-selected="${isActive ? 'true' : 'false'}"
+                            aria-disabled=${this.props.disabled ? 'true' : null}
                             tabindex="${isActive ? '0' : '-1'}"
                         >
                             ${i18n.get(text)}

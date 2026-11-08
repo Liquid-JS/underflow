@@ -46,6 +46,10 @@ describe('Viewer', () => {
         expect(getViewerHTML()).toBe(expected)
     })
 
+    it('should leave the contents without a role or tab stop, unlike the editor\'s preview', () => {
+        expect(container.querySelector('[role="region"], [tabindex]')).toBeNull()
+    })
+
     it('should change the theme by setTheme API', () => {
         const spy = vi.fn()
 

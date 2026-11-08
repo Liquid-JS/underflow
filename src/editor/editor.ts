@@ -27,6 +27,7 @@ class Editor extends EditorCore {
                     editorType=${this.options.initialEditType || 'markdown'}
                     theme=${this.options.theme}
                     toolbarStyle=${this.options.toolbarStyle}
+                    readonly=${this.options.readonly}
                 />
             ` as VNode
         )

@@ -415,6 +415,15 @@ table.ProseMirror-selectednode,
     }
 }
 
+// a read-only editor's text has no buttons that edit it
+.uf-contents.uf-readonly {
+    .uf-code-block-label,
+    .image-link:hover .uf-image-link-button,
+    .uf-custom-block.ProseMirror-selectednode .uf-custom-block-view .tool {
+        display: none;
+    }
+}
+
 // custom blocks in the WYSIWYG editor: the rendered view with an edit button, and the editor
 .uf-custom-block {
     .uf-custom-block-editor {

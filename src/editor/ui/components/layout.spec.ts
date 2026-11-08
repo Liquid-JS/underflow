@@ -239,6 +239,13 @@ describe('layout component', () => {
             expect(tabSection).toHaveStyle({ display: 'none' })
         })
 
+        it('should put the markdown tabs after the toolbar, in the order of the focus', () => {
+            const toolbar = getElement(`.${cls('default-ui-toolbar')}`)
+            const tabSection = getElement(`.${cls('md-tab-container')}`)
+
+            expect(toolbar.nextElementSibling).toBe(tabSection)
+        })
+
         it('should display the markdown editor or preview by clicking markdown tab', () => {
             expect(getMdWriteTab()).toHaveClass('active')
             expect(getMdPreviewTab()).not.toHaveClass('active')

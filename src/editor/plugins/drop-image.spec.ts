@@ -7,13 +7,13 @@ describe('dropImage', () => {
     let emitter: EventEmitter
     let blobs: File[]
 
-    function drop(files: File[]) {
+    function drop(files: File[], editable = true) {
         const plugin = dropImage({ eventEmitter: emitter } as unknown as Context)
         const ev = new Event('drop', { cancelable: true }) as DragEvent
 
         Object.defineProperty(ev, 'dataTransfer', { value: { files } })
 
-        const handled = plugin.props.handleDOMEvents!.drop!.call(plugin, {} as EditorView, ev)
+        const handled = plugin.props.handleDOMEvents!.drop!.call(plugin, { editable } as EditorView, ev)
 
         return { handled, prevented: ev.defaultPrevented }
     }
@@ -32,6 +32,13 @@ describe('dropImage', () => {
 
         expect(drop([text, image])).toEqual({ handled: true, prevented: true })
         expect(blobs).toEqual([image])
+    })
+
+    it('should leave images dropped on a read-only editor', () => {
+        const image = new File(['b'], 'b.png', { type: 'image/png' })
+
+        expect(drop([image], false)).toEqual({ handled: false, prevented: false })
+        expect(blobs).toEqual([])
     })
 
     // claiming other drops would leave them to the browser, which Firefox uses to insert dragged images

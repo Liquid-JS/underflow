@@ -45,7 +45,7 @@ export class TableEditPanel implements PluginView {
 
     update() {
         if (this.table) {
-            if (this.view.dom.contains(this.table)) {
+            if (this.view.editable && this.view.dom.contains(this.table)) {
                 this.render()
             } else {
                 this.hide()

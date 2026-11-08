@@ -115,7 +115,7 @@ class CodeSyntaxHighlightView implements NodeView {
     }
 
     private onClickEditingButton = () => {
-        if (isFunction(this.getPos)) {
+        if (this.view.editable && isFunction(this.getPos)) {
             const pos = this.view.coordsAtPos(this.getPos())
 
             this.openLanguageSelectBox(pos)

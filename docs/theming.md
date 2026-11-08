@@ -53,7 +53,7 @@ The variables are listed below; their values are in `src/editor/styles/ui/_varia
 | `--uf-border-color`, `--uf-divider-color`, `--uf-input-border-color`                                                      | Borders, dividers and form fields                                |
 | `--uf-toolbar-bg-color`, `--uf-toolbar-divider-color`                                                                     | Toolbar                                                          |
 | `--uf-toolbar-button-hover-bg-color`, `--uf-toolbar-button-hover-border-color`, `--uf-toolbar-button-active-border-color` | Toolbar buttons                                                  |
-| `--uf-tab-bg-color`, `--uf-tab-border-color`, `--uf-active-tab-text-color`                                                | Write/Preview and Markdown/WYSIWYG tabs                          |
+| `--uf-tab-bg-color`, `--uf-tab-border-color`, `--uf-tab-text-color`, `--uf-active-tab-text-color`                         | Write/Preview and Markdown/WYSIWYG tabs                          |
 | `--uf-button-border-color`, `--uf-button-hover-border-color`                                                              | Buttons in popups                                                |
 | `--uf-primary-color`, `--uf-primary-hover-color`, `--uf-primary-text-color`                                               | Primary buttons, links in the interface, focus outlines          |
 | `--uf-hover-bg-color`, `--uf-selection-bg-color`                                                                          | Hovered menu items, selected table cells                         |

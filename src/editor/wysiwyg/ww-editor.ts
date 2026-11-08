@@ -237,7 +237,11 @@ export class WysiwygEditor extends EditorBase {
                 return ev.defaultPrevented
             },
             handleDOMEvents: {
-                paste: (_, ev) => {
+                paste: (view, ev) => {
+                    if (!view.editable) {
+                        return false
+                    }
+
                     const { clipboardData } = ev as ClipboardEvent
                     const items = clipboardData?.items
 

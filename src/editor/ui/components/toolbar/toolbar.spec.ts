@@ -520,8 +520,8 @@ describe('Default toolbar', () => {
 
     it('should change tab mode when changing markdown tab mode', () => {
         editor.changePreviewStyle('tab')
-        const writeTab = screen.getByLabelText('Write')
-        const previewTab = screen.getByLabelText('Preview')
+        const writeTab = screen.getByRole('tab', { name: 'Write' })
+        const previewTab = screen.getByRole('tab', { name: 'Preview' })
 
         previewTab.click()
 
@@ -710,6 +710,22 @@ describe('toolbarStyle option', () => {
         expect(getElement(`.${cls('toolbar')}`)).toHaveClass('wrap')
         expect(getElement(`.${cls('dropdown-toolbar')}`).querySelector('button')).toBeNull()
         expect(screen.getByLabelText('Headings')).not.toBeNull()
+    })
+
+    it('should mark the toolbar while the Write and Preview tabs show, which leaves room for them', () => {
+        createEditor('wrap')
+        const toolbar = getElement(`.${cls('toolbar')}`)
+
+        editor.changeMode('markdown')
+        editor.changePreviewStyle('tab')
+        expect(toolbar).toHaveClass('with-tabs')
+
+        editor.changePreviewStyle('vertical')
+        expect(toolbar).not.toHaveClass('with-tabs')
+
+        editor.changePreviewStyle('tab')
+        editor.changeMode('wysiwyg')
+        expect(toolbar).not.toHaveClass('with-tabs')
     })
 })
 

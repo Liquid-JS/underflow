@@ -858,6 +858,14 @@ describe('editor', () => {
                     expect(editable).toHaveAttribute('aria-multiline', 'true')
                     expect(editable).toHaveAttribute('aria-label', label)
                 })
+            })
+
+            it('should expose the preview as a named region that Tab reaches, to scroll it by keyboard', () => {
+                createEditor({ el: container, previewStyle: 'vertical' })
+
+                expect(mdPreview).toHaveAttribute('role', 'region')
+                expect(mdPreview).toHaveAttribute('aria-label', 'Preview')
+                expect(mdPreview).toHaveAttribute('tabindex', '0')
             });
 
             ['markdown', 'wysiwyg'].forEach((type) => {

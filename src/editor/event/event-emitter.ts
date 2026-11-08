@@ -6,6 +6,7 @@ const eventTypeList: EventTypes[] = [
     'updatePreview',
     'changeMode',
     'changeTheme',
+    'changeReadonly',
     'needChangeMode',
     'command',
     'changePreviewStyle',

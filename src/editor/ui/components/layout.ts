@@ -21,6 +21,7 @@ interface Props {
     toolbarStyle: ToolbarStyle
     toolbarItems: ToolbarItem[]
     theme: string
+    readonly: boolean
 }
 
 interface State {
@@ -28,6 +29,7 @@ interface State {
     previewStyle: PreviewStyle
     hide: boolean
     theme: string
+    readonly: boolean
 }
 
 export class Layout extends Component<Props, State> {
@@ -35,13 +37,14 @@ export class Layout extends Component<Props, State> {
 
     constructor(props: Props) {
         super(props)
-        const { editorType, previewStyle, theme } = props
+        const { editorType, previewStyle, theme, readonly } = props
 
         this.state = {
             editorType,
             previewStyle,
             hide: false,
-            theme
+            theme,
+            readonly
         }
         this.addEvent()
     }
@@ -64,15 +67,16 @@ export class Layout extends Component<Props, State> {
 
     render() {
         const { eventEmitter, hideModeSwitch, toolbarItems, toolbarStyle } = this.props
-        const { hide, previewStyle, editorType, theme } = this.state
+        const { hide, previewStyle, editorType, theme, readonly } = this.state
         const displayClassName = hide ? ' hidden' : ''
+        const readonlyClassName = readonly ? ` ${cls('readonly')}` : ''
         const editorTypeClassName = cls(editorType === 'markdown' ? 'md-mode' : 'ww-mode')
         const previewClassName = `${cls('md')}-${previewStyle}-style`
         const themeClassName = cls([theme !== 'light', `${theme} `])
 
         return html`
             <div
-                class="${themeClassName}${cls('default-ui')}${displayClassName}"
+                class="${themeClassName}${cls('default-ui')}${displayClassName}${readonlyClassName}"
                 ref=${(el: HTMLElement) => (this.refs.el = el)}
             >
                 <${Toolbar}
@@ -82,6 +86,7 @@ export class Layout extends Component<Props, State> {
                     toolbarItems=${toolbarItems}
                     editorType=${editorType}
                     toolbarStyle=${toolbarStyle}
+                    readonly=${readonly}
                 />
                 <div
                     class="${cls('main')} ${editorTypeClassName}"
@@ -101,7 +106,7 @@ export class Layout extends Component<Props, State> {
                     </div>
                 </div>
                 ${!hideModeSwitch &&
-                html`<${Switch} eventEmitter=${eventEmitter} editorType=${editorType} />`}
+                html`<${Switch} eventEmitter=${eventEmitter} editorType=${editorType} readonly=${readonly} />`}
                 <${ContextMenu} eventEmitter=${eventEmitter} />
             </div>
         `
@@ -115,6 +120,13 @@ export class Layout extends Component<Props, State> {
         eventEmitter.listen('changeMode', this.changeMode)
         eventEmitter.listen('changePreviewStyle', this.changePreviewStyle)
         eventEmitter.listen('changeTheme', this.changeTheme)
+        eventEmitter.listen('changeReadonly', this.changeReadonly)
+    }
+
+    private changeReadonly = (readonly: boolean) => {
+        if (readonly !== this.state.readonly) {
+            this.setState({ readonly })
+        }
     }
 
     private changeTheme = (theme: string) => {

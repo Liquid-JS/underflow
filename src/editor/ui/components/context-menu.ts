@@ -28,6 +28,12 @@ export class ContextMenu extends Component<Props, State> {
         this.props.eventEmitter.listen('contextmenu', ({ pos, menuGroups }) => {
             this.setState({ pos, menuGroups })
         })
+        // its items change the text
+        this.props.eventEmitter.listen('changeReadonly', (readonly: boolean) => {
+            if (readonly) {
+                this.setState({ pos: null })
+            }
+        })
     }
 
     mounted() {

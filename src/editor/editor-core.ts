@@ -133,6 +133,7 @@ class EditorCore {
             autofocus: true,
             stripPastedStyles: false,
             toolbarStyle: 'default',
+            readonly: false,
             ...options
         } as Required<EditorOptions>
 
@@ -251,6 +252,10 @@ class EditorCore {
             this.setHTMLContent(this.initialHTML || '', false, true, false)
         }
 
+        if (this.options.readonly) {
+            this.applyReadonly()
+        }
+
         this.commandManager = new CommandManager(
             this.eventEmitter,
             this.mdEditor.commands,
@@ -336,6 +341,33 @@ class EditorCore {
             this.options.theme = theme
             this.eventEmitter.emit('changeTheme', theme)
         }
+    }
+
+    /**
+     * Stops the user from changing the text, or lets them again. A read-only editor's text can still be
+     * focused, read, selected and copied, as a read-only field's, and the Write and Preview tabs still switch;
+     * its toolbar and the mode switch are disabled. The API, e.g. `setMarkdown()`, still changes the text.
+     */
+    setReadonly(readonly: boolean) {
+        if (this.options.readonly !== readonly) {
+            this.options.readonly = readonly
+            this.applyReadonly()
+        }
+    }
+
+    isReadonly() {
+        return this.options.readonly
+    }
+
+    private applyReadonly() {
+        const { readonly } = this.options
+
+        this.mdEditor.setReadonly(readonly)
+        this.wwEditor.setReadonly(readonly)
+        if (readonly) {
+            this.eventEmitter.emit('closePopup')
+        }
+        this.eventEmitter.emit('changeReadonly', readonly)
     }
 
     changePreviewStyle(style: PreviewStyle) {

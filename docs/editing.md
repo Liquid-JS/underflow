@@ -44,7 +44,8 @@ the focus out of the text instead, press <kbd>Esc</kbd> first, as in code editor
 Toolbar buttons show their shortcuts in their accessible names and tooltips. The toolbar follows the ARIA toolbar
 pattern: <kbd>Tab</kbd> moves to it, arrow keys move between its buttons, and <kbd>Esc</kbd> closes popups and the
 "More" menu. <kbd>Tab</kbd> moves between a popup's fields and buttons. The Markdown/WYSIWYG switch is a tab list:
-<kbd>Tab</kbd> moves to it and the arrow keys change the mode. Every button has an explicit `tabindex`, so
+<kbd>Tab</kbd> moves to it and the arrow keys change the mode. The markdown mode's preview is a region named
+"Preview" that <kbd>Tab</kbd> reaches, so it can be scrolled by keyboard. Every button has an explicit `tabindex`, so
 <kbd>Tab</kbd> reaches them in Safari too.
 
 Set `toolbarStyle: 'wrap'` to let the toolbar wrap onto several lines instead of moving buttons into the "More" menu on
@@ -145,3 +146,17 @@ arguments as a plugin's command.
     item, table row and code block line counts as one line.
 -   `getCurrentToolbarState()` returns which toolbar items are active or disabled at the cursor, for building your own
     toolbar.
+
+## Read-only
+
+`readonly: true`, or `setReadonly(true)` later, stops the user from changing the text; `isReadonly()` tells whether
+they can. The text stays focusable, so it can still be read, selected and copied, as in a read-only form field, and
+screen readers announce it as a read-only text box. The toolbar and the Markdown/WYSIWYG switch are disabled, as
+changing the mode converts the text, while the Write and Preview tabs still switch. Popups, menus and edit panels
+close, and the buttons in the text that edit it, like a code block's language, are hidden.
+
+The API still changes the text: `setMarkdown()`, `setHTML()`, `exec()`, `changeMode()` and the like work in a
+read-only editor too.
+
+The editor's root element and its text have the `uf-readonly` class, for styling. Plugins with handlers of their own
+that change the document should check ProseMirror's `view.editable`, which is `false` in a read-only editor.

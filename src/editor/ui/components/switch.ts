@@ -9,6 +9,8 @@ import { Tabs } from './tabs'
 interface Props {
     editorType: EditorType
     eventEmitter: Emitter
+    /** disables the tabs, as changing the mode converts the text */
+    readonly: boolean
 }
 
 interface State {
@@ -45,7 +47,12 @@ export class Switch extends Component<Props, State> {
     render() {
         return html`
             <div class="${cls('mode-switch')}" style="display: ${this.state.hide ? 'none' : 'block'}">
-                <${Tabs} tabs=${this.tabs} activeTab=${this.props.editorType} onClick=${this.changeMode} />
+                <${Tabs}
+                    tabs=${this.tabs}
+                    activeTab=${this.props.editorType}
+                    disabled=${this.props.readonly}
+                    onClick=${this.changeMode}
+                />
             </div>
         `
     }

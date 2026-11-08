@@ -42,6 +42,8 @@ interface Props {
     toolbarItems: ToolbarItem[]
     editorType: EditorType
     toolbarStyle: ToolbarStyle
+    /** disables the toolbar's items, but not the Write and Preview tabs */
+    readonly: boolean
 }
 
 interface State {
@@ -173,7 +175,8 @@ export class Toolbar extends Component<Props, State> {
     private openPopup = (popupName: string, initialValues = {}) => {
         const el = this.refs.el.querySelector<HTMLElement>(`.${cls('toolbar-group')} .${popupName}`)!
 
-        if (el) {
+        // the popups edit the text
+        if (el && !this.props.readonly) {
             const { offsetLeft, offsetTop } = getTotalOffset(
                 el,
                 closest(el, `.${cls('toolbar')}`) as HTMLElement
@@ -382,39 +385,32 @@ export class Toolbar extends Component<Props, State> {
     }
 
     get cssClass() {
-        if (this.props.toolbarStyle === 'wrap') {
-            return `${cls('toolbar')} wrap`
-        }
+        const { toolbarStyle, editorType, previewStyle } = this.props
+        // the Write and Preview tabs show in the markdown mode with the preview in a tab
+        const tabs = editorType === 'markdown' && previewStyle === 'tab'
 
-        return cls('toolbar')
+        return [cls('toolbar'), toolbarStyle === 'wrap' && 'wrap', tabs && 'with-tabs']
+            .filter(Boolean)
+            .join(' ')
     }
 
     render() {
-        const { previewStyle, eventEmitter, editorType } = this.props
+        const { previewStyle, eventEmitter, editorType, readonly } = this.props
         const { popupInfo, showPopup, activeTab, items, dropdownItems } = this.state
         const props = {
             eventEmitter,
             tooltipRef: this.tooltipRef,
-            disabled: editorType === 'markdown' && previewStyle === 'tab' && activeTab === 'preview',
+            disabled: readonly || (editorType === 'markdown' && previewStyle === 'tab' && activeTab === 'preview'),
             execCommand: this.execCommand,
             setPopupInfo: this.setPopupInfo
         }
-        const toolbarStyle = previewStyle === 'tab' ? { borderTopLeftRadius: 0 } : null
 
+        // The Write and Preview tabs come after the toolbar, at the end of its last row, next to the text they switch.
         return html`
             <div class="${this.cssClass}" onMouseleave=${this.hideTooltip}>
                 <div
-                    class="${cls('md-tab-container')}"
-                    style="display: ${editorType === 'wysiwyg' || previewStyle === 'vertical'
-                        ? 'none'
-                        : 'block'}"
-                >
-                    <${Tabs} tabs=${this.tabs} activeTab=${activeTab} onClick=${this.toggleTab} />
-                </div>
-                <div
                     class="${cls('default-ui-toolbar')}"
                     ref=${(el: HTMLElement) => (this.refs.el = el)}
-                    style=${toolbarStyle}
                     role="toolbar"
                     aria-label="${i18n.get('Text Formatting')}"
                 >
@@ -433,6 +429,14 @@ export class Toolbar extends Component<Props, State> {
                         items=${dropdownItems}
                         ...${props}
                     />
+                </div>
+                <div
+                    class="${cls('md-tab-container')}"
+                    style="display: ${editorType === 'wysiwyg' || previewStyle === 'vertical'
+                        ? 'none'
+                        : 'block'}"
+                >
+                    <${Tabs} tabs=${this.tabs} activeTab=${activeTab} onClick=${this.toggleTab} />
                 </div>
                 <${Popup}
                     info=${popupInfo}

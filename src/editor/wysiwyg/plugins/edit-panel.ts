@@ -67,6 +67,11 @@ export abstract class EditPanel implements PluginView {
             return
         }
 
+        if (!view.editable) {
+            this.hide()
+            return
+        }
+
         // the target can not be tracked reliably once the document is changed outside of the panel
         if (!view.state.doc.eq(prevState.doc)) {
             this.hide()

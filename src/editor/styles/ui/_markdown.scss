@@ -88,19 +88,17 @@
     }
 }
 
-// tab bar of the tab style
+// tabs of the tab style, at the end of the toolbar's last row; the selected one joins the text below
 .uf-default-ui .uf-md-tab-container {
-    float: left;
-    height: 45px;
+    flex: none;
     font-size: 13px;
-    background: var(--uf-toolbar-bg-color);
-    border-bottom: 1px solid var(--uf-divider-color);
-    border-top-left-radius: 3px;
 }
 
 .uf-md-tab-container {
     .uf-tabs {
-        margin-left: 15px;
+        display: flex;
+        align-items: flex-end;
+        margin-inline-end: 15px;
         height: 100%;
     }
 
@@ -113,12 +111,12 @@
         font-weight: 500;
         text-align: center;
         background: var(--uf-tab-bg-color);
-        color: var(--uf-muted-text-color);
+        color: var(--uf-tab-text-color);
         cursor: pointer;
         border: 1px solid var(--uf-tab-border-color);
         border-radius: 4px 4px 0 0;
         box-sizing: border-box;
-        margin-top: 13px;
+        margin-bottom: -1px;
 
         &.active {
             border-bottom: 1px solid var(--uf-bg-color);
@@ -127,7 +125,7 @@
         }
 
         &:last-child {
-            margin-left: -1px;
+            margin-inline-start: -1px;
         }
     }
 }

@@ -2,9 +2,9 @@
     background-color: var(--uf-bg-color);
     border-top: 1px solid var(--uf-border-color);
     font-size: 12px;
-    text-align: right;
+    text-align: end;
     height: 28px;
-    padding-right: 10px;
+    padding-inline-end: 10px;
     border-radius: 0 0 3px 3px;
 
     .tab-item {
@@ -14,9 +14,9 @@
         line-height: 24px;
         text-align: center;
         background: var(--uf-toolbar-bg-color);
-        color: var(--uf-muted-text-color);
+        color: var(--uf-tab-text-color);
         margin-top: -1px;
-        margin-right: -1px;
+        margin-inline-end: -1px;
         cursor: pointer;
         border: 1px solid var(--uf-tab-border-color);
         border-radius: 0 0 4px 4px;
@@ -27,6 +27,12 @@
             border-top: 1px solid var(--uf-bg-color);
             background-color: var(--uf-bg-color);
             color: var(--uf-active-tab-text-color);
+        }
+
+        // in a read-only editor
+        &[aria-disabled=true] {
+            color: var(--uf-disabled-text-color);
+            cursor: default;
         }
     }
 }

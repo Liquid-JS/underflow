@@ -1,4 +1,5 @@
 import { Emitter } from '../types/event'
+import { i18n } from '../i18n/i18n'
 import { CustomHTMLRenderer, LinkAttributes } from '../types/editor'
 import {
     cls,
@@ -66,6 +67,13 @@ class MarkdownPreview {
         this.isViewer = !!options.isViewer
 
         this.el.className = cls('md-preview')
+
+        if (!this.isViewer) {
+            // a named region, which Tab reaches in every browser to scroll it by keyboard (WCAG 2.1.1)
+            this.el.setAttribute('role', 'region')
+            this.el.setAttribute('aria-label', i18n.get('Preview'))
+            this.el.tabIndex = 0
+        }
 
         const {
             linkAttributes,

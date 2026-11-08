@@ -19,6 +19,7 @@ import { placeholder } from './plugins/placeholder'
 import { addWidget } from './plugins/popup-widget'
 import { dropImage } from './plugins/drop-image'
 import { tabOut } from './plugins/tab-out'
+import { readonly as readonlyPlugin, ReadonlyState } from './plugins/readonly'
 
 export abstract class EditorBase implements Base {
     el: HTMLElement
@@ -45,6 +46,8 @@ export abstract class EditorBase implements Base {
 
     /** widgets typed in the editor become widget nodes; only the WYSIWYG editor has widget nodes */
     widgetRules?: WidgetRules
+
+    protected readonlyState: ReadonlyState = { readonly: false }
 
     constructor(eventEmitter: Emitter) {
         this.el = document.createElement('div')
@@ -84,6 +87,7 @@ export abstract class EditorBase implements Base {
     get defaultPlugins() {
         const rules = this.createInputRules()
         const plugins = [
+            readonlyPlugin(this.readonlyState),
             tabOut(),
             ...this.keymaps,
             keymap({
@@ -163,6 +167,13 @@ export abstract class EditorBase implements Base {
 
     createPluginProps() {
         return this.extraPlugins.map((plugin) => plugin(this.eventEmitter))
+    }
+
+    /** Stops the user from changing the text, see `EditorCore.setReadonly()`. */
+    setReadonly(readonly: boolean) {
+        this.readonlyState.readonly = readonly
+        // the view reads its editable state and attributes again
+        this.view.updateState(this.view.state)
     }
 
     focus() {

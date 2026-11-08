@@ -9,6 +9,10 @@ export function task() {
         props: {
             handleDOMEvents: {
                 mousedown: (view: EditorView, ev: Event) => {
+                    if (!view.editable) {
+                        return false
+                    }
+
                     const { clientX, clientY } = ev as MouseEvent
                     const mousePos = view.posAtCoords({ left: clientX, top: clientY })
 

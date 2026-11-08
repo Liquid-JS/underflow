@@ -96,6 +96,9 @@ export class CustomBlockView implements NodeView {
     }
 
     private openEditor = () => {
+        if (!this.editorView.editable) {
+            return
+        }
         if (this.innerEditorView) {
             throw new Error('The editor is already opened.')
         }

@@ -38,7 +38,8 @@ export function connectHOC(WrappedComponent: ComponentClass): ComponentClass {
     return class ButtonHOC extends Component<Props, State> {
         constructor(props: Props) {
             super(props)
-            this.state = { active: false, disabled: props.disabled }
+            // disabled by the toolbar state, e.g. outdent outside a list; the disabled prop adds to it
+            this.state = { active: false, disabled: false }
             this.addEvent()
         }
 
@@ -49,7 +50,7 @@ export function connectHOC(WrappedComponent: ComponentClass): ComponentClass {
                 eventEmitter.listen('changeToolbarState', ({ toolbarState }: Payload) => {
                     const { active, disabled } = toolbarState[item.state!] ?? {}
 
-                    this.setState({ active: !!active, disabled: disabled ?? this.props.disabled })
+                    this.setState({ active: !!active, disabled: !!disabled })
                 })
             }
         }

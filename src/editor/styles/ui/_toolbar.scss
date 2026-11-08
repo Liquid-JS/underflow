@@ -1,10 +1,9 @@
 .uf-default-ui-toolbar {
     display: flex;
+    flex: 1;
+    min-width: 0;
     padding: 0 25px;
     height: 45px;
-    background-color: var(--uf-toolbar-bg-color);
-    border-bottom: 1px solid var(--uf-divider-color);
-    border-radius: 3px 3px 0 0;
 
     button {
         box-sizing: border-box;
@@ -21,7 +20,7 @@
             background-color: var(--uf-toolbar-button-hover-bg-color);
         }
 
-        &.active {
+        &.active:not(:disabled) {
             border: 1px solid var(--uf-toolbar-button-active-border-color);
             background-color: var(--uf-toolbar-button-hover-bg-color);
         }
@@ -90,16 +89,41 @@
     }
 }
 
+// the Write/Preview tabs: two of 70px overlapping by a border, and the space after them
+$md-tabs-width: 2 * 70px - 1px + 15px;
+
+// the toolbar, then the Write/Preview tabs at the end of its row
 .uf-toolbar {
+    display: flex;
+    position: relative;
     height: 46px;
     box-sizing: border-box;
+    background-color: var(--uf-toolbar-bg-color);
+    border-bottom: 1px solid var(--uf-divider-color);
+    border-radius: 3px 3px 0 0;
 
+    // the toolbar spans the editor, and the tabs sit in the corner, at the end of its last row: a gap
+    // as wide as them ends the buttons, so it takes the end of the last row, or a row of its own
     &.wrap {
+        display: block;
         height: unset;
 
         .uf-default-ui-toolbar {
             height: unset;
             flex-wrap: wrap;
+        }
+
+        .uf-md-tab-container {
+            position: absolute;
+            inset-block-end: 0;
+            inset-inline-end: 0;
+        }
+
+        // less the toolbar's end padding of 25px, and with 5px between the gap and the buttons
+        &.with-tabs .uf-default-ui-toolbar:after {
+            flex: none;
+            width: $md-tabs-width - 20px;
+            height: 45px;
         }
 
         .uf-toolbar-group {

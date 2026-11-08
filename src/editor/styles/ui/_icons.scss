@@ -8,12 +8,15 @@
     }
 }
 
-.uf-toolbar-icons {
+// as specific as the default UI's button colour, which comes before it, so the icon colour wins
+.uf-toolbar-icons,
+.uf-default-ui button.uf-toolbar-icons {
     background-color: transparent;
     color: var(--uf-icon-color);
 
+    // disabled in the preview tab, and by plugins
     &:disabled {
-        opacity: 0.3;
+        color: var(--uf-disabled-text-color);
     }
 
     &:not(:disabled).active {

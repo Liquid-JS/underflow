@@ -217,6 +217,8 @@ export interface EditorOptions {
     editPanel?: EditPanelOptions
     /** `wrap` wraps the toolbar instead of moving the items that don't fit into a "More" menu */
     toolbarStyle?: ToolbarStyle
+    /** stops the user from changing the text, see `setReadonly()`; `false` by default */
+    readonly?: boolean
 }
 
 /** panels that edit a clicked link or image, or a hovered table, in the WYSIWYG editor (all on by default) */

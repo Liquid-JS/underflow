@@ -84,7 +84,7 @@ export class ImageView implements NodeView {
     private handleMousedown = (ev: MouseEvent) => {
         ev.preventDefault()
 
-        if (this.imageLink && isFunction(this.getPos) && closest(ev.target as HTMLElement, `.${cls('image-link-button')}`)) {
+        if (this.view.editable && this.imageLink && isFunction(this.getPos) && closest(ev.target as HTMLElement, `.${cls('image-link-button')}`)) {
             const { tr } = this.view.state
             const pos = this.getPos()
 

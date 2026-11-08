@@ -83,7 +83,8 @@ export function tableContextMenu(eventEmitter: Emitter) {
                 contextmenu: (view: EditorView, ev: Event) => {
                     const tableCell = findCellElement(ev.target as HTMLElement, view.dom)
 
-                    if (tableCell) {
+                    // its items change the table, so a read-only editor leaves the browser's menu
+                    if (tableCell && view.editable) {
                         ev.preventDefault()
 
                         const { clientX, clientY } = ev as MouseEvent

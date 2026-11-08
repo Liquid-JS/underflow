@@ -124,7 +124,7 @@ export class CodeBlockView implements NodeView {
     }
 
     private openLanguageEditor() {
-        if (isFunction(this.getPos)) {
+        if (this.view.editable && isFunction(this.getPos)) {
             const { top, right } = this.view.coordsAtPos(this.getPos())
 
             this.createLanguageEditor({ top, right })
