@@ -44,6 +44,16 @@ viewer with <code>Editor.factory()</code> and the <code>viewer</code> option.</p
 <pre><code class="js"><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-5">Editor</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow&#39;</span><br/><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">viewer</span><span class="hl-1"> = </span><span class="hl-5">Editor</span><span class="hl-1">.</span><span class="hl-0">factory</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-5">el:</span><span class="hl-1"> </span><span class="hl-5">document</span><span class="hl-1">.</span><span class="hl-0">querySelector</span><span class="hl-1">(</span><span class="hl-2">&#39;#viewer&#39;</span><span class="hl-1">),</span><br/><span class="hl-1">    </span><span class="hl-5">viewer:</span><span class="hl-1"> </span><span class="hl-6">true</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-5">initialValue:</span><span class="hl-1"> </span><span class="hl-2">&#39;# hello&#39;</span><br/><span class="hl-1">})</span>
 </code><button type="button">Copy</button></pre>
 
+<h2 id="rendering-without-a-viewer" class="tsd-anchor-link">Rendering Without a Viewer<a href="#rendering-without-a-viewer" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p><code>renderMarkdown()</code> from <code>@liquid-js/underflow/render</code> renders markdown to the HTML the viewer shows, with the
+viewer's options and plugins, e.g. code highlighting, but without a viewer or a DOM, so it also renders on the server.
+Show the HTML in an element with the <code>uf-contents</code> class, with the viewer's styles.</p>
+<pre><code class="js"><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-5">renderMarkdown</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow/render&#39;</span><br/><br/><span class="hl-5">element</span><span class="hl-1">.</span><span class="hl-5">innerHTML</span><span class="hl-1"> = </span><span class="hl-0">renderMarkdown</span><span class="hl-1">(</span><span class="hl-2">&#39;# hello&#39;</span><span class="hl-1">, { </span><span class="hl-5">linkAttributes:</span><span class="hl-1"> { </span><span class="hl-5">target:</span><span class="hl-1"> </span><span class="hl-2">&#39;_blank&#39;</span><span class="hl-1"> } })</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The HTML is sanitized with DOMPurify, as in the viewer, which needs a DOM. Without one, e.g. in Node, pass
+<code>sanitizer</code>, a function that cleans the HTML, such as DOMPurify with jsdom, or <code>sanitizer: null</code> for markdown you
+trust, which keeps its HTML as it is. Plugins get no editor or viewer instance.</p>
 </div></div>
 <div class="col-sidebar">
 <div class="page-menu">
@@ -69,7 +79,8 @@ viewer with <code>Editor.factory()</code> and the <code>viewer</code> option.</p
 <li><a href="#importing-the-viewer"><span>Importing the <wbr/>Viewer</span></a></li>
 <li><a href="#adding-css-files"><span>Adding <wbr/>CSS <wbr/>Files</span></a></li>
 <li><a href="#creating-an-instance"><span>Creating an <wbr/>Instance</span></a></li></ul></li>
-<li><a href="#another-way-to-create-a-viewer"><span>Another <wbr/>Way to <wbr/>Create a <wbr/>Viewer</span></a></li></ul></div></details></div>
+<li><a href="#another-way-to-create-a-viewer"><span>Another <wbr/>Way to <wbr/>Create a <wbr/>Viewer</span></a></li>
+<li><a href="#rendering-without-a-viewer"><span>Rendering <wbr/>Without a <wbr/>Viewer</span></a></li></ul></div></details></div>
 <div class="site-menu">
 <nav class="tsd-navigation"><a href="../modules.html">@liquid-js/underflow</a>
 <ul class="tsd-small-nested-navigation" id="tsd-nav-container">

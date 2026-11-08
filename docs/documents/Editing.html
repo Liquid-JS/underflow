@@ -199,6 +199,22 @@ close, and the buttons in the text that edit it, like a code block's language, a
 read-only editor too.</p>
 <p>The editor's root element and its text have the <code>uf-readonly</code> class, for styling. Plugins with handlers of their own
 that change the document should check ProseMirror's <code>view.editable</code>, which is <code>false</code> in a read-only editor.</p>
+<h2 id="disabled" class="tsd-anchor-link">Disabled<a href="#disabled" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p><code>disabled: true</code>, or <code>setDisabled(true)</code> later, disables the editor, as a disabled form field; <code>isDisabled()</code> tells
+whether it is. A disabled editor is read-only, and also out of the Tab order: its text, the preview, the
+Write/Preview tabs and the Markdown/WYSIWYG switch, which are disabled too. Screen readers still read the text, which
+can also be clicked to select and copy it. The text and the tabs are in <code>--uf-disabled-text-color</code>.</p>
+<p>The editor's root element has the <code>uf-disabled</code> and <code>uf-readonly</code> classes, and its text the <code>uf-disabled</code> class and
+<code>aria-disabled=&quot;true&quot;</code>. Enabling the editor again leaves it read-only if <code>readonly</code> is set.</p>
+<h2 id="right-to-left-text" class="tsd-anchor-link">Right-to-left text<a href="#right-to-left-text" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>The editor follows the page's direction, e.g. <code>dir=&quot;rtl&quot;</code> on the <code>html</code> element: the toolbar, the tabs, lists,
+quotes and task checkboxes are laid out from its start. Code reads left to right in every direction, and inline code
+keeps its place in the text around it.</p>
+<p>For text in more than one direction, <code>autoDirection: true</code> gives each paragraph, heading, list, quote and table the
+direction of its own text, as on GitHub: a Hebrew paragraph in an English page reads from the right, with its list's
+bullets or its quote's line on its side. A list takes the direction of its first item, and a table of its first cell.
+In the markdown mode each line takes its own. It works in the markdown and WYSIWYG modes, the preview and the viewer
+(<code>autoDirection</code> is an option of the viewer too), and doesn't change the HTML or the markdown.</p>
 </div></div>
 <div class="col-sidebar">
 <div class="page-menu">
@@ -224,7 +240,9 @@ that change the document should check ProseMirror's <code>view.editable</code>, 
 <li><a href="#the-markdown-editor"><span>The markdown editor</span></a></li>
 <li><a href="#commands"><span>Commands</span></a></li>
 <li><a href="#focus-and-cursor"><span>Focus and cursor</span></a></li>
-<li><a href="#read-only"><span>Read-<wbr/>only</span></a></li></ul></div></details></div>
+<li><a href="#read-only"><span>Read-<wbr/>only</span></a></li>
+<li><a href="#disabled"><span>Disabled</span></a></li>
+<li><a href="#right-to-left-text"><span>Right-<wbr/>to-<wbr/>left text</span></a></li></ul></div></details></div>
 <div class="site-menu">
 <nav class="tsd-navigation"><a href="../modules.html">@liquid-js/underflow</a>
 <ul class="tsd-small-nested-navigation" id="tsd-nav-container">
