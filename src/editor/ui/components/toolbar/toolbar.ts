@@ -90,7 +90,9 @@ export class Toolbar extends Component<Props, State> {
             activeTab: 'write'
         }
         this.tooltipRef = { current: null }
-        this.resizeObserver = new ResizeObserver(() => this.handleResize())
+        this.resizeObserver = new ResizeObserver(() =>
+            props.toolbarStyle === 'wrap' ? this.hideWrappedDividers() : this.handleResize()
+        )
         this.addEvent()
     }
 
@@ -295,6 +297,30 @@ export class Toolbar extends Component<Props, State> {
         }
     }
 
+    /**
+     * Hides the dividers of a wrapping toolbar that end or start a row, where they divide nothing. They keep their
+     * space, so the rows don't change.
+     */
+    private hideWrappedDividers() {
+        const items = Array.from(this.refs.el.querySelectorAll<HTMLElement>(`.${cls('toolbar-group')} > *`)).filter(
+            (item) => item.getClientRects().length > 0
+        )
+        const middle = (item?: HTMLElement) => {
+            const box = item?.getBoundingClientRect()
+
+            return box ? (box.top + box.bottom) / 2 : NaN
+        }
+
+        items.forEach((item, index) => {
+            if (item.classList.contains(cls('toolbar-divider'))) {
+                const row = middle(item)
+                const inRow = (other?: HTMLElement) => Math.abs(middle(other) - row) < item.offsetHeight
+
+                item.style.visibility = inRow(items[index - 1]) && inRow(items[index + 1]) ? '' : 'hidden'
+            }
+        })
+    }
+
     private classifyToolbarItems() {
         let totalWidth = 0
         const { clientWidth } = this.refs.el
@@ -352,9 +378,8 @@ export class Toolbar extends Component<Props, State> {
         this.setState(this.classifyToolbarItems())
         this.appendTooltipToRoot()
 
-        if (this.props.toolbarStyle !== 'wrap') {
-            this.resizeObserver.observe(this.refs.el)
-        }
+        // a wrapping toolbar only rearranges its dividers when its rows change
+        this.resizeObserver.observe(this.refs.el)
 
         document.addEventListener('keydown', this.handleKeyDown)
     }
@@ -374,6 +399,9 @@ export class Toolbar extends Component<Props, State> {
                 newState.activeTab = 'write'
             }
             this.setState(newState)
+        }
+        if (this.props.toolbarStyle === 'wrap') {
+            this.hideWrappedDividers()
         }
     }
 

@@ -117,6 +117,32 @@ for (const dir of ['ltr', 'rtl']) {
             }
 
             expect(layout, `at ${width}px`).toEqual({ overlaps: 0, spans: true, tabsAtEnd: true, tabsAtBottom: true })
+
+            // the dividers show only between items in a row, not at the end or the start of one
+            const dividers = await editor.evaluate((el) => {
+                const items = [...el.querySelectorAll<HTMLElement>('.uf-toolbar-group > *')]
+                    .filter((item) => item.getClientRects().length > 0)
+                const middle = (item?: HTMLElement) => {
+                    const box = item?.getBoundingClientRect()
+
+                    return box ? (box.top + box.bottom) / 2 : NaN
+                }
+                const shown = items.filter((item) =>
+                    item.classList.contains('uf-toolbar-divider') && getComputedStyle(item).visibility !== 'hidden')
+
+                return {
+                    shown: shown.length,
+                    stray: shown.filter((divider) => {
+                        const index = items.indexOf(divider)
+                        const inRow = (item?: HTMLElement) => Math.abs(middle(item) - middle(divider)) < 16
+
+                        return !inRow(items[index - 1]) || !inRow(items[index + 1])
+                    }).length
+                }
+            })
+
+            expect(dividers.stray, `stray dividers at ${width}px`).toBe(0)
+            expect(dividers.shown, `dividers at ${width}px`).toBeGreaterThan(0)
             if (width === 420) {
                 expect(new Set(buttons.map((b) => Math.round(b.top))).size).toBeGreaterThan(1)
             }
