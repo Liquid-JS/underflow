@@ -86,7 +86,11 @@ class EditorCore {
 
     private mdPreviewStyle: PreviewStyle
 
-    /** the texts in the editor's language */
+    /**
+     * the texts in the editor's language
+     *
+     * @internal
+     */
     protected i18n: I18n
 
     private scrollSync: ScrollSync
