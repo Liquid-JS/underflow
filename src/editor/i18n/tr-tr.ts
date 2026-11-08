@@ -21,6 +21,7 @@ export const trTR: Record<string, string> = {
     'Insert table': 'Tablo ekle',
     'Insert image': 'Görsel ekle',
     'Heading': 'Başlık',
+    'Heading {level}': 'Başlık {level}',
     'Image URL': 'Görsel URL',
     'Select image file': 'Görsel dosyası seç',
     'Choose a file': 'Bir dosya seçin',

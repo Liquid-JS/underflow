@@ -27,7 +27,7 @@ export default defineConfig(
             parser,
             parserOptions: {
                 projectService: {
-                    allowDefaultProject: ['.*', '*.js', 'smoke/*.ts', 'smoke/e2e/*.ts']
+                    allowDefaultProject: ['.*', '*.js']
                 },
                 tsconfigRootDir: import.meta.dirname
             }

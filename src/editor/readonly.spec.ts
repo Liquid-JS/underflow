@@ -155,6 +155,104 @@ describe('readonly', () => {
     })
 })
 
+describe('disabled', () => {
+    let container: HTMLElement
+    let editor: Editor
+
+    const texts = () => {
+        const { mdEditor, wwEditor } = editor.getEditorElements()
+
+        return [mdEditor, wwEditor].map((el) => el.querySelector<HTMLElement>('.ProseMirror')!)
+    }
+    const queryAll = (selector: string) => Array.from(container.querySelectorAll<HTMLElement>(selector))
+    const tabs = (bar: string) => queryAll(`.${cls(bar)} [role="tab"]`)
+    const preview = () => editor.getEditorElements().mdPreview
+
+    function create(options: Partial<EditorOptions> = {}) {
+        container = document.createElement('div')
+        document.body.appendChild(container)
+        editor = new Editor({
+            el: container,
+            initialValue: '# Title',
+            previewHighlight: false,
+            disabled: true,
+            ...options
+        })
+    }
+
+    afterEach(() => {
+        editor.destroy()
+        document.body.removeChild(container)
+    })
+
+    it('should make the editor read-only, and take all of it out of the Tab order', () => {
+        create()
+
+        expect(editor.isDisabled()).toBe(true)
+        expect(container.querySelector(`.${cls('default-ui')}`)).toHaveClass(cls('disabled'), cls('readonly'))
+        texts().forEach((text) => {
+            expect(text).toHaveAttribute('contenteditable', 'false')
+            expect(text).toHaveAttribute('aria-disabled', 'true')
+            expect(text).toHaveAttribute('tabindex', '-1')
+            expect(text).not.toHaveAttribute('aria-readonly')
+            expect(text).toHaveClass(cls('disabled'))
+        })
+        queryAll(`.${cls('toolbar-group')} button`).forEach((button) => expect(button).toBeDisabled())
+        expect(preview()).toHaveAttribute('tabindex', '-1')
+        for (const bar of ['mode-switch', 'md-tab-container']) {
+            tabs(bar).forEach((tab) => {
+                expect(tab).toHaveAttribute('aria-disabled', 'true')
+                expect(tab).toHaveAttribute('tabindex', '-1')
+            })
+        }
+
+        // the Write and Preview tabs don't switch
+        tabs('md-tab-container')[1].click()
+        expect(tabs('md-tab-container')[0]).toHaveClass('active')
+    })
+
+    it('should enable the editor again', () => {
+        create()
+        editor.setDisabled(false)
+
+        expect(editor.isDisabled()).toBe(false)
+        expect(container.querySelector(`.${cls('default-ui')}`)).not.toHaveClass(cls('disabled'))
+        texts().forEach((text) => {
+            expect(text).toHaveAttribute('contenteditable', 'true')
+            expect(text).not.toHaveAttribute('aria-disabled')
+            expect(text).not.toHaveAttribute('tabindex')
+        })
+        expect(preview()).toHaveAttribute('tabindex', '0')
+        for (const bar of ['mode-switch', 'md-tab-container']) {
+            expect(tabs(bar)[0]).not.toHaveAttribute('aria-disabled')
+            expect(tabs(bar)[0]).toHaveAttribute('tabindex', '0')
+        }
+    })
+
+    it('should leave a read-only editor read-only when it is enabled', () => {
+        create({ readonly: true })
+        editor.setDisabled(false)
+
+        expect(editor.isReadonly()).toBe(true)
+        texts().forEach((text) => {
+            expect(text).toHaveAttribute('contenteditable', 'false')
+            expect(text).toHaveAttribute('aria-readonly', 'true')
+            expect(text).toHaveAttribute('tabindex', '0')
+        })
+        expect(tabs('md-tab-container')[0]).not.toHaveAttribute('aria-disabled')
+    })
+
+    it('should disable the scroll sync switch, which a read-only editor keeps', () => {
+        create({ previewStyle: 'vertical', readonly: true })
+        const scrollSync = () => container.querySelector<HTMLInputElement>('.scroll-sync input')!
+
+        expect(scrollSync()).toBeDisabled()
+
+        editor.setDisabled(false)
+        expect(scrollSync()).toBeEnabled()
+    })
+})
+
 describe('readonly task plugins', () => {
     it('should not toggle tasks by clicking or typing', () => {
         const view = { editable: false } as EditorView

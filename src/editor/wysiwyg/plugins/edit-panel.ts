@@ -2,7 +2,7 @@ import { EditorView } from 'prosemirror-view'
 import { EditorState, PluginView } from 'prosemirror-state'
 
 import { Emitter } from '../../types/event'
-import { i18n } from '../../i18n/i18n'
+import { i18n as defaultI18n, I18n } from '../../i18n/i18n'
 import { cls, removeNode } from '../../utils/dom'
 
 import { css } from '../../utils/native'
@@ -31,9 +31,13 @@ export abstract class EditPanel implements PluginView {
 
     protected inputs: Record<string, HTMLInputElement> = {}
 
-    constructor(view: EditorView, eventEmitter: Emitter) {
+    /** the editor's texts, in its language */
+    protected i18n: I18n
+
+    constructor(view: EditorView, eventEmitter: Emitter, i18n: I18n = defaultI18n) {
         this.view = view
         this.eventEmitter = eventEmitter
+        this.i18n = i18n
 
         view.dom.addEventListener('click', this.handleClick)
         view.dom.addEventListener('scroll', this.handleScroll)
@@ -161,8 +165,8 @@ export abstract class EditPanel implements PluginView {
                 this.close()
             })
         )
-        buttons.appendChild(this.createButton(i18n.get('Cancel'), cls('close-button'), this.close))
-        buttons.appendChild(this.createButton(i18n.get('OK'), cls('ok-button'), this.submit))
+        buttons.appendChild(this.createButton(this.i18n.get('Cancel'), cls('close-button'), this.close))
+        buttons.appendChild(this.createButton(this.i18n.get('OK'), cls('ok-button'), this.submit))
         body.appendChild(buttons)
         el.appendChild(body)
 

@@ -902,3 +902,20 @@ describe('Event', () => {
         })
     })
 })
+
+describe('Heading levels in another language', () => {
+    it('should put the level where the language puts it, and take the texts it lacks from English', () => {
+        const el = document.createElement('div')
+
+        document.body.appendChild(el)
+        Editor.setLanguage('x-levels', { 'Heading {level}': 'Level {level} heading' })
+
+        const editor = new Editor({ el, initialEditType: 'markdown', language: 'x-levels' })
+
+        screen.getByLabelText('Headings').click()
+        expect(getByText(getPopUpElement(), 'Level 2 heading')).toBeInTheDocument()
+
+        editor.destroy()
+        document.body.removeChild(el)
+    })
+})

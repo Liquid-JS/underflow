@@ -21,6 +21,7 @@ export const faIR: Record<string, string> = {
     'Insert table': 'وارد کردن جدول',
     'Insert image': 'وارد کردن تصویر',
     'Heading': 'عنوان',
+    'Heading {level}': 'عنوان {level}',
     'Image URL': 'آدرس تصویر',
     'Select image file': 'انتخاب تصویر',
     'Choose a file': 'انتخاب پرونده',

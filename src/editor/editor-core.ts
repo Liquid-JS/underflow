@@ -86,7 +86,8 @@ class EditorCore {
 
     private mdPreviewStyle: PreviewStyle
 
-    private i18n: I18n
+    /** the texts in the editor's language */
+    protected i18n: I18n
 
     private scrollSync: ScrollSync
 
@@ -134,6 +135,7 @@ class EditorCore {
             stripPastedStyles: false,
             toolbarStyle: 'default',
             readonly: false,
+            disabled: false,
             ...options
         } as Required<EditorOptions>
 
@@ -152,8 +154,8 @@ class EditorCore {
         this.mode = initialEditType || 'markdown'
         this.mdPreviewStyle = this.options.previewStyle
 
-        this.i18n = i18n
-        this.i18n.setCode(this.options.language)
+        // the editor's own language, which other editors don't change
+        this.i18n = i18n.withCode(this.options.language)
 
         this.eventEmitter = new EventEmitter()
 
@@ -164,7 +166,8 @@ class EditorCore {
         this.pluginInfo = getPluginInfo({
             plugins: this.options.plugins,
             eventEmitter: this.eventEmitter,
-            instance: this
+            instance: this,
+            i18n: this.i18n
         })
         const {
             toHTMLRenderers,
@@ -205,6 +208,7 @@ class EditorCore {
             useCommandShortcut,
             mdPlugins,
             cursorLineHighlight: this.options.cursorLineHighlight,
+            autoDirection: this.options.autoDirection,
             widgetRules: rules
         })
 
@@ -212,7 +216,9 @@ class EditorCore {
             ...rendererOptions,
             isViewer: false,
             highlight: this.options.previewHighlight,
-            widgetRules: rules
+            widgetRules: rules,
+            i18n: this.i18n,
+            autoDirection: this.options.autoDirection
         })
 
         this.wwEditor = new WysiwygEditor(this.eventEmitter, {
@@ -224,11 +230,13 @@ class EditorCore {
             wwNodeViews,
             stripPastedStyles: this.options.stripPastedStyles,
             editPanel: this.options.editPanel,
-            widgetRules: rules
+            widgetRules: rules,
+            i18n: this.i18n,
+            autoDirection: this.options.autoDirection
         })
 
-        this.mdEditor.view.dom.setAttribute('aria-label', i18n.get('Markdown'))
-        this.wwEditor.view.dom.setAttribute('aria-label', i18n.get('WYSIWYG'))
+        this.mdEditor.view.dom.setAttribute('aria-label', this.i18n.get('Markdown'))
+        this.wwEditor.view.dom.setAttribute('aria-label', this.i18n.get('WYSIWYG'))
 
         this.convertor = new Convertor(
             this.wwEditor.getSchema(),
@@ -252,7 +260,7 @@ class EditorCore {
             this.setHTMLContent(this.initialHTML || '', false, true, false)
         }
 
-        if (this.options.readonly) {
+        if (this.options.readonly || this.options.disabled) {
             this.applyReadonly()
         }
 
@@ -359,15 +367,35 @@ class EditorCore {
         return this.options.readonly
     }
 
+    /**
+     * Disables the editor, or enables it again. A disabled editor is read-only, see `setReadonly()`, in the disabled
+     * colour, and out of the Tab order, as a disabled field: its text, the preview and the tabs too. Its text can
+     * still be clicked to select and copy it. The API still changes the text.
+     */
+    setDisabled(disabled: boolean) {
+        if (this.options.disabled !== disabled) {
+            this.options.disabled = disabled
+            this.applyReadonly()
+        }
+    }
+
+    isDisabled() {
+        return this.options.disabled
+    }
+
     private applyReadonly() {
-        const { readonly } = this.options
+        const { readonly, disabled } = this.options
 
         this.mdEditor.setReadonly(readonly)
         this.wwEditor.setReadonly(readonly)
-        if (readonly) {
+        this.mdEditor.setDisabled(disabled)
+        this.wwEditor.setDisabled(disabled)
+        if (readonly || disabled) {
             this.eventEmitter.emit('closePopup')
         }
-        this.eventEmitter.emit('changeReadonly', readonly)
+        // whether the user can change the text
+        this.eventEmitter.emit('changeReadonly', readonly || disabled)
+        this.eventEmitter.emit('changeDisabled', disabled)
     }
 
     changePreviewStyle(style: PreviewStyle) {

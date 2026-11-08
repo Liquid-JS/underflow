@@ -128,6 +128,7 @@ export default {
         'index': 'src/index.ts',
         'viewer': 'src/viewer.ts',
         'parser': 'src/parser.ts',
+        'render': 'src/render.ts',
         'plugins/code-syntax-highlight': 'src/plugins/code-syntax-highlight.ts',
         ...Object.fromEntries(locales.map((f) => [`i18n/${f.replace(/\.ts$/, '')}`, `src/editor/i18n/${f}`]))
     },

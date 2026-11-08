@@ -21,6 +21,7 @@ export const jaJP: Record<string, string> = {
     'Insert table': 'テーブル挿入',
     'Insert image': '画像挿入',
     'Heading': '見出し',
+    'Heading {level}': '見出し {level}',
     'Image URL': '画像URL',
     'Select image file': '画像ファイル選択',
     'Choose a file': 'ファイルの選択',

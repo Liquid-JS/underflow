@@ -1,5 +1,6 @@
 import { Emitter } from '../types/event'
-import { i18n } from '../i18n/i18n'
+import { setAutoDirection } from '../plugins/auto-direction'
+import { i18n as defaultI18n, I18n } from '../i18n/i18n'
 import { CustomHTMLRenderer, LinkAttributes } from '../types/editor'
 import {
     cls,
@@ -41,6 +42,9 @@ interface Options {
     isViewer: boolean
     highlight?: boolean
     sanitizer: Sanitizer
+    /** the editor's texts, in its language */
+    i18n?: I18n
+    autoDirection?: boolean
 }
 
 /** The rendered markdown, in the editor's preview and in the viewer. */
@@ -59,19 +63,22 @@ class MarkdownPreview {
 
     private sanitizer: Sanitizer
 
+    private autoDirection: boolean
+
     constructor(eventEmitter: Emitter, options: Options) {
         const el = document.createElement('div')
 
         this.el = el
         this.eventEmitter = eventEmitter
         this.isViewer = !!options.isViewer
+        this.autoDirection = !!options.autoDirection
 
         this.el.className = cls('md-preview')
 
         if (!this.isViewer) {
             // a named region, which Tab reaches in every browser to scroll it by keyboard (WCAG 2.1.1)
             this.el.setAttribute('role', 'region')
-            this.el.setAttribute('aria-label', i18n.get('Preview'))
+            this.el.setAttribute('aria-label', (options.i18n ?? defaultI18n).get('Preview'))
             this.el.tabIndex = 0
         }
 
@@ -133,6 +140,12 @@ class MarkdownPreview {
         }
 
         this.el!.addEventListener('scroll', this.handleScroll)
+        if (!this.isViewer) {
+            // a disabled editor is out of the Tab order
+            this.eventEmitter.listen('changeDisabled', (disabled: boolean) => {
+                this.el!.tabIndex = disabled ? -1 : 0
+            })
+        }
         this.eventEmitter.listen('changePreviewTabPreview', () => this.toggleActive(true))
         this.eventEmitter.listen('changePreviewTabWrite', () => this.toggleActive(false))
     }
@@ -186,6 +199,9 @@ class MarkdownPreview {
 
     update(changed: EditResult[]) {
         changed.forEach((editResult) => this.replaceRangeNodes(editResult))
+        if (this.autoDirection) {
+            setAutoDirection(this.previewContent)
+        }
         this.eventEmitter.emit('afterPreviewRender', this)
     }
 

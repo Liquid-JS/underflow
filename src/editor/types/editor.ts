@@ -117,6 +117,11 @@ export interface ViewerOptions {
     theme?: string
     /** see docs/widget.md */
     widgetRules?: WidgetRule[]
+    /**
+     * gives paragraphs, headings, lists, quotes and tables the direction of their own text, as on GitHub, for text in
+     * more than one direction; `false` by default
+     */
+    autoDirection?: boolean
 }
 
 export interface I18n {
@@ -154,6 +159,8 @@ export type EditorPlugin = PluginFn | [PluginFn, any]
 export interface ContextInfo {
     eventEmitter: Emitter
     instance: EditorCore | Viewer
+    /** the texts in the editor's language */
+    i18n?: I18n
 }
 
 export type EditorPluginInfo = ContextInfo & {
@@ -202,6 +209,11 @@ export interface EditorOptions {
     previewHighlight?: boolean
     /** highlights the cursor line in the markdown editor; `true` by default */
     cursorLineHighlight?: boolean
+    /**
+     * gives paragraphs, headings, lists, quotes and tables the direction of their own text, as on GitHub, for text in
+     * more than one direction; `false` by default
+     */
+    autoDirection?: boolean
     /** reads a `---` block at the start as front matter */
     frontMatter?: boolean
     /** see docs/widget.md */
@@ -219,6 +231,8 @@ export interface EditorOptions {
     toolbarStyle?: ToolbarStyle
     /** stops the user from changing the text, see `setReadonly()`; `false` by default */
     readonly?: boolean
+    /** disables the editor, see `setDisabled()`; `false` by default */
+    disabled?: boolean
 }
 
 /** panels that edit a clicked link or image, or a hovered table, in the WYSIWYG editor (all on by default) */

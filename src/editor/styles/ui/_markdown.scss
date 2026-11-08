@@ -124,6 +124,12 @@
             color: var(--uf-active-tab-text-color);
         }
 
+        // in a disabled editor
+        &[aria-disabled=true] {
+            color: var(--uf-disabled-text-color);
+            cursor: default;
+        }
+
         &:last-child {
             margin-inline-start: -1px;
         }

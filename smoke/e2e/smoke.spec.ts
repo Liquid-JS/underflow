@@ -19,7 +19,8 @@ test('the packed library works in an application bundle', async ({ page }) => {
         // the custom HTML renderer applies to the preview
         previewHTML:
       '<h1 id="heading-1">Hallo</h1>' +
-      '<pre><code data-language="javascript">const a = 1;\nconst b = 2;</code></pre>'
+      '<pre><code data-language="javascript">const a = 1;\nconst b = 2;</code></pre>',
+        renderedMarkdown: '<p><strong class="smoke-strong">render</strong></p>\n'
     })
 
     // the German locale applies to the toolbar

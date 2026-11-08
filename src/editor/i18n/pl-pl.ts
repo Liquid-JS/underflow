@@ -21,6 +21,7 @@ export const plPL: Record<string, string> = {
     'Insert table': 'Umieść tabelę',
     'Insert image': 'Umieść obraz',
     'Heading': 'Nagłówek',
+    'Heading {level}': 'Nagłówek {level}',
     'Image URL': 'Adres URL obrazu',
     'Select image file': 'Wybierz plik obrazu',
     'Choose a file': 'Wybierz plik',

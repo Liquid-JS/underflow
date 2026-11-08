@@ -160,3 +160,25 @@ read-only editor too.
 
 The editor's root element and its text have the `uf-readonly` class, for styling. Plugins with handlers of their own
 that change the document should check ProseMirror's `view.editable`, which is `false` in a read-only editor.
+
+## Disabled
+
+`disabled: true`, or `setDisabled(true)` later, disables the editor, as a disabled form field; `isDisabled()` tells
+whether it is. A disabled editor is read-only, and also out of the Tab order: its text, the preview, the
+Write/Preview tabs and the Markdown/WYSIWYG switch, which are disabled too. Screen readers still read the text, which
+can also be clicked to select and copy it. The text and the tabs are in `--uf-disabled-text-color`.
+
+The editor's root element has the `uf-disabled` and `uf-readonly` classes, and its text the `uf-disabled` class and
+`aria-disabled="true"`. Enabling the editor again leaves it read-only if `readonly` is set.
+
+## Right-to-left text
+
+The editor follows the page's direction, e.g. `dir="rtl"` on the `html` element: the toolbar, the tabs, lists,
+quotes and task checkboxes are laid out from its start. Code reads left to right in every direction, and inline code
+keeps its place in the text around it.
+
+For text in more than one direction, `autoDirection: true` gives each paragraph, heading, list, quote and table the
+direction of its own text, as on GitHub: a Hebrew paragraph in an English page reads from the right, with its list's
+bullets or its quote's line on its side. A list takes the direction of its first item, and a table of its first cell.
+In the markdown mode each line takes its own. It works in the markdown and WYSIWYG modes, the preview and the viewer
+(`autoDirection` is an option of the viewer too), and doesn't change the HTML or the markdown.

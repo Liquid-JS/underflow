@@ -74,3 +74,20 @@ const viewer = Editor.factory({
     initialValue: '# hello'
 })
 ```
+
+## Rendering Without a Viewer
+
+`renderMarkdown()` from `@liquid-js/underflow/render` renders markdown to the HTML the viewer shows, with the
+viewer's options and plugins, e.g. code highlighting, but without a viewer or a DOM, so it also renders on the server.
+Show the HTML in an element with the `uf-contents` class, with the viewer's styles.
+
+```js
+import { renderMarkdown } from '@liquid-js/underflow/render'
+
+element.innerHTML = renderMarkdown('# hello', { linkAttributes: { target: '_blank' } })
+```
+
+The HTML is sanitized with DOMPurify, as in the viewer, which needs a DOM. Without one, e.g. in Node, pass
+`sanitizer`, a function that cleans the HTML, such as DOMPurify with jsdom, or `sanitizer: null` for markdown you
+trust, which keeps its HTML as it is. Plugins get no editor or viewer instance.
+

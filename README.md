@@ -66,6 +66,7 @@ with Autoprefixer or Lightning CSS.
 | `@liquid-js/underflow`                                          | `Editor`, `EditorCore` and `Viewer`                                                                           |
 | `@liquid-js/underflow/viewer`                                   | `Viewer`                                                                                                      |
 | `@liquid-js/underflow/parser`                                   | The incremental markdown parser                                                                               |
+| `@liquid-js/underflow/render`                                   | `renderMarkdown()`, which renders markdown to HTML as the viewer does, on the server too                      |
 | `@liquid-js/underflow/i18n/<locale>`                            | UI translations, e.g. `i18n/de-de`                                                                            |
 | `@liquid-js/underflow/plugins/code-syntax-highlight`            | Syntax highlighting for code blocks                                                                           |
 | `@liquid-js/underflow/styles/editor.css`                        | Editor UI and contents styles                                                                                 |

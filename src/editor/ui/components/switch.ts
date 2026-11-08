@@ -4,13 +4,17 @@ import { TabInfo } from '../../types/ui'
 import { cls } from '../../utils/dom'
 import { html } from '../vdom/template'
 import { Component } from '../vdom/component'
+import { I18n } from '../../i18n/i18n'
 import { Tabs } from './tabs'
 
 interface Props {
     editorType: EditorType
+    i18n: I18n
     eventEmitter: Emitter
     /** disables the tabs, as changing the mode converts the text */
     readonly: boolean
+    /** takes the tabs out of the Tab order too */
+    disabled: boolean
 }
 
 interface State {
@@ -48,9 +52,10 @@ export class Switch extends Component<Props, State> {
         return html`
             <div class="${cls('mode-switch')}" style="display: ${this.state.hide ? 'none' : 'block'}">
                 <${Tabs}
-                    tabs=${this.tabs}
+                    tabs=${this.tabs.map(({ name, text }) => ({ name, text: this.props.i18n.get(text) }))}
                     activeTab=${this.props.editorType}
                     disabled=${this.props.readonly}
+                    tabbable=${!this.props.disabled}
                     onClick=${this.changeMode}
                 />
             </div>

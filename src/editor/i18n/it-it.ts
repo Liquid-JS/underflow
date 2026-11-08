@@ -21,6 +21,7 @@ export const itIT: Record<string, string> = {
     'Insert table': 'Inserisci tabella',
     'Insert image': 'Inserisci immagine',
     'Heading': 'Intestazione',
+    'Heading {level}': 'Intestazione {level}',
     'Image URL': 'URL immagine',
     'Select image file': 'Seleziona file immagine',
     'Choose a file': 'Scegli un file',

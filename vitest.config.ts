@@ -17,7 +17,7 @@ export default defineConfig({
                 test: {
                     name: 'parser',
                     environment: 'node',
-                    include: ['src/parser/**/*.spec.ts', 'scripts/**/*.spec.ts']
+                    include: ['src/parser/**/*.spec.ts', 'src/render.spec.ts', 'scripts/**/*.spec.ts']
                 }
             },
             {

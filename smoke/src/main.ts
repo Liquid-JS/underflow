@@ -21,6 +21,7 @@ import {
     type MdPos
 } from '@liquid-js/underflow/parser'
 import { Viewer } from '@liquid-js/underflow/viewer'
+import { renderMarkdown } from '@liquid-js/underflow/render'
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 
@@ -71,7 +72,8 @@ const customHTMLRenderer: CustomHTMLRenderer = {
     }
 }
 
-// ?wrap shows the toolbar that wraps onto more rows, ?readonly a read-only editor, ?rtl right-to-left text
+// ?wrap shows the toolbar that wraps onto more rows, ?readonly a read-only editor, ?disabled a disabled one,
+// ?rtl right-to-left text, ?autodir blocks in the direction of their text
 const params = new URLSearchParams(location.search)
 
 if (params.has('rtl')) {
@@ -84,6 +86,8 @@ const editorOptions: EditorOptions = {
     initialEditType: 'wysiwyg',
     toolbarStyle: params.has('wrap') ? 'wrap' : 'default',
     readonly: params.has('readonly'),
+    disabled: params.has('disabled'),
+    autoDirection: params.has('autodir'),
     language: 'de-DE',
     plugins,
     customHTMLRenderer
@@ -105,6 +109,8 @@ const convertors: HTMLConvertorMap = {
 }
 
 Object.assign(window, {
+    // for the tests to set the text
+    smokeEditor: editor,
     smoke: {
         markdown: editor.getMarkdown(),
         isEditorCore: editor instanceof EditorCore,
@@ -112,6 +118,8 @@ Object.assign(window, {
         parsed: new Parser().parse('**parser**').firstChild?.type,
         nodeAtPos: doc.findNodeAtPosition(pos)?.type,
         rendered: new Renderer({ convertors }).render(doc.getRootNode()),
-        previewHTML: editor.getHTML()
+        previewHTML: editor.getHTML(),
+        // markdown rendered as the viewer does, with a plugin
+        renderedMarkdown: renderMarkdown('**render**', { plugins: [[smokePlugin, { className: 'smoke-strong' }]] })
     }
 })

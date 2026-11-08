@@ -27,7 +27,7 @@ import {
     setGroupState,
     createPopupInfo
 } from '../../toolbar-item-factory'
-import { i18n } from '../../../i18n/i18n'
+import { I18n } from '../../../i18n/i18n'
 import { css, forEachArray, throttle } from '../../../utils/native'
 import { Popup } from '../popup'
 import { Tabs } from '../tabs'
@@ -38,12 +38,16 @@ type TabType = 'write' | 'preview'
 
 interface Props {
     eventEmitter: Emitter
+    /** the editor's texts, in its language */
+    i18n: I18n
     previewStyle: PreviewStyle
     toolbarItems: ToolbarItem[]
     editorType: EditorType
     toolbarStyle: ToolbarStyle
     /** disables the toolbar's items, but not the Write and Preview tabs */
     readonly: boolean
+    /** disables the Write and Preview tabs too, and the scroll sync switch, and takes them out of the Tab order */
+    disabled: boolean
 }
 
 interface State {
@@ -60,8 +64,13 @@ interface ItemWidthMap {
 
 const INLINE_PADDING = 50
 
+let toolbarCount = 0
+
 export class Toolbar extends Component<Props, State> {
     private tabs: TabInfo[]
+
+    /** each toolbar's own, so the active buttons of several editors are described in their own language */
+    private activeDescId = `${cls('active-button-desc')}-${(toolbarCount += 1)}`
 
     private itemWidthMap: ItemWidthMap
 
@@ -80,7 +89,7 @@ export class Toolbar extends Component<Props, State> {
             { name: 'preview', text: 'Preview' }
         ]
         this.itemWidthMap = {}
-        this.initialItems = groupToolbarItems(props.toolbarItems || [], this.hiddenScrollSync())
+        this.initialItems = groupToolbarItems(props.toolbarItems || [], this.hiddenScrollSync(), props.i18n)
 
         this.state = {
             items: this.initialItems,
@@ -90,7 +99,9 @@ export class Toolbar extends Component<Props, State> {
             activeTab: 'write'
         }
         this.tooltipRef = { current: null }
-        this.resizeObserver = new ResizeObserver(() => this.handleResize())
+        this.resizeObserver = new ResizeObserver(() =>
+            props.toolbarStyle === 'wrap' ? this.hideWrappedDividers() : this.handleResize()
+        )
         this.addEvent()
     }
 
@@ -98,7 +109,7 @@ export class Toolbar extends Component<Props, State> {
         const { groupIndex, itemIndex } = indexList
         const group = this.initialItems[groupIndex]
 
-        item = createToolbarItemInfo(item)
+        item = createToolbarItemInfo(item, this.props.i18n)
 
         if (!item) {
             return
@@ -295,6 +306,30 @@ export class Toolbar extends Component<Props, State> {
         }
     }
 
+    /**
+     * Hides the dividers of a wrapping toolbar that end or start a row, where they divide nothing. They keep their
+     * space, so the rows don't change.
+     */
+    private hideWrappedDividers() {
+        const items = Array.from(this.refs.el.querySelectorAll<HTMLElement>(`.${cls('toolbar-group')} > *`)).filter(
+            (item) => item.getClientRects().length > 0
+        )
+        const middle = (item?: HTMLElement) => {
+            const box = item?.getBoundingClientRect()
+
+            return box ? (box.top + box.bottom) / 2 : NaN
+        }
+
+        items.forEach((item, index) => {
+            if (item.classList.contains(cls('toolbar-divider'))) {
+                const row = middle(item)
+                const inRow = (other?: HTMLElement) => Math.abs(middle(other) - row) < item.offsetHeight
+
+                item.style.visibility = inRow(items[index - 1]) && inRow(items[index + 1]) ? '' : 'hidden'
+            }
+        })
+    }
+
     private classifyToolbarItems() {
         let totalWidth = 0
         const { clientWidth } = this.refs.el
@@ -351,10 +386,10 @@ export class Toolbar extends Component<Props, State> {
         // classify toolbar and dropdown toolbar after DOM has been rendered
         this.setState(this.classifyToolbarItems())
         this.appendTooltipToRoot()
+        this.disableScrollSync()
 
-        if (this.props.toolbarStyle !== 'wrap') {
-            this.resizeObserver.observe(this.refs.el)
-        }
+        // a wrapping toolbar only rearranges its dividers when its rows change
+        this.resizeObserver.observe(this.refs.el)
 
         document.addEventListener('keydown', this.handleKeyDown)
     }
@@ -375,6 +410,19 @@ export class Toolbar extends Component<Props, State> {
             }
             this.setState(newState)
         }
+        if (this.props.toolbarStyle === 'wrap') {
+            this.hideWrappedDividers()
+        }
+        if (this.props.disabled !== prevProps.disabled) {
+            this.disableScrollSync()
+        }
+    }
+
+    /** The scroll sync switch is only for reading, so it works in a read-only editor, but not in a disabled one. */
+    private disableScrollSync() {
+        this.refs.el.querySelectorAll<HTMLInputElement>('.scroll-sync input').forEach((input) => {
+            input.disabled = this.props.disabled
+        })
     }
 
     beforeDestroy() {
@@ -395,14 +443,15 @@ export class Toolbar extends Component<Props, State> {
     }
 
     render() {
-        const { previewStyle, eventEmitter, editorType, readonly } = this.props
+        const { previewStyle, eventEmitter, editorType, readonly, disabled } = this.props
         const { popupInfo, showPopup, activeTab, items, dropdownItems } = this.state
         const props = {
             eventEmitter,
             tooltipRef: this.tooltipRef,
             disabled: readonly || (editorType === 'markdown' && previewStyle === 'tab' && activeTab === 'preview'),
             execCommand: this.execCommand,
-            setPopupInfo: this.setPopupInfo
+            setPopupInfo: this.setPopupInfo,
+            activeDescId: this.activeDescId
         }
 
         // The Write and Preview tabs come after the toolbar, at the end of its last row, next to the text they switch.
@@ -412,7 +461,7 @@ export class Toolbar extends Component<Props, State> {
                     class="${cls('default-ui-toolbar')}"
                     ref=${(el: HTMLElement) => (this.refs.el = el)}
                     role="toolbar"
-                    aria-label="${i18n.get('Text Formatting')}"
+                    aria-label="${this.props.i18n.get('Text Formatting')}"
                 >
                     ${items.map(
                         (group, index) => html`
@@ -425,7 +474,7 @@ export class Toolbar extends Component<Props, State> {
                         `
                     )}
                     <${DropdownToolbarButton}
-                        item=${createToolbarItemInfo('more')}
+                        item=${createToolbarItemInfo('more', this.props.i18n)}
                         items=${dropdownItems}
                         ...${props}
                     />
@@ -436,16 +485,23 @@ export class Toolbar extends Component<Props, State> {
                         ? 'none'
                         : 'block'}"
                 >
-                    <${Tabs} tabs=${this.tabs} activeTab=${activeTab} onClick=${this.toggleTab} />
+                    <${Tabs}
+                        tabs=${this.tabs.map(({ name, text }) => ({ name, text: this.props.i18n.get(text) }))}
+                        activeTab=${activeTab}
+                        disabled=${disabled}
+                        tabbable=${!disabled}
+                        onClick=${this.toggleTab}
+                    />
                 </div>
                 <${Popup}
                     info=${popupInfo}
                     show=${showPopup}
                     eventEmitter=${eventEmitter}
+                    i18n=${this.props.i18n}
                     hidePopup=${this.hidePopup}
                     execCommand=${this.execCommand}
                 />
-                <div id=${cls('active-button-desc')}>${i18n.get('Active Button')}</div>
+                <div id=${this.activeDescId} class=${cls('active-button-desc')}>${this.props.i18n.get('Active Button')}</div>
             </div>
         `
     }

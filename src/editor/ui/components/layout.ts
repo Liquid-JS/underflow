@@ -4,11 +4,14 @@ import { IndexList, ToolbarItem, ToolbarItemOptions } from '../../types/ui'
 import { cls } from '../../utils/dom'
 import { html } from '../vdom/template'
 import { Component } from '../vdom/component'
+import { I18n } from '../../i18n/i18n'
 import { Switch } from './switch'
 import { Toolbar } from './toolbar/toolbar'
 import { ContextMenu } from './context-menu'
 
 interface Props {
+    /** the editor's texts, in its language */
+    i18n: I18n
     eventEmitter: Emitter
     hideModeSwitch: boolean
     slots: {
@@ -21,7 +24,9 @@ interface Props {
     toolbarStyle: ToolbarStyle
     toolbarItems: ToolbarItem[]
     theme: string
+    /** whether the user can't change the text, also when disabled */
     readonly: boolean
+    disabled: boolean
 }
 
 interface State {
@@ -29,7 +34,9 @@ interface State {
     previewStyle: PreviewStyle
     hide: boolean
     theme: string
+    /** whether the user can't change the text, also when disabled */
     readonly: boolean
+    disabled: boolean
 }
 
 export class Layout extends Component<Props, State> {
@@ -37,14 +44,15 @@ export class Layout extends Component<Props, State> {
 
     constructor(props: Props) {
         super(props)
-        const { editorType, previewStyle, theme, readonly } = props
+        const { editorType, previewStyle, theme, readonly, disabled } = props
 
         this.state = {
             editorType,
             previewStyle,
             hide: false,
             theme,
-            readonly
+            readonly,
+            disabled
         }
         this.addEvent()
     }
@@ -67,26 +75,29 @@ export class Layout extends Component<Props, State> {
 
     render() {
         const { eventEmitter, hideModeSwitch, toolbarItems, toolbarStyle } = this.props
-        const { hide, previewStyle, editorType, theme, readonly } = this.state
+        const { hide, previewStyle, editorType, theme, readonly, disabled } = this.state
         const displayClassName = hide ? ' hidden' : ''
         const readonlyClassName = readonly ? ` ${cls('readonly')}` : ''
+        const disabledClassName = disabled ? ` ${cls('disabled')}` : ''
         const editorTypeClassName = cls(editorType === 'markdown' ? 'md-mode' : 'ww-mode')
         const previewClassName = `${cls('md')}-${previewStyle}-style`
         const themeClassName = cls([theme !== 'light', `${theme} `])
 
         return html`
             <div
-                class="${themeClassName}${cls('default-ui')}${displayClassName}${readonlyClassName}"
+                class="${themeClassName}${cls('default-ui')}${displayClassName}${readonlyClassName}${disabledClassName}"
                 ref=${(el: HTMLElement) => (this.refs.el = el)}
             >
                 <${Toolbar}
                     ref=${(toolbar: Toolbar) => (this.toolbar = toolbar)}
                     eventEmitter=${eventEmitter}
+                    i18n=${this.props.i18n}
                     previewStyle=${previewStyle}
                     toolbarItems=${toolbarItems}
                     editorType=${editorType}
                     toolbarStyle=${toolbarStyle}
                     readonly=${readonly}
+                    disabled=${disabled}
                 />
                 <div
                     class="${cls('main')} ${editorTypeClassName}"
@@ -106,7 +117,13 @@ export class Layout extends Component<Props, State> {
                     </div>
                 </div>
                 ${!hideModeSwitch &&
-                html`<${Switch} eventEmitter=${eventEmitter} editorType=${editorType} readonly=${readonly} />`}
+                html`<${Switch}
+                    eventEmitter=${eventEmitter}
+                    i18n=${this.props.i18n}
+                    editorType=${editorType}
+                    readonly=${readonly}
+                    disabled=${disabled}
+                />`}
                 <${ContextMenu} eventEmitter=${eventEmitter} />
             </div>
         `
@@ -121,6 +138,13 @@ export class Layout extends Component<Props, State> {
         eventEmitter.listen('changePreviewStyle', this.changePreviewStyle)
         eventEmitter.listen('changeTheme', this.changeTheme)
         eventEmitter.listen('changeReadonly', this.changeReadonly)
+        eventEmitter.listen('changeDisabled', this.changeDisabled)
+    }
+
+    private changeDisabled = (disabled: boolean) => {
+        if (disabled !== this.state.disabled) {
+            this.setState({ disabled })
+        }
     }
 
     private changeReadonly = (readonly: boolean) => {

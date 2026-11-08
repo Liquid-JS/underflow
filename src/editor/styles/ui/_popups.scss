@@ -232,3 +232,17 @@
         }
     }
 }
+
+// in the top layer, see `TopLayer`, placed in the viewport, and without the browser's styles for popovers
+.uf-popup[popover],
+.uf-context-menu[popover] {
+    position: fixed;
+    inset: auto;
+    margin: 0;
+    overflow: visible;
+}
+
+.uf-popup[popover] {
+    padding: 0;
+    color: inherit;
+}

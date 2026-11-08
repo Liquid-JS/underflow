@@ -4,9 +4,12 @@ import { closest, cls, getEventTarget } from '../../utils/dom'
 import { shallowEqual } from '../../utils/common'
 import { html } from '../vdom/template'
 import { Component } from '../vdom/component'
+import { I18n } from '../../i18n/i18n'
+import { TopLayer } from '../top-layer'
 
 interface Props {
     show: boolean
+    i18n: I18n
     info: PopupInfo
     eventEmitter: Emitter
     hidePopup: HidePopup
@@ -22,6 +25,9 @@ const FOCUSABLE_SELECTOR =
     'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
 
 export class Popup extends Component<Props, State> {
+    /** above the page, so an ancestor that clips the editor doesn't cut the popup off */
+    private topLayer = new TopLayer()
+
     private handleMousedown = (ev: MouseEvent) => {
         const target = getEventTarget(ev)
 
@@ -103,6 +109,7 @@ export class Popup extends Component<Props, State> {
     }
 
     beforeDestroy() {
+        this.topLayer.hide()
         document.removeEventListener('mousedown', this.handleMousedown)
         document.removeEventListener('keydown', this.handleKeydown)
     }
@@ -111,6 +118,8 @@ export class Popup extends Component<Props, State> {
         const { show, info } = this.props
 
         if (show && info.pos && prevProps.show !== show) {
+            this.topLayer.show(this.refs.el)
+
             const popupPos = { ...info.pos }
             const { offsetWidth } = this.refs.el
             const toolbarEl = closest(this.refs.el, `.${cls('toolbar')}`) as HTMLElement
@@ -139,6 +148,8 @@ export class Popup extends Component<Props, State> {
                 }
             }
         } else if (!show && prevProps.show !== show && info) {
+            this.topLayer.hide()
+
             const { activeElement } = document
 
             // return the focus to the opener unless it has already moved elsewhere (e.g. to the editor)
@@ -158,7 +169,7 @@ export class Popup extends Component<Props, State> {
     }
 
     render() {
-        const { info, show, hidePopup, eventEmitter, execCommand } = this.props
+        const { info, show, hidePopup, eventEmitter, execCommand, i18n } = this.props
         const { className = '', style, render, initialValues = {} } = info || {}
         const popupStyle: StyleProps = {
             display: 'block',
@@ -175,7 +186,7 @@ export class Popup extends Component<Props, State> {
                 ref=${(el: HTMLElement) => (this.refs.el = el)}
             >
                 <div class="${cls('popup-body')}">
-                    ${render && render({ eventEmitter, show, hidePopup, execCommand, initialValues })}
+                    ${render && render({ eventEmitter, show, hidePopup, execCommand, initialValues, i18n })}
                 </div>
             </div>
         `

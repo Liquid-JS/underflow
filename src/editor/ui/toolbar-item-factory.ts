@@ -11,7 +11,7 @@ import {
     ToolbarCustomOptions,
     ExecCommand
 } from '../types/ui'
-import { i18n } from '../i18n/i18n'
+import { I18n } from '../i18n/i18n'
 import { cls } from '../utils/dom'
 import { isMac } from '../utils/common'
 import { isString } from '../utils/native'
@@ -23,11 +23,11 @@ import { TablePopupBody } from './components/toolbar/table-popup-body'
 import { CustomPopupBody } from './components/toolbar/custom-popup-body'
 import { icons } from './icons'
 
-export function createToolbarItemInfo(type: string | ToolbarItemOptions): ToolbarItemInfo {
-    return isString(type) ? createDefaultToolbarItemInfo(type) : type
+export function createToolbarItemInfo(type: string | ToolbarItemOptions, i18n: I18n): ToolbarItemInfo {
+    return isString(type) ? createDefaultToolbarItemInfo(type, i18n) : type
 }
 
-function createScrollSyncToolbarItem(): ToolbarItemInfo {
+function createScrollSyncToolbarItem(i18n: I18n): ToolbarItemInfo {
     const label = document.createElement('label')
     const checkbox = document.createElement('input')
     const toggleSwitch = document.createElement('span')
@@ -64,7 +64,7 @@ function createScrollSyncToolbarItem(): ToolbarItemInfo {
     }
 }
 
-function createDefaultToolbarItemInfo(type: string) {
+function createDefaultToolbarItemInfo(type: string, i18n: I18n) {
     let info!: ToolbarButtonInfo | ToolbarCustomOptions
 
     switch (type) {
@@ -209,7 +209,7 @@ function createDefaultToolbarItemInfo(type: string) {
             }
             break
         case 'scrollSync':
-            info = createScrollSyncToolbarItem()
+            info = createScrollSyncToolbarItem(i18n)
             break
         case 'more':
             info = {
@@ -296,7 +296,7 @@ export function setGroupState(group: ToolbarGroupInfo) {
     group.hidden = group.length === group.filter((info: ToolbarButtonInfo) => info.hidden).length
 }
 
-export function groupToolbarItems(toolbarItems: ToolbarItem[], hiddenScrollSync: boolean) {
+export function groupToolbarItems(toolbarItems: ToolbarItem[], hiddenScrollSync: boolean, i18n: I18n) {
     const toggleScrollSyncState = (item: ToolbarButtonInfo) => {
         item.hidden = item.name === 'scrollSync' && hiddenScrollSync
         return item
@@ -305,7 +305,7 @@ export function groupToolbarItems(toolbarItems: ToolbarItem[], hiddenScrollSync:
     return toolbarItems.reduce((acc: ToolbarGroupInfo[], item) => {
         acc.push(
             item
-                .map((type) => createToolbarItemInfo(type))
+                .map((type) => createToolbarItemInfo(type, i18n))
             // ignore toolbar items which can't be created (e.g. unknown item names)
                 .filter(Boolean)
                 .map(toggleScrollSyncState)

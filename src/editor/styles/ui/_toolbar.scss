@@ -165,8 +165,7 @@ $md-tabs-width: 2 * 70px - 1px + 15px;
     }
 }
 
-// "Active Button" description that the active toolbar button points to with aria-describedby
-// stylelint-disable-next-line selector-max-id -- the element only has this id
-#uf-active-button-desc {
+// "Active Button" description that the toolbar's active buttons point to with aria-describedby
+.uf-active-button-desc {
     display: none;
 }

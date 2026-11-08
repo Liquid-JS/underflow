@@ -21,6 +21,7 @@ export const ptBR: Record<string, string> = {
     'Insert table': 'Inserir tabela',
     'Insert image': 'Inserir imagem',
     'Heading': 'Título',
+    'Heading {level}': 'Título {level}',
     'Image URL': 'URL da imagem',
     'Select image file': 'Selecione um arquivo de imagem',
     'Choose a file': 'Escolha um arquivo',

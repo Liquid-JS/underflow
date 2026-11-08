@@ -21,6 +21,7 @@ export const zhTW: Record<string, string> = {
     'Insert table': '插入表格',
     'Insert image': '插入圖片',
     'Heading': '標題',
+    'Heading {level}': '標題 {level}',
     'Image URL': '圖片網址',
     'Select image file': '選擇圖片檔案',
     'Choose a file': '選擇一個檔案',

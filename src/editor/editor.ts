@@ -20,6 +20,7 @@ class Editor extends EditorCore {
                 <${Layout}
                     ref=${(layout: Layout) => (layoutComp = layout)}
                     eventEmitter=${this.eventEmitter}
+                    i18n=${this.i18n}
                     slots=${this.getEditorElements()}
                     hideModeSwitch=${this.options.hideModeSwitch}
                     toolbarItems=${this.options.toolbarItems}
@@ -27,7 +28,8 @@ class Editor extends EditorCore {
                     editorType=${this.options.initialEditType || 'markdown'}
                     theme=${this.options.theme}
                     toolbarStyle=${this.options.toolbarStyle}
-                    readonly=${this.options.readonly}
+                    readonly=${this.options.readonly || this.options.disabled}
+                    disabled=${this.options.disabled}
                 />
             ` as VNode
         )

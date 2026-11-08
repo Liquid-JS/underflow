@@ -20,6 +20,10 @@
             "types": "./lib/parser.d.ts",
             "default": "./lib/parser.js"
         },
+        "./render": {
+            "types": "./lib/render.d.ts",
+            "default": "./lib/render.js"
+        },
         "./i18n/*": {
             "types": "./lib/editor/i18n/*.d.ts",
             "default": "./lib/i18n/*.js"

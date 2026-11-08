@@ -21,6 +21,7 @@ export const nbNO: Record<string, string> = {
     'Insert table': 'Sett inn tabell',
     'Insert image': 'Sett inn bilde',
     'Heading': 'Overskrift',
+    'Heading {level}': 'Overskrift {level}',
     'Image URL': 'Bilde-URL',
     'Select image file': 'Velg bildefil',
     'Choose a file': 'Velg en fil',

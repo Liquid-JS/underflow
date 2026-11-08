@@ -21,6 +21,7 @@ export const ukUA: Record<string, string> = {
     'Insert table': 'Вставити таблицю',
     'Insert image': 'Вставити зображення',
     'Heading': 'Заголовок',
+    'Heading {level}': 'Заголовок {level}',
     'Image URL': 'URL зображення',
     'Select image file': 'Вибрати файл зображення',
     'Choose a file': 'Виберіть файл',

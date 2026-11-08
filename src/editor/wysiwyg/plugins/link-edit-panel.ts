@@ -3,7 +3,7 @@ import { Mark } from 'prosemirror-model'
 import { EditorView } from 'prosemirror-view'
 
 import { Emitter } from '../../types/event'
-import { i18n } from '../../i18n/i18n'
+import { I18n } from '../../i18n/i18n'
 import { cls } from '../../utils/dom'
 
 import { EditPanel } from './edit-panel'
@@ -66,11 +66,11 @@ export class LinkEditPanel extends EditPanel {
     }
 
     protected get ariaLabel() {
-        return i18n.get('Edit link')
+        return this.i18n.get('Edit link')
     }
 
     protected get removeLabel() {
-        return i18n.get('Remove link')
+        return this.i18n.get('Remove link')
     }
 
     protected isTarget(element: HTMLElement) {
@@ -110,10 +110,10 @@ export class LinkEditPanel extends EditPanel {
 
         this.range = range
         this.show([
-            { name: 'linkUrl', label: i18n.get('URL'), value: range.mark.attrs.linkUrl },
+            { name: 'linkUrl', label: this.i18n.get('URL'), value: range.mark.attrs.linkUrl },
             {
                 name: 'linkText',
-                label: i18n.get('Link text'),
+                label: this.i18n.get('Link text'),
                 value: doc.textBetween(range.from, range.to),
                 // the link text can not be replaced when the link contains other inline nodes
                 disabled: !textOnly
@@ -172,8 +172,8 @@ export class LinkEditPanel extends EditPanel {
     }
 }
 
-export function linkEditPanel(eventEmitter: Emitter) {
+export function linkEditPanel(eventEmitter: Emitter, i18n?: I18n) {
     return new Plugin({
-        view: (view) => new LinkEditPanel(view, eventEmitter)
+        view: (view) => new LinkEditPanel(view, eventEmitter, i18n)
     })
 }

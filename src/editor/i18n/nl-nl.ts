@@ -21,6 +21,7 @@ export const nlNL: Record<string, string> = {
     'Insert table': 'Tabel invoegen',
     'Insert image': 'Afbeelding invoegen',
     'Heading': 'Kop',
+    'Heading {level}': 'Kop {level}',
     'Image URL': 'Afbeeldings-URL',
     'Select image file': 'Selecteer een afbeelding',
     'Choose a file': 'Kies een bestand',

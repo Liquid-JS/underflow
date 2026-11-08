@@ -47,3 +47,16 @@ describe('I18n.setLanguage()', () => {
         expect(override).toEqual({ Preview: 'Ansicht' })
     })
 })
+
+describe('I18n.get()', () => {
+    it('should take a text the language doesn\'t have from English', () => {
+        const i18n = new I18n()
+
+        i18n.setLanguage('en-US', { Write: 'Write', Preview: 'Preview' })
+        i18n.setLanguage('x-partial', { Write: 'Schreiben' })
+
+        expect(i18n.get('Write', 'x-partial')).toBe('Schreiben')
+        expect(i18n.get('Preview', 'x-partial')).toBe('Preview')
+        expect(() => i18n.get('Missing', 'x-partial')).toThrow()
+    })
+})

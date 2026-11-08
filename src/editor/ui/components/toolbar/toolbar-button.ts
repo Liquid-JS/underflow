@@ -25,6 +25,8 @@ interface Props {
     hideTooltip: HideTooltip
     getBound: GetBound
     setItemWidth?: SetItemWidth
+    /** the id of the toolbar's description of active buttons */
+    activeDescId: string
 }
 
 const DEFAULT_WIDTH = 80
@@ -95,7 +97,7 @@ export class ToolbarButtonComp extends Component<Props> {
                 disabled=${!!disabled}
                 aria-label=${item.text || item.tooltip || ''}
                 aria-haspopup=${item.ariaHasPopup ? 'menu' : false}
-                aria-describedby=${active ? cls('active-button-desc') : false}
+                aria-describedby=${active ? this.props.activeDescId : false}
             >
                 ${item.icon ? html`<span class=${cls('icon')} aria-hidden="true" innerHTML=${item.icon}></span>` : null}
                 ${item.text || ''}

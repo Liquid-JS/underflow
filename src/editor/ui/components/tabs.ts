@@ -1,5 +1,4 @@
 import { TabInfo } from '../../types/ui'
-import { i18n } from '../../i18n/i18n'
 import { cls } from '../../utils/dom'
 import { html } from '../vdom/template'
 import { Component } from '../vdom/component'
@@ -9,6 +8,8 @@ interface Props {
     activeTab: string
     /** the tabs stay focusable, but don't switch */
     disabled?: boolean
+    /** `false` takes the tabs out of the Tab order */
+    tabbable?: boolean
     onClick: (ev: MouseEvent | KeyboardEvent, activeTab: string) => void
 }
 
@@ -49,12 +50,12 @@ export class Tabs extends Component<Props> {
                             onClick=${(ev: MouseEvent) => this.toggleTab(ev, name)}
                             onKeydown=${(ev: KeyboardEvent) => this.handleKeydown(ev, index)}
                             role="tab"
-                            aria-label="${i18n.get(text)}"
+                            aria-label="${text}"
                             aria-selected="${isActive ? 'true' : 'false'}"
                             aria-disabled=${this.props.disabled ? 'true' : null}
-                            tabindex="${isActive ? '0' : '-1'}"
+                            tabindex="${isActive && this.props.tabbable !== false ? '0' : '-1'}"
                         >
-                            ${i18n.get(text)}
+                            ${text}
                         </div>
                     `
                 })}

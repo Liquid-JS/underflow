@@ -132,7 +132,7 @@ table.ProseMirror-selectednode,
 
     blockquote {
         margin: 14px 0;
-        border-left: 4px solid #e5e5e5;
+        border-inline-start: 4px solid #e5e5e5;
         padding: 0 16px;
         color: #999;
 
@@ -170,7 +170,10 @@ table.ProseMirror-selectednode,
         border-radius: 0;
     }
 
+    // code reads left to right, in right-to-left text too
     pre {
+        direction: ltr;
+        text-align: left;
         margin: 2px 0 8px;
         padding: 18px;
         background-color: #f4f7f8;
@@ -180,10 +183,13 @@ table.ProseMirror-selectednode,
             color: inherit;
             white-space: pre-wrap;
             background-color: transparent;
+            unicode-bidi: normal;
         }
     }
 
+    // inline code takes the direction of its own text, so the text around it doesn't reorder it
     code {
+        unicode-bidi: plaintext;
         color: #c1798b;
         background-color: #f9f2f4;
         padding: 2px 3px;
@@ -250,7 +256,7 @@ table.ProseMirror-selectednode,
     dir {
         display: block;
         list-style-type: none;
-        padding-left: 24px;
+        padding-inline-start: 24px;
         margin: 6px 0 10px;
         color: #222;
     }
@@ -273,19 +279,20 @@ table.ProseMirror-selectednode,
     ul > li:before {
         content: "";
         margin-top: 6px;
-        margin-left: -17px;
+        margin-inline-start: -17px;
         width: 5px;
         height: 5px;
         border-radius: 50%;
         background-color: #ccc;
     }
 
+    // the number at the end of its box, and a long one overflows away from the text
     ol > li:before {
-        content: "." counter(li);
-        margin-left: -28px;
+        content: counter(li) ".";
+        display: inline-flex;
+        justify-content: flex-end;
+        margin-inline-start: -28px;
         width: 24px;
-        text-align: right;
-        direction: rtl;
         color: #aaa;
     }
 
@@ -333,7 +340,7 @@ table.ProseMirror-selectednode,
         display: none;
         position: absolute;
         top: 0;
-        right: 0;
+        inset-inline-end: 0;
         align-items: center;
         justify-content: center;
         width: 30px;
@@ -355,14 +362,14 @@ table.ProseMirror-selectednode,
     .task-list-item {
         border: 0;
         list-style: none;
-        padding-left: 24px;
-        margin-left: -24px;
+        padding-inline-start: 24px;
+        margin-inline-start: -24px;
 
         // the checkbox, drawn in CSS; the WYSIWYG editor toggles the task when it's clicked
         &:before {
             content: "";
             box-sizing: border-box;
-            margin-left: 0;
+            margin-inline-start: 0;
             margin-top: 0;
             border: 1px solid #ccc;
             border-radius: 2px;
@@ -370,7 +377,7 @@ table.ProseMirror-selectednode,
             height: 18px;
             width: 18px;
             position: absolute;
-            left: 0;
+            inset-inline-start: 0;
             top: 1px;
         }
 
@@ -387,7 +394,8 @@ table.ProseMirror-selectednode,
         position: relative;
     }
 
-    // language label of a WYSIWYG code block, clicked to edit the language
+    // language label of a WYSIWYG code block, clicked to edit the language; on the right, away from the start of the
+    // code, which reads left to right
     .uf-code-block-label {
         position: absolute;
         top: 10px;
@@ -397,7 +405,8 @@ table.ProseMirror-selectednode,
         gap: 4px;
         height: 27px;
         margin: 0;
-        padding: 0 6px 0 10px;
+        padding-block: 0;
+        padding-inline: 10px 6px;
         border: none;
         border-radius: 2px;
         font-family: inherit;
@@ -415,8 +424,20 @@ table.ProseMirror-selectednode,
     }
 }
 
-// a read-only editor's text has no buttons that edit it
-.uf-contents.uf-readonly {
+// a disabled editor's text, all of it in the disabled colour
+.uf-default-ui.uf-disabled .uf-main {
+    .ProseMirror,
+    .uf-md-preview {
+        &,
+        * {
+            color: var(--uf-disabled-text-color);
+        }
+    }
+}
+
+// a read-only or disabled editor's text has no buttons that edit it
+.uf-contents.uf-readonly,
+.uf-contents.uf-disabled {
     .uf-code-block-label,
     .image-link:hover .uf-image-link-button,
     .uf-custom-block.ProseMirror-selectednode .uf-custom-block-view .tool {
@@ -438,7 +459,7 @@ table.ProseMirror-selectednode,
 
         .tool {
             position: absolute;
-            right: 10px;
+            inset-inline-end: 10px;
             top: 7px;
             display: none;
         }
@@ -461,7 +482,7 @@ table.ProseMirror-selectednode,
             vertical-align: middle;
             width: 23px;
             height: 23px;
-            margin-left: 8px;
+            margin-inline-start: 8px;
             padding: 0;
             border: solid 1px #cccccc;
             background-color: transparent;

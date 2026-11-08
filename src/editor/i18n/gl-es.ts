@@ -21,6 +21,7 @@ export const glES: Record<string, string> = {
     'Insert table': 'Inserir táboa',
     'Insert image': 'Inserir imaxe',
     'Heading': 'Encabezado',
+    'Heading {level}': 'Encabezado {level}',
     'Image URL': 'URL da imaxe',
     'Select image file': 'Seleccionar ficheiro de imaxe',
     'Choose a file': 'Escolle un ficheiro',

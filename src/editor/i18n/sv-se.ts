@@ -21,6 +21,7 @@ export const svSE: Record<string, string> = {
     'Insert table': 'Infoga tabell',
     'Insert image': 'Infoga bild',
     'Heading': 'Överskrift',
+    'Heading {level}': 'Överskrift {level}',
     'Image URL': 'Bildadress',
     'Select image file': 'Välj en bildfil',
     'Choose a file': 'Välj en fil',

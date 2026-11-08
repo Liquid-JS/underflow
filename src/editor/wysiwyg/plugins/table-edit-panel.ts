@@ -2,7 +2,7 @@ import { Plugin, PluginView } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
 
 import { Emitter } from '../../types/event'
-import { i18n } from '../../i18n/i18n'
+import { i18n as defaultI18n, I18n } from '../../i18n/i18n'
 import { cls, removeNode } from '../../utils/dom'
 import { createTextSelection } from '../../helper/manipulation'
 import { createDummyCells } from '../helper/table'
@@ -33,9 +33,12 @@ export class TableEditPanel implements PluginView {
 
     private table: HTMLTableElement | null = null
 
-    constructor(view: EditorView, eventEmitter: Emitter) {
+    private i18n: I18n
+
+    constructor(view: EditorView, eventEmitter: Emitter, i18n: I18n = defaultI18n) {
         this.view = view
         this.eventEmitter = eventEmitter
+        this.i18n = i18n
 
         view.dom.addEventListener('mouseover', this.handleMouseover)
         view.dom.addEventListener('mouseleave', this.handleMouseleave)
@@ -146,7 +149,7 @@ export class TableEditPanel implements PluginView {
             buttons.push({
                 action: 'addColumn',
                 index,
-                label: i18n.get(index ? 'Add column to right' : 'Add column to left'),
+                label: this.i18n.get(index ? 'Add column to right' : 'Add column to left'),
                 left: cellRect.left - containerRect.left,
                 top
             })
@@ -154,7 +157,7 @@ export class TableEditPanel implements PluginView {
                 buttons.push({
                     action: 'removeColumn',
                     index,
-                    label: i18n.get('Remove column'),
+                    label: this.i18n.get('Remove column'),
                     left: (cellRect.left + cellRect.right) / 2 - containerRect.left,
                     top: bottom
                 })
@@ -163,7 +166,7 @@ export class TableEditPanel implements PluginView {
         buttons.push({
             action: 'addColumn',
             index: cells.length,
-            label: i18n.get('Add column to right'),
+            label: this.i18n.get('Add column to right'),
             left: right,
             top
         })
@@ -176,7 +179,7 @@ export class TableEditPanel implements PluginView {
                 buttons.push({
                     action: 'addRow',
                     index,
-                    label: i18n.get('Add row to down'),
+                    label: this.i18n.get('Add row to down'),
                     left,
                     top: rowRect.top - containerRect.top
                 })
@@ -184,7 +187,7 @@ export class TableEditPanel implements PluginView {
                     buttons.push({
                         action: 'removeRow',
                         index,
-                        label: i18n.get('Remove row'),
+                        label: this.i18n.get('Remove row'),
                         left: right,
                         top: (rowRect.top + rowRect.bottom) / 2 - containerRect.top
                     })
@@ -194,7 +197,7 @@ export class TableEditPanel implements PluginView {
         buttons.push({
             action: 'addRow',
             index: rows.length,
-            label: i18n.get('Add row to down'),
+            label: this.i18n.get('Add row to down'),
             left,
             top: bottom
         })
@@ -202,7 +205,7 @@ export class TableEditPanel implements PluginView {
         buttons.push({
             action: 'removeTable',
             index: 0,
-            label: i18n.get('Remove table'),
+            label: this.i18n.get('Remove table'),
             left: right,
             top: bottom
         })
@@ -286,8 +289,8 @@ export class TableEditPanel implements PluginView {
     }
 }
 
-export function tableEditPanel(eventEmitter: Emitter) {
+export function tableEditPanel(eventEmitter: Emitter, i18n?: I18n) {
     return new Plugin({
-        view: (view) => new TableEditPanel(view, eventEmitter)
+        view: (view) => new TableEditPanel(view, eventEmitter, i18n)
     })
 }
