@@ -44,6 +44,8 @@ interface Props {
     toolbarStyle: ToolbarStyle
     /** disables the toolbar's items, but not the Write and Preview tabs */
     readonly: boolean
+    /** disables the Write and Preview tabs too, and the scroll sync switch, and takes them out of the Tab order */
+    disabled: boolean
 }
 
 interface State {
@@ -377,6 +379,7 @@ export class Toolbar extends Component<Props, State> {
         // classify toolbar and dropdown toolbar after DOM has been rendered
         this.setState(this.classifyToolbarItems())
         this.appendTooltipToRoot()
+        this.disableScrollSync()
 
         // a wrapping toolbar only rearranges its dividers when its rows change
         this.resizeObserver.observe(this.refs.el)
@@ -403,6 +406,16 @@ export class Toolbar extends Component<Props, State> {
         if (this.props.toolbarStyle === 'wrap') {
             this.hideWrappedDividers()
         }
+        if (this.props.disabled !== prevProps.disabled) {
+            this.disableScrollSync()
+        }
+    }
+
+    /** The scroll sync switch is only for reading, so it works in a read-only editor, but not in a disabled one. */
+    private disableScrollSync() {
+        this.refs.el.querySelectorAll<HTMLInputElement>('.scroll-sync input').forEach((input) => {
+            input.disabled = this.props.disabled
+        })
     }
 
     beforeDestroy() {
@@ -423,7 +436,7 @@ export class Toolbar extends Component<Props, State> {
     }
 
     render() {
-        const { previewStyle, eventEmitter, editorType, readonly } = this.props
+        const { previewStyle, eventEmitter, editorType, readonly, disabled } = this.props
         const { popupInfo, showPopup, activeTab, items, dropdownItems } = this.state
         const props = {
             eventEmitter,
@@ -464,7 +477,13 @@ export class Toolbar extends Component<Props, State> {
                         ? 'none'
                         : 'block'}"
                 >
-                    <${Tabs} tabs=${this.tabs} activeTab=${activeTab} onClick=${this.toggleTab} />
+                    <${Tabs}
+                        tabs=${this.tabs}
+                        activeTab=${activeTab}
+                        disabled=${disabled}
+                        tabbable=${!disabled}
+                        onClick=${this.toggleTab}
+                    />
                 </div>
                 <${Popup}
                     info=${popupInfo}

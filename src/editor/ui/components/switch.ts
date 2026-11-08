@@ -11,6 +11,8 @@ interface Props {
     eventEmitter: Emitter
     /** disables the tabs, as changing the mode converts the text */
     readonly: boolean
+    /** takes the tabs out of the Tab order too */
+    disabled: boolean
 }
 
 interface State {
@@ -51,6 +53,7 @@ export class Switch extends Component<Props, State> {
                     tabs=${this.tabs}
                     activeTab=${this.props.editorType}
                     disabled=${this.props.readonly}
+                    tabbable=${!this.props.disabled}
                     onClick=${this.changeMode}
                 />
             </div>

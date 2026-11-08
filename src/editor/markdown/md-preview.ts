@@ -133,6 +133,12 @@ class MarkdownPreview {
         }
 
         this.el!.addEventListener('scroll', this.handleScroll)
+        if (!this.isViewer) {
+            // a disabled editor is out of the Tab order
+            this.eventEmitter.listen('changeDisabled', (disabled: boolean) => {
+                this.el!.tabIndex = disabled ? -1 : 0
+            })
+        }
         this.eventEmitter.listen('changePreviewTabPreview', () => this.toggleActive(true))
         this.eventEmitter.listen('changePreviewTabWrite', () => this.toggleActive(false))
     }

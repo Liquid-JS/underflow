@@ -47,7 +47,7 @@ export abstract class EditorBase implements Base {
     /** widgets typed in the editor become widget nodes; only the WYSIWYG editor has widget nodes */
     widgetRules?: WidgetRules
 
-    protected readonlyState: ReadonlyState = { readonly: false }
+    protected readonlyState: ReadonlyState = { readonly: false, disabled: false }
 
     constructor(eventEmitter: Emitter) {
         this.el = document.createElement('div')
@@ -173,6 +173,12 @@ export abstract class EditorBase implements Base {
     setReadonly(readonly: boolean) {
         this.readonlyState.readonly = readonly
         // the view reads its editable state and attributes again
+        this.view.updateState(this.view.state)
+    }
+
+    /** Stops the user from changing the text, and takes it out of the Tab order, see `EditorCore.setDisabled()`. */
+    setDisabled(disabled: boolean) {
+        this.readonlyState.disabled = disabled
         this.view.updateState(this.view.state)
     }
 

@@ -219,6 +219,8 @@ export interface EditorOptions {
     toolbarStyle?: ToolbarStyle
     /** stops the user from changing the text, see `setReadonly()`; `false` by default */
     readonly?: boolean
+    /** disables the editor, see `setDisabled()`; `false` by default */
+    disabled?: boolean
 }
 
 /** panels that edit a clicked link or image, or a hovered table, in the WYSIWYG editor (all on by default) */

@@ -160,3 +160,13 @@ read-only editor too.
 
 The editor's root element and its text have the `uf-readonly` class, for styling. Plugins with handlers of their own
 that change the document should check ProseMirror's `view.editable`, which is `false` in a read-only editor.
+
+## Disabled
+
+`disabled: true`, or `setDisabled(true)` later, disables the editor, as a disabled form field; `isDisabled()` tells
+whether it is. A disabled editor is read-only, and also out of the Tab order: its text, the preview, the
+Write/Preview tabs and the Markdown/WYSIWYG switch, which are disabled too. Screen readers still read the text, which
+can also be clicked to select and copy it. The text and the tabs are in `--uf-disabled-text-color`.
+
+The editor's root element has the `uf-disabled` and `uf-readonly` classes, and its text the `uf-disabled` class and
+`aria-disabled="true"`. Enabling the editor again leaves it read-only if `readonly` is set.

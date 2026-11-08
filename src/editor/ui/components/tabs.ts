@@ -9,6 +9,8 @@ interface Props {
     activeTab: string
     /** the tabs stay focusable, but don't switch */
     disabled?: boolean
+    /** `false` takes the tabs out of the Tab order */
+    tabbable?: boolean
     onClick: (ev: MouseEvent | KeyboardEvent, activeTab: string) => void
 }
 
@@ -52,7 +54,7 @@ export class Tabs extends Component<Props> {
                             aria-label="${i18n.get(text)}"
                             aria-selected="${isActive ? 'true' : 'false'}"
                             aria-disabled=${this.props.disabled ? 'true' : null}
-                            tabindex="${isActive ? '0' : '-1'}"
+                            tabindex="${isActive && this.props.tabbable !== false ? '0' : '-1'}"
                         >
                             ${i18n.get(text)}
                         </div>

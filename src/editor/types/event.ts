@@ -24,6 +24,7 @@ export type EventTypes =
   | 'changeMode'
   | 'changeTheme'
   | 'changeReadonly'
+  | 'changeDisabled'
   | 'needChangeMode'
   | 'command'
   | 'changePreviewStyle'

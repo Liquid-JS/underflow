@@ -424,8 +424,20 @@ table.ProseMirror-selectednode,
     }
 }
 
-// a read-only editor's text has no buttons that edit it
-.uf-contents.uf-readonly {
+// a disabled editor's text, all of it in the disabled colour
+.uf-default-ui.uf-disabled .uf-main {
+    .ProseMirror,
+    .uf-md-preview {
+        &,
+        * {
+            color: var(--uf-disabled-text-color);
+        }
+    }
+}
+
+// a read-only or disabled editor's text has no buttons that edit it
+.uf-contents.uf-readonly,
+.uf-contents.uf-disabled {
     .uf-code-block-label,
     .image-link:hover .uf-image-link-button,
     .uf-custom-block.ProseMirror-selectednode .uf-custom-block-view .tool {

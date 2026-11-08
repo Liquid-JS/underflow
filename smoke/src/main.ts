@@ -71,7 +71,8 @@ const customHTMLRenderer: CustomHTMLRenderer = {
     }
 }
 
-// ?wrap shows the toolbar that wraps onto more rows, ?readonly a read-only editor, ?rtl right-to-left text
+// ?wrap shows the toolbar that wraps onto more rows, ?readonly a read-only editor, ?disabled a disabled one,
+// ?rtl right-to-left text
 const params = new URLSearchParams(location.search)
 
 if (params.has('rtl')) {
@@ -84,6 +85,7 @@ const editorOptions: EditorOptions = {
     initialEditType: 'wysiwyg',
     toolbarStyle: params.has('wrap') ? 'wrap' : 'default',
     readonly: params.has('readonly'),
+    disabled: params.has('disabled'),
     language: 'de-DE',
     plugins,
     customHTMLRenderer
