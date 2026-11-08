@@ -22,6 +22,7 @@ The package provides the following entry points:
 | `@liquid-js/underflow`                                          | `Editor` and `EditorCore`                                |
 | `@liquid-js/underflow/viewer`                                   | `Viewer`                                                 |
 | `@liquid-js/underflow/parser`                                   | The incremental markdown parser                          |
+| `@liquid-js/underflow/render`                                   | `renderMarkdown()`, see [Viewer](viewer.md)              |
 | `@liquid-js/underflow/i18n/<locale>`                            | UI translations, e.g. `i18n/de-de` (see [i18n](i18n.md)) |
 | `@liquid-js/underflow/plugins/code-syntax-highlight`            | Syntax highlighting for code blocks                      |
 | `@liquid-js/underflow/styles/editor.css`                        | Editor UI and contents styles                            |

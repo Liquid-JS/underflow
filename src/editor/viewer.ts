@@ -1,5 +1,5 @@
 import { MarkdownDocument } from '../parser/markdown-document'
-import { CustomHTMLRenderer, ViewerOptions } from './types/editor'
+import { ViewerOptions } from './types/editor'
 import { Emitter, EventName, Handler } from './types/event'
 import { forEachOwnProperties } from './utils/native'
 import { MarkdownPreview } from './markdown/md-preview'
@@ -7,17 +7,8 @@ import { getPluginInfo } from './helper/plugin'
 import { last, sanitizeLinkAttribute } from './utils/common'
 import { EventEmitter } from './event/event-emitter'
 import { cls } from './utils/dom'
-import { registerTagWhitelistIfPossible, sanitizeHTML } from './sanitizer/html-sanitizer'
+import { registerHTMLTagToWhitelist, sanitizeHTML } from './sanitizer/html-sanitizer'
 import { WidgetRules } from './widget/rules'
-
-function registerHTMLTagToWhitelist(convertorMap: CustomHTMLRenderer) {
-    ['htmlBlock', 'htmlInline'].forEach((htmlType) => {
-        if (convertorMap[htmlType]) {
-            // register tag white list for preventing to remove the html in sanitizer
-            Object.keys(convertorMap[htmlType]!).forEach((type) => registerTagWhitelistIfPossible(type))
-        }
-    })
-}
 
 /** Shows markdown as HTML, without the editing code; see docs/viewer.md. */
 class Viewer {

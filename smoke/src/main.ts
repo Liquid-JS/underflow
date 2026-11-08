@@ -21,6 +21,7 @@ import {
     type MdPos
 } from '@liquid-js/underflow/parser'
 import { Viewer } from '@liquid-js/underflow/viewer'
+import { renderMarkdown } from '@liquid-js/underflow/render'
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 
@@ -117,6 +118,8 @@ Object.assign(window, {
         parsed: new Parser().parse('**parser**').firstChild?.type,
         nodeAtPos: doc.findNodeAtPosition(pos)?.type,
         rendered: new Renderer({ convertors }).render(doc.getRootNode()),
-        previewHTML: editor.getHTML()
+        previewHTML: editor.getHTML(),
+        // markdown rendered as the viewer does, with a plugin
+        renderedMarkdown: renderMarkdown('**render**', { plugins: [[smokePlugin, { className: 'smoke-strong' }]] })
     }
 })
