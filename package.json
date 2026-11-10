@@ -1,6 +1,6 @@
 {
     "name": "@liquid-js/underflow",
-    "version": "4.0.0-9",
+    "version": "4.0.0-10",
     "description": "Markdown editor with live preview and WYSIWYG modes, CommonMark + GFM",
     "type": "module",
     "types": "./lib/index.d.ts",

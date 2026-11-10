@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.0.0-10](https://github.com/Liquid-JS/underflow/compare/v4.0.0-9...v4.0.0-10) (2026-11-10)
+
+### Bug Fixes
+
+* scss exports ([fdf8b65](https://github.com/Liquid-JS/underflow/commit/fdf8b6542fb6fbdadc35d74802fc5a06d5494b17))
 ## [4.0.0-9](https://github.com/Liquid-JS/underflow/compare/v4.0.0-8...v4.0.0-9) (2026-11-08)
 
 ### Bug Fixes
