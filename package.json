@@ -35,7 +35,8 @@
             "default": "./lib/plugins/code-syntax-highlight.js"
         },
         "./styles/*": "./lib/styles/*",
-        "./scss/*": "./lib/scss/*"
+        "./scss/*.scss": "./lib/scss/*.scss",
+        "./scss/*": "./lib/scss/*.scss"
     },
     "sideEffects": [
         "*.css"

@@ -61,20 +61,20 @@ with Autoprefixer or Lightning CSS.
 
 ### Entry points
 
-| Import                                                          | Contents                                                                                                      |
-| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `@liquid-js/underflow`                                          | `Editor`, `EditorCore` and `Viewer`                                                                           |
-| `@liquid-js/underflow/viewer`                                   | `Viewer`                                                                                                      |
-| `@liquid-js/underflow/parser`                                   | The incremental markdown parser                                                                               |
-| `@liquid-js/underflow/render`                                   | `renderMarkdown()`, which renders markdown to HTML as the viewer does, on the server too                      |
-| `@liquid-js/underflow/i18n/<locale>`                            | UI translations, e.g. `i18n/de-de`                                                                            |
-| `@liquid-js/underflow/plugins/code-syntax-highlight`            | Syntax highlighting for code blocks                                                                           |
-| `@liquid-js/underflow/styles/editor.css`                        | Editor UI and contents styles                                                                                 |
-| `@liquid-js/underflow/styles/editor-only.css`                   | Editor UI without the contents styles, for use with your own                                                  |
-| `@liquid-js/underflow/styles/viewer.css`                        | Contents styles for the viewer                                                                                |
-| `@liquid-js/underflow/styles/theme/dark.css`                    | Dark theme, enabled with the `theme: 'dark'` option                                                           |
-| `@liquid-js/underflow/styles/plugins/code-syntax-highlight.css` | Styles of the syntax highlighting plugin                                                                      |
-| `@liquid-js/underflow/scss/<file>.scss`                         | The Sass sources of the stylesheets above, to compile in your own build (see [Theming](https://liquid-js.github.io/underflow/docs/documents/Theming.html#sass)) |
+| Import                                                          | Contents                                                                                                                                                                                               |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `@liquid-js/underflow`                                          | `Editor`, `EditorCore` and `Viewer`                                                                                                                                                                    |
+| `@liquid-js/underflow/viewer`                                   | `Viewer`                                                                                                                                                                                               |
+| `@liquid-js/underflow/parser`                                   | The incremental markdown parser                                                                                                                                                                        |
+| `@liquid-js/underflow/render`                                   | `renderMarkdown()`, which renders markdown to HTML as the viewer does, on the server too                                                                                                               |
+| `@liquid-js/underflow/i18n/<locale>`                            | UI translations, e.g. `i18n/de-de`                                                                                                                                                                     |
+| `@liquid-js/underflow/plugins/code-syntax-highlight`            | Syntax highlighting for code blocks                                                                                                                                                                    |
+| `@liquid-js/underflow/styles/editor.css`                        | Editor UI and contents styles                                                                                                                                                                          |
+| `@liquid-js/underflow/styles/editor-only.css`                   | Editor UI without the contents styles, for use with your own                                                                                                                                           |
+| `@liquid-js/underflow/styles/viewer.css`                        | Contents styles for the viewer                                                                                                                                                                         |
+| `@liquid-js/underflow/styles/theme/dark.css`                    | Dark theme, enabled with the `theme: 'dark'` option                                                                                                                                                    |
+| `@liquid-js/underflow/styles/plugins/code-syntax-highlight.css` | Styles of the syntax highlighting plugin                                                                                                                                                               |
+| `@liquid-js/underflow/scss/<file>`                              | The Sass sources of the stylesheets above, with or without the `.scss` extension, to compile in your own build (see [Theming](https://liquid-js.github.io/underflow/docs/documents/Theming.html#sass)) |
 
 ## Development
 

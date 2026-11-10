@@ -89,9 +89,9 @@ Use them to compile the styles as part of your own stylesheets, together with yo
 ```
 
 The stylesheets use no images, so there are no files to resolve: the icons are inline SVG in the JavaScript.
-Bundlers such as Vite resolve these paths. With the Sass CLI, use `pkg:` URLs
-(`@use "pkg:@liquid-js/underflow/scss/editor"`) with `--pkg-importer=node`, and add `--load-path=node_modules` for the
-ProseMirror stylesheet that `editor.scss` loads.
+Bundlers such as Vite and the Angular CLI resolve these paths, with or without the `.scss` extension. With the Sass
+CLI, use `pkg:` URLs (`@use "pkg:@liquid-js/underflow/scss/editor"`) with `--pkg-importer=node`, and add
+`--load-path=node_modules` for the ProseMirror stylesheet that `editor.scss` loads.
 
 Syntax highlighting in code blocks comes from any [highlight.js theme](https://highlightjs.org/demo) when you use the
 [code syntax highlight plugin](code-syntax-highlight-plugin.md).
