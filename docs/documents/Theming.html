@@ -111,9 +111,9 @@ Use them to compile the styles as part of your own stylesheets, together with yo
 </code><button type="button">Copy</button></pre>
 
 <p>The stylesheets use no images, so there are no files to resolve: the icons are inline SVG in the JavaScript.
-Bundlers such as Vite resolve these paths. With the Sass CLI, use <code>pkg:</code> URLs
-(<code>@use &quot;pkg:@liquid-js/underflow/scss/editor&quot;</code>) with <code>--pkg-importer=node</code>, and add <code>--load-path=node_modules</code> for the
-ProseMirror stylesheet that <code>editor.scss</code> loads.</p>
+Bundlers such as Vite and the Angular CLI resolve these paths, with or without the <code>.scss</code> extension. With the Sass
+CLI, use <code>pkg:</code> URLs (<code>@use &quot;pkg:@liquid-js/underflow/scss/editor&quot;</code>) with <code>--pkg-importer=node</code>, and add
+<code>--load-path=node_modules</code> for the ProseMirror stylesheet that <code>editor.scss</code> loads.</p>
 <p>Syntax highlighting in code blocks comes from any <a href="https://highlightjs.org/demo">highlight.js theme</a> when you use the
 <a href="Code_syntax_highlight_plugin.html">code syntax highlight plugin</a>.</p>
 </div></div>
