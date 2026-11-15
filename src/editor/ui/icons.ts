@@ -28,7 +28,39 @@ import strike from './icons/strike.svg' with { type: 'text' }
 import table from './icons/table.svg' with { type: 'text' }
 import taskList from './icons/task-list.svg' with { type: 'text' }
 
-const defaults = {
+/** The name of one of the editor's icons: the class name of its toolbar button or menu item, e.g. `bold` */
+export type IconName =
+    | 'add-column-left'
+    | 'add-column-right'
+    | 'add-row-down'
+    | 'add-row-up'
+    | 'align-column-center'
+    | 'align-column-left'
+    | 'align-column-right'
+    | 'bold'
+    | 'bullet-list'
+    | 'chevron-down'
+    | 'code'
+    | 'codeblock'
+    | 'heading'
+    | 'hrline'
+    | 'image'
+    | 'indent'
+    | 'italic'
+    | 'link'
+    | 'more'
+    | 'ordered-list'
+    | 'outdent'
+    | 'pencil'
+    | 'quote'
+    | 'remove-column'
+    | 'remove-row'
+    | 'remove-table'
+    | 'strike'
+    | 'table'
+    | 'task-list'
+
+const defaults: Record<IconName, string> = {
     'add-column-left': addColumnLeft,
     'add-column-right': addColumnRight,
     'add-row-down': addRowDown,
@@ -59,9 +91,6 @@ const defaults = {
     table,
     'task-list': taskList
 }
-
-/** The name of one of the editor's icons: the class name of its toolbar button or menu item, e.g. `bold` */
-export type IconName = keyof typeof defaults
 
 /** The SVG icons, by the class name of their toolbar button or menu item */
 export const icons: Record<string, string> = { ...defaults }
