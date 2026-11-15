@@ -38,6 +38,10 @@ export interface RefDefCandidateMap {
 }
 
 export interface ParserOptions {
+    /**
+     * Smart punctuation: text nodes keep the markdown as written in `literal`, and have its straight quotes, `--`,
+     * `---` and `...` as typographic quotes, en and em dashes and ellipses in `smartLiteral`.
+     */
     smart: boolean
     tagFilter: boolean
     extendedAutolinks: boolean | AutolinkParser

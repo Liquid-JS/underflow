@@ -75,6 +75,8 @@ export class BaseNode implements MdNode {
 
     // only for leaf node
     literal: string | null = null
+    // only for text nodes parsed with smart punctuation
+    smartLiteral: string | null = null
 
     constructor(nodeType: MdNodeType, sourcepos?: Sourcepos) {
         if (nodeType === 'document') {

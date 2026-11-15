@@ -113,6 +113,11 @@ export interface ViewerOptions {
     customHTMLSanitizer?: Sanitizer
     /** reads a `---` block at the start as front matter */
     frontMatter?: boolean
+    /**
+     * shows straight quotes, `--`, `---` and `...` as typographic quotes, en and em dashes and ellipses in the
+     * rendered markdown, outside code and URLs; the markdown keeps them as written. `false` by default
+     */
+    smartPunctuation?: boolean
     /** `light`, `dark` or a custom theme, see docs/theming.md; `light` by default */
     theme?: string
     /** see docs/widget.md */
@@ -216,6 +221,11 @@ export interface EditorOptions {
     autoDirection?: boolean
     /** reads a `---` block at the start as front matter */
     frontMatter?: boolean
+    /**
+     * shows straight quotes, `--`, `---` and `...` as typographic quotes, en and em dashes and ellipses in the
+     * rendered markdown, outside code and URLs; the markdown keeps them as written. `false` by default
+     */
+    smartPunctuation?: boolean
     /** see docs/widget.md */
     widgetRules?: WidgetRule[]
     /** `light`, `dark` or a custom theme, see docs/theming.md; `light` by default */

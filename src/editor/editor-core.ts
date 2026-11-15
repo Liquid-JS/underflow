@@ -134,6 +134,7 @@ class EditorCore {
             referenceDefinition: false,
             customHTMLSanitizer: null,
             frontMatter: false,
+            smartPunctuation: false,
             widgetRules: [],
             theme: 'light',
             autofocus: true,
@@ -149,6 +150,7 @@ class EditorCore {
             extendedAutolinks,
             referenceDefinition,
             frontMatter,
+            smartPunctuation,
             customMarkdownRenderer,
             useCommandShortcut,
             initialEditType,
@@ -204,6 +206,7 @@ class EditorCore {
             extendedAutolinks,
             referenceDefinition,
             frontMatter,
+            smart: smartPunctuation,
             customParser: markdownParsers,
             widgetRules: rules.patterns
         })

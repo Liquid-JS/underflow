@@ -31,7 +31,7 @@ function getChildrenText(node: BaseNode) {
     while ((event = walker.next())) {
         const { node: childNode } = event
         if (childNode.type === 'text') {
-            buffer.push(childNode.literal!)
+            buffer.push(childNode.smartLiteral ?? childNode.literal!)
         }
     }
     return buffer.join('')

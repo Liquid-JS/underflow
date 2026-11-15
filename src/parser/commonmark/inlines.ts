@@ -7,6 +7,7 @@ import { normalizeURI, unescapeString, ESCAPABLE, ENTITY } from './common'
 import { reHtmlTag } from './raw-html'
 import { NodeWalker } from './node-walker'
 import { convertExtAutoLinks } from './gfm/auto-links'
+import { completeSmart, markVerbatim, mergeSmart } from './smart'
 
 export const C_NEWLINE = 10
 const C_ASTERISK = 42
@@ -43,8 +44,9 @@ const reEscapable = new RegExp(`^${ESCAPABLE}`)
 const reEntityHere = new RegExp(`^${ENTITY}`, 'i')
 const reTicks = /`+/
 const reTicksHere = /^`+/
-const reEllipses = /\.\.\./g
-const reDash = /--+/g
+
+/** The text of links that are URLs, `<https://…>` or `<name@example.com>`, which keeps its dashes and dots. */
+const urlTexts = new WeakSet<BaseNode>()
 const reEmailAutolink = /^<([a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*)>/
 const reAutolink = /^<[A-Za-z][A-Za-z0-9.+-]{1,31}:[^<>\x00-\x20]*>/i
 const reSpnl = /^ *(?:\n *)?/
@@ -315,7 +317,9 @@ export class InlineParser {
             block.appendChild(node)
             this.nextLine()
         } else if (reEscapable.test(subj.charAt(this.pos))) {
-            block.appendChild(text(subj.charAt(this.pos), this.sourcepos(startpos, this.pos)))
+            node = text(subj.charAt(this.pos), this.sourcepos(startpos, this.pos))
+            markVerbatim(node)
+            block.appendChild(node)
             this.pos += 1
         } else {
             block.appendChild(text('\\', this.sourcepos(startpos, startpos)))
@@ -334,7 +338,9 @@ export class InlineParser {
             node = createNode('link', this.sourcepos(startpos, this.pos))
             node.destination = normalizeURI(`mailto:${dest}`)
             node.title = ''
-            node.appendChild(text(dest, this.sourcepos(startpos + 1, this.pos - 1)))
+            const url = text(dest, this.sourcepos(startpos + 1, this.pos - 1))
+            urlTexts.add(url)
+            node.appendChild(url)
             block.appendChild(node)
             return true
         }
@@ -343,7 +349,9 @@ export class InlineParser {
             node = createNode('link', this.sourcepos(startpos, this.pos))
             node.destination = normalizeURI(dest)
             node.title = ''
-            node.appendChild(text(dest, this.sourcepos(startpos + 1, this.pos - 1)))
+            const url = text(dest, this.sourcepos(startpos + 1, this.pos - 1))
+            urlTexts.add(url)
+            node.appendChild(url)
             block.appendChild(node)
             return true
         }
@@ -437,18 +445,14 @@ export class InlineParser {
         }
         const numdelims = res.numdelims
         const startpos = this.pos + 1
-        let contents: string
-
         this.pos += numdelims
+        const node = text(this.subject.slice(startpos - 1, this.pos), this.sourcepos(startpos, this.pos))
+        // A quote without a match: an apostrophe, or an opening double quote.
         if (cc === C_SINGLEQUOTE) {
-            contents = '\u2019'
+            node.smartLiteral = '\u2019'
         } else if (cc === C_DOUBLEQUOTE) {
-            contents = '\u201C'
-        } else {
-            contents = this.subject.slice(startpos - 1, this.pos)
+            node.smartLiteral = '\u201C'
         }
-
-        const node = text(contents, this.sourcepos(startpos, this.pos))
         block.appendChild(node)
 
         // Add entry to stack for this opener
@@ -635,15 +639,15 @@ export class InlineParser {
                         }
                     }
                 } else if (closercc === C_SINGLEQUOTE) {
-                    closer.node.literal = '\u2019'
+                    closer.node.smartLiteral = '\u2019'
                     if (openerFound) {
-                        opener!.node.literal = '\u2018'
+                        opener!.node.smartLiteral = '\u2018'
                     }
                     closer = closer.next
                 } else if (closercc === C_DOUBLEQUOTE) {
-                    closer.node.literal = '\u201D'
+                    closer.node.smartLiteral = '\u201D'
                     if (openerFound) {
-                        opener!.node.literal = '\u201C'
+                        opener!.node.smartLiteral = '\u201C'
                     }
                     closer = closer.next
                 }
@@ -923,7 +927,9 @@ export class InlineParser {
         let m
         const startpos = this.pos + 1
         if ((m = this.match(reEntityHere))) {
-            block.appendChild(text(decodeHTMLStrict(m), this.sourcepos(startpos, this.pos)))
+            const node = text(decodeHTMLStrict(m), this.sourcepos(startpos, this.pos))
+            markVerbatim(node)
+            block.appendChild(node)
             return true
         }
         return false
@@ -942,32 +948,7 @@ export class InlineParser {
                 m = m.slice(0, widgetIndex - startpos + 1)
                 this.pos = widgetIndex
             }
-            if (this.options.smart) {
-                const lit = m.replace(reEllipses, '\u2026').replace(reDash, (chars) => {
-                    let enCount = 0
-                    let emCount = 0
-                    if (chars.length % 3 === 0) {
-                        // If divisible by 3, use all em dashes
-                        emCount = chars.length / 3
-                    } else if (chars.length % 2 === 0) {
-                        // If divisible by 2, use all en dashes
-                        enCount = chars.length / 2
-                    } else if (chars.length % 3 === 2) {
-                        // If 2 extra dashes, use en dash for last 2; em dashes for rest
-                        enCount = 1
-                        emCount = (chars.length - 2) / 3
-                    } else {
-                        // Use en dashes for last 4 hyphens; em dashes for rest
-                        enCount = 2
-                        emCount = (chars.length - 4) / 3
-                    }
-                    return '\u2014'.repeat(emCount) + '\u2013'.repeat(enCount)
-                })
-                block.appendChild(text(lit, this.sourcepos(startpos, this.pos)))
-            } else {
-                const node = text(m, this.sourcepos(startpos, this.pos))
-                block.appendChild(node)
-            }
+            block.appendChild(text(m, this.sourcepos(startpos, this.pos)))
             return true
         }
         return false
@@ -984,6 +965,9 @@ export class InlineParser {
             const hardbreak = lastc.literal![lastc.literal!.length - 2] === ' '
             const litLen = lastc.literal!.length
             lastc.literal = lastc.literal!.replace(reFinalSpace, '')
+            if (lastc.smartLiteral !== null) {
+                lastc.smartLiteral = lastc.smartLiteral.slice(0, lastc.literal.length)
+            }
             const finalSpaceLen = litLen - lastc.literal.length
             lastc.sourcepos![1][1] -= finalSpaceLen
 
@@ -1094,6 +1078,22 @@ export class InlineParser {
         return this.pos - startpos
     }
 
+    /**
+     * Gives text nodes their dashes and ellipses in `smartLiteral`, with the quotes they have already: after the text
+     * is merged and split into autolinks, as these don't keep the length of the text. URLs keep theirs.
+     */
+    smartPunctuation(walker: NodeWalker) {
+        let event
+        while ((event = walker.next())) {
+            const { entering, node } = event
+            const link = node.parent?.type === 'link' ? (node.parent as LinkNode) : null
+            if (!entering || node.type !== 'text' || urlTexts.has(node) || link?.extendedAutolink) {
+                continue
+            }
+            completeSmart(node)
+        }
+    }
+
     mergeTextNodes(walker: NodeWalker) {
         let event
         let textNodes: BaseNode[] = []
@@ -1114,6 +1114,7 @@ export class InlineParser {
                 if (firstNode.next) {
                     firstNode.next.prev = firstNode
                 }
+                mergeSmart(firstNode, textNodes)
 
                 for (let i = 1; i < textNodes.length; i += 1) {
                     firstNode.literal! += textNodes[i].literal
@@ -1255,6 +1256,9 @@ export class InlineParser {
         const { extendedAutolinks, customParser } = this.options
         if (extendedAutolinks) {
             convertExtAutoLinks(block.walker(), extendedAutolinks)
+        }
+        if (this.options.smart) {
+            this.smartPunctuation(block.walker())
         }
         if (customParser && block.firstChild) {
             let event

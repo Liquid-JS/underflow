@@ -56,6 +56,11 @@ export interface MdNode {
     firstChild: MdNode | null
     lastChild: MdNode | null
     literal: string | null
+    /**
+     * A text node's text with typographic quotes, dashes and ellipses, when the document is parsed with smart
+     * punctuation and they differ from `literal`, which is the text as written.
+     */
+    smartLiteral: string | null
 
     isContainer(): boolean
     unlink(): void

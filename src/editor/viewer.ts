@@ -28,6 +28,7 @@ class Viewer {
             referenceDefinition: false,
             customHTMLSanitizer: null,
             frontMatter: false,
+            smartPunctuation: false,
             theme: 'light',
             widgetRules: [],
             ...options
@@ -46,6 +47,7 @@ class Viewer {
             extendedAutolinks,
             referenceDefinition,
             frontMatter,
+            smartPunctuation,
             customHTMLSanitizer,
             widgetRules
         } = this.options
@@ -81,6 +83,7 @@ class Viewer {
             extendedAutolinks,
             referenceDefinition,
             frontMatter,
+            smart: smartPunctuation,
             customParser: markdownParsers,
             widgetRules: rules.patterns
         })

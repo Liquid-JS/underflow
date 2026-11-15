@@ -18,6 +18,7 @@ export interface RenderMarkdownOptions extends Pick<
     | 'customHTMLRenderer'
     | 'referenceDefinition'
     | 'frontMatter'
+    | 'smartPunctuation'
     | 'widgetRules'
 > {
     /**
@@ -39,6 +40,7 @@ export function renderMarkdown(markdown: string, options: RenderMarkdownOptions 
         customHTMLRenderer = {},
         referenceDefinition = false,
         frontMatter = false,
+        smartPunctuation = false,
         widgetRules = [],
         sanitizer = DOMPurify.isSupported ? sanitizeHTML : undefined
     } = options
@@ -59,6 +61,7 @@ export function renderMarkdown(markdown: string, options: RenderMarkdownOptions 
         extendedAutolinks,
         referenceDefinition,
         frontMatter,
+        smart: smartPunctuation,
         customParser: markdownParsers,
         widgetRules: rules.patterns
     })

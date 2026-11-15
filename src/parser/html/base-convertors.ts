@@ -17,9 +17,10 @@ export const baseConvertors: HTMLConvertorMap = {
         outerNewLine: true
     }),
 
+    // With smart punctuation, typographic quotes, dashes and ellipses.
     text: (node) => ({
         type: 'text',
-        content: node.literal!
+        content: node.smartLiteral ?? node.literal!
     }),
 
     softbreak: (_, { options }) => ({

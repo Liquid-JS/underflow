@@ -2,6 +2,7 @@ import { Sourcepos } from '../../types/node'
 import { AutolinkParser } from '../../types/parser'
 import { createNode, text } from '../node'
 import { NodeWalker } from '../node-walker'
+import { sliceSmart } from '../smart'
 
 // segments separated by periods; GFM counts the period after `www`, so `www.example` and `http://localhost` are links
 const DOMAIN = '[\\w-]*[A-Za-z0-9-](?:\\.[\\w-]*[A-Za-z0-9-])*'
@@ -107,12 +108,16 @@ export function convertExtAutoLinks(walker: NodeWalker, autolinkParser: boolean 
                 [lineNum, chPos + startIdx],
                 [lineNum, chPos + endIdx]
             ]
+            // The text either side of a link, with its smart text.
+            const piece = (start: number, end = literal.length) => {
+                const part = text(literal.substring(start, end), sourcepos(start, end - 1))
+                sliceSmart(node, part, start, end)
+                return part
+            }
             const newNodes = []
             for (const { range, url, text: linkText } of linkInfos) {
                 if (range[0] > lastIdx) {
-                    newNodes.push(
-                        text(literal.substring(lastIdx, range[0]), sourcepos(lastIdx, range[0] - 1))
-                    )
+                    newNodes.push(piece(lastIdx, range[0]))
                 }
                 const linkNode = createNode('link', sourcepos(...range))
                 linkNode.appendChild(text(linkText, sourcepos(...range)))
@@ -122,7 +127,7 @@ export function convertExtAutoLinks(walker: NodeWalker, autolinkParser: boolean 
                 lastIdx = range[1] + 1
             }
             if (lastIdx < literal.length) {
-                newNodes.push(text(literal.substring(lastIdx), sourcepos(lastIdx, literal.length - 1)))
+                newNodes.push(piece(lastIdx))
             }
 
             for (const newNode of newNodes) {
