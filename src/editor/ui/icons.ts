@@ -28,8 +28,7 @@ import strike from './icons/strike.svg' with { type: 'text' }
 import table from './icons/table.svg' with { type: 'text' }
 import taskList from './icons/task-list.svg' with { type: 'text' }
 
-/** The SVG icons, by the class name of their toolbar button or menu item */
-export const icons: Record<string, string> = {
+const defaults = {
     'add-column-left': addColumnLeft,
     'add-column-right': addColumnRight,
     'add-row-down': addRowDown,
@@ -59,4 +58,20 @@ export const icons: Record<string, string> = {
     strike,
     table,
     'task-list': taskList
+}
+
+/** The name of one of the editor's icons: the class name of its toolbar button or menu item, e.g. `bold` */
+export type IconName = keyof typeof defaults
+
+/** The SVG icons, by the class name of their toolbar button or menu item */
+export const icons: Record<string, string> = { ...defaults }
+
+/**
+ * Replaces icons by name with SVG markup, which is drawn in the text colour when it uses `currentColor`; an icon given
+ * as `undefined` gets its own back. It applies to what the editor draws from then on, so call it before making editors.
+ */
+export function setIcons(custom: Partial<Record<IconName, string>>) {
+    for (const [name, svg] of Object.entries(custom) as Array<[IconName, string | undefined]>) {
+        icons[name] = svg ?? defaults[name]
+    }
 }

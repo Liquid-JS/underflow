@@ -70,6 +70,7 @@ export type {
     Attrs
 } from './editor/types/convertor'
 export type { WwNodeType, WwMarkType } from './editor/types/wysiwyg'
+export type { IconName } from './editor/ui/icons'
 export type { Emitter, Handler, EventName, EventTypes } from './editor/types/event'
 export type { Dispatch, Payload, DefaultPayload } from './editor/types/spec'
 export type {

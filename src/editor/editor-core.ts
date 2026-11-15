@@ -43,6 +43,7 @@ import { getEditorToMdPos, getMdToEditorPos } from './markdown/helper/pos'
 import { getToolbarState } from './wysiwyg/plugins/toolbar-state'
 import { getCursorInfo } from './markdown/plugins/preview-highlight'
 import { splitTableCellSpans } from './wysiwyg/helper/table-spans'
+import { type IconName, setIcons } from './ui/icons'
 
 const reHTMLSource = /<(div|code) data-html-source="true">([\s\S]*?)<\/\1>/g
 
@@ -345,6 +346,16 @@ class EditorCore {
     /** Registers the UI texts of a language under its codes. */
     static setLanguage(code: string | string[], data: Record<string, string>) {
         i18n.setLanguage(code, data)
+    }
+
+    /**
+     * Replaces the editor's icons by name, e.g. `{ bold: '<svg …>…</svg>' }`, in its toolbar, menus and widgets, for the
+     * editors made from then on; an icon given as `undefined` gets its own back.
+     *
+     * @param icons - SVG markup by icon name: the class name of its toolbar button or menu item
+     */
+    static setIcons(icons: Partial<Record<IconName, string>>) {
+        setIcons(icons)
     }
 
     /** `light`, `dark` or a custom theme, styled through the `uf-{theme}` class */

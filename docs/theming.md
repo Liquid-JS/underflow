@@ -65,6 +65,27 @@ The variables are listed below; their values are in `src/editor/styles/ui/_varia
 The toolbar and table menu icons are inline SVG [Tabler Icons](https://tabler.io/icons) drawn in `currentColor`, so
 they take their colour from these variables in every theme.
 
+## Custom icons
+
+`Editor.setIcons()` replaces icons by name with SVG markup, wherever the editor draws them: its toolbar, the table
+menu, code blocks' language picker, and image and custom block editing. Call it before making the editors; an icon
+drawn in `currentColor` takes the theme's icon colours. Giving a name `undefined` brings its own icon back.
+
+```js
+import { Editor } from '@liquid-js/underflow';
+
+Editor.setIcons({
+  bold: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">...</svg>',
+  'task-list': taskListIcon,
+});
+```
+
+The names, `IconName` in TypeScript, are the class names of the toolbar buttons and menu items: `heading`, `bold`,
+`italic`, `strike`, `hrline`, `quote`, `bullet-list`, `ordered-list`, `task-list`, `indent`, `outdent`, `table`,
+`image`, `link`, `code`, `codeblock`, `more`, the table menu's `add-row-up`, `add-row-down`, `add-column-left`,
+`add-column-right`, `remove-row`, `remove-column`, `align-column-left`, `align-column-center`, `align-column-right`
+and `remove-table`, and `chevron-down` and `pencil`, of the language picker and custom block editing.
+
 ## Styling the content
 
 The preview, the WYSIWYG editor and the viewer render markdown inside an element with the

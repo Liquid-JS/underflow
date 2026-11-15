@@ -820,6 +820,26 @@ describe('editor', () => {
 
             expect(i18n.setLanguage).toHaveBeenCalledWith('ko', data)
         })
+
+        it('setIcons() replaces icons by name for the editors made after it, and gives one back with undefined', () => {
+            const el = document.createElement('div')
+            const boldIcon = () => el.querySelector(`.bold .${cls('icon')} svg`)
+
+            document.body.appendChild(el)
+            Editor.setIcons({ bold: '<svg data-custom="bold"></svg>' })
+            const custom = new Editor({ el })
+
+            expect(boldIcon()?.getAttribute('data-custom')).toBe('bold')
+            custom.destroy()
+
+            Editor.setIcons({ bold: undefined })
+            const plain = new Editor({ el })
+
+            expect(boldIcon()).not.toBeNull()
+            expect(boldIcon()?.getAttribute('data-custom')).toBeNull()
+            plain.destroy()
+            document.body.removeChild(el)
+        })
     })
 
     describe('options', () => {
