@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.0.0-13](https://github.com/Liquid-JS/underflow/compare/v4.0.0-12...v4.0.0-13) (2026-11-15)
+
+### Features
+
+* smart punctuation option, shown in the rendered markdown ([d7dccf2](https://github.com/Liquid-JS/underflow/commit/d7dccf2623130a4fb7a5e3659f9e49474cf29ec8))
 ## [4.0.0-12](https://github.com/Liquid-JS/underflow/compare/v4.0.0-11...v4.0.0-12) (2026-11-15)
 
 ### Bug Fixes
