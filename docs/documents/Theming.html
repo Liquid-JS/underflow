@@ -95,6 +95,18 @@ variables on that class to create a theme of your own; anything you leave out fa
 </table>
 <p>The toolbar and table menu icons are inline SVG <a href="https://tabler.io/icons">Tabler Icons</a> drawn in <code>currentColor</code>, so
 they take their colour from these variables in every theme.</p>
+<h2 id="custom-icons" class="tsd-anchor-link">Custom icons<a href="#custom-icons" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p><code>Editor.setIcons()</code> replaces icons by name with SVG markup, wherever the editor draws them: its toolbar, the table
+menu, code blocks' language picker, and image and custom block editing. Call it before making the editors; an icon
+drawn in <code>currentColor</code> takes the theme's icon colours. Giving a name <code>undefined</code> brings its own icon back.</p>
+<pre><code class="js"><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-5">Editor</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@liquid-js/underflow&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">Editor</span><span class="hl-1">.</span><span class="hl-0">setIcons</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-5">bold:</span><span class="hl-1"> </span><span class="hl-2">&#39;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot;&gt;...&lt;/svg&gt;&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-2">&#39;task-list&#39;</span><span class="hl-5">:</span><span class="hl-1"> </span><span class="hl-5">taskListIcon</span><span class="hl-1">,</span><br/><span class="hl-1">});</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The names, <code>IconName</code> in TypeScript, are the class names of the toolbar buttons and menu items: <code>heading</code>, <code>bold</code>,
+<code>italic</code>, <code>strike</code>, <code>hrline</code>, <code>quote</code>, <code>bullet-list</code>, <code>ordered-list</code>, <code>task-list</code>, <code>indent</code>, <code>outdent</code>, <code>table</code>,
+<code>image</code>, <code>link</code>, <code>code</code>, <code>codeblock</code>, <code>more</code>, the table menu's <code>add-row-up</code>, <code>add-row-down</code>, <code>add-column-left</code>,
+<code>add-column-right</code>, <code>remove-row</code>, <code>remove-column</code>, <code>align-column-left</code>, <code>align-column-center</code>, <code>align-column-right</code>
+and <code>remove-table</code>, and <code>chevron-down</code> and <code>pencil</code>, of the language picker and custom block editing.</p>
 <h2 id="styling-the-content" class="tsd-anchor-link">Styling the content<a href="#styling-the-content" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <p>The preview, the WYSIWYG editor and the viewer render markdown inside an element with the
 <code>uf-contents</code> class, styled by <code>styles/editor.css</code> (or <code>styles/viewer.css</code> for the viewer). To use your own
@@ -135,6 +147,7 @@ CLI, use <code>pkg:</code> URLs (<code>@use &quot;pkg:@liquid-js/underflow/scss/
 <ul>
 <li><a href="#light-and-dark"><span>Light and dark</span></a></li>
 <li><a href="#custom-themes"><span>Custom themes</span></a></li>
+<li><a href="#custom-icons"><span>Custom icons</span></a></li>
 <li><a href="#styling-the-content"><span>Styling the content</span></a></li>
 <li><a href="#sass"><span>Sass</span></a></li></ul></div></details></div>
 <div class="site-menu">
