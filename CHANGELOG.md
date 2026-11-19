@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.0.0-14](https://github.com/Liquid-JS/underflow/compare/v4.0.0-13...v4.0.0-14) (2026-11-19)
+
+### Bug Fixes
+
+* keep data-raw-html only when it names the element's own tag ([922a043](https://github.com/Liquid-JS/underflow/commit/922a043b32a60b98fd6c307d01f91ce049da4aa0))
+
 ## [4.0.0-13](https://github.com/Liquid-JS/underflow/compare/v4.0.0-12...v4.0.0-13) (2026-11-15)
 
 ### Features
