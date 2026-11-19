@@ -53,11 +53,29 @@ export function findListItem(pos: ResolvedPos) {
     return findNodeBy(pos, ({ type }: ProsemirrorNode) => type.name === 'listItem')
 }
 
+/**
+ * The tag an element was written with as HTML in the markdown, from its `data-raw-html`; a value that isn't the
+ * element's own tag, e.g. in pasted HTML, is dropped, so it becomes neither another element nor raw HTML in the markdown
+ */
+export function getRawHTML(dom: Node | string) {
+    const el = dom as HTMLElement
+    const rawHTML = el.getAttribute('data-raw-html')
+
+    return rawHTML?.toLowerCase() === el.localName ? el.localName : null
+}
+
+/** The tag to draw a node or mark with: the tag it was written with if it's one of `tags`, otherwise `fallback` */
+export function getRawHTMLTag(rawHTML: unknown, tags: string[], fallback: string) {
+    const tag = typeof rawHTML === 'string' ? rawHTML.toLowerCase() : null
+
+    return tag && tags.includes(tag) ? tag : fallback
+}
+
 export function createDOMInfoParsedRawHTML(tag: string) {
     return {
         tag,
         getAttrs: (dom: Node | string) => {
-            const rawHTML = (dom as HTMLElement).getAttribute('data-raw-html')
+            const rawHTML = getRawHTML(dom)
 
             return {
                 ...(rawHTML && { rawHTML })
@@ -80,7 +98,7 @@ export function createParsedCellDOM(tag: string) {
     return {
         tag,
         getAttrs: (dom: Node | string): NodeAttrs => {
-            const rawHTML = (dom as HTMLElement).getAttribute('data-raw-html')
+            const rawHTML = getRawHTML(dom)
 
             return rawHTML ? { rawHTML } : {}
         }

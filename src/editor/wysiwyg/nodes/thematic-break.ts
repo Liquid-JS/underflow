@@ -3,7 +3,7 @@ import { Node as ProsemirrorNode, DOMOutputSpec } from 'prosemirror-model'
 import { EditorCommand } from '../../types/spec'
 import { NodeSchema } from '../../spec/node'
 
-import { getDefaultCustomAttrs, getCustomAttrs } from '../helper/node'
+import { getDefaultCustomAttrs, getCustomAttrs, getRawHTMLTag } from '../helper/node'
 
 const ROOT_BLOCK_DEPTH = 1
 
@@ -21,7 +21,7 @@ export class ThematicBreak extends NodeSchema {
             group: 'block',
             parseDOM: [{ tag: 'hr' }],
             selectable: false,
-            toDOM: ({ attrs }: ProsemirrorNode): DOMOutputSpec => ['div', getCustomAttrs(attrs), [attrs.rawHTML || 'hr']]
+            toDOM: ({ attrs }: ProsemirrorNode): DOMOutputSpec => ['div', getCustomAttrs(attrs), [getRawHTMLTag(attrs.rawHTML, ['hr'], 'hr')]]
         }
     }
 

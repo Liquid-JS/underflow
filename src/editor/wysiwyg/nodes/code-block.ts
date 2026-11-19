@@ -6,7 +6,7 @@ import { EditorCommand } from '../../types/spec'
 import { addParagraph } from '../../helper/manipulation'
 import { between, last } from '../../utils/common'
 import { NodeSchema } from '../../spec/node'
-import { getCustomAttrs, getDefaultCustomAttrs } from '../helper/node'
+import { getCustomAttrs, getDefaultCustomAttrs, getRawHTML, getRawHTMLTag } from '../helper/node'
 
 function isPlainTextblock(node: ProsemirrorNode) {
     let plain = node.isTextblock
@@ -40,7 +40,7 @@ export class CodeBlock extends NodeSchema {
                     tag: 'pre',
                     preserveWhitespace: 'full' as const,
                     getAttrs: (dom: Node | string) => {
-                        const rawHTML = (dom as HTMLElement).getAttribute('data-raw-html')
+                        const rawHTML = getRawHTML(dom)
                         const child = (dom as HTMLElement).firstElementChild
 
                         return {
@@ -51,7 +51,7 @@ export class CodeBlock extends NodeSchema {
                 }
             ],
             toDOM: ({ attrs }: ProsemirrorNode): DOMOutputSpec => [
-                attrs.rawHTML || 'pre',
+                getRawHTMLTag(attrs.rawHTML, ['pre'], 'pre'),
                 ['code', { 'data-language': attrs.language, ...getCustomAttrs(attrs) }, 0]
             ]
         }

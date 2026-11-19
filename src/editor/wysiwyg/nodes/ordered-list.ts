@@ -5,7 +5,7 @@ import { NodeSchema } from '../../spec/node'
 import { getWwCommands } from '../../commands/ww-commands'
 import { changeList } from '../command/list'
 
-import { getDefaultCustomAttrs, getCustomAttrs } from '../helper/node'
+import { getDefaultCustomAttrs, getCustomAttrs, getRawHTML, getRawHTMLTag } from '../helper/node'
 
 export class OrderedList extends NodeSchema {
     get name() {
@@ -28,7 +28,7 @@ export class OrderedList extends NodeSchema {
                     tag: 'ol',
                     getAttrs: (dom: Node | string) => {
                         const start = (dom as HTMLElement).getAttribute('start')
-                        const rawHTML = (dom as HTMLElement).getAttribute('data-raw-html')
+                        const rawHTML = getRawHTML(dom)
 
                         return {
                             order: (dom as HTMLElement).hasAttribute('start') ? Number(start) : 1,
@@ -38,7 +38,7 @@ export class OrderedList extends NodeSchema {
                 }
             ],
             toDOM: ({ attrs }: ProsemirrorNode): DOMOutputSpec => [
-                attrs.rawHTML || 'ol',
+                getRawHTMLTag(attrs.rawHTML, ['ol'], 'ol'),
                 { start: attrs.order === 1 ? null : attrs.order, ...getCustomAttrs(attrs) },
                 0
             ]

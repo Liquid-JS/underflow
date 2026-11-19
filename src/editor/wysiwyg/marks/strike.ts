@@ -3,7 +3,7 @@ import { toggleMark } from 'prosemirror-commands'
 
 import { EditorCommand } from '../../types/spec'
 import { Mark } from '../../spec/mark'
-import { getCustomAttrs, getDefaultCustomAttrs } from '../helper/node'
+import { getCustomAttrs, getDefaultCustomAttrs, getRawHTML, getRawHTMLTag } from '../helper/node'
 
 export class Strike extends Mark {
     get name() {
@@ -14,7 +14,7 @@ export class Strike extends Mark {
         const parseDOM = ['s', 'del'].map((tag) => ({
             tag,
             getAttrs: (dom: Node | string) => {
-                const rawHTML = (dom as HTMLElement).getAttribute('data-raw-html')
+                const rawHTML = getRawHTML(dom)
 
                 return {
                     ...(rawHTML && { rawHTML })
@@ -28,7 +28,7 @@ export class Strike extends Mark {
                 ...getDefaultCustomAttrs()
             },
             parseDOM,
-            toDOM: ({ attrs }: ProsemirrorMark): DOMOutputSpec => [attrs.rawHTML || 'del', getCustomAttrs(attrs)]
+            toDOM: ({ attrs }: ProsemirrorMark): DOMOutputSpec => [getRawHTMLTag(attrs.rawHTML, ['s', 'del'], 'del'), getCustomAttrs(attrs)]
         }
     }
 

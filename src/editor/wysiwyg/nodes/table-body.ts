@@ -1,7 +1,7 @@
 import { DOMOutputSpec, Node as ProsemirrorNode } from 'prosemirror-model'
 
 import { NodeSchema } from '../../spec/node'
-import { getCustomAttrs, getDefaultCustomAttrs } from '../helper/node'
+import { getCustomAttrs, getDefaultCustomAttrs, getRawHTML } from '../helper/node'
 
 export class TableBody extends NodeSchema {
     get name() {
@@ -26,7 +26,7 @@ export class TableBody extends NodeSchema {
                         }
 
                         const columns = rows[0].children.length
-                        const rawHTML = (dom as HTMLElement).getAttribute('data-raw-html')
+                        const rawHTML = getRawHTML(dom)
 
                         if (!columns) {
                             return false

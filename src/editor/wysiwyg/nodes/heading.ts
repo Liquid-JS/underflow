@@ -3,7 +3,7 @@ import { setBlockType } from 'prosemirror-commands'
 
 import { EditorCommand } from '../../types/spec'
 import { NodeSchema } from '../../spec/node'
-import { getCustomAttrs, getDefaultCustomAttrs } from '../helper/node'
+import { getCustomAttrs, getDefaultCustomAttrs, getRawHTML } from '../helper/node'
 
 export class Heading extends NodeSchema {
     get name() {
@@ -18,7 +18,7 @@ export class Heading extends NodeSchema {
         const parseDOM = this.levels.map((level) => ({
             tag: `h${level}`,
             getAttrs: (dom: Node | string) => {
-                const rawHTML = (dom as HTMLElement).getAttribute('data-raw-html')
+                const rawHTML = getRawHTML(dom)
 
                 return {
                     level,

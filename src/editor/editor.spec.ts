@@ -246,6 +246,24 @@ describe('editor', () => {
                 expect(wwEditor).toContainHTML('<thead><tr><th><p>a</p></th></tr></thead>')
             })
 
+            it('should keep data-raw-html only when it names the element\'s own tag', () => {
+                editor.changeMode('wysiwyg')
+                editor.setHTML(oneLineTrim`
+                    <p>
+                        <em data-raw-html="script">a</em>
+                        <strong data-raw-html="iframe">b</strong>
+                        <a href="c" data-raw-html="object">c</a>
+                        <b data-raw-html="B">d</b>
+                    </p>
+                    <h2 data-raw-html="style">e</h2>
+                    <ol><li data-raw-html="script">f</li></ol>
+                `)
+
+                expect(wwEditor.querySelector('script, iframe, object, style')).toBeNull()
+                expect(wwEditor).toContainHTML('<em>a</em><strong>b</strong>')
+                expect(editor.getMarkdown()).toBe('*a***b**[c](c)<b>d</b>\n\n## e\n\n1. f')
+            })
+
             it('should split merged table cells, keeping every cell', () => {
                 editor.changeMode('wysiwyg')
                 editor.setHTML(oneLineTrim`

@@ -4,7 +4,7 @@ import { EditorCommand } from '../../types/spec'
 import { NodeSchema } from '../../spec/node'
 import { sanitizeHTML } from '../../sanitizer/html-sanitizer'
 
-import { getCustomAttrs, getDefaultCustomAttrs } from '../helper/node'
+import { getCustomAttrs, getDefaultCustomAttrs, getRawHTML, getRawHTMLTag } from '../helper/node'
 
 export class ImageNode extends NodeSchema {
     get name() {
@@ -30,7 +30,7 @@ export class ImageNode extends NodeSchema {
                         const sanitizedDOM = sanitizeHTML<DocumentFragment>(dom, { RETURN_DOM_FRAGMENT: true })
                             .firstChild as HTMLElement
                         const imageUrl = sanitizedDOM.getAttribute('src') || ''
-                        const rawHTML = sanitizedDOM.getAttribute('data-raw-html')
+                        const rawHTML = getRawHTML(sanitizedDOM)
                         const altText = sanitizedDOM.getAttribute('alt')
                         const title = sanitizedDOM.getAttribute('title')
 
@@ -44,7 +44,7 @@ export class ImageNode extends NodeSchema {
                 }
             ],
             toDOM: ({ attrs }: ProsemirrorNode): DOMOutputSpec => [
-                attrs.rawHTML || 'img',
+                getRawHTMLTag(attrs.rawHTML, ['img'], 'img'),
                 {
                     src: attrs.imageUrl,
                     ...(attrs.altText && { alt: attrs.altText }),

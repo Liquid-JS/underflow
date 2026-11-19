@@ -2,6 +2,7 @@ import type { Command } from 'prosemirror-state'
 import type { Node as ProsemirrorNode, DOMOutputSpec } from 'prosemirror-model'
 
 import { NodeSchema } from '../../spec/node'
+import { getRawHTML, getRawHTMLTag } from '../helper/node'
 import { splitListItem } from '../command/list'
 
 export class ListItem extends NodeSchema {
@@ -23,7 +24,7 @@ export class ListItem extends NodeSchema {
                 {
                     tag: 'li',
                     getAttrs: (dom: Node | string) => {
-                        const rawHTML = (dom as HTMLElement).getAttribute('data-raw-html')
+                        const rawHTML = getRawHTML(dom)
 
                         return {
                             task: (dom as HTMLElement).hasAttribute('data-task'),
@@ -37,7 +38,7 @@ export class ListItem extends NodeSchema {
                 const { task, checked } = attrs
 
                 if (!task) {
-                    return [attrs.rawHTML || 'li', 0]
+                    return [getRawHTMLTag(attrs.rawHTML, ['li'], 'li'), 0]
                 }
 
                 const classNames = ['task-list-item']
@@ -47,7 +48,7 @@ export class ListItem extends NodeSchema {
                 }
 
                 return [
-                    attrs.rawHTML || 'li',
+                    getRawHTMLTag(attrs.rawHTML, ['li'], 'li'),
                     {
                         'class': classNames.join(' '),
                         'data-task': task,

@@ -6,7 +6,7 @@ import { LinkAttributes } from '../../types/editor'
 import { Mark } from '../../spec/mark'
 import { sanitizeHTML } from '../../sanitizer/html-sanitizer'
 import { createTextNode } from '../../helper/manipulation'
-import { getCustomAttrs, getDefaultCustomAttrs } from '../helper/node'
+import { getCustomAttrs, getDefaultCustomAttrs, getRawHTML, getRawHTMLTag } from '../helper/node'
 
 const reScriptURL = /^(?:java|vb|live)script:/i
 
@@ -45,7 +45,7 @@ export class Link extends Mark {
                             .firstChild as HTMLElement
                         const href = sanitizedDOM.getAttribute('href') || ''
                         const title = sanitizedDOM.getAttribute('title') || ''
-                        const rawHTML = sanitizedDOM.getAttribute('data-raw-html')
+                        const rawHTML = getRawHTML(sanitizedDOM)
 
                         return {
                             linkUrl: href,
@@ -56,7 +56,7 @@ export class Link extends Mark {
                 }
             ],
             toDOM: ({ attrs }: ProsemirrorMark): DOMOutputSpec => [
-                attrs.rawHTML || 'a',
+                getRawHTMLTag(attrs.rawHTML, ['a'], 'a'),
                 {
                     // like the sanitized preview, script urls get no href
                     ...(!isScriptURL(attrs.linkUrl) && { href: attrs.linkUrl }),
