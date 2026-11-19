@@ -18,7 +18,7 @@ test('the packed library works in an application bundle', async ({ page }) => {
         rendered: '<h1>Title</h1>\n<p>Some <i>text</i></p>\n',
         // the custom HTML renderer applies to the preview
         previewHTML:
-      '<h1 id="heading-1">Hallo</h1>' +
+            '<h1 id="heading-1">Hallo</h1>' +
       '<pre><code data-language="javascript">const a = 1;\nconst b = 2;</code></pre>',
         renderedMarkdown: '<p><strong class="smoke-strong">render</strong></p>\n'
     })

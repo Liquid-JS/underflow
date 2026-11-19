@@ -1301,7 +1301,7 @@ describe('editor', () => {
                 createEditor({
                     el: container,
                     initialValue:
-            '<iframe width="420" height="315" src="https://www.youtube.com/embed/XyenY12fzAk"></iframe>\n\ntest',
+                        '<iframe width="420" height="315" src="https://www.youtube.com/embed/XyenY12fzAk"></iframe>\n\ntest',
                     previewHighlight: false,
                     // add iframe html block renderer
                     customHTMLRenderer: createHTMLrenderer()
@@ -1319,7 +1319,7 @@ describe('editor', () => {
                 createEditor({
                     el: container,
                     initialValue:
-            '<iframe width="420" height="315" src="https://www.youtube.com/embed/XyenY12fzAk"></iframe>\n\ntest',
+                        '<iframe width="420" height="315" src="https://www.youtube.com/embed/XyenY12fzAk"></iframe>\n\ntest',
                     previewHighlight: false,
                     // add iframe html block renderer
                     customHTMLRenderer: createHTMLrenderer()

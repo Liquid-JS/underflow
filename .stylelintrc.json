@@ -4,10 +4,8 @@
         "@stylistic/stylelint-config"
     ],
     "rules": {
-        "@stylistic/indentation": 4,
         "no-descending-specificity": null,
         "selector-class-pattern": null,
-        "@stylistic/max-line-length": null,
         "no-duplicate-selectors": null,
         "at-rule-empty-line-before": null,
         "alpha-value-notation": "number",
@@ -31,8 +29,6 @@
         "block-no-empty": null,
         "scss/comment-no-empty": null,
         "selector-id-pattern": null,
-        "@stylistic/value-list-max-empty-lines": 1,
-        "@stylistic/function-max-empty-lines": 1,
         "selector-pseudo-element-no-unknown": [
             true,
             {
@@ -41,14 +37,36 @@
                 ]
             }
         ],
-        "@stylistic/block-closing-brace-newline-after": [
-            "always",
+        "selector-no-deprecated": [
+            true,
             {
-                "ignoreAtRules": [
-                    "if",
-                    "else"
+                "ignoreSelectors": [
+                    "dir"
                 ]
             }
         ]
-    }
+    },
+    "overrides": [
+        {
+            "files": [
+                "**/*.scss"
+            ],
+            "rules": {
+                "@stylistic/scss/indentation": 4,
+                "@stylistic/max-line-length": null,
+                "@stylistic/scss/max-line-length": null,
+                "@stylistic/scss/value-list-max-empty-lines": 1,
+                "@stylistic/scss/function-max-empty-lines": 1,
+                "@stylistic/scss/block-closing-brace-newline-after": [
+                    "always",
+                    {
+                        "ignoreAtRules": [
+                            "if",
+                            "else"
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
 }
